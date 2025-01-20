@@ -242,6 +242,9 @@ Suppose a user wants to send a message to another user, and only moderators can 
 - The notifications must be written in such a way that does not expose any sensitive data.
 - We can also add a rate-limiter for the form action to prevent spamming messages.
 
+> [!IMPORTANT]
+> To ensure that `hooks.server.ts` runs for every nested path, you must put a `+layout.server.ts` file in the directory that you want to auth guard. This file can be empty, but must exist to protect routes that don't have their own `+layout.server.ts` or `page.server.ts`. The auth guard is defined in `hooks.server.ts`.
+
 ## Database Clients
 
 When using an ORM like Drizzle, Supabase RLS does not work without additional setup. This is due to the fact that when using a direct connection to the database, we are using the `postgres` role, which bypasses RLS.

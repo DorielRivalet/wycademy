@@ -96,7 +96,7 @@
 <div class="app">
 	<ViewTransition />
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		{#if $bannerEnabledStore}
@@ -206,7 +206,7 @@
 			flex-direction: column;
 			padding: var(--cds-spacing-08);
 			width: 100%;
-			max-width: 70vw;
+			max-width: 80vw;
 			margin: 0 auto;
 			box-sizing: border-box;
 			min-height: 90vh;

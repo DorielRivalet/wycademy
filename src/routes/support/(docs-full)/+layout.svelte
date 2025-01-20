@@ -26,8 +26,7 @@
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
 	import pageThumbnail from '$lib/client/images/wycademy.png';
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
 	import TreeView from '$lib/client/components/TreeView.svelte';
 	import Logo from '$lib/client/images/logo.svg';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
@@ -77,8 +76,6 @@
 
 	let { data, children }: Props = $props();
 
-	type URLItem = { href: string; text: string };
-
 	function deslugify(slug: string) {
 		return slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 	}
@@ -125,7 +122,6 @@
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
 	}
 
-	let breadcrumbItems: URLItem[] = $state([]);
 	let headTitle = $state("Support Center — Frontier's Wycademy");
 	let description = $state(
 		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.',
@@ -145,8 +141,7 @@
 	// TODO unsure
 	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items, announcement } =
-			processRoute(pageUrlPathName);
+		const { navigationItem, announcement } = processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title + " — Frontier's Wycademy"
 			: navigationItem?.name
@@ -155,15 +150,13 @@
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);
-		breadcrumbItems = items;
 	});
 
 	onMount(() => {
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items, announcement } =
-			processRoute(pageUrlPathName);
+		const { navigationItem, announcement } = processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title + " — Frontier's Wycademy"
 			: navigationItem?.name
@@ -172,7 +165,6 @@
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);
-		breadcrumbItems = items;
 	});
 
 	const treeData = [
@@ -370,7 +362,7 @@
 	<ViewTransition />
 
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		{#if $bannerEnabledStore}
@@ -406,17 +398,7 @@
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
-				<Breadcrumb noTrailingSlash>
-					{#each breadcrumbItems as item, i}
-						<BreadcrumbItem
-							href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-							isCurrentPage={i === breadcrumbItems.length - 1}
-							>{#if i !== breadcrumbItems.length - 1}
-								{item.text}
-							{/if}
-						</BreadcrumbItem>
-					{/each}
-				</Breadcrumb>
+				<Breadcrumb page={$page} />
 			</div>
 			<div class="slot">
 				{@render children?.()}

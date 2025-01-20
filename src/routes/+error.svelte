@@ -20,6 +20,8 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
+	let { data } = $props();
+
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
@@ -74,7 +76,7 @@
 />
 <div class="app">
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		<!--TODO: banner folder and components-->
