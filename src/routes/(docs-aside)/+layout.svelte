@@ -92,7 +92,7 @@
 	<ViewTransition />
 
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		{#if $bannerEnabledStore}

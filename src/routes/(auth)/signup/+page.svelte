@@ -2,17 +2,11 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
-	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
-	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { goto } from '$app/navigation';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
-	import {
-		generateUsername,
-		usernames,
-	} from '$lib/client/modules/username-generator';
 	import Head from '$lib/client/components/Head.svelte';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
 	import {
@@ -23,30 +17,48 @@
 		website,
 	} from '$lib/constants';
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
+	import Help from 'carbon-icons-svelte/lib/Help.svelte';
+	import { Turnstile } from 'svelte-turnstile';
+	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import { enhance } from '$app/forms';
+	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+
+	function handleTurnstileCallback(event: CustomEvent<{ token: string }>) {
+		console.log('called back');
+	}
+
+	function handleTurnstileError(event: CustomEvent<{ code: string }>) {
+		console.log('did error');
+		turnstileResponse = '';
+	}
+
+	async function handleLogin() {
+		const response = await fetch('/auth/registration-code', {
+			method: 'POST',
+			body: JSON.stringify({ submittedCode }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		if (response.ok) {
+			error = false;
+			goto('/auth/login/discord');
+		} else {
+			error = true;
+		}
+	}
 
 	const customTitle = "Leaderboard — Frontier's Wycademy";
 	const url = $page.url.toString();
 
-	function shouldFilterItem(item: { text: string }, value: string) {
-		if (!value) return true;
-		return item.text.toLowerCase().includes(value.toLowerCase());
-	}
-
-	function signup() {
-		return;
-	}
-
 	let userAgreed = $state(false);
-
-	let selectedMonsterNameFromList = $state(usernames.monsters[0]);
-	let selectedMonsterPrefixFromList = $state(usernames.types[0]);
-
-	let username = $derived(
-		generateUsername(
-			selectedMonsterPrefixFromList ?? usernames.types[0],
-			selectedMonsterNameFromList ?? usernames.monsters[0],
-		) + '-####',
-	);
+	let userHasVerifiedEmail = $state(false);
+	let turnstileResponse = $state('');
+	let submittedCode = $state('');
+	let error = $state(false);
 
 	// TODO some pages like this one are missing Head component
 	let description =
@@ -84,7 +96,7 @@
 				kind="warning"
 				title="Beta Testing:"
 				hideCloseButton
-				subtitle="Please read about our development process before creating an account. It is currently not possible to make an account"
+				subtitle="Please read about our development process before creating an account."
 			>
 				{#snippet actions()}
 					<NotificationActionButton
@@ -96,39 +108,48 @@
 		</div>
 		<div class="login">
 			<h2>Create your account</h2>
-			<p>
-				Already have a Wycademy account? <Link inline href="/">Log in</Link>
-			</p>
 		</div>
-		<div class="username">
-			<Dropdown
-				titleText="Username Prefix"
-				bind:selectedId={selectedMonsterPrefixFromList}
-				items={usernames.types.map((e) => {
-					return { id: e, text: e !== '' ? e : 'None' };
-				})}
-			/>
-			<ComboBox
-				titleText="Username"
-				placeholder="Select monster"
-				bind:selectedId={selectedMonsterNameFromList}
-				items={usernames.monsters.map((e) => {
-					return { id: e, text: e };
-				})}
-				{shouldFilterItem}
-			/>
 
-			<p>Current username: {username}</p>
-		</div>
 		<div class="signup">
+			{#if error}
+				<InlineNotification
+					kind="error"
+					title="Error:"
+					subtitle="Invalid registration code."
+				/>
+			{/if}
+			<TextInput
+				labelText="Registration code"
+				helperText="You need a code in order to register. It is currently invite-only."
+				placeholder="Enter registration code..."
+				bind:value={submittedCode}
+			/>
 			<Button
-				disabled={!userAgreed}
+				disabled={!userAgreed ||
+					!browser ||
+					!userHasVerifiedEmail ||
+					!turnstileResponse}
+				kind="primary"
 				icon={LogoDiscord}
-				on:click={() => signup()}
-				kind="primary">Sign up with Discord</Button
+				on:click={(e) => handleLogin()}>Sign up with Discord</Button
 			>
 		</div>
 		<div class="agreement">
+			<!-- <p>{turnstileResponse}</p> -->
+			{#if browser}
+				<form method="POST" action="?/turnstile" use:enhance>
+					<Turnstile
+						on:callback={handleTurnstileCallback}
+						on:error={handleTurnstileError}
+						theme={'dark'}
+						siteKey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+						on:turnstile-callback={(event) => {
+							turnstileResponse = event.detail.token;
+							console.log('turnstile callback');
+						}}
+					/>
+				</form>
+			{/if}
 			<Checkbox bind:checked={userAgreed} required
 				>{#snippet labelText()}
 					<span>
@@ -141,20 +162,61 @@
 					>
 				{/snippet}</Checkbox
 			>
+			<Checkbox bind:checked={userHasVerifiedEmail} required
+				>{#snippet labelText()}
+					<span> I have verified my Discord account's email.</span>
+				{/snippet}</Checkbox
+			>
 		</div>
+		<hr />
+		<p>
+			<Link inline href="/login">Already have an account? Log in</Link>
+		</p>
+		<Accordion class="spaced-accordion">
+			<AccordionItem>
+				{#snippet title()}
+					<h5 class="accordion-title">
+						<span><Help /></span><span>Help</span>
+					</h5>
+				{/snippet}
+				<div class="spaced-paragraph">
+					You must have a <strong>verified email</strong> in your Discord
+					account prior to making a Wycademy account. It is also highly
+					recommended that you have <strong>2FA enabled</strong> on your Discord
+					account.
+				</div>
+				<p>If you cannot pass the CAPTCHA, try another browser.</p>
+			</AccordionItem>
+		</Accordion>
 	</div>
 </div>
 
 <style lang="scss">
 	@use '@carbon/type' as type;
 
-	@media (min-width: 320px) {
-		.username {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-		}
+	.signup {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
 
+	.accordion-title {
+		display: flex;
+		gap: 0.25rem;
+		align-items: start;
+		vertical-align: middle;
+	}
+
+	hr {
+		opacity: 1;
+		width: 100%;
+		border: none;
+		height: 1px;
+		margin: 0;
+		background: var(--ctp-surface0);
+	}
+
+	@media (min-width: 320px) {
 		.container {
 			padding-bottom: 4rem;
 		}

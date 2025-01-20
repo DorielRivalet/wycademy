@@ -6,10 +6,70 @@ import { apiCacheTimeouts } from '$lib/constants';
 import type { GitHubData } from '$lib/types';
 import type { LayoutLoad } from './$types';
 import { stringToCustomDateFormat } from '$lib/client/modules/time';
+import {
+	createBrowserClient,
+	createServerClient,
+	isBrowser,
+} from '@supabase/ssr';
+import {
+	PUBLIC_SUPABASE_ANON_KEY,
+	PUBLIC_SUPABASE_URL,
+} from '$env/static/public';
 
 inject({ mode: dev ? 'development' : 'production' });
 
-export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
+export const load: LayoutLoad = async ({
+	fetch,
+	url,
+	setHeaders,
+	data,
+	depends,
+}) => {
+	/**
+	 * Declare a dependency so the layout can be invalidated, for example, on
+	 * session refresh.
+	 */
+	depends('supabase:auth');
+
+	/** This is the client for making database actions*/
+	const supabase = isBrowser()
+		? createBrowserClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
+				global: {
+					fetch,
+				},
+			})
+		: createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
+				global: {
+					fetch,
+				},
+				cookies: {
+					getAll() {
+						return data.cookies;
+					},
+				},
+			});
+
+	/**
+	 * It's fine to use `getSession` here, because on the client, `getSession` is
+	 * safe, and on the server, it reads `session` from the `LayoutData`, which
+	 * safely checked the session using `safeGetSession`.
+	 */
+	const {
+		data: { session },
+	} = await supabase.auth.getSession();
+
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
+	// TODO safe?
+	/**The user profile can be null */
+	const profile = data.profile;
+	/**Only works server-side. This is the client for making database actions with Drizzle.*/
+	// const drizzleClient = isBrowser()
+	// 	? null
+	// 	: createDrizzleSupabaseClient(session);
+
 	/**Only use with prerendered pages */
 	// Map URL paths to their actual route group paths
 	const routeGroupMapping: Record<string, string> = {
@@ -29,6 +89,8 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 		'/support/policies/privacy-policy':
 			'/support/(docs-full)/policies/privacy-policy',
 		'/support/policies/security': '/support/(docs-full)/policies/security',
+		'/support/policies/community-standards':
+			'/support/(docs-full)/policies/community-standards',
 		'/support/policies/terms-of-service':
 			'/support/(docs-full)/policies/terms-of-service',
 		'/support/website/about': '/support/(docs-full)/website/about',
@@ -85,7 +147,14 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 		// setHeaders({
 		// 	'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
 		// });
-		return { github: defaultGitHubData };
+		return {
+			github: defaultGitHubData,
+			supabase,
+			session,
+			user,
+			profile,
+			// drizzleClient,
+		};
 	}
 
 	try {
@@ -113,14 +182,28 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 
 		if (!res.ok) {
 			console.error('Error fetching data from GitHub:', res.status);
-			return { github: defaultGitHubData };
+			return {
+				github: defaultGitHubData,
+				supabase,
+				session,
+				user,
+				profile,
+				// drizzleClient,
+			};
 		}
 
 		const commits = await res.json();
 
 		if (!commits || commits.length === 0) {
 			console.log('No commits found for path:', githubPath);
-			return { github: defaultGitHubData };
+			return {
+				github: defaultGitHubData,
+				supabase,
+				session,
+				user,
+				profile,
+				// drizzleClient,
+			};
 		}
 
 		const lastCommit = commits[0];
@@ -130,6 +213,11 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 				commitLink: lastCommit.html_url,
 				timesChanged: commits.length,
 			},
+			supabase,
+			session,
+			user,
+			profile,
+			// drizzleClient,
 		};
 	} catch (e) {
 		console.error('Error fetching data from GitHub:', e);
@@ -137,6 +225,13 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 		// setHeaders({
 		// 	'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
 		// });
-		return { github: defaultGitHubData };
+		return {
+			github: defaultGitHubData,
+			supabase,
+			session,
+			user,
+			profile,
+			// drizzleClient,
+		};
 	}
 };

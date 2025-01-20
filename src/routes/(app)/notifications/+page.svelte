@@ -3,7 +3,9 @@
 	import ErrorFilled from 'carbon-icons-svelte/lib/ErrorFilled.svelte';
 	import InformationFilled from 'carbon-icons-svelte/lib/InformationFilled.svelte';
 	import CheckmarkFilled from 'carbon-icons-svelte/lib/CheckmarkFilled.svelte';
-	import WarningFilled from 'carbon-icons-svelte/lib/WarningFilled.svelte';
+	import WarningAltFilled from 'carbon-icons-svelte/lib/WarningAltFilled.svelte';
+	import UnknownFilled from 'carbon-icons-svelte/lib/UnknownFilled.svelte';
+	// TODO delete page
 </script>
 
 <div>
@@ -12,9 +14,10 @@
 	<div class="notifications"></div>
 	<div>
 		<ErrorFilled color="var(--ctp-red)" />
-		<WarningFilled color="var(--ctp-yellow)" />
+		<WarningAltFilled color="var(--ctp-yellow)" />
 		<CheckmarkFilled color="var(--ctp-green)" />
 		<InformationFilled color="var(--ctp-blue)" />
+		<UnknownFilled color="var(--ctp-overlay2)" />
 	</div>
 </div>
 

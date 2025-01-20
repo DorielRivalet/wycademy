@@ -5,6 +5,7 @@
 -->
 
 <script lang="ts">
+	// quest-viewer/+page.svelte
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
 	import {
@@ -78,7 +79,7 @@
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import SummaryHuntsCalendarGraph from '$lib/client/components/SummaryHuntsCalendarGraph.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import SummaryWeaponUsage from '$lib/client/components/SummaryWeaponUsage.svelte';
 	import SummaryQuestGear from '$lib/client/components/SummaryQuestGear.svelte';
@@ -87,18 +88,90 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import FetchUpload from 'carbon-icons-svelte/lib/FetchUpload.svelte';
-	import { Help } from 'carbon-icons-svelte';
+	import Help from 'carbon-icons-svelte/lib/Help.svelte';
+	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import slugify from 'slugify';
 	import { v4 as uuidv4 } from 'uuid';
+	import { driver } from 'driver.js';
+	import 'driver.js/dist/driver.css';
+	import type { OnboardingType } from '$lib/client/types/onboarding';
+
+	// TODO
+	const onboardingTypeStore = getContext(
+		Symbol.for('onboardingType'),
+	) as Writable<OnboardingType>;
+
+	const onboardingStepStore = getContext(
+		Symbol.for('onboardingStep'),
+	) as Writable<number>;
+
+	let { data } = $props();
+	let { countries, profile } = $derived(data);
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
+	async function startWalkthrough() {
+		if (!browser) return;
+		if ($onboardingStepStore !== 4) return;
+
+		const driverObj = driver({
+			popoverClass: 'driverjs-theme',
+			allowClose: false,
+			disableActiveInteraction: true,
+			steps: [
+				{
+					element: '.driverjs-0-4',
+					popover: {
+						title: 'Read the Instructions',
+						description:
+							'Now that you have a public profile, you can submit quests into leaderboards. Please read the instructions in the page introduction and in the Help section.',
+					},
+				},
+				{
+					element: '.driverjs-1-4',
+					popover: {
+						title: "Loading other hunter's quest data",
+						description:
+							'You can also see the profile data of other hunters by inserting their username here.',
+					},
+				},
+				{
+					element: '.driverjs-2-4',
+					popover: {
+						title: 'Submit to Leaderboards',
+						description:
+							'Once you upload quests via the "Submit to Leaderboards" button, you can view your data on leaderboards and in the Quest History section of your profile.',
+					},
+				},
+				{
+					element: '.driverjs-3-4',
+					popover: {
+						title: 'Happy Hunting!',
+						description:
+							'You completed the onboarding process! You can revisit onboarding processes and tutorials via the "Go to onboarding page" button at the bottom of your home page.',
+						onNextClick: async () => {
+							// .. load element dynamically
+							// .. and then call
+							// TODO does this trigger?
+							$onboardingTypeStore = '';
+							$onboardingStepStore = 0;
+							driverObj.moveNext();
+						},
+					},
+				},
+			],
+		});
+
+		driverObj.drive();
+	}
+
 	// Submit the file via fetch
+	// quest-viewer/+page.svelte
 	async function handleFileSubmit(event) {
 		event.preventDefault();
 
@@ -116,7 +189,9 @@
 		const fileSize = file.size;
 		const chunkSize = 4 * 1024 * 1024; // 4MB per chunk
 		const totalChunks = Math.ceil(fileSize / chunkSize);
-		const uploadId = uuidv4();
+		const uploadUuid = uuidv4();
+		const uploadId = `${uploadUuid.toString()}`; // TODO safe?
+
 		let accumulatedText = '';
 		let accumulatedResult = null;
 
@@ -139,7 +214,6 @@
 				formData.append('chunk', chunk);
 				formData.append('chunkIndex', chunkIndex.toString());
 				formData.append('totalChunks', totalChunks.toString());
-				formData.append('fileName', file.name);
 				formData.append('fileSize', fileSize.toString());
 				formData.append('uploadId', uploadId.toString());
 
@@ -148,7 +222,8 @@
 				);
 
 				// Send the chunk to the server
-				const response = await fetch('/quest-viewer/upload', {
+				// TODO does this make it safer?
+				const response = await fetch(`/quest-viewer/upload/${uploadId}`, {
 					method: 'POST',
 					body: formData,
 				});
@@ -493,7 +568,7 @@
 		}, 100);
 	}
 
-	function onLoadShareURL(shareUrl: string) {}
+	function onLoadUsername(username: string) {}
 
 	const customTitle = "Quest Viewer — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -538,11 +613,17 @@
 	let summaryQuestGraphsRunID1 = $state(0);
 	let summaryQuestGraphsRunID2 = $state(0);
 	let selectedQuestID = $state(0);
-	let shareUrl = $state('');
+	let username = $state('');
 	let downloadRunID = $state(0);
 
 	let currentUserChunk = $state(0);
 	let totalUserChunks = $state(0);
+
+	onMount(() => {
+		if ($onboardingTypeStore === 'leaderboards' && $onboardingStepStore === 4) {
+			startWalkthrough();
+		}
+	});
 </script>
 
 <Head
@@ -562,11 +643,14 @@
 <section>
 	<SectionHeadingTopLevel title="Quest Viewer" />
 	<div>
-		<p class="spaced-paragraph">
-			This page is used as a preliminary tool to help make a leaderboard page.
-			The file data that is uploaded is not stored on our servers unless you use
-			the Share button. The share URL and its file data automatically gets
-			removed after 2 days.
+		<p class="spaced-paragraph driverjs-0-4">
+			Examine your quest information and share your results in leaderboards. The
+			file data that is uploaded is not stored on our servers unless you use the
+			"Submit to Leaderboards" button. You need to create a <Link
+				href="/profile"
+				inline>public profile</Link
+			> in order to submit quests to leaderboards. The "Submit to Leaderboards" button
+			will only show after validating your sqlite file, not before.
 		</p>
 
 		<Accordion class="spaced-accordion">
@@ -580,56 +664,29 @@
 					You can obtain a sqlite file by using the <Link inline href="/overlay"
 						>overlay.</Link
 					> Only certain types of quests are allowed to be submitted, which are automatically
-					filtered out.
+					filtered out. You should generate sqlite files from the overlay via the
+					"Generate speedrun files" button, found in the Overlay's Configuration
+					Window.
 				</div>
 				<div class="spaced-paragraph">
-					The filters and requirements for deciding which quests to allow are:
+					The filters and requirements for deciding which quests to allow are
+					shown in the <Link
+						href="/support/policies/community-standards#quest-submission-process"
+						inline>Community Standards page.</Link
+					>
 				</div>
-				<div>
-					<UnorderedList class="spaced-list">
-						<ListItem class="paragraph-long-02">
-							<p>
-								At least one run in the latest overlay version. Speedruns on
-								overlay versions older than 0.23.0 are not submitted.
-							</p></ListItem
-						>
-						<ListItem class="paragraph-long-02">
-							<p>
-								<strong>No Unknown Files or Patches:</strong> Your game files should
-								be from a list of known patches. If unsure, stick with vanilla.
-							</p></ListItem
-						>
-						<ListItem class="paragraph-long-02">
-							<p>
-								<strong>Speedrun Overlay Mode:</strong> Your watermark should show
-								"Speedrun+".
-							</p></ListItem
-						>
-						<ListItem class="paragraph-long-02"
-							><p>
-								<strong>Has Run Buffs Tag:</strong> Next to Speedrun+, your watermark
-								should show either of these in parentheses: TA, FDS, FDP, FST, FCA.
-							</p></ListItem
-						>
-						<ListItem class="paragraph-long-02"
-							><p>
-								<strong>Solo Runs:</strong> No other players or NPCs, except Halk.
-							</p></ListItem
-						>
-						<ListItem class="paragraph-long-02"
-							><p>
-								<strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
-								2nd District Duremudira, and Upper Shiten are allowed.
-							</p>
-						</ListItem>
-					</UnorderedList>
-					<p>
-						If the upload process fails, please retry at a later time. If the
-						issue persists, you can <OutboundLink
-							href="https://github.com/DorielRivalet/wycademy/issues/new?assignees=DorielRivalet&labels=bug&projects=&template=BUG-REPORT.yml&title=%5BBUG%5D+-+title"
-							>submit a bug report.</OutboundLink
-						>
-					</p>
+				<div class="spaced-paragraph">
+					If the upload process fails, please retry at a later time. Make sure
+					to keep this page focused while uploading to avoid potential errors.
+					If the issue persists, you can <OutboundLink
+						href="https://github.com/DorielRivalet/wycademy/issues/new?assignees=DorielRivalet&labels=bug&projects=&template=BUG-REPORT.yml&title=%5BBUG%5D+-+title"
+						>submit a bug report.</OutboundLink
+					>
+				</div>
+				<div class="spaced-paragraph">
+					For more information, please see <Link inline href="/leaderboard"
+						>our Leaderboards.</Link
+					>
 				</div>
 			</AccordionItem></Accordion
 		>
@@ -652,8 +709,8 @@
 				><Button
 					disabled
 					kind="tertiary"
-					onclick={() => console.log('share')}
-					icon={Share}>Create share URL</Button
+					onclick={() => console.log('submit')}
+					icon={Upload}>Submit to Leaderboards</Button
 				>
 			</div>
 
@@ -816,11 +873,15 @@
 											bind:sortDirection={questsSortDirection}
 											useStaticWidth
 											headers={[
-												{ key: 'weaponType', value: 'Weapon' },
+												{
+													key: 'weaponType',
+													value: 'Weapon',
+													width: '48px',
+												},
 												{
 													key: 'objectiveName',
 													value: 'Objective',
-													minWidth: '64px',
+													width: '48px',
 												},
 												{ key: 'quest', value: 'Quest', minWidth: '192px' },
 												{ key: 'time', value: 'Time' },
@@ -1017,7 +1078,9 @@
 				</Tabs>
 			</div>
 		{:else if uploadState === 'idle'}
-			<div class="centered flex-column drop-container">
+			<div
+				class="centered flex-column drop-container driverjs-2-4 driverjs-3-4"
+			>
 				<FileUploaderDropContainer
 					accept={['.sqlite']}
 					bind:files={databaseFiles}
@@ -1031,14 +1094,14 @@
 						);
 					}}
 				/>
-				<p>or load one via shared URL:</p>
-				<div class="load-share-url">
-					<TextInput bind:value={shareUrl} labelText="Share URL" />
+				<p>or load one via username (e.g. musou-valstrax-1234):</p>
+				<div class="load-share-url driverjs-1-4">
+					<TextInput bind:value={username} labelText="Username" />
 					<Button
-						disabled={shareUrl === ''}
-						iconDescription="Share URL"
+						disabled={username === ''}
+						iconDescription="Username"
 						icon={FetchUpload}
-						on:click={() => onLoadShareURL(shareUrl)}
+						on:click={() => onLoadUsername(username)}
 						kind="tertiary">Load</Button
 					>
 				</div>
@@ -1076,11 +1139,32 @@
 			</div>
 		{/if}
 	</div>
+	<ul>
+		{#each countries as country}
+			<li>{JSON.stringify(country, null, 2)}</li>
+		{/each}
+	</ul>
+	<!-- {#if session}
+		<div class="session-data">
+			<code><pre>Session: {JSON.stringify(session, null, 2)}</pre></code>
+			<code><pre>User: {JSON.stringify(user, null, 2)}</pre></code>
+			<code><pre>Profile: {JSON.stringify(profile, null, 2)}</pre></code>
+		</div>
+	{/if} -->
 </section>
 
 <style lang="scss">
 	.calendar-graph {
 		margin-bottom: 2rem;
+	}
+
+	.session-data {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		width: 100%;
+		overflow-x: auto;
+		background-color: var(--ctp-mantle);
 	}
 
 	.weapon-usage {

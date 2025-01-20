@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import ScrollToTop from './ScrollToTop.svelte';
@@ -9,11 +9,19 @@
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import type { OnboardingType } from '$lib/client/types/onboarding';
+
 	interface Props {
 		children?: import('svelte').Snippet;
+		data: import('./$types').LayoutData;
 	}
 
-	let { children }: Props = $props();
+	let { children, data }: Props = $props();
+
+	// null session = no user. otherwise they are logged in.
+	let { session, supabase } = $derived(data);
 
 	// Define unique symbols for the context keys
 	const soundKey = Symbol.for('sound');
@@ -27,16 +35,23 @@
 	const cursorIconKey = Symbol.for('cursorIcon');
 	const pushNotificationsKey = Symbol.for('pushNotifications');
 	const notificationsKey = Symbol.for('notifications');
+	const onboardingTypeKey = Symbol.for('onboardingType');
+	const onboardingStepKey = Symbol.for('onboardingStep');
 
 	// Helper function to get stored value or default
 	const getStoredValue = (
 		key: string,
-		defaultValue: boolean | string | number,
+		defaultValue: boolean | string | number | OnboardingType,
 	) => {
 		if (!browser) return defaultValue;
 
 		const storedValue = window.localStorage.getItem(key);
-		if (storedValue === null) return defaultValue;
+		if (storedValue === null) {
+			// localStorage.getItem() specifically returns:
+			// null if the key doesn't exist,
+			// or a string if the key exists (even if that string is empty, like "")
+			return defaultValue;
+		}
 
 		// Convert string to boolean or number if applicable
 		if (typeof defaultValue === 'boolean') {
@@ -70,6 +85,16 @@
 	const notificationsStore = writable(
 		getStoredValue('__notifications-enabled', true),
 	);
+	const onboardingTypeStore = writable(
+		getStoredValue('__onboarding-type', ''),
+	) as Writable<OnboardingType>;
+	const onboardingStepStore = writable(getStoredValue('__onboarding-step', 0));
+
+	// TODO to localstorage too?
+	// export const onboardingState: { type: OnboardingType; step: number } = $state({
+	// 	type: null,
+	// 	step: 0,
+	// });
 
 	// Set stores in context using symbols as keys
 	setContext(soundKey, soundStore);
@@ -83,17 +108,33 @@
 	setContext(cursorIconKey, cursorIconStore);
 	setContext(pushNotificationsKey, pushNotificationsStore);
 	setContext(notificationsKey, notificationsStore);
+	setContext(onboardingTypeKey, onboardingTypeStore);
+	setContext(onboardingStepKey, onboardingStepStore);
 
 	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
 
 	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, newSession) => {
+			// Queue this as a task so the navigation wont prevent the triggering function from completing.
+			// This does not give security, add to authGuard in hooks.server.ts instead.
+			// if (!newSession){
+			// 	setTimeout(() => {
+			// 		goto('/', {invalidateAll: true});
+			// 	})
+			// }
+
+			if (newSession?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
 		let cssVarMap;
 		let themeValue = $carbonThemeStore;
-		console.log('On mount 1');
+		// console.log('On mount 1');
 		cssVarMap = catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		console.log('On mount 2');
+		// console.log('On mount 2');
 		Object.keys(cssVarMap).forEach((key) => {
-			console.log('On mount ' + key.toString());
+			// console.log('On mount ' + key.toString());
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 
@@ -104,10 +145,15 @@
 		});
 
 		// window.addEventListener('scroll', handleScroll);
+		return () => data.subscription.unsubscribe();
 	});
 
 	//$inspect(tokens);
 </script>
+
+<!--TODO: works? remove if it causes issues -->
+<LocalStorage bind:value={$onboardingTypeStore} key="__onboarding-type" />
+<LocalStorage bind:value={$onboardingStepStore} key="__onboarding-step" />
 
 <Theme
 	bind:theme={$carbonThemeStore}

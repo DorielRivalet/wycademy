@@ -10,7 +10,7 @@
 	import Header from '../../Header.svelte';
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
-	import { onMount, type Component } from 'svelte';
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -25,8 +25,7 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
@@ -54,6 +53,7 @@
 	import type { Writable } from 'svelte/store';
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 	import TreeView from '$lib/client/components/TreeView.svelte';
+	import type { TreeItem } from '$lib/client/types/tree-item';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -76,8 +76,6 @@
 	}
 
 	let { data, children }: Props = $props();
-
-	type URLItem = { href: string; text: string };
 
 	function deslugify(slug: string) {
 		return slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
@@ -124,7 +122,6 @@
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
 	}
 
-	let breadcrumbItems: URLItem[] = $state([]);
 	let headTitle = $state("Tools and Utilities — Frontier's Wycademy");
 	let description = $state(
 		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.',
@@ -133,15 +130,6 @@
 	const url = $page.url.toString();
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
-
-	interface TreeItem {
-		id: string;
-		text: string;
-		href?: string;
-		icon?: Component | string;
-		nodes?: TreeItem[];
-		iconProps?: Object;
-	}
 
 	const treeData: TreeItem[] = [
 		{
@@ -313,24 +301,22 @@
 	// TODO unsure
 	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
+		const { navigationItem } = processRoute(pageUrlPathName);
 		headTitle = navigationItem?.name
 			? navigationItem?.name + " — Frontier's Wycademy"
 			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
-		breadcrumbItems = items;
 	});
 
 	onMount(() => {
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
+		const { navigationItem } = processRoute(pageUrlPathName);
 		headTitle = navigationItem?.name
 			? navigationItem?.name + " — Frontier's Wycademy"
 			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
-		breadcrumbItems = items;
 	});
 </script>
 
@@ -375,7 +361,7 @@
 	<ViewTransition />
 
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		{#if $bannerEnabledStore}
@@ -411,17 +397,7 @@
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
-				<Breadcrumb noTrailingSlash>
-					{#each breadcrumbItems as item, i}
-						<BreadcrumbItem
-							href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-							isCurrentPage={i === breadcrumbItems.length - 1}
-							>{#if i !== breadcrumbItems.length - 1}
-								{item.text}
-							{/if}
-						</BreadcrumbItem>
-					{/each}
-				</Breadcrumb>
+				<Breadcrumb page={$page} />
 			</div>
 			<div class="slot">
 				{@render children?.()}

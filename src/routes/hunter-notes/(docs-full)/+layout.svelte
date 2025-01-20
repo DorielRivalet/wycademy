@@ -10,7 +10,7 @@
 	import Header from '../../Header.svelte';
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
-	import { onMount, type Component } from 'svelte';
+	import { onMount } from 'svelte';
 	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -25,8 +25,8 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
+	import { page } from '$app/stores';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import ExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
@@ -50,7 +50,6 @@
 		getNavigationItemFromLink,
 		guidesInfo,
 	} from '$lib/client/modules/routes';
-	import { page } from '$app/stores';
 	import { getMonsterByPathName } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
@@ -60,6 +59,7 @@
 	import type { Writable } from 'svelte/store';
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 	import TreeView from '$lib/client/components/TreeView.svelte';
+	import type { TreeItem } from '$lib/client/types/tree-item';
 
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
@@ -80,8 +80,6 @@
 	}
 
 	let { data, children }: Props = $props();
-
-	type URLItem = { href: string; text: string };
 
 	function deslugify(slug: string) {
 		return slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
@@ -129,7 +127,6 @@
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
 	}
 
-	let breadcrumbItems: URLItem[] = $state([]);
 	let headTitle = $state("Hunter's Notes — Frontier's Wycademy");
 	let description = $state(
 		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.',
@@ -139,15 +136,6 @@
 	const url = $page.url.toString();
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
-
-	interface TreeItem {
-		id: string;
-		text: string;
-		href?: string;
-		icon?: Component | string;
-		nodes?: TreeItem[];
-		iconProps?: Object;
-	}
 
 	const treeData: TreeItem[] = [
 		{
@@ -657,7 +645,7 @@
 	// TODO unsure
 	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
+		const { navigationItem, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName + " — Frontier's Wycademy"
 			: navigationItem?.name
@@ -673,14 +661,13 @@
 					$page.url.searchParams.get('embed'),
 					$page.url.searchParams.get('embed-theme'),
 				);
-		breadcrumbItems = items;
 	});
 
 	onMount(() => {
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
+		const { navigationItem, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName + " — Frontier's Wycademy"
 			: navigationItem?.name
@@ -696,7 +683,6 @@
 					$page.url.searchParams.get('embed'),
 					$page.url.searchParams.get('embed-theme'),
 				);
-		breadcrumbItems = items;
 	});
 </script>
 
@@ -737,7 +723,7 @@
 	<ViewTransition />
 
 	<div class={headerClass}>
-		<Header />
+		<Header profile={data.profile} />
 	</div>
 	<div class="banner">
 		{#if $bannerEnabledStore}
@@ -773,17 +759,7 @@
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
-				<Breadcrumb noTrailingSlash>
-					{#each breadcrumbItems as item, i}
-						<BreadcrumbItem
-							href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-							isCurrentPage={i === breadcrumbItems.length - 1}
-							>{#if i !== breadcrumbItems.length - 1}
-								{item.text}
-							{/if}
-						</BreadcrumbItem>
-					{/each}
-				</Breadcrumb>
+				<Breadcrumb page={$page} />
 			</div>
 			<div class="slot">
 				{@render children?.()}
