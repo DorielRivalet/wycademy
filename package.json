@@ -66,7 +66,7 @@
 		"carbon-components-svelte": "^0.86.2",
 		"carbon-icons-svelte": "^12.13.0",
 		"carbon-pictograms-svelte": "^12.12.0",
-		"carbon-preprocess-svelte": "^0.11.8",
+		"carbon-preprocess-svelte": "^0.11.10",
 		"commitizen": "^4.3.1",
 		"cross-env": "^7.0.3",
 		"cz-conventional-changelog": "^3.3.0",
