@@ -5,13 +5,14 @@ import { eq } from 'drizzle-orm';
 import type { User } from '@supabase/supabase-js';
 import type { DrizzleClient } from '$lib/db/drizzle';
 import type { SelectProfile } from '$lib/db/schema';
+import { createDrizzleSupabaseClient } from '$lib/db';
 
 export const load: LayoutServerLoad = async ({ locals, cookies, depends }) => {
 	depends('supabase:db:profiles'); // TODO unsure if this should be here
 
 	const { session, user } = await locals.safeGetSession();
 	// TODO what if i make the client here instead of in hooks? Should be safe because we are using session/user data from hooks which is how we create the client. The client without proper creds thats not admin doesnt work anyways.
-	const drizzleClient = locals.drizzleClient as DrizzleClient;
+	const drizzleClient = await createDrizzleSupabaseClient(session);
 
 	// TODO remove
 	console.log(JSON.stringify({ session, user }, null, 2));
@@ -24,10 +25,18 @@ export const load: LayoutServerLoad = async ({ locals, cookies, depends }) => {
 			drizzleClient,
 		);
 		console.log('Got profile data (can be null)');
-		return { profile: profile ?? null, session, cookies: cookies.getAll() };
+		return {
+			profile: profile ?? null,
+			session,
+			cookies: cookies.getAll(),
+		};
 	} catch (error) {
 		console.error('Error with supabase profile fetch');
-		return { profile: null, session, cookies: cookies.getAll() };
+		return {
+			profile: null,
+			session,
+			cookies: cookies.getAll(),
+		};
 	}
 };
 
@@ -63,10 +72,17 @@ const getUserProfile = async (
 	// 		where: eq(profilesTable.id, user.id),
 	// 	});
 
-	// 3.
-	const [curProfile] = await drizzleClient.rls((tx) =>
-		tx.select().from(profilesTable).where(eq(profilesTable.id, user.id)),
-	);
+	// 3. doesnt work
+	// const [curProfile] = await drizzleClient.rls((tx) =>
+	// 	tx.select().from(profilesTable).where(eq(profilesTable.id, user.id)),
+	// );
+
+	// 4. we set drizzleClient in layout instead of hooks.
+	const curProfile = await drizzleClient.rls((tx) => {
+		return tx.query.profilesTable.findFirst({
+			where: eq(profilesTable.id, user.id),
+		});
+	});
 
 	// console.log(`curProfile: ${curProfile}`);
 	console.log('Queried profiles table');
