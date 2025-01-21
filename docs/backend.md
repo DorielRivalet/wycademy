@@ -1,5 +1,8 @@
 # Backend
 
+> [!IMPORTANT]
+> The Drizzle client for respecting policies does not work, we use the admin client with application layer checks instead.
+
 We use Supabase as the backend of our application. Supabase is an open-source backend service that uses PostgreSQL as its database and GoTrue for authentication.
 
 See also:

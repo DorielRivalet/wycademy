@@ -23,12 +23,10 @@ export const load: PageServerLoad = async (event) => {
 	const drizzleClient = event.locals.drizzleClient as DrizzleClient;
 
 	/**The profile data of the user page (not the user who requests the page) */
-	const pageUserProfile = await drizzleClient.rls(async (tx) => {
-		const r = await tx.query.profilesTable.findFirst({
+	const pageUserProfile =
+		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
 			where: eq(profilesTable.username, event.params.username),
 		});
-		return r;
-	});
 
 	if (!pageUserProfile) {
 		error(404, 'Hunter not found');

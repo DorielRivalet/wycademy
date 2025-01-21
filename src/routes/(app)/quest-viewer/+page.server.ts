@@ -36,17 +36,20 @@ export const load: PageServerLoad = async ({ locals }) => {
 	// 	orderBy: [asc(countriesTable.id)],
 	// });
 	//or
+
+	// TODO to middleware
+	if (locals.user?.app_metadata.user_role !== 'moderator') {
+		return { countries: [] };
+	}
+
 	const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 	// TODO test
-	const countries = await drizzleClient.rls(async (tx) => {
-		const r = tx
-			.select({ name: countriesTable.name })
-			.from(countriesTable)
-			.limit(10)
-			.orderBy(asc(countriesTable.id));
-		return r;
-	});
+	const countries = await drizzleClient.drizzlePostgresAdmin
+		.select({ name: countriesTable.name })
+		.from(countriesTable)
+		.limit(10)
+		.orderBy(asc(countriesTable.id));
 
 	if (countries.length === 0) {
 		// console.error('No countries found.'); // This can also show if we disable Data API
