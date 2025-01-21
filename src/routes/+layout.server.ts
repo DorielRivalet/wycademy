@@ -10,6 +10,7 @@ export const load: LayoutServerLoad = async ({ locals, cookies, depends }) => {
 	depends('supabase:db:profiles'); // TODO unsure if this should be here
 
 	const { session, user } = await locals.safeGetSession();
+	// TODO what if i make the client here instead of in hooks? Should be safe because we are using session/user data from hooks which is how we create the client. The client without proper creds thats not admin doesnt work anyways.
 	const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 	// TODO remove
@@ -48,6 +49,7 @@ const getUserProfile = async (
 	//const test = await drizzleClient.drizzlePostgresAdmin.query.titlesTable.findFirst();
 	console.log(`drizzleClient: ${drizzleClient.rls}`);
 
+	// 1. this doesnt work
 	// const curProfile = await drizzleClient.rls(async (tx) => {
 	// 	const p = await tx.query.profilesTable.findFirst({
 	// 		where: eq(profilesTable.id, user.id),
@@ -55,10 +57,16 @@ const getUserProfile = async (
 	// 	return p;
 	// });
 
-	const curProfile =
-		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
-			where: eq(profilesTable.id, user.id),
-		});
+	// 2. this works
+	// const curProfile =
+	// 	await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
+	// 		where: eq(profilesTable.id, user.id),
+	// 	});
+
+	// 3.
+	const [curProfile] = await drizzleClient.rls((tx) =>
+		tx.select().from(profilesTable).where(eq(profilesTable.id, user.id)),
+	);
 
 	// console.log(`curProfile: ${curProfile}`);
 	console.log('Queried profiles table');
