@@ -48,12 +48,17 @@ const getUserProfile = async (
 	//const test = await drizzleClient.drizzlePostgresAdmin.query.titlesTable.findFirst();
 	console.log(`drizzleClient: ${drizzleClient.rls}`);
 
-	const curProfile = await drizzleClient.rls(async (tx) => {
-		const p = await tx.query.profilesTable.findFirst({
+	// const curProfile = await drizzleClient.rls(async (tx) => {
+	// 	const p = await tx.query.profilesTable.findFirst({
+	// 		where: eq(profilesTable.id, user.id),
+	// 	});
+	// 	return p;
+	// });
+
+	const curProfile =
+		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
 			where: eq(profilesTable.id, user.id),
 		});
-		return p;
-	});
 
 	// console.log(`curProfile: ${curProfile}`);
 	console.log('Queried profiles table');
