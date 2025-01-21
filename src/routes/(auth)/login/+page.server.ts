@@ -9,7 +9,7 @@ interface TokenValidateResponse {
 }
 
 async function validateToken(token: string, secret: string) {
-	// TODO idk why this does log anywhere
+	// TODO idk why this does not log anywhere
 	console.log('Validating Turnstile token...');
 	const response = await fetch(
 		'https://challenges.cloudflare.com/turnstile/v0/siteverify',

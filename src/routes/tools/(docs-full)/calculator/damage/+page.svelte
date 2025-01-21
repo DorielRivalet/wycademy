@@ -6414,7 +6414,12 @@ does not get multiplied by horn */
 			wycademy: true,
 			legacy: false,
 		},
-		{ id: 19, feature: 'Offline Capabilities', wycademy: true, legacy: false },
+		{
+			id: 19,
+			feature: 'Offline Capabilities (PWA)',
+			wycademy: true,
+			legacy: false,
+		},
 		{
 			id: 20,
 			feature: 'Inputs History Tracking',
@@ -6853,7 +6858,7 @@ does not get multiplied by horn */
 
 												<div class="dropdown-tooltip-container">
 													<Tooltip align="start">
-														<p>
+														<p class="spaced-paragraph">
 															These are not a final multiplier but rather
 															additional true raw damage.
 														</p>
@@ -10377,7 +10382,12 @@ does not get multiplied by horn */
 											</p></ListItem
 										>
 									</UnorderedList>
-									<p class="spaced-paragraph">Furthermore, you can load the save data from the Legacy Calculator into Wycademy's Calculator save format by going into the Save and Load section and selecting the Legacy Calculator tab; so you do not have to lose your progress.</p>
+									<p class="spaced-paragraph">
+										Furthermore, you can load the save data from the Legacy
+										Calculator into Wycademy's Calculator save format by going
+										into the Save and Load section and selecting the Legacy
+										Calculator tab; so you do not have to lose your progress.
+									</p>
 								</div>
 							</AccordionItem></Accordion
 						>

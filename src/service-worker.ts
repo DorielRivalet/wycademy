@@ -16,6 +16,7 @@ const CACHE = `cache-${version}`;
 // console.log('Precache candidates:', { build, files, prerendered });
 
 // Helper to check if a URL is auth-related
+// Also check hooks.server.ts
 const isAuthRelated = (url: string) => {
 	return (
 		url.startsWith('/auth') ||

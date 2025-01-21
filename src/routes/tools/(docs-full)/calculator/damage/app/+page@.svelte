@@ -185,6 +185,7 @@
 	import Result from 'carbon-icons-svelte/lib/Result.svelte';
 	import Time from 'carbon-icons-svelte/lib/Time.svelte';
 	import type { PageData } from './$types';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -6395,7 +6396,12 @@ does not get multiplied by horn */
 			wycademy: true,
 			legacy: false,
 		},
-		{ id: 19, feature: 'Offline Capabilities', wycademy: true, legacy: false },
+		{
+			id: 19,
+			feature: 'Offline Capabilities (PWA)',
+			wycademy: true,
+			legacy: false,
+		},
 		{
 			id: 20,
 			feature: 'Inputs History Tracking',
@@ -6826,10 +6832,10 @@ does not get multiplied by horn */
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div class="spaced-paragraph">
+																				<p class="spaced-paragraph">
 																					These are not a final multiplier but
 																					rather additional true raw damage.
-																				</div>
+																				</p>
 																				<p>
 																					For example, Weapons Art Large on a
 																					600 true raw weapon would be the same
