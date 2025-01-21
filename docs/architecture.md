@@ -2,6 +2,21 @@
 
 See [project structure](./project-structure.md) for more information on each file.
 
+## Stack
+
+- Deployment: Vercel.
+- Database: Supabase (PostgreSQL).
+- ORM: Drizzle.
+- Metaframework: SvelteKit (backend+frontend+middleware).
+- Stylesheets: SCSS.
+- Design System: Carbon Design System.
+- Documentation: Markdown files meant to be viewed in GitHub (GFM or GitHub-flavored Markdown).
+- Language: TypeScript.
+- Colors: Catppuccin.
+- Seeding: Snaplet.
+- Version Control System: Git.
+- Repository Hosting: GitHub (including workflows or CI/CD).
+
 ## Application Layer
 
 The frontend: these are your `+page.ts`, `+page.svelte`, `[name].svelte.ts`, `+layout.svelte` and `+layout.ts` files. Assume the client is able see the contents in here. Universal load functions are used in `+page.ts` and `+layout.ts`. **Do not use `$env/static/private` in these files.** With SSR (server-side rendering), the files first load in the server and then are hydrated by the client. `+page.svelte` and `+layout.svelte` contains the frotend code for rendering a page or many pages respectively.

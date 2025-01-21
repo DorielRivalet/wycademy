@@ -96,6 +96,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	}
 
 	// unauthenticated or anon
+	// also check service-worker.ts
 	if (
 		!event.locals.session &&
 		(event.url.pathname.startsWith('/home') ||

@@ -12,6 +12,9 @@ export const load: LayoutServerLoad = async ({ locals, cookies, depends }) => {
 	const { session, user } = await locals.safeGetSession();
 	const drizzleClient = locals.drizzleClient as DrizzleClient;
 
+	// TODO remove
+	console.log(JSON.stringify({ session, user }, null, 2));
+
 	// TODO
 	try {
 		// const { data: profile } = await supabase.from('test_profiles').select();
@@ -43,6 +46,8 @@ const getUserProfile = async (
 	// TODO idk how to fix types :/. maybe fixed
 	// test types does work.
 	//const test = await drizzleClient.drizzlePostgresAdmin.query.titlesTable.findFirst();
+	console.log(`drizzleClient: ${drizzleClient.rls}`);
+
 	const curProfile = await drizzleClient.rls(async (tx) => {
 		const p = await tx.query.profilesTable.findFirst({
 			where: eq(profilesTable.id, user.id),
@@ -51,6 +56,7 @@ const getUserProfile = async (
 	});
 
 	// console.log(`curProfile: ${curProfile}`);
+	console.log('Queried profiles table');
 
 	// if profile found, return it
 	if (curProfile) {

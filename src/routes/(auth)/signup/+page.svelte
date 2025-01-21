@@ -45,8 +45,10 @@
 
 		if (response.ok) {
 			error = false;
+			console.log('Correct code, going to Discord OAuth flow...');
 			goto('/auth/login/discord');
 		} else {
+			console.error('Invalid code');
 			error = true;
 		}
 	}
