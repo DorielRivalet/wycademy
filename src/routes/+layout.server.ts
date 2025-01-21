@@ -5,17 +5,26 @@ import { eq } from 'drizzle-orm';
 import type { User } from '@supabase/supabase-js';
 import type { DrizzleClient } from '$lib/db/drizzle';
 import type { SelectProfile } from '$lib/db/schema';
-import { createDrizzleSupabaseClient } from '$lib/db';
 
 export const load: LayoutServerLoad = async ({ locals, cookies, depends }) => {
 	depends('supabase:db:profiles'); // TODO unsure if this should be here
 
-	const { session, user } = await locals.safeGetSession();
+	const user = locals.user;
+	const session = locals.session;
+
 	// TODO what if i make the client here instead of in hooks? Should be safe because we are using session/user data from hooks which is how we create the client. The client without proper creds thats not admin doesnt work anyways.
-	const drizzleClient = await createDrizzleSupabaseClient(session);
+
+	// TODO just use admin client for now and
+	// do checks in code instead of policies
+	// because it refuses to work
+	// also, when impersonating in dashboard i do see the correct policies being applied, so idk whats up.
+	// and this only happens in prod, not even in build mode
+	// const drizzleClient = await createDrizzleSupabaseClient(session);
+
+	const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 	// TODO remove
-	console.log(JSON.stringify({ session, user }, null, 2));
+	// console.log(JSON.stringify({ session, user }, null, 2));
 
 	// TODO
 	try {
@@ -56,7 +65,7 @@ const getUserProfile = async (
 	// TODO idk how to fix types :/. maybe fixed
 	// test types does work.
 	//const test = await drizzleClient.drizzlePostgresAdmin.query.titlesTable.findFirst();
-	console.log(`drizzleClient: ${drizzleClient.rls}`);
+	// console.log(`drizzleClient: ${drizzleClient.rls}`);
 
 	// 1. this doesnt work
 	// const curProfile = await drizzleClient.rls(async (tx) => {
@@ -67,10 +76,10 @@ const getUserProfile = async (
 	// });
 
 	// 2. this works
-	// const curProfile =
-	// 	await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
-	// 		where: eq(profilesTable.id, user.id),
-	// 	});
+	const curProfile =
+		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
+			where: eq(profilesTable.id, user.id),
+		});
 
 	// 3. doesnt work
 	// const [curProfile] = await drizzleClient.rls((tx) =>
@@ -78,11 +87,12 @@ const getUserProfile = async (
 	// );
 
 	// 4. we set drizzleClient in layout instead of hooks.
-	const curProfile = await drizzleClient.rls((tx) => {
-		return tx.query.profilesTable.findFirst({
-			where: eq(profilesTable.id, user.id),
-		});
-	});
+	// Doesnt work
+	// const curProfile = await drizzleClient.rls((tx) => {
+	// 	return tx.query.profilesTable.findFirst({
+	// 		where: eq(profilesTable.id, user.id),
+	// 	});
+	// });
 
 	// console.log(`curProfile: ${curProfile}`);
 	console.log('Queried profiles table');

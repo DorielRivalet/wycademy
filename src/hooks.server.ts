@@ -82,7 +82,9 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	// we avoid running safeGetSession twice.
 	/**We should only have createDrizzleSupabaseClient in hooks.server.ts */
 	event.locals.drizzleClient = await createDrizzleSupabaseClient(session);
+	/**Safe because we used safeGetSession in the hooks file, so you do not have to load it yourself. */
 	event.locals.session = session;
+	/**Safe because we used safeGetSession in the hooks file, so you do not have to load it yourself. */
 	event.locals.user = user;
 
 	// If trying to access Discord login without verified code

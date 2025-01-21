@@ -13,7 +13,7 @@ import type { SelectProfile } from '$lib/db/schema';
 
 export const actions: Actions = {
 	updatePublicProfile: async ({ request, locals }) => {
-		const { user } = await locals.safeGetSession();
+		const user = locals.user;
 		const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 		// TODO
@@ -42,20 +42,18 @@ export const actions: Actions = {
 				error(400, 'Invalid form data');
 			}
 
-			await drizzleClient.rls(async (tx) => {
-				await tx
-					.update(profilesTable)
-					.set({
-						avatar: data.avatar,
-						country: data.country,
-						theme: data.theme,
-						title: data.title,
-						emblem: data.emblem,
-						private_servers: data.privateServers,
-						guild_card_theme: data.guildCardTheme,
-					})
-					.where(eq(profilesTable.id, profile?.id));
-			});
+			await drizzleClient.drizzlePostgresAdmin
+				.update(profilesTable)
+				.set({
+					avatar: data.avatar,
+					country: data.country,
+					theme: data.theme,
+					title: data.title,
+					emblem: data.emblem,
+					private_servers: data.privateServers,
+					guild_card_theme: data.guildCardTheme,
+				})
+				.where(eq(profilesTable.id, profile?.id));
 
 			return { success: true };
 		} catch (err) {
@@ -65,7 +63,7 @@ export const actions: Actions = {
 		}
 	},
 	updateActivity: async ({ request, locals }) => {
-		const { user } = await locals.safeGetSession();
+		const user = locals.user;
 		const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 		// TODO
@@ -91,14 +89,12 @@ export const actions: Actions = {
 
 			const newPrivate = data.activity[0] === 'true' ? true : false;
 
-			await drizzleClient.rls(async (tx) => {
-				await tx
-					.update(profilesTable)
-					.set({
-						private: newPrivate,
-					})
-					.where(eq(profilesTable.id, profile?.id));
-			});
+			await drizzleClient.drizzlePostgresAdmin
+				.update(profilesTable)
+				.set({
+					private: newPrivate,
+				})
+				.where(eq(profilesTable.id, profile?.id));
 
 			return { success: true };
 		} catch (err) {
@@ -108,7 +104,7 @@ export const actions: Actions = {
 		}
 	},
 	updateProfileSettings: async ({ request, locals }) => {
-		const { user } = await locals.safeGetSession();
+		const user = locals.user;
 		const drizzleClient = locals.drizzleClient as DrizzleClient;
 
 		// TODO
@@ -135,15 +131,13 @@ export const actions: Actions = {
 				data.settings[0] === 'true' ? true : false;
 			const newModeratorBadgeShown = data.settings[1] === 'true' ? true : false;
 
-			await drizzleClient.rls(async (tx) => {
-				await tx
-					.update(profilesTable)
-					.set({
-						discord_username_shown: newDiscordUsernameShown,
-						moderator_badge_shown: newModeratorBadgeShown,
-					})
-					.where(eq(profilesTable.id, profile?.id));
-			});
+			await drizzleClient.drizzlePostgresAdmin
+				.update(profilesTable)
+				.set({
+					discord_username_shown: newDiscordUsernameShown,
+					moderator_badge_shown: newModeratorBadgeShown,
+				})
+				.where(eq(profilesTable.id, profile?.id));
 
 			return { success: true };
 		} catch (err) {
@@ -153,8 +147,9 @@ export const actions: Actions = {
 		}
 	},
 	updateProfileUsername: async ({ request, locals }) => {
-		const { user } = await locals.safeGetSession();
 		const drizzleClient = locals.drizzleClient as DrizzleClient;
+
+		const user = locals.user;
 
 		// TODO test
 		try {
@@ -203,15 +198,13 @@ export const actions: Actions = {
 
 			let usernameNumber = 0;
 			let newUsername = '';
-			const duplicateUsername = await drizzleClient.rls(async (tx) => {
-				const r = await tx.query.profilesTable.findFirst({
+			const duplicateUsername =
+				await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
 					columns: {
 						username: true,
 					},
 					where: like(profilesTable.username, `%${data.username}%`),
 				});
-				return r;
-			});
 
 			if (duplicateUsername) {
 				// Extract the last 4 characters
@@ -237,23 +230,19 @@ export const actions: Actions = {
 				newUsername = `${data.username}-0000`;
 			}
 
-			await drizzleClient.rls(async (tx) => {
-				await tx
-					.update(profilesTable)
-					.set({
-						username: newUsername,
-					})
-					.where(eq(profilesTable.id, profile?.id));
-			});
+			await drizzleClient.drizzlePostgresAdmin
+				.update(profilesTable)
+				.set({
+					username: newUsername,
+				})
+				.where(eq(profilesTable.id, profile?.id));
 
-			await drizzleClient.rls(async (tx) => {
-				await tx
-					.update(profilesTable)
-					.set({
-						username_set: true,
-					})
-					.where(eq(profilesTable.id, profile?.id));
-			});
+			await drizzleClient.drizzlePostgresAdmin
+				.update(profilesTable)
+				.set({
+					username_set: true,
+				})
+				.where(eq(profilesTable.id, profile?.id));
 
 			return { success: true };
 		} catch (err) {
@@ -277,12 +266,10 @@ const getUserProfile = async (
 	// console.log(`${profilesTable.id}, ${user.id}`);
 
 	// TODO do not use admin db client.
-	const curProfile = await drizzleClient.rls(async (tx) => {
-		const r = await tx.query.profilesTable.findFirst({
+	const curProfile =
+		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
 			where: eq(profilesTable.id, user.id),
 		});
-		return r;
-	});
 
 	// console.log(`curProfile: ${curProfile}`);
 
