@@ -23,6 +23,16 @@
 	import { enhance } from '$app/forms';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+	import Safari from '$lib/client/components/devices/Safari.svelte';
+	import { getContext } from 'svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import type { Writable } from 'svelte/store';
+	import desktopLight from '$lib/client/images/supplemental/profile-desktop-light.webp';
+	import desktopDark from '$lib/client/images/supplemental/profile-desktop-dark.webp';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	function handleTurnstileCallback(event: CustomEvent<{ token: string }>) {
 		// TODO remove these
@@ -83,6 +93,13 @@
 		<div class="headings">
 			<h1>Welcome back to Frontier's Wycademy</h1>
 			<h2>Submit speedruns, obtain trophies and participate in events.</h2>
+		</div>
+		<div class="graphics">
+			<div>
+				<Safari
+					src={$carbonThemeStore === 'g10' ? desktopLight : desktopDark}
+				/>
+			</div>
 		</div>
 	</div>
 	<div class="form">
@@ -339,5 +356,9 @@
 				@include type.type-style('body-02');
 			}
 		}
+	}
+
+	.graphics {
+		padding: 2rem;
 	}
 </style>

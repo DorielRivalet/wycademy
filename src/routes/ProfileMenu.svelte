@@ -60,7 +60,7 @@
 			},
 			steps: [
 				{
-					element: '.driverjs-0-3',
+					element: '.driverjs-leaderboards-4',
 					popover: {
 						title: 'Username Set!',
 						description: 'Now you can navigate to your public profile.',
@@ -75,7 +75,7 @@
 					},
 				},
 				{
-					element: '.driverjs-1-3',
+					element: '.driverjs-leaderboards-5',
 					popover: {
 						title: 'Public Profile',
 						description:
@@ -92,7 +92,7 @@
 					},
 				},
 				{
-					element: '.driverjs-2-3',
+					element: '.driverjs-leaderboards-6',
 					popover: {
 						title: 'Submit Quests',
 						description: 'Navigate to the Submit Quests option.',
@@ -131,7 +131,7 @@
 			},
 			steps: [
 				{
-					element: '.driverjs-profile-menu',
+					element: '.driverjs-leaderboards-0',
 					popover: {
 						title: 'Profile Menu',
 						description: 'Open your profile menu',
@@ -146,7 +146,7 @@
 					},
 				},
 				{
-					element: '.driverjs-1-1',
+					element: '.driverjs-leaderboards-1',
 					popover: {
 						title: 'Select an Option',
 						description: 'Navigate to your Public Profile Settings.',
@@ -191,7 +191,7 @@
 	<div
 		style:height="100%"
 		onclick={() => (open = !open)}
-		class="driverjs-profile-menu driverjs-0-3 avatar"
+		class="driverjs-leaderboards-0 driverjs-leaderboards-4 avatar"
 	>
 		<Avatar height={'100%'} src={profile.discord_avatar ?? DefaultAvatar} />
 	</div>
@@ -229,7 +229,7 @@
 							? '/profile'
 							: '/onboarding/leaderboards'}
 				>
-					<div class="tile-contents lavender driverjs-1-3">
+					<div class="tile-contents lavender driverjs-leaderboards-5">
 						<p>
 							{profile.username_set ? 'View Profile' : 'Set up Public Profile'}
 						</p>
@@ -251,7 +251,7 @@
 					on:click={(e) => (open = false)}
 					href={inWalkthrough ? undefined : '/quest-viewer'}
 				>
-					<div class="tile-contents sapphire driverjs-2-3">
+					<div class="tile-contents sapphire driverjs-leaderboards-6">
 						<p>Submit Quests</p>
 						<div>
 							<Add size={24} />
@@ -274,7 +274,7 @@
 					on:click={(e) => (open = false)}
 					href={inWalkthrough ? undefined : '/settings/profile'}
 				>
-					<div class="tile-contents teal driverjs-1-1">
+					<div class="tile-contents teal driverjs-leaderboards-1">
 						<p>Account Settings</p>
 						<div>
 							<Settings size={24} />

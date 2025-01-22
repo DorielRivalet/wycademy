@@ -59,7 +59,7 @@
 			disableActiveInteraction: true,
 			steps: [
 				{
-					element: '.driverjs-0-2',
+					element: '.driverjs-leaderboards-2',
 					popover: {
 						title: 'Select Your Username',
 						description:
@@ -67,7 +67,7 @@
 					},
 				},
 				{
-					element: '.driverjs-1-2',
+					element: '.driverjs-leaderboards-3',
 					popover: {
 						title: 'Update Your Username',
 						description:
@@ -208,7 +208,7 @@
 			</div>
 		{/if}
 		<div class="username-container">
-			<div class="driverjs-0-2">
+			<div class="driverjs-leaderboards-2">
 				<form
 					method="POST"
 					action="?/updateProfileUsername"
@@ -272,7 +272,7 @@
 						<p>Current username: {profileUsername}</p>
 						<p>New username: {newUsername}-####</p>
 
-						<div class="tooltip-container driverjs-1-2">
+						<div class="tooltip-container driverjs-leaderboards-3">
 							<Tooltip align="start"
 								><p>
 									The numbers after the monster name cannot be chosen. You need

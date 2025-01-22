@@ -11,6 +11,7 @@ import type { DrizzleClient } from '$lib/db/drizzle';
 import { countriesTable } from '$lib/db/schema';
 import type { PageServerLoad } from './$types';
 import { desc, asc } from 'drizzle-orm';
+import { isUserModerator } from '$lib/db/workarounds';
 
 // With RLS, this returns empty array.
 // export const load: PageServerLoad = async ({ locals: { supabase } }) => {
@@ -37,8 +38,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	// });
 	//or
 
-	// TODO to middleware
-	if (locals.user?.app_metadata.user_role !== 'moderator') {
+	if (!isUserModerator(locals.user)) {
 		return { countries: [] };
 	}
 

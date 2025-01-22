@@ -125,7 +125,7 @@
 			disableActiveInteraction: true,
 			steps: [
 				{
-					element: '.driverjs-0-4',
+					element: '.driverjs-leaderboards-7',
 					popover: {
 						title: 'Read the Instructions',
 						description:
@@ -133,7 +133,7 @@
 					},
 				},
 				{
-					element: '.driverjs-1-4',
+					element: '.driverjs-leaderboards-8',
 					popover: {
 						title: "Loading other hunter's quest data",
 						description:
@@ -141,7 +141,7 @@
 					},
 				},
 				{
-					element: '.driverjs-2-4',
+					element: '.driverjs-leaderboards-9',
 					popover: {
 						title: 'Submit to Leaderboards',
 						description:
@@ -149,7 +149,7 @@
 					},
 				},
 				{
-					element: '.driverjs-3-4',
+					element: '.driverjs-leaderboards-10',
 					popover: {
 						title: 'Happy Hunting!',
 						description:
@@ -643,7 +643,7 @@
 <section>
 	<SectionHeadingTopLevel title="Quest Viewer" />
 	<div>
-		<p class="spaced-paragraph driverjs-0-4">
+		<p class="spaced-paragraph driverjs-leaderboards-7">
 			Examine your quest information and share your results in leaderboards. The
 			file data that is uploaded is not stored on our servers unless you use the
 			"Submit to Leaderboards" button. You need to create a <Link
@@ -1079,7 +1079,7 @@
 			</div>
 		{:else if uploadState === 'idle'}
 			<div
-				class="centered flex-column drop-container driverjs-2-4 driverjs-3-4"
+				class="centered flex-column drop-container driverjs-leaderboards-9 driverjs-leaderboards-10"
 			>
 				<FileUploaderDropContainer
 					accept={['.sqlite']}
@@ -1095,7 +1095,7 @@
 					}}
 				/>
 				<p>or load one via username (e.g. musou-valstrax-1234):</p>
-				<div class="load-share-url driverjs-1-4">
+				<div class="load-share-url driverjs-leaderboards-8">
 					<TextInput bind:value={username} labelText="Username" />
 					<Button
 						disabled={username === ''}
