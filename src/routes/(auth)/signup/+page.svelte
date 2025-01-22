@@ -24,6 +24,16 @@
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 	import { enhance } from '$app/forms';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+	import Safari from '$lib/client/components/devices/Safari.svelte';
+	import { getContext } from 'svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import type { Writable } from 'svelte/store';
+	import desktopLight from '$lib/client/images/supplemental/profile-desktop-light.webp';
+	import desktopDark from '$lib/client/images/supplemental/profile-desktop-dark.webp';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	function handleTurnstileCallback(event: CustomEvent<{ token: string }>) {
 		console.log('called back');
@@ -89,6 +99,13 @@
 				Create an account to submit speedruns, obtain trophies and participate
 				in events.
 			</h2>
+		</div>
+		<div class="graphics">
+			<div>
+				<Safari
+					src={$carbonThemeStore === 'g10' ? desktopLight : desktopDark}
+				/>
+			</div>
 		</div>
 	</div>
 	<div class="form">
@@ -366,5 +383,9 @@
 				@include type.type-style('body-02');
 			}
 		}
+	}
+
+	.graphics {
+		padding: 2rem;
 	}
 </style>

@@ -6,6 +6,7 @@
 import { error } from '@sveltejs/kit';
 import { capitalizeFirstLetter } from '$lib/client/modules/strings';
 import isEqual from 'lodash/isEqual';
+import { monsterInfo } from '../frontier/monsters';
 
 export function generateRandomUsername(): string {
 	const prefix = randomChoice(usernames.types).toLowerCase();
@@ -26,113 +27,129 @@ function randomChoice(arr: string[]): string {
 	return arr[Math.floor(arr.length * Math.random())];
 }
 
-export type UsernameMonsterType = '' | 'Zenith' | 'Supremacy' | 'Musou';
+function generateMonsterUsernames() {
+	const frontierMonsters = monsterInfo
+		.filter(
+			(e) =>
+				!e.displayName.includes(' ') &&
+				!e.displayName.includes('-') &&
+				!e.displayName.includes('/') &&
+				!e.displayName.includes('UNKNOWN') &&
+				!e.displayName.includes('Cactus'),
+		)
+		.map((e) => {
+			return e.displayName;
+		});
 
-export const usernames: { types: UsernameMonsterType[]; monsters: string[] } = {
-	types: ['', 'Zenith', 'Supremacy', 'Musou'],
-	monsters: [
-		'Rathian',
-		'Fatalis',
-		'Rathalos',
-		'Diablos',
-		'Gravios',
-		'Gypceros',
-		'Khezu',
-		'Plesioth',
-		'Monoblos',
-		'Kirin',
-		'Rajang',
-		'Chameleos',
-		'Lunastra',
-		'Teostra',
-		'Tigrex',
-		'Akantor',
-		'Espinas',
-		'Hypnocatrice',
-		'Lavasioth',
-		'Pariapuria',
-		'Raviente',
-		'Rukodiora',
-		'Gogomoa',
-		'Abiorugu',
-		'Disufiroa',
-		'Rebidiora',
-		'Hyujikiki',
-		'Midogaron',
-		'Giaorugu',
-		'Pokaradon',
-		'Shantien',
-		'Zerureusu',
-		'Gougarf',
-		'Diorex',
-		'Inagami',
-		'Duremudira',
-		'Toridcless',
-		'Zinogre',
-		'Deviljho',
-		'Brachydios',
-		'Barioth',
-		'Uragaan',
-		'Guanzorumu',
-		'Voljang',
-		'Nargacuga',
-		'Zenaserisu',
-		'Amatsu',
-		'Elzelion',
-		'Seregios',
-		//'Taikun Zamuza',
-		'Bogabadorumu',
-		'Baruragaru',
+	const secondGenMonsters = [
+		// 'Giaprey',
+		'Giadrome',
 		'Ukanlos',
+	];
+
+	const thirdGenMonsters = [
+		'Altaroth',
+		'Baggi',
+		'Bnahabra',
+		'Delex',
+		'Epioth',
+		'Giggi',
+		'Jaggi',
+		'Jaggia',
+		'Ludroth',
+		'Rhenoplos',
+		'Uroktor',
+		'Agnaktor',
 		'Barroth',
 		'Gigginox',
 		'Gobul',
-		'Agnaktor',
 		'Lagiacrus',
 		'Qurupeco',
 		'Alatreon',
 		'Ceadeus',
+		'Gargwa',
+		'Slagtoth',
+		'Wroggi',
+		'Arzuros',
 		'Duramboros',
 		'Lagombi',
 		'Nibelsnarf',
 		'Volvidon',
-		//'Gore Magala',
-		//'Shagaru Magala',
+	];
+
+	const fourthGenMonsters = [
+		'Konchu',
+		'Zamite',
 		'Najarala',
+		'Nerscylla',
+		'Seltas',
+		'Tetsucabra',
 		'Zamtrios',
 		'Dalamadur',
+		'Seregios',
 		'Gogmazios',
+		'Maccao',
+		'Moofah',
+		'Larinoth',
 		'Astalos',
-		'Glavenus',
 		'Gammoth',
-		'Mizutsune',
+		'Glavenus',
 		'Malfestio',
-		'Nerscylla',
-		'Tetsucabra',
+		'Mizutsune',
 		'Nakarkos',
 		'Valstrax',
-		'Legiana',
-		'Odogaron',
-		'Nergigante',
-		'Velkhana',
-		'Aknosom',
-		'Almudron',
+	];
+
+	const fifthGenMonsters = [
+		'Barnos',
+		'Gajalaka',
+		'Gajau',
+		'Gastodon',
+		'Girros',
+		'Grimalkyne',
+		'Jagras',
+		'Kestodon',
+		'Mernos',
+		'Noios',
+		'Raphinos',
+		'Shamos',
 		'Anjanath',
 		'Bazelgeuse',
-		'Beotodus',
-		'Bishaten',
 		'Dodogama',
-		'Garangolm',
 		'Jyuratodus',
+		'Legiana',
+		'Odogaron',
 		'Paolumu',
 		'Radobaan',
+		'Nergigante',
+		'Boaboa',
+		'Cortos',
+		'Wulg',
+		'Banbaro',
+		'Beotodus',
+		'Namielle',
+		'Velkhana',
+		'Bombadgy',
+		'Izuchi',
+		'Rachnoid',
+		'Aknosom',
+		'Almudron',
+		'Bishaten',
+		'Magnamalo',
 		'Somnacanth',
 		'Tetranadon',
-		'Namielle',
-		'Magnamalo',
+		'Boggi',
+		'Gowngoat',
+		'Pyrantula',
+		'Garangolm',
 		'Lunagaron',
-		'Malzeno',
 		'Gaismagorm',
+		'Malzeno',
+	];
+
+	const sixthGenMonsters = [
+		'Ceratonoth',
+		'Dalthydon',
 		'Ajarakan',
 		'Arkveld',
 		'Balahara',
@@ -140,7 +157,26 @@ export const usernames: { types: UsernameMonsterType[]; monsters: string[] } = {
 		'Doshaguma',
 		'Quematrice',
 		'Rompopolo',
-	],
+	];
+
+	const allMonsters = [
+		...frontierMonsters,
+		...secondGenMonsters,
+		...thirdGenMonsters,
+		...fourthGenMonsters,
+		...fifthGenMonsters,
+		...sixthGenMonsters,
+	];
+	const allOrderedMonsters = allMonsters.sort();
+
+	return [...new Set(allOrderedMonsters)];
+}
+
+export type UsernameMonsterType = '' | 'Zenith' | 'Supremacy' | 'Musou';
+
+export const usernames: { types: UsernameMonsterType[]; monsters: string[] } = {
+	types: ['', 'Zenith', 'Supremacy', 'Musou'],
+	monsters: generateMonsterUsernames(),
 };
 
 interface ValidationError {

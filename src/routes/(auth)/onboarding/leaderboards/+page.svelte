@@ -5,6 +5,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { OnboardingType } from '$lib/client/types/onboarding';
+	import PreviousFilled from 'carbon-icons-svelte/lib/PreviousFilled.svelte';
 
 	const onboardingTypeStore = getContext(
 		Symbol.for('onboardingType'),
@@ -15,10 +16,8 @@
 	) as Writable<number>;
 
 	function onOnboardingStart() {
-		if ($onboardingTypeStore !== '') {
-			$onboardingTypeStore = '';
-			$onboardingStepStore = 0;
-		}
+		$onboardingTypeStore = '';
+		$onboardingStepStore = 0;
 
 		$onboardingTypeStore = 'leaderboards';
 		$onboardingStepStore = 1;
@@ -26,6 +25,11 @@
 </script>
 
 <div class="container">
+	<div class="back-button">
+		<Button kind="tertiary" icon={PreviousFilled} href="/onboarding"
+			>Go Back</Button
+		>
+	</div>
 	<SectionHeadingTopLevel title="Onboarding: Public Profile & Leaderboards" />
 	<div>
 		<p class="spaced-paragraph">
@@ -40,8 +44,7 @@
 		</p>
 		<p class="spaced-paragraph">
 			Pressing "Start" resets your onboarding steps progress if it was already
-			set. Note that refreshing a page while you are in the middle of an
-			onboarding process resets the progress.
+			set. Your progress is saved locally.
 		</p>
 		<Button kind="primary" icon={Play} on:click={(e) => onOnboardingStart()}
 			>Start</Button
@@ -56,5 +59,10 @@
 		width: 90%;
 		margin: 0px auto;
 		margin-top: 2rem;
+	}
+
+	.back-button {
+		display: flex;
+		margin-bottom: 1rem;
 	}
 </style>

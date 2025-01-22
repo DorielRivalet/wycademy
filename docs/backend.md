@@ -1,7 +1,7 @@
 # Backend
 
 > [!IMPORTANT]
-> The Drizzle client for respecting policies does not work, we use the admin client with application layer checks instead.
+> The Drizzle client for respecting policies does not work, we use the admin client with application layer checks instead. Once the client works, we can leave the application layer checks as is in order for them to act as an additional security measure.
 
 We use Supabase as the backend of our application. Supabase is an open-source backend service that uses PostgreSQL as its database and GoTrue for authentication.
 
@@ -460,6 +460,21 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 > [!NOTE]
 > When using `npm run build && npm run preview` and creating a Wycademy account, you insert into the remote database `auth.users` table, not the local database from Docker Desktop.
 
+## Workarounds
+
+As of 2025/01/21, the `rls` transaction function does not work. Instead, we use application layer checks. The database is still secure from external threats since the Data API is disabled, but we have to be more careful in writing the code.
+
+Use the middleware found in `/src/lib/db/workarounds.ts` with the admin client, before performing your queries.
+
+Why not use the Supabase client instead of Drizzle, if RLS works better out-of-the-box? Because [per the Supabase docs](https://supabase.com/docs/guides/database/hardening-data-api#disabling-the-data-api), disabling the Data API + enabling RLS offers the greatest layer of protection. So ideally, your application is most secure if it implements all of the following:
+
+- Application Layer Checks (e.g. No Data API, check if user is a moderator with `/src/lib/db/workarounds.ts`).
+- Database Layer Checks (e.g. RLS policies found in `/src/lib/db/schema.ts`).
+- Isolated queries (we set the user's JWT data in each transaction configuration, see `/src/lib/db/drizzle.ts`).
+- API Layer Checks (e.g. Authentication guard found in `hooks.server.ts`).
+
+The Supabase client does not work with the Data API disabled.
+
 ## Important Tips
 
 - Never use `auth.users` table, use `public.profiles` instead.
@@ -479,6 +494,7 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 - When debugging Drizzle migrations, one way to tackle it is to remove the migrations then generate new migrations and see if the bug still occurs. To do this properly, you have to remove the files from `/supabase/migrations/` that are causing the bug, and the files in `/supabase/migrations/meta` to sync the metadata. You also need to remove entries in the `/supabase/migrations/meta/_journal.json` file. Remove only the affected entries. Afterwards, re-apply migrations with `npx drizzle-kit generate --name=[filename]`. Lastly, run `npx drizzle-kit check` to see the consistency of your migration history.
 - Do not use Svelte stores nor import `*.svelte.ts` in server-side code or **server-side rendered (SSR) pages**. Stores are designed to manage state on the client. On the server, each request is handled independently. This means that if you use a Svelte store on the server, the state you set could be shared across multiple requests and clients. You might have data leakage, where one user’s data is exposed to another user.
 - Remember that the `$effect` Svelte rune does not run on the server. Likewise, `onMount` does not run inside a component that is rendered on the server.
+- Always use the WHERE clause in queries, do not rely solely on RLS for filtering.
 
 See also:
 
