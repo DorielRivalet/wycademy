@@ -49,7 +49,7 @@
 				when built correctly.
 				<strong
 					>You cannot reverse most of the attribute upgrades (e.g. getting
-					sigils refunded)</strong
+					sigils refunded or unequipped)</strong
 				>.
 			</div>
 
@@ -71,7 +71,7 @@
 				kind="warning"
 				title="Sigils:"
 				hideCloseButton
-				subtitle="You do not get refunds for replacing sigils."
+				subtitle="You do not get refunds for replacing sigils nor can you unequip them."
 			/>
 
 			<div class="spaced-paragraph">
