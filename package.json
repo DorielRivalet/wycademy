@@ -129,7 +129,7 @@
 		"@xyflow/svelte": "^0.1.24",
 		"@zip.js/zip.js": "^2.7.54",
 		"alex": "^11.0.1",
-		"better-sqlite3": "^11.7.0",
+		"better-sqlite3": "^11.8.1",
 		"countries-list": "^3.1.1",
 		"date-fns": "^4.1.0",
 		"dotenv": "^16.4.7",
