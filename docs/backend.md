@@ -1,7 +1,7 @@
 # Backend
 
 > [!IMPORTANT]
-> The Drizzle client for respecting policies does not work, we use the admin client with application layer checks instead. Once the client works, we can leave the application layer checks as is in order for them to act as an additional security measure.
+> The Drizzle client for respecting policies does not work, we use the admin client with application layer checks instead. Once the client works, we can leave the application layer checks as is in order for them to act as an additional security measure. See the Workarounds section for more info.
 
 We use Supabase as the backend of our application. Supabase is an open-source backend service that uses PostgreSQL as its database and GoTrue for authentication.
 
@@ -464,16 +464,18 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 
 As of 2025/01/21, the `rls` transaction function does not work. Instead, we use application layer checks. The database is still secure from external threats since the Data API is disabled, but we have to be more careful in writing the code.
 
-Use the middleware found in `/src/lib/db/workarounds.ts` with the admin client, before performing your queries.
+Use the middleware found in `/src/lib/db/workarounds.ts` with the admin client, **before performing your queries**. Implement guard clauses at the top of your functions.
 
 Why not use the Supabase client instead of Drizzle, if RLS works better out-of-the-box? Because [per the Supabase docs](https://supabase.com/docs/guides/database/hardening-data-api#disabling-the-data-api), disabling the Data API + enabling RLS offers the greatest layer of protection. So ideally, your application is most secure if it implements all of the following:
 
 - Application Layer Checks (e.g. No Data API, check if user is a moderator with `/src/lib/db/workarounds.ts`).
+- API Layer Checks (e.g. Authentication guard found in `hooks.server.ts`).
 - Database Layer Checks (e.g. RLS policies found in `/src/lib/db/schema.ts`).
 - Isolated queries (we set the user's JWT data in each transaction configuration, see `/src/lib/db/drizzle.ts`).
-- API Layer Checks (e.g. Authentication guard found in `hooks.server.ts`).
 
-The Supabase client does not work with the Data API disabled.
+**The Supabase client does not work with the Data API disabled.**
+
+While the data in the JWT may not sync instantly with the database data by default, since we are using application level checks we do get the latest correct data even when updating the JWT claims. This is possible because in the `hooks.server.ts` file we get the `session` and `user` objects from `safeGetSession` (this queries the database, so we get more availability with more usage), which then is given as function arguments for our workaround functions. This includes the `profile` object since it is derived from the `user` object in the root `layout.server.ts`. Querying the database at least once in `hooks.server.ts` is a necessity in order to guard protected pages (e.g. account settings, moderator dashboard, etc.).
 
 ## Important Tips
 

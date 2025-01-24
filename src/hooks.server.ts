@@ -4,6 +4,7 @@ import {
 	PUBLIC_SUPABASE_ANON_KEY,
 } from '$env/static/public';
 import { createDrizzleSupabaseClient } from '$lib/db';
+import { isUserAuthenticated } from '$lib/db/workarounds';
 import { createServerClient } from '@supabase/ssr';
 import { type Handle, redirect } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
@@ -149,8 +150,10 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	// 	`hooks.server.ts user?.app_metadata: ` + JSON.stringify(user?.app_metadata),
 	// );
 
-	// TODO warnings, time-out, suspensions and terminations redirects.
-	// redirect to /notice
+	if (isUserAuthenticated(user)) {
+		// TODO warnings, time-out, suspensions and terminations redirects.
+		// redirect to /notice
+	}
 
 	return resolve(event);
 };

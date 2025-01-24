@@ -27,19 +27,24 @@
 		"src/**/*.svelte",
 		"tests/**/*.js",
 		"tests/**/*.ts",
-		"tests/**/*.svelte"
+		"tests/**/*.svelte",
+		"drizzle.config.ts",
+		"src/lib/db/*.ts",
+		"src/hooks.server.ts",
+		"src/service-worker.ts",
+		"src/app.d.ts"
 	],
 	"exclude": [
 		"node_modules/**/*",
-		"src/service-worker.js",
-		"src/service-worker/**/*.js",
-		"src/service-worker.ts",
-		"src/service-worker/**/*.ts",
-		"src/service-worker.d.ts",
-		"src/service-worker/**/*.d.ts",
+		// "src/service-worker.js",
+		// "src/service-worker/**/*.js",
+		// "src/service-worker.ts",
+		// "src/service-worker/**/*.ts",
+		// "src/service-worker.d.ts",
+		// "src/service-worker/**/*.d.ts",
 		".vercel/**/*",
 		".svelte-kit/**/*",
-		"src/lib/**/*" // TODO
+		"src/lib/client/**/*" // TODO
 	]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
