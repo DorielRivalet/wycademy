@@ -48,7 +48,7 @@
 		"@commitlint/cz-commitlint": "^19.5.0",
 		"@neoconfetti/svelte": "^2.2.1",
 		"@playwright/test": "^1.49.0",
-		"@release-it/conventional-changelog": "^9.0.3",
+		"@release-it/conventional-changelog": "^10.0.0",
 		"@rollup/plugin-typescript": "^12.1.1",
 		"@snaplet/copycat": "^5.1.0",
 		"@snaplet/seed": "^0.98.0",
