@@ -1,9 +1,9 @@
 // auth/registration-code/+server.ts
 import type { DrizzleClient } from '$lib/db/drizzle';
-import { registrationCodesTable } from '$lib/db/schema';
 import { error, type RequestEvent, type RequestHandler } from '@sveltejs/kit';
 import { RateLimiter } from 'sveltekit-rate-limiter/server';
-import { and, eq } from 'drizzle-orm';
+import { findUnusedRegistrationCode } from '$lib/db/queries/select';
+import { updateRegistrationCode } from '$lib/db/queries/update';
 
 const limiter = new RateLimiter({
 	IP: [30, 'h'], // IP address limiter
@@ -35,32 +35,16 @@ async function handleRegistrationCode(event: RequestEvent) {
 	4. proceed with the registration by returning HTTP 200.
 	*/
 	// console.log(submittedCode);
-	const foundUnused =
-		await drizzleClient.drizzlePostgresAdmin.query.registrationCodesTable.findFirst(
-			{
-				where: and(
-					eq(registrationCodesTable.used, false),
-					eq(registrationCodesTable.code, submittedCode),
-				),
-			},
-		);
+	const foundUnused = await findUnusedRegistrationCode(
+		submittedCode,
+		drizzleClient,
+	);
 
 	if (!foundUnused) {
 		error(400, 'Bad Request');
 	}
 
-	await drizzleClient.drizzlePostgresAdmin
-		.update(registrationCodesTable)
-		.set({
-			used: true,
-			// used_at should automatically update and stop becoming null.
-		})
-		.where(
-			and(
-				eq(registrationCodesTable.used, false),
-				eq(registrationCodesTable.code, submittedCode),
-			),
-		);
+	await updateRegistrationCode(submittedCode, drizzleClient);
 
 	// Set a cookie to mark the registration code as verified
 	event.cookies.set('registration_code_verified', 'true', {

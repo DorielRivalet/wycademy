@@ -1,10 +1,9 @@
 import { validateUsername } from '$lib/client/modules/profile/username';
 import { error } from '@sveltejs/kit';
-import { profilesTable } from '$lib/db/schema';
-import { eq } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 import { RateLimiter } from 'sveltekit-rate-limiter/server';
 import type { DrizzleClient } from '$lib/db/drizzle';
+import {getUserProfileByUsername} from '$lib/db/queries/select';
 
 const limiter = new RateLimiter({
 	IP: [600, 'h'], // IP address limiter
@@ -24,9 +23,7 @@ export const load: PageServerLoad = async (event) => {
 
 	/**The profile data of the user page (not the user who requests the page) */
 	const pageUserProfile =
-		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
-			where: eq(profilesTable.username, event.params.username),
-		});
+		await getUserProfileByUsername(event.params.username, drizzleClient));
 
 	if (!pageUserProfile) {
 		error(404, 'Hunter not found');

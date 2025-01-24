@@ -1,13 +1,16 @@
 // settings/profile/+page.server.ts
 import { error, type Actions } from '@sveltejs/kit';
-import { profilesTable } from '$lib/db/schema';
-import { eq, like } from 'drizzle-orm';
-import type { User } from '@supabase/supabase-js';
 import { zfd } from 'zod-form-data';
 import { usernames } from '$lib/client/modules/profile/username';
 import { capitalizeFirstLetter } from '$lib/client/modules/strings';
 import type { DrizzleClient } from '$lib/db/drizzle';
-import type { SelectProfile } from '$lib/db/schema';
+import { getDuplicateUsername, getUserProfile } from '$lib/db/queries/select';
+import {
+	updatePublicProfileActivity,
+	updatePublicProfileData,
+	updaterPublicProfileSettings,
+	updateUsername,
+} from '$lib/db/queries/update';
 
 // TODO replace zod with superforms
 
@@ -42,18 +45,7 @@ export const actions: Actions = {
 				error(400, 'Invalid form data');
 			}
 
-			await drizzleClient.drizzlePostgresAdmin
-				.update(profilesTable)
-				.set({
-					avatar: data.avatar,
-					country: data.country,
-					theme: data.theme,
-					title: data.title,
-					emblem: data.emblem,
-					private_servers: data.privateServers,
-					guild_card_theme: data.guildCardTheme,
-				})
-				.where(eq(profilesTable.id, profile?.id));
+			await updatePublicProfileData(data, drizzleClient, profile?.id);
 
 			return { success: true };
 		} catch (err) {
@@ -89,12 +81,7 @@ export const actions: Actions = {
 
 			const newPrivate = data.activity[0] === 'true' ? true : false;
 
-			await drizzleClient.drizzlePostgresAdmin
-				.update(profilesTable)
-				.set({
-					private: newPrivate,
-				})
-				.where(eq(profilesTable.id, profile?.id));
+			await updatePublicProfileActivity(newPrivate, drizzleClient, profile?.id);
 
 			return { success: true };
 		} catch (err) {
@@ -131,13 +118,12 @@ export const actions: Actions = {
 				data.settings[0] === 'true' ? true : false;
 			const newModeratorBadgeShown = data.settings[1] === 'true' ? true : false;
 
-			await drizzleClient.drizzlePostgresAdmin
-				.update(profilesTable)
-				.set({
-					discord_username_shown: newDiscordUsernameShown,
-					moderator_badge_shown: newModeratorBadgeShown,
-				})
-				.where(eq(profilesTable.id, profile?.id));
+			await updaterPublicProfileSettings(
+				newDiscordUsernameShown,
+				newModeratorBadgeShown,
+				drizzleClient,
+				profile?.id,
+			);
 
 			return { success: true };
 		} catch (err) {
@@ -198,13 +184,7 @@ export const actions: Actions = {
 
 			let usernameNumber = 0;
 			let newUsername = '';
-			const duplicateUsername =
-				await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
-					columns: {
-						username: true,
-					},
-					where: like(profilesTable.username, `%${data.username}%`),
-				});
+			const duplicateUsername = await getDuplicateUsername(drizzleClient, data);
 
 			if (duplicateUsername) {
 				// Extract the last 4 characters
@@ -230,19 +210,7 @@ export const actions: Actions = {
 				newUsername = `${data.username}-0000`;
 			}
 
-			await drizzleClient.drizzlePostgresAdmin
-				.update(profilesTable)
-				.set({
-					username: newUsername,
-				})
-				.where(eq(profilesTable.id, profile?.id));
-
-			await drizzleClient.drizzlePostgresAdmin
-				.update(profilesTable)
-				.set({
-					username_set: true,
-				})
-				.where(eq(profilesTable.id, profile?.id));
+			await updateUsername(newUsername, profile?.id, drizzleClient);
 
 			return { success: true };
 		} catch (err) {
@@ -251,34 +219,4 @@ export const actions: Actions = {
 			// return { profile: null, session, cookies: cookies.getAll() };
 		}
 	},
-};
-
-const getUserProfile = async (
-	user: User | null,
-	drizzleClient: DrizzleClient,
-) => {
-	if (!user) {
-		// console.log('User not found, returning null profile.');
-		return null;
-	}
-
-	// console.log('Finding current profile...');
-	// console.log(`${profilesTable.id}, ${user.id}`);
-
-	// TODO do not use admin db client.
-	const curProfile =
-		await drizzleClient.drizzlePostgresAdmin.query.profilesTable.findFirst({
-			where: eq(profilesTable.id, user.id),
-		});
-
-	// console.log(`curProfile: ${curProfile}`);
-
-	// if profile found, return it
-	if (curProfile) {
-		// console.log('Found profile in backend!');
-		return curProfile as SelectProfile;
-	} else {
-		// console.error('Could not get profile.');
-		throw new Error('Could not get profile.');
-	}
 };

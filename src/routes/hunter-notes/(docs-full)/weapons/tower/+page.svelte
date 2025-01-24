@@ -14,6 +14,9 @@
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getSkillColor } from '$lib/client/modules/frontier/armor-skills';
 </script>
 
 <TableOfContentsPage displayTOC={true}>
@@ -43,7 +46,11 @@
 				Rank weapons when fully upgraded. You can insert <strong
 					>Tower Decorations</strong
 				>, which gives skills without using slots, making it a powerful weapon
-				when built correctly. You cannot reverse most of the attribute upgrades.
+				when built correctly.
+				<strong
+					>You cannot reverse most of the attribute upgrades (e.g. getting
+					sigils refunded)</strong
+				>.
 			</div>
 
 			<div class="spaced-paragraph">
@@ -59,6 +66,14 @@
 				two Elemental, Status or Affinity sigils does not stack.)
 			</div>
 
+			<InlineNotification
+				lowContrast
+				kind="warning"
+				title="Sigils:"
+				hideCloseButton
+				subtitle="You do not get refunds for replacing sigils."
+			/>
+
 			<div class="spaced-paragraph">
 				<strong>Tower Decorations</strong> grant your weapon a skill. For
 				example, if you have a Tower Decoration for <InlineTooltip
@@ -67,7 +82,36 @@
 					iconType="component"
 					icon={getTag('Armor Skill').icon}
 				/>, then it gives you that skill when you slot it into a weapon and
-				equip it. You can have a maximum of two skills on a weapon.
+				equip it. You can have a maximum of two skills on a weapon. Most
+				decorations can only be obtained by battling <InlineTooltip
+					tooltip="Monster"
+					text="Duremudira"
+					icon={getMonsterIcon('Duremudira')}
+					iconType="file"
+				/>, though several enhanced G-Rank skill versions require materials from
+				2nd District Duremudira in combination with base decorations. For
+				example, decorations like <InlineTooltip
+					tooltip="Decoration"
+					text="Fencing+2"
+					icon={getItemIcon('Jewel')}
+					iconType="component"
+				/>, <InlineTooltip
+					tooltip="Decoration"
+					text="Sharp Sword+2"
+					icon={getItemIcon('Jewel')}
+					iconType="component"
+				/>, and <InlineTooltip
+					tooltip="Decoration"
+					text="Artisan"
+					icon={getItemIcon('Jewel')}
+					iconType="component"
+				/> can be combined with Duremudira materials to craft a <InlineTooltip
+					tooltip="Tower Decoration"
+					text="Sword God+2"
+					icon={getItemIcon('Jewel')}
+					iconType="component"
+					iconColor={getSkillColor('road/dure')}
+				/> decoration.
 			</div>
 
 			<CenteredFigure
@@ -124,7 +168,7 @@
 			</div>
 
 			<div class="spaced-paragraph">
-				In addition to the tower gems like <InlineTooltip
+				In addition to the Tower Gems like <InlineTooltip
 					icon={getItemIcon('Ball')}
 					iconColor={RarityColors[5]}
 					iconType="component"
