@@ -43,16 +43,21 @@
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import Head from '$lib/client/components/Head.svelte';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		projectName,
+		website,
+	} from '$lib/constants';
+	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
+	import { replaceState } from '$app/navigation';
 
 	function onSelectTowerWeaponOption() {
-		towerWeaponSelected = getTowerWeaponSelected(
-			towerWeaponSelectedWeaponOption,
-		);
-
 		towerWeaponGunlanceShellLevel = '0';
 		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
-		towerWeaponSelectedSeriesInfo =
-			getTowerWeaponSeriesInfo(towerWeaponSelected);
 
 		towerWeaponAttackValue = towerWeaponSelected.attack[0][0];
 		towerWeaponElementValue = 0;
@@ -76,7 +81,6 @@
 		towerWeaponBowCharge3Cost = 0;
 		towerWeaponBowCharge4Cost = 0;
 
-		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
 		updateTowerWeaponSlotsState();
 		updateSliderDisabledState();
 	}
@@ -110,16 +114,10 @@
 	}
 
 	function onSelectTowerWeaponType() {
-		towerWeaponsFromType = getTowerWeaponsByType(towerWeaponSelectedWeaponType);
 		towerWeaponSelectedWeaponOption = towerWeaponsFromType[0].id;
-		towerWeaponSelected = getTowerWeaponSelected(
-			towerWeaponSelectedWeaponOption,
-		);
 
 		towerWeaponGunlanceShellLevel = '0';
 		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
-		towerWeaponSelectedSeriesInfo =
-			getTowerWeaponSeriesInfo(towerWeaponSelected);
 
 		towerWeaponAttackValue = towerWeaponSelected.attack[0][0];
 		towerWeaponElementValue = 0;
@@ -143,7 +141,6 @@
 		towerWeaponBowCharge3Cost = 0;
 		towerWeaponBowCharge4Cost = 0;
 
-		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
 		updateTowerWeaponSlotsState();
 		updateSliderDisabledState();
 	}
@@ -182,7 +179,10 @@
 		arr: [number, number, number][],
 		property: string,
 		updatedIndex: number,
+		disabled: boolean,
 	) {
+		if (disabled) return;
+
 		let index = updatedIndex;
 		switch (property) {
 			case 'attack':
@@ -206,6 +206,7 @@
 		}
 
 		updateTowerWeaponSlotsState();
+		updateSliderDisabledState();
 	}
 
 	function findClosestIndex(arr?: [number, number, number][], w: number) {
@@ -266,10 +267,14 @@
 		}
 
 		updateTowerWeaponSlotsState();
+		updateSliderDisabledState();
 	}
 
-	function getTowerWeaponSelected(option: string) {
-		return towerWeapons.find((e) => e.name === option) ?? towerWeapons[0];
+	function getTowerWeaponSelected(option: string, weaponType: string) {
+		return (
+			towerWeapons.find((e) => e.name === option && e.type === weaponType) ??
+			towerWeapons[0]
+		);
 	}
 
 	function getTowerWeaponGunlanceShellLevelCost() {
@@ -435,8 +440,6 @@
 					? towerWeaponSlotImages[2].image
 					: towerWeaponSlotImages[1].image;
 		}
-
-		updateSliderDisabledState();
 	}
 
 	function getTowerWeaponSlots(seriesInfo: FrontierTowerWeaponSeriesInfo) {
@@ -613,31 +616,67 @@
 		return result;
 	}
 
-	let towerWeaponSelectedWeaponType = $state(towerWeapons[0].type);
-	let towerWeaponSelectedWeaponOption = $state(towerWeapons[0].name);
-	let towerWeaponAttackValue = $state(towerWeapons[0].attack[0][0]);
-	let towerWeaponElementValue = $state(0);
-	let towerWeaponParalysisValue = $state(0);
-	let towerWeaponPoisonValue = $state(0);
-	let towerWeaponSleepValue = $state(0);
-	let towerWeaponAffinityValue = $state(towerWeapons[0].affinity[0][0]);
-	let towerWeaponSharpnessLevel = $state(0);
-	let towerWeaponGunlanceShellLevel = $state('0');
+	let towerWeaponSelectedWeaponType = $state(
+		$page.url.searchParams.get('wt') ?? towerWeapons[0].type,
+	);
+	let towerWeaponSelectedWeaponOption = $state(
+		$page.url.searchParams.get('w') ?? towerWeapons[0].name,
+	);
+	let towerWeaponAttackValue = $state(
+		Number($page.url.searchParams.get('ak') ?? towerWeapons[0].attack[0][0]),
+	);
+	let towerWeaponElementValue = $state(
+		Number($page.url.searchParams.get('e') ?? 0),
+	);
+	let towerWeaponParalysisValue = $state(
+		Number($page.url.searchParams.get('ps') ?? 0),
+	);
+	let towerWeaponPoisonValue = $state(
+		Number($page.url.searchParams.get('pn') ?? 0),
+	);
+	let towerWeaponSleepValue = $state(
+		Number($page.url.searchParams.get('sp') ?? 0),
+	);
+	let towerWeaponAffinityValue = $state(
+		Number($page.url.searchParams.get('ay') ?? towerWeapons[0].affinity[0][0]),
+	);
+	let towerWeaponSharpnessLevel = $state(
+		Number($page.url.searchParams.get('ss') ?? 0),
+	);
+	let towerWeaponGunlanceShellLevel = $state(
+		$page.url.searchParams.get('g') ?? '0',
+	);
 
-	let towerWeaponReloadSpeedValue: FrontierBowgunReloadSpeed =
-		$state('Very Slow');
-	let towerWeaponRecoilValue: FrontierBowgunRecoil = $state('Max');
-	let towerWeaponBowCharge1Level = $state('1');
-	let towerWeaponBowCharge2Level = $state('1');
-	let towerWeaponBowCharge3Level = $state('1');
-	let towerWeaponBowCharge4Level = $state('1');
+	let towerWeaponReloadSpeedValue: FrontierBowgunReloadSpeed = $state(
+		$page.url.searchParams.get('rs') ?? 'Very Slow',
+	);
+	let towerWeaponRecoilValue: FrontierBowgunRecoil = $state(
+		$page.url.searchParams.get('rl') ?? 'Max',
+	);
+	let towerWeaponBowCharge1Level = $state(
+		$page.url.searchParams.get('b1') ?? '1',
+	);
+	let towerWeaponBowCharge2Level = $state(
+		$page.url.searchParams.get('b2') ?? '1',
+	);
+	let towerWeaponBowCharge3Level = $state(
+		$page.url.searchParams.get('b3') ?? '1',
+	);
+	let towerWeaponBowCharge4Level = $state(
+		$page.url.searchParams.get('b4') ?? '1',
+	);
 
-	let towerWeaponSelected = $state(towerWeapons[0]);
-	let towerWeaponsFromType = $state(
+	let towerWeaponSelected = $derived(
+		getTowerWeaponSelected(
+			towerWeaponSelectedWeaponOption,
+			towerWeaponSelectedWeaponType,
+		),
+	);
+	let towerWeaponsFromType = $derived(
 		getTowerWeaponsByType(towerWeaponSelectedWeaponType),
 	);
 
-	let towerWeaponSelectedSeriesInfo = $state(
+	let towerWeaponSelectedSeriesInfo = $derived(
 		getTowerWeaponSeriesInfo(towerWeaponSelected),
 	);
 
@@ -726,7 +765,7 @@
 		{ id: '4', text: 'LV4' },
 	];
 
-	let towerWeaponSlots = $state(
+	let towerWeaponSlots = $derived(
 		getTowerWeaponSlots(towerWeaponSelectedSeriesInfo),
 	);
 	let towerWeaponSigilsUsed = 0;
@@ -809,7 +848,56 @@
 	let towerWeaponExceedsMaxCost = $derived(
 		towerWeaponTotalCost > towerWeaponSelectedSeriesInfo.maxTotalCost,
 	);
+
+	let allParams = $derived(
+		new URLSearchParams({
+			wt: towerWeaponSelectedWeaponType.toString(),
+			w: towerWeaponSelectedWeaponOption.toString(),
+			ak: towerWeaponAttackValue.toString(),
+			e: towerWeaponElementValue.toString(),
+			ay: towerWeaponAffinityValue.toString(),
+			pn: towerWeaponPoisonValue.toString(),
+			ps: towerWeaponParalysisValue.toString(),
+			sp: towerWeaponSleepValue.toString(),
+			ss: towerWeaponSharpnessLevel.toString(),
+			g: towerWeaponGunlanceShellLevel.toString(),
+			rs: towerWeaponReloadSpeedValue.toString(),
+			rl: towerWeaponRecoilValue.toString(),
+			b1: towerWeaponBowCharge1Level.toString(),
+			b2: towerWeaponBowCharge2Level.toString(),
+			b3: towerWeaponBowCharge3Level.toString(),
+			b4: towerWeaponBowCharge4Level.toString(),
+		}),
+	);
+
+	let shareUrl = $derived(
+		`${$page.url.origin}${$page.url.pathname}?${allParams}`,
+	);
+
+	$effect(() => {
+		// Update the URL without reloading
+		replaceState(shareUrl, {});
+	});
+
+	// TODO test if i need to remove Head from layout
+	// if so, add blacklist of routes
+
+	// TODO add tower decos
 </script>
+
+<Head
+	title={'Tower Weapon Simulator'}
+	description={`A Tower weapon simulator (${$page.url.searchParams.get('wt') ?? towerWeapons[0].type}, etc.).`}
+	image={pageThumbnail}
+	url={$page.url.toString()}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <TableOfContentsPage displayTOC={false}>
 	{@const SvelteComponent_1 = weaponTypeInfo.find(
@@ -833,6 +921,12 @@
 					href="/hunter-notes/weapons/tower">Hunter's Notes page.</Link
 				> This page is for checking the values of a Tower Weapon, as shown in the
 				game.
+			</div>
+
+			<div class="spaced-paragraph">
+				<span><strong>Share URL</strong></span><span
+					><CodeSnippet code={shareUrl} /></span
+				>
 			</div>
 
 			<div class="tower-weapon-simulator-preview-container">
@@ -1128,6 +1222,7 @@
 										towerWeaponSelected.attack,
 										'attack',
 										Math.max(towerWeaponAttackIndex - 1, 0),
+										false,
 									)}
 								class="tower-weapon-slider-button">-</button
 							>
@@ -1156,6 +1251,7 @@
 											towerWeaponAttackIndex + 1,
 											towerWeaponSelected.attack.length - 1,
 										),
+										false,
 									)}
 								class="tower-weapon-slider-button">+</button
 							>
@@ -1170,6 +1266,7 @@
 											towerWeaponSelected.element,
 											'element',
 											Math.max(towerWeaponElementIndex - 1, 0),
+											towerWeaponElementDisabled,
 										)}
 									class="tower-weapon-slider-button">-</button
 								>
@@ -1199,6 +1296,7 @@
 												towerWeaponElementIndex + 1,
 												towerWeaponSelected.element.length - 1,
 											),
+											towerWeaponElementDisabled,
 										)}
 									class="tower-weapon-slider-button">+</button
 								>
@@ -1213,6 +1311,7 @@
 										towerWeaponSelected.affinity,
 										'affinity',
 										Math.max(towerWeaponAffinityIndex - 1, 0),
+										towerWeaponAffinityDisabled,
 									)}
 								class="tower-weapon-slider-button">-</button
 							>
@@ -1242,6 +1341,7 @@
 											towerWeaponAffinityIndex + 1,
 											towerWeaponSelected.affinity.length - 1,
 										),
+										towerWeaponAffinityDisabled,
 									)}
 								class="tower-weapon-slider-button">+</button
 							>
@@ -1256,6 +1356,7 @@
 											towerWeaponSelected.poison,
 											'poison',
 											Math.max(towerWeaponPoisonIndex - 1, 0),
+											towerWeaponPoisonDisabled,
 										)}
 									class="tower-weapon-slider-button">-</button
 								>
@@ -1285,6 +1386,7 @@
 												towerWeaponPoisonIndex + 1,
 												towerWeaponSelected.poison.length - 1,
 											),
+											towerWeaponPoisonDisabled,
 										)}
 									class="tower-weapon-slider-button">+</button
 								>
@@ -1298,6 +1400,7 @@
 											towerWeaponSelected.paralysis,
 											'paralysis',
 											Math.max(towerWeaponParalysisIndex - 1, 0),
+											towerWeaponParalysisDisabled,
 										)}
 									class="tower-weapon-slider-button">-</button
 								>
@@ -1330,6 +1433,7 @@
 												towerWeaponParalysisIndex + 1,
 												towerWeaponSelected.paralysis.length - 1,
 											),
+											towerWeaponParalysisDisabled,
 										)}
 									class="tower-weapon-slider-button">+</button
 								>
@@ -1343,6 +1447,7 @@
 											towerWeaponSelected.sleep,
 											'sleep',
 											Math.max(towerWeaponSleepIndex - 1, 0),
+											towerWeaponSleepDisabled,
 										)}
 									class="tower-weapon-slider-button">-</button
 								>
@@ -1372,6 +1477,7 @@
 												towerWeaponSleepIndex + 1,
 												towerWeaponSelected.sleep.length - 1,
 											),
+											towerWeaponSleepDisabled,
 										)}
 									class="tower-weapon-slider-button">+</button
 								>

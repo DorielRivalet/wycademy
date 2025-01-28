@@ -13,6 +13,7 @@ import {
 } from '$lib/db/queries/update';
 
 // TODO replace zod with superforms
+// TODO check if user has the option unlocked or if it is from the defaults, as validation.
 
 export const actions: Actions = {
 	updatePublicProfile: async ({ request, locals }) => {
