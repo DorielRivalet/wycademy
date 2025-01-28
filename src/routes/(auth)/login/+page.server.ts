@@ -1,4 +1,4 @@
-import type { Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import { SECRET_CLOUDFLARE_TURNSTILE_KEY } from '$env/static/private';
 
 interface TokenValidateResponse {
@@ -55,9 +55,7 @@ export const actions: Actions = {
 
 		if (!success) {
 			console.error('Invalid CAPTCHA.');
-			return {
-				error: error || 'Invalid CAPTCHA',
-			};
+			return fail(422, { error: error || 'Invalid CAPTCHA' });
 		}
 
 		// do something, the captcha is valid!

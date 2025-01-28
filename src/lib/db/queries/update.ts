@@ -60,7 +60,7 @@ export async function updatePublicProfileActivity(
 		.where(eq(profilesTable.id, profileId));
 }
 
-export async function updaterPublicProfileSettings(
+export async function updatePublicProfileSettings(
 	newDiscordUsernameShown: boolean,
 	newModeratorBadgeShown: boolean,
 	drizzleClient: DrizzleClient,

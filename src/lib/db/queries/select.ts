@@ -67,7 +67,7 @@ export async function getDuplicateUsername(
 			columns: {
 				username: true,
 			},
-			where: like(profilesTable.username, `%${data.username}%`),
+			where: like(profilesTable.username, `${data.username}-____`), // Match input followed by -XXXX
 		});
 	return duplicateUsername;
 }
