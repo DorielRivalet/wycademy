@@ -60,10 +60,15 @@
 			</div>
 
 			<div class="spaced-paragraph">
-				<strong>Tower Sigils</strong> are used to grant Affinity, Status, Elemental,
-				Zenith Skills or Weapon Abilities. You can only have as many of these properties
-				as you have Sigil slots and you can't have two of the same type (for example,
-				two Elemental, Status or Affinity sigils does not stack.)
+				<InlineTooltip
+					tooltip="Tower Sigil"
+					text="Tower Sigils"
+					icon={getItemIcon('Tower Sigil')}
+					iconType="component"
+				/> are used to grant Affinity, Status, Elemental, Zenith Skills or Weapon
+				Abilities. You can only have as many of these properties as you have Sigil
+				slots and you can't have two of the same type (for example, two Elemental,
+				Status or Affinity sigils does not stack.)
 			</div>
 
 			<InlineNotification

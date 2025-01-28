@@ -1,4 +1,4 @@
-import type { Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import { SECRET_CLOUDFLARE_TURNSTILE_KEY } from '$env/static/private';
 
 interface TokenValidateResponse {
@@ -9,7 +9,7 @@ interface TokenValidateResponse {
 }
 
 async function validateToken(token: string, secret: string) {
-	// TODO idk why this doesnt log anywhere
+	// TODO idk why this does not log anywhere
 	console.log('Validating Turnstile token...');
 	const response = await fetch(
 		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
@@ -55,9 +55,7 @@ export const actions: Actions = {
 
 		if (!success) {
 			console.error('Invalid CAPTCHA.');
-			return {
-				error: error || 'Invalid CAPTCHA',
-			};
+			return fail(422, { error: error || 'Invalid CAPTCHA' });
 		}
 
 		// do something, the captcha is valid!

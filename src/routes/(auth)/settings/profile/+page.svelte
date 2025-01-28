@@ -117,7 +117,7 @@
 		),
 	);
 
-	let { data } = $props();
+	let { data, form } = $props();
 	let { profile } = data;
 
 	const toastNotificationDuration = 5_000;
@@ -150,7 +150,6 @@
 	);
 	let profileUsername = $state(profile?.username ?? 'Not found');
 
-	let usernameError = $state(false);
 	let hoveringAvatar = $state(false);
 
 	const allCountryOptions = [
@@ -197,13 +196,14 @@
 	<SectionHeadingTopLevel title="Public Profile" />
 
 	<div>
-		{#if usernameError}
+		<!-- TODO: this doesnt show-->
+		{#if form?.error}
 			<div class="inline-notification-container">
 				<InlineNotification
 					lowContrast
 					kind="error"
 					title="Error:"
-					subtitle="Coult not set username, choose another one."
+					subtitle={form?.error}
 				/>
 			</div>
 		{/if}
@@ -282,11 +282,7 @@
 										10_000} available usernames to choose from!
 								</p></Tooltip
 							>
-							<Button
-								disabled={!isNewUsernameDifferent(newUsername, profileUsername)}
-								type="submit"
-								kind="primary">Update username</Button
-							>
+							<Button type="submit" kind="primary">Update username</Button>
 						</div>
 					</div>
 				</form>

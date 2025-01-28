@@ -1,5 +1,5 @@
 // settings/profile/+page.server.ts
-import { error, type Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import { zfd } from 'zod-form-data';
 import { usernames } from '$lib/client/modules/profile/username';
 import { capitalizeFirstLetter } from '$lib/client/modules/strings';
@@ -8,7 +8,7 @@ import { getDuplicateUsername, getUserProfile } from '$lib/db/queries/select';
 import {
 	updatePublicProfileActivity,
 	updatePublicProfileData,
-	updaterPublicProfileSettings,
+	updatePublicProfileSettings,
 	updateUsername,
 } from '$lib/db/queries/update';
 
@@ -25,7 +25,7 @@ export const actions: Actions = {
 			// const { data: profile } = await supabase.from('test_profiles').select();
 			const profile = await getUserProfile(user, drizzleClient);
 			if (!profile) {
-				throw new Error('Could not get profile.');
+				return fail(400, { error: 'Could not get profile.' });
 			}
 			// console.log('Got profile data');
 			// return { profile: profile ?? null, session, cookies: cookies.getAll() };
@@ -42,7 +42,7 @@ export const actions: Actions = {
 			const { data } = schema.safeParse(await request.formData());
 
 			if (!data) {
-				error(400, 'Invalid form data');
+				return fail(400, { error: 'Invalid form data' });
 			}
 
 			await updatePublicProfileData(data, drizzleClient, profile?.id);
@@ -50,7 +50,7 @@ export const actions: Actions = {
 			return { success: true };
 		} catch (err) {
 			// console.error('Error updating profile');
-			error(401, 'You need to be logged in!');
+			return fail(401, { error: 'You need to be logged in!' });
 			// return { profile: null, session, cookies: cookies.getAll() };
 		}
 	},
@@ -64,7 +64,7 @@ export const actions: Actions = {
 			// const { data: profile } = await supabase.from('test_profiles').select();
 			const profile = await getUserProfile(user, drizzleClient);
 			if (!profile) {
-				throw new Error('Could not get profile.');
+				return fail(400, { error: 'Could not get profile.' });
 			}
 			// console.log('Got profile data');
 			// return { profile: profile ?? null, session, cookies: cookies.getAll() };
@@ -76,7 +76,7 @@ export const actions: Actions = {
 
 			if (!data) {
 				// console.error('Invalid form data');
-				error(400, 'Invalid form data');
+				return fail(400, { error: 'Invalid form data' });
 			}
 
 			const newPrivate = data.activity[0] === 'true' ? true : false;
@@ -86,7 +86,8 @@ export const actions: Actions = {
 			return { success: true };
 		} catch (err) {
 			// console.error('Error updating profile activity');
-			error(401, 'You need to be logged in!');
+			return fail(401, { error: 'You need to be logged in!' });
+
 			// return { profile: null, session, cookies: cookies.getAll() };
 		}
 	},
@@ -100,7 +101,7 @@ export const actions: Actions = {
 			// const { data: profile } = await supabase.from('test_profiles').select();
 			const profile = await getUserProfile(user, drizzleClient);
 			if (!profile) {
-				throw new Error('Could not get profile.');
+				return fail(400, { error: 'Could not get profile.' });
 			}
 			// console.log('Got profile data');
 			// return { profile: profile ?? null, session, cookies: cookies.getAll() };
@@ -111,14 +112,14 @@ export const actions: Actions = {
 			const { data } = schema.safeParse(await request.formData());
 
 			if (!data) {
-				error(400, 'Invalid form data');
+				return fail(400, { error: 'Invalid form data' });
 			}
 
 			const newDiscordUsernameShown =
 				data.settings[0] === 'true' ? true : false;
 			const newModeratorBadgeShown = data.settings[1] === 'true' ? true : false;
 
-			await updaterPublicProfileSettings(
+			await updatePublicProfileSettings(
 				newDiscordUsernameShown,
 				newModeratorBadgeShown,
 				drizzleClient,
@@ -128,7 +129,8 @@ export const actions: Actions = {
 			return { success: true };
 		} catch (err) {
 			// console.error('Error updating profile settings');
-			error(401, 'You need to be logged in!');
+			return fail(401, { error: 'You need to be logged in!' });
+
 			// return { profile: null, session, cookies: cookies.getAll() };
 		}
 	},
@@ -143,7 +145,7 @@ export const actions: Actions = {
 			// const { data: profile } = await supabase.from('test_profiles').select();
 			const profile = await getUserProfile(user, drizzleClient);
 			if (!profile) {
-				throw new Error('Could not get profile.');
+				return fail(400, { error: 'Could not get profile.' });
 			}
 			// console.log('Got profile data');
 			// return { profile: profile ?? null, session, cookies: cookies.getAll() };
@@ -155,12 +157,18 @@ export const actions: Actions = {
 
 			if (!data) {
 				// console.error('Invalid form data');
-				error(400, 'Invalid form data');
+				return fail(400, { error: 'Invalid form data' });
 			}
 
-			if (data.username === profile.username) {
+			if (
+				data.username.trim().toLowerCase() ===
+				profile.username
+					.trim()
+					.toLowerCase()
+					.substring(0, profile.username.trim().length - 5)
+			) {
 				// console.error('New username is the same as old username');
-				error(400, 'Username already set');
+				return fail(400, { error: 'Username already set' });
 			}
 
 			if (data.username && data.username.length <= 32) {
@@ -175,11 +183,11 @@ export const actions: Actions = {
 					)
 				) {
 					// console.error('Invalid username format');
-					error(400, 'Invalid username format');
+					return fail(400, { error: 'Invalid username format' });
 				}
 			} else {
 				// console.error('Invalid username');
-				error(400, 'Invalid username');
+				return fail(400, { error: 'Invalid username' });
 			}
 
 			let usernameNumber = 0;
@@ -200,7 +208,7 @@ export const actions: Actions = {
 
 				if (usernameNumber > 9999) {
 					// console.error('Cannot use this username');
-					error(400, 'Cannot use this username');
+					return fail(400, { error: 'Cannot use this username' });
 				}
 
 				// Pad the number with leading zeros to always be 4 digits
@@ -215,7 +223,8 @@ export const actions: Actions = {
 			return { success: true };
 		} catch (err) {
 			// console.error('Error updating profile username');
-			error(401, 'You need to be logged in!');
+			return fail(401, { error: 'You need to be logged in!' });
+
 			// return { profile: null, session, cookies: cookies.getAll() };
 		}
 	},
