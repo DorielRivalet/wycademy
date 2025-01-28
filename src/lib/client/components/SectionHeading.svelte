@@ -32,6 +32,7 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { replaceState } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -56,12 +57,12 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 		queryData: { key: string; value: string }[],
 	) {
 		if (!browser) return;
-		const url = new URL(window.location.href);
+		const url = new URL($page.url.href);
 		queryData.forEach((e) => {
 			url.searchParams.set(e.key, e.value);
 		});
 
-		replaceState({}, '', url);
+		replaceState(url, {});
 	}
 </script>
 
