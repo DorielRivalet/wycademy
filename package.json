@@ -107,7 +107,7 @@
 	},
 	"dependencies": {
 		"@ag-grid-community/theming": "^32.3.3",
-		"@carbon/grid": "^11.29.0",
+		"@carbon/grid": "^11.31.0",
 		"@carbon/layout": "^11.28.0",
 		"@carbon/motion": "^11.24.0",
 		"@carbon/type": "^11.33.0",
