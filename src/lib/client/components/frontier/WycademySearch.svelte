@@ -17,6 +17,22 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
+
+	function onShortcut(event: CustomEvent<ShortcutEventDetail>) {
+		const keyboardEvent = event.detail.originalEvent;
+		// be cautious: `keyboardEvent` has already reached window here
+
+		keyboardEvent.preventDefault(); // prevent browser default
+
+		if ((keyboardEvent.target as HTMLElement)?.tagName === 'INPUT') {
+			// console.log('some input is focused, should skip');
+			return;
+		}
+
+		// do things
+		showModal = !showModal;
+	}
 
 	// Function to group results by category
 	function groupByCategory(results: SearchResult[]) {
@@ -206,6 +222,16 @@
 	// Call the function to get grouped results
 	let groupedResults = $derived(groupByCategory(results));
 </script>
+
+<svelte:window
+	use:shortcut={{
+		trigger: {
+			key: 'k',
+			modifier: ['ctrl', 'meta'],
+		},
+	}}
+	onshortcut={onShortcut}
+/>
 
 <div class="button-container">
 	<Button iconDescription="Search" kind="ghost" on:click={initialize}>
