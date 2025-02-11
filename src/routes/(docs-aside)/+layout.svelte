@@ -123,6 +123,7 @@
 								<span
 									>On this page <span>
 										<Button
+											tooltipPosition={'right'}
 											iconDescription={'Close Sidebar'}
 											kind="ghost"
 											size={'small'}

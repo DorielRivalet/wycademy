@@ -68,6 +68,7 @@ Also for Tools pages
 									>On this page <span>
 										<Button
 											iconDescription={'Close Sidebar'}
+											tooltipPosition={'right'}
 											kind="ghost"
 											size={'small'}
 											icon={RightPanelClose}

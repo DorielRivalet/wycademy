@@ -90,6 +90,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 
 	// If trying to access Discord login without verified code
 	// TODO remove when done testing
+	// this is just used for convenience of the user and not security, the security comes from verifying the registration code with database table.
 	if (event.url.pathname === '/auth/login/discord') {
 		const verifiedCode = event.cookies.get('registration_code_verified');
 

@@ -21,7 +21,9 @@
 			<div>
 				<div class="spaced-paragraph">
 					Wycademy, or Frontier's Wycademy, is a comprehensive resource for
-					hunters of all skill levels playing Monster Hunter Frontier Z.
+					hunters of all skill levels playing <cite
+						>Monster Hunter Frontier Z</cite
+					>.
 				</div>
 				<p class="spaced-paragraph">
 					First released as Monster Hunter Frontier in 2007, MHF-Z has
@@ -250,6 +252,40 @@
 						href="https://github.com/DorielRivalet/wycademy/projects?query=is%3Aopen"
 						>GitHub Projects</OutboundLink
 					> to keep track of our issues and feature requests.
+				</div>
+			</div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Legal Disclaimer" />
+			<div>
+				<p class="spaced-paragraph">
+					This website is an <strong>unofficial fan project</strong> dedicated
+					to preserving and documenting information about Monster Hunter
+					Frontier Z. We are
+					<strong
+						>not affiliated with, endorsed by, or sponsored by CAPCOM Co., Ltd.
+						or any of its subsidiaries.</strong
+					>
+				</p>
+				<p class="spaced-paragraph">
+					<cite>Monster Hunter Frontier Z</cite> and all related trademarks,
+					logos, artwork, and other intellectual property are owned by CAPCOM
+					Co., Ltd. This website does
+					<strong>not distribute executable game files</strong>
+					belonging to CAPCOM. All game-related materials used on this site, including
+					screenshots and descriptions, are used under
+					<strong>fair use</strong> principles for informational, educational, and
+					archival purposes.
+				</p>
+				<div class="spaced-paragraph">
+					For more information, please see our support pages for <Link
+						inline
+						href="/support/policies/copyright">copyright</Link
+					>, <Link inline href="/support/policies/terms-of-service"
+						>Terms of Service</Link
+					> and <Link inline href="/support/website/privacy-policy"
+						>Privacy Policy</Link
+					>.
 				</div>
 			</div>
 		</section>
