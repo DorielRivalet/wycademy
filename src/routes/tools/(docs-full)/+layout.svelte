@@ -291,6 +291,12 @@
 		},
 	];
 
+	const blacklistedRoutesForHead = ['/tools/simulator/tower-weapon'];
+
+	function isRouteBlacklisted(route: string) {
+		return blacklistedRoutesForHead.find((e) => e === route);
+	}
+
 	let tocVisible = $state($hunterNotesSidebarEnabledStore);
 
 	let centerColumnClass = $derived(tocVisible ? '' : 'expanded');
@@ -326,23 +332,25 @@
 />
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
-<Head
-	title={headTitle}
-	{description}
-	image={getPageThumbnail(
-		$page.url.pathname,
-		null,
-		$carbonThemeStore === 'g10' ? 'light' : 'dark',
-	)}
-	{url}
-	{website}
-	{authorName}
-	{datePublished}
-	{authorUrl}
-	contentType="SoftwareApplication"
-	name={projectName}
-	siteName={projectName}
-/>
+{#if !isRouteBlacklisted($page.url.pathname || '/')}
+	<Head
+		title={headTitle}
+		{description}
+		image={getPageThumbnail(
+			$page.url.pathname,
+			null,
+			$carbonThemeStore === 'g10' ? 'light' : 'dark',
+		)}
+		{url}
+		{website}
+		{authorName}
+		{datePublished}
+		{authorUrl}
+		contentType="SoftwareApplication"
+		name={projectName}
+		siteName={projectName}
+	/>
+{/if}
 
 {#if !tocVisible && $breakpointLargerThanMedium}
 	<div class="expand-TOC">

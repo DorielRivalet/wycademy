@@ -34,10 +34,6 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;

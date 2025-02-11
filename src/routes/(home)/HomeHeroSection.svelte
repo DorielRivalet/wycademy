@@ -33,23 +33,25 @@
 		counterSpeedruns = 0,
 		counterUsers = 0,
 		counterGuides = guidesInfo.reduce(
-		(count, category) => count + category.pages.length,
-		0,
-	),
+			(count, category) => count + category.pages.length,
+			0,
+		),
 		counterTools = toolsInfo.reduce(
-		(count, category) => count + category.pages.length,
-		0,
-	)
+			(count, category) => count + category.pages.length,
+			0,
+		),
 	}: Props = $props();
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let container: HTMLDivElement = $state();
+	let container: HTMLDivElement | undefined = $state();
 	let isVisible = $state(false);
 
-	let bgClass = $derived($carbonThemeStore === 'g10' ? `background-light` : `background`);
+	let bgClass = $derived(
+		$carbonThemeStore === 'g10' ? `background-light` : `background`,
+	);
 
 	onMount(() => {
 		const observer = new IntersectionObserver(
