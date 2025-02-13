@@ -186,6 +186,7 @@
 	import Time from 'carbon-icons-svelte/lib/Time.svelte';
 	import type { PageData } from './$types';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import FitToScreen from 'carbon-icons-svelte/lib/FitToScreen.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -6417,6 +6418,9 @@ does not get multiplied by horn */
 			legacy: false,
 		},
 	];
+
+	let fitToScreen = false;
+	let appElement: HTMLDivElement | undefined;
 </script>
 
 <Modal
@@ -6539,11 +6543,13 @@ does not get multiplied by horn */
 />
 
 <div class={modalBlurClass}>
-	<div class="app">
+	<div class="app" bind:this={appElement}>
 		<ViewTransition />
-		<div class="header">
-			<Header profile={data.profile} />
-		</div>
+		{#if !fitToScreen}
+			<div class="header">
+				<Header profile={data.profile} />
+			</div>
+		{/if}
 		<Splitpanes theme="no-splitter" horizontal dblClickSplitter={false}>
 			<Pane size={6} minSize={6} maxSize={6}>
 				<div class="top-toolbar driverjs-panel-sizes">
@@ -6576,6 +6582,25 @@ does not get multiplied by horn */
 							<Reset size={24} color="var(--ctp-yellow)" />
 						</span></Button
 					>
+					<Button
+						kind="ghost"
+						tooltipPosition="right"
+						on:click={(e) => {
+							if (appElement && fitToScreen === false) {
+								appElement.requestFullscreen();
+								fitToScreen = true;
+							} else {
+								document.exitFullscreen();
+								fitToScreen = false;
+							}
+						}}
+						iconDescription={!fitToScreen
+							? 'Fullscreen'
+							: 'Exit Fullscreen Mode'}
+						><span slot="icon">
+							<FitToScreen size={24} />
+						</span></Button
+					>
 				</div>
 			</Pane>
 
@@ -6593,6 +6618,7 @@ does not get multiplied by horn */
 										of tables etc. Ideas: sharpness, multipliers, monsters, etc.-->
 										<Tab label="Help" />
 										<Tab label="References" />
+										<Tab label="See Also" />
 
 										<svelte:fragment slot="content">
 											<TabContent>
@@ -10387,7 +10413,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<p>
+																			<div class="paragraph-long-02">
 																				The calculator does not include Diva
 																				Prayer Gems that do not affect it. The
 																				full list is found in our <Link
@@ -10395,7 +10421,7 @@ does not get multiplied by horn */
 																					href="/hunter-notes/events/diva-defense#diva-prayer-gems"
 																					>Hunter's Notes.</Link
 																				>
-																			</p>
+																			</div>
 																		</ListItem>
 																	</UnorderedList>
 																</div>
@@ -10766,6 +10792,163 @@ does not get multiplied by horn */
 															>
 														</ListItem>
 													</OrderedList>
+												</div>
+											</TabContent>
+											<TabContent>
+												<div class="container-tab-content">
+													<UnorderedList class="spaced-list">
+														<ListItem>
+															<Link
+																href="/hunter-notes/getting-started/style-rank#weapon-styles"
+																>Weapon Styles Usability Ratings</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/style-rank#style-rank-skills"
+																>Style Rank Skills</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/style-rank#style-rank-stats"
+																>Style Rank Stats</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/style-rank#attack-ceiling"
+																>Attack Ceiling</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/style-rank#weapon-tech-skills"
+																>Weapon Tech Skills</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/elements"
+																>Elements</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/ailments#monster-status-immunities"
+																>Monster Status Immunities</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/getting-started/transcend#elemental-bursts"
+																>Transcend Bursts</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/hunter-notes/monsters/overview"
+																>Monsters</Link
+															>
+														</ListItem>
+														<ListItem>
+															<Link
+																href="/hunter-notes/weapons/overview#weapon-multipliers"
+																>Weapon Multipliers</Link
+															>
+														</ListItem>
+														<ListItem>
+															<Link
+																href="/hunter-notes/weapons/overview#sharpness"
+																>Sharpness Multipliers and Tables</Link
+															>
+														</ListItem>
+														<ListItem>
+															<Link href="/hunter-notes/weapons/sigils#recipes"
+																>Sigil Recipes</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/hunter-notes/weapons/sigils#skills"
+																>Sigil Skills</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/weapons/critical-distance"
+																>Critical Distance</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/hunter-notes/weapons/active-feature"
+																>Active Feature</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/hunter-notes/weapons/tower"
+																>Tower Weapons</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/armor/skills#skill-slots"
+																>Skill Slots</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/armor/skills#skill-priority"
+																>Skill Priority</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/locations/guild-hall#recipes"
+																>Guild Food</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/locations/guild-hall#guild-poogie-skills"
+																>Guild Poogies</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/locations/bento#recommended-bento"
+																>Recommended Bento</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/locations/caravan#caravan-skills"
+																>Caravan Skills</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/hunter-notes/events/diva-defense#diva-prayer-gems"
+																>Diva Prayer Gems</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/tools/calculator/ice-age"
+																>Ice Age Calculator</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/tools/calculator/crit-conversion"
+																>Crit Conversion Calculator</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/tools/calculator/gunlance-shells-and-wyvernfire"
+																>Gunlance Shells & Wyvernfire Calculator</Link
+															>
+														</ListItem><ListItem>
+															<Link
+																href="/tools/calculator/heavy-bowgun-heat-beam"
+																>Heavy Bowgun Heat Beam Calculator</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/tools/calculator/sigil"
+																>Sigils Calculator</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/tools/simulator/tower-weapon"
+																>Tower Weapon Simulator</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/tools/simulator/sigil"
+																>Sigils Simulator</Link
+															>
+														</ListItem>
+														<ListItem>
+															<Link href="/tools/simulator/partner-skills"
+																>Partner Skills Simulator</Link
+															>
+														</ListItem><ListItem>
+															<Link href="/overlay">mhfz-overlay</Link>
+														</ListItem>
+													</UnorderedList>
 												</div>
 											</TabContent>
 										</svelte:fragment>
@@ -11958,7 +12141,9 @@ does not get multiplied by horn */
 	@use '@carbon/motion' as motion;
 
 	.app {
-		width: 100%;
+		display: flex;
+		flex-direction: column;
+		background-color: var(--ctp-mantle);
 		height: 100vh;
 	}
 
@@ -12537,6 +12722,8 @@ does not get multiplied by horn */
 	}
 
 	.header {
-		border-bottom: 1px solid var(--ctp-surface1);
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		top: 0;
+		position: static;
 	}
 </style>
