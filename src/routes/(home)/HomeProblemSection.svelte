@@ -11,6 +11,8 @@
 	import MisuseOutline from 'carbon-icons-svelte/lib/MisuseOutline.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getGameIcon } from '$lib/client/modules/frontier/objects';
+	import { fade } from 'svelte/transition';
+	import IntersectionObserver from 'svelte-intersection-observer';
 
 	const problems: { icon: any; title: string; description: string }[] = [
 		{
@@ -50,6 +52,10 @@
 				'Many resources stop at the basics, missing the opportunity to educate and inspire hunters to improve, grow, and engage deeply with the game.',
 		},
 	];
+
+	let elements: HTMLDivElement[] | undefined[] = $state(
+		new Array(problems.length),
+	);
 </script>
 
 <section class="container">
@@ -73,12 +79,25 @@
 		</div>
 	</div>
 	<div class="problems">
-		{#each problems as problem}
-			<HomeProblemSectionProblem
-				title={problem.title}
-				description={problem.description}
-				icon={problem.icon}
-			/>
+		{#each problems as problem, i}
+			<IntersectionObserver
+				once
+				element={elements[i]}
+				threshold={1}
+				let:intersecting
+			>
+				<div bind:this={elements[i]}>
+					{#if intersecting}
+						<div in:fade={{ duration: 250 }}>
+							<HomeProblemSectionProblem
+								title={problem.title}
+								description={problem.description}
+								icon={problem.icon}
+							/>
+						</div>
+					{/if}
+				</div>
+			</IntersectionObserver>
 		{/each}
 	</div>
 </section>

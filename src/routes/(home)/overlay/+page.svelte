@@ -278,7 +278,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 				authorTitle="MHF-Z Speedrunner"
 				authorLink="https://www.youtube.com/@kairi_mhfz"
 				quote="The overlay offers a preset configuration for speedruns, disabling any options that give an unfair advantage. It includes quest logging and stores completed runs in a local database for submission and validation. This ensures fair competition and prevents fake runs."
-				authorImage="https://yt3.googleusercontent.com/ytc/AOPolaQWKx3GIOgWWRu9YCHBI7lrkFjT2NxLP45IlnSM=s176-c-k-c0x00ffffff-no-rj"
+				authorImage="https://yt3.googleusercontent.com/ytc/AIdro_lz4V5XScqoB_bj9McRJRkNebwmO50BDrmCuIGaZ5Gz9w=s160-c-k-c0x00ffffff-no-rj"
 			/>
 			<Testimonial
 				authorName="Sera"
