@@ -243,7 +243,14 @@
 	</Button>
 </div>
 
-<Modal passiveModal primaryButtonDisabled bind:open={showModal} size="sm">
+<!--TODO: maybe other modals also need to set the width, if the horizontal scrollbar shows too-->
+<Modal
+	passiveModal
+	style="width: 100%;"
+	primaryButtonDisabled
+	bind:open={showModal}
+	size="sm"
+>
 	{#snippet heading()}
 		<div class="search-container">
 			<div class="dropdown">
