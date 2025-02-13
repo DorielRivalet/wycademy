@@ -20,19 +20,21 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { browser } from '$app/environment';
+	import { fly } from 'svelte/transition';
+	import IntersectionObserver from 'svelte-intersection-observer';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	const solutions: {
+	let solutions: {
 		imageSourceLight: string;
 		imageSourceDark: string;
 		title: string;
 		description: string;
 		href: string;
 		area: string;
-	}[] = [
+	}[] = $state([
 		{
 			imageSourceLight: img1,
 			imageSourceDark: img1Dark,
@@ -69,7 +71,11 @@
 			description:
 				'We offer our users the ability to create accounts in order to submit their quests into leaderboards. Tailor your profile to your specific needs with flexible customization options, allowing you to get the most out of our platform.',
 		},
-	];
+	]);
+
+	let solutionsElements: HTMLDivElement[] | undefined[] = $state(
+		new Array(solutions.length),
+	);
 </script>
 
 <section class="container">
@@ -101,17 +107,35 @@
 		</div>
 	</div>
 	<div class="solutions">
-		{#each solutions as solution}
+		{#each solutions as solution, i}
 			<div class={solution.area}>
 				{#if browser}
-					<HomeSolutionSectionSolution
-						title={solution.title}
-						description={solution.description}
-						imageSource={$carbonThemeStore === 'g10'
-							? solution.imageSourceLight
-							: solution.imageSourceDark}
-						href={solution.href}
-					/>
+					<IntersectionObserver
+						once
+						element={solutionsElements[i]}
+						threshold={0.999}
+						let:intersecting
+					>
+						<div
+							bind:this={solutionsElements[i]}
+							style="width: 100%; min-height: 12rem;"
+						>
+							{#if intersecting}
+								<div in:fly={{ y: 100, duration: 250 }}>
+									<HomeSolutionSectionSolution
+										title={solution.title}
+										description={solution.description}
+										imageSource={$carbonThemeStore === 'g10'
+											? solution.imageSourceLight
+											: solution.imageSourceDark}
+										href={solution.href}
+									/>
+								</div>
+							{:else}
+								<div></div>
+							{/if}
+						</div>
+					</IntersectionObserver>
 				{:else}
 					<SkeletonPlaceholder style="width: 100%; height: 12rem;" />
 				{/if}
@@ -124,6 +148,15 @@
 	@use '@carbon/motion' as motion;
 	@use '@carbon/type' as type;
 	//@use '$lib/client/styles/_border-all.scss';
+
+	.solution-wrapper {
+		opacity: 1;
+		transition: opacity 250ms ease-in-out;
+	}
+
+	.solution-hidden {
+		opacity: 0;
+	}
 
 	.container {
 		padding-top: var(--cds-spacing-10);
