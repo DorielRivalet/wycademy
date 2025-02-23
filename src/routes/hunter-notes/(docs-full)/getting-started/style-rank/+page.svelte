@@ -14,7 +14,11 @@
 		LocationIcons,
 	} from '$lib/client/modules/frontier/locations';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+		ItemColors,
+	} from '$lib/client/modules/frontier/items';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import {
@@ -51,6 +55,7 @@
 	} from '$lib/client/modules/multiple-choice';
 	import { confetti } from '@neoconfetti/svelte';
 	import { reduced_motion } from '$lib/client/stores/reduced-motion';
+	import MyMissionTicketsCalculator from '$lib/client/components/frontier/MyMissionTicketsCalculator.svelte';
 
 	let showConfetti = $state(false);
 
@@ -61,6 +66,20 @@
 			showConfetti = false;
 		}, 5000);
 	}
+
+	const myMissionTickets = [
+		2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 4, 2, 2, 5, 4, 4, 4, 4,
+		5, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5,
+		4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4,
+		4, 5, 4, 5, 4, 4, 4, 4, 4, 5, 4, 4, 5, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 5,
+		4, 4, 5, 4, 4, 5, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 6, 4, 6, 6, 6, 6, 6,
+		6, 8, 6, 6, 6, 6, 8, 6, 6, 6, 6, 8, 6, 6, 6, 6, 6, 6, 8, 6, 8, 6, 8, 6, 8,
+		6, 6, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 6, 6, 6, 8, 6,
+		8, 6, 6, 8, 6, 8, 8, 6, 6, 6, 6, 8, 6, 6, 6, 6, 6, 8, 6, 6, 8, 6, 6, 6, 6,
+		8, 6, 8, 8, 8, 6, 6, 10, 8, 10, 8, 6, 8, 6, 6, 6, 8, 10, 8, 8, 6, 6, 6, 6,
+		8, 6, 6, 8, 8, 8, 6, 8, 6, 6, 8, 6, 6, 10, 8, 6, 10, 10, 10, 10, 10, 10, 10,
+		10, 10, 10,
+	];
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -1954,6 +1973,70 @@ graph LR
 							lottery system for them with the combination NPC.
 						</div>
 					</div>
+
+					<div class="table table-with-scrollbar">
+						<DataTable
+							id="my-mission-tickets-dom"
+							sortable
+							title="My Mission Tickets Required"
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'level', value: 'Level' },
+								{ key: 'tickets', value: 'Tickets' },
+							]}
+							rows={myMissionTickets.map((e, i) => {
+								return { id: i + 1, level: i + 1, tickets: e };
+							})}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(
+											myMissionTickets.map((e, i) => {
+												return { id: i + 1, level: i + 1, tickets: e };
+											}),
+										)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadDomAsPng(
+												'my-mission-tickets-dom',
+												'my-mission-tickets',
+											)}>Download</Button
+									>
+								</div>
+							</Toolbar>
+
+							{#snippet cell({ cell })}
+								{#if cell.key === 'tickets'}
+									<InlineTooltip
+										tooltip="Item"
+										text={`${cell.value}`}
+										icon={getItemIcon('Ticket')}
+										iconType={'component'}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							{/snippet}
+						</DataTable>
+					</div>
+					<div class="spaced-paragraph">
+						There are a total of <InlineTooltip
+							tooltip="Item"
+							text={`${myMissionTickets.reduce((p, c) => p + c)} My Mission Tickets`}
+							icon={getItemIcon('Ticket')}
+							iconType={'component'}
+						/> needed in order to reach the maximum level. You can check the required
+						tickets needed in your current level in the <Link
+							icon={ToolKit}
+							href="/tools/calculator/damage">Damage Calculator</Link
+						>.
+					</div>
+					<MyMissionTicketsCalculator />
 				</section>
 			</div>
 		</section>

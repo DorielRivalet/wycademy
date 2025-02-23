@@ -140,6 +140,7 @@
 		getItemIcon,
 		ItemColors,
 	} from '$lib/client/modules/frontier/items';
+	import MyMissionTicketsCalculator from '$lib/client/components/frontier/MyMissionTicketsCalculator.svelte';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 	import {
 		getAOESigilElement,
@@ -6620,10 +6621,13 @@ does not get multiplied by horn */
 					lowContrast
 				/>
 
-				<TrueRawConverter
-					bind:weaponType={inputWeaponType}
-					bind:value={inputNumberAttackValue}
-				/>
+				<div class="mini-calculators">
+					<TrueRawConverter
+						bind:weaponType={inputWeaponType}
+						bind:value={inputNumberAttackValue}
+					/>
+					<MyMissionTicketsCalculator />
+				</div>
 				<div>
 					<Accordion>
 						<AccordionItem bind:open={openInputsSection}>
@@ -11841,5 +11845,11 @@ does not get multiplied by horn */
 		display: flex;
 		gap: 0.5rem;
 		align-items: center;
+	}
+
+	.mini-calculators {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 </style>
