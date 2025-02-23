@@ -121,6 +121,31 @@
 			<SectionHeading level={2} title="Our Compliance" />
 			<div>
 				<section>
+					<SectionHeading level={3} title="Disclaimer" />
+					<div>
+						<div class="spaced-paragraph">
+							If you have any claims or issues related to copyright infringement
+							or other intellectual property concerns regarding content on this
+							website, please direct them to us for resolution. We are committed
+							to addressing any valid concerns and ensuring that our work
+							remains compliant with all applicable laws and regulations.
+						</div>
+						<p class="spaced-paragraph">
+							However, please be aware that in most cases, a copyright claim
+							should be submitted by the copyright owner or an authorized agent
+							acting on behalf of the copyright owner. This means that the
+							person or entity who holds the copyright has the primary right to
+							file a claim. A third party, such as a lawyer or a company
+							specializing in copyright enforcement, would need explicit
+							authorization to act on behalf of the copyright owner. If someone
+							other than the copyright owner or their authorized agent tries to
+							submit a claim, it might not be considered valid, and the platform
+							receiving the claim may reject it or require further proof of
+							authorization.
+						</p>
+					</div>
+				</section>
+				<section>
 					<SectionHeading level={3} title="Original Work Statement" />
 					<div>
 						<p class="spaced-paragraph">
@@ -174,7 +199,7 @@
 					<SectionHeading level={3} title="Public Misrepresentations" />
 					<div>
 						<p class="spaced-paragraph">
-							There have been instances of misleading claims regarding our work.
+							There have been instances of incorrect claims regarding our work.
 							To clarify, our content is legally and ethically sound, created
 							independently, and adheres to copyright law. These claims, which
 							suggest otherwise, lack a legal basis and are intended to mislead
@@ -341,31 +366,6 @@
 								</p></ListItem
 							>
 						</UnorderedList>
-					</div>
-				</section>
-				<section>
-					<SectionHeading level={3} title="Disclaimer" />
-					<div>
-						<div class="spaced-paragraph">
-							If you have any claims or issues related to copyright infringement
-							or other intellectual property concerns regarding content on this
-							website, please direct them to us for resolution. We are committed
-							to addressing any valid concerns and ensuring that our work
-							remains compliant with all applicable laws and regulations.
-						</div>
-						<p class="spaced-paragraph">
-							However, please be aware that in most cases, a copyright claim
-							should be submitted by the copyright owner or an authorized agent
-							acting on behalf of the copyright owner. This means that the
-							person or entity who holds the copyright has the primary right to
-							file a claim. A third party, such as a lawyer or a company
-							specializing in copyright enforcement, would need explicit
-							authorization to act on behalf of the copyright owner. If someone
-							other than the copyright owner or their authorized agent tries to
-							submit a claim, it might not be considered valid, and the platform
-							receiving the claim may reject it or require further proof of
-							authorization.
-						</p>
 					</div>
 				</section>
 			</div>

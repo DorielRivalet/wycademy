@@ -26,15 +26,16 @@
 					>.
 				</div>
 				<p class="spaced-paragraph">
-					First released as Monster Hunter Frontier in 2007, MHF-Z has
-					cultivated a dedicated community, and our website is designed to
-					support that community in every way possible. Acting as a <strong
-						>knowledge base</strong
-					>, <strong>database</strong>,
+					First released as Monster Hunter Frontier in 2007 and officially
+					discontinued in 2019, MHF-Z has cultivated a dedicated community, and
+					our website is designed to support that community in every way
+					possible. Acting as a <strong>knowledge base</strong>,
+					<strong>database</strong>,
 					<strong>speedrunning leaderboard</strong>, and a
 					<strong>compilation of guides, tutorials and tools</strong>, Wycademy
 					is <strong>agnostic to game servers and patches</strong>, ensuring
-					that all players can benefit from our resources.
+					that all players can benefit from our resources. We aim to preserve
+					historical documentation, which is crucial for preservation.
 				</p>
 			</div>
 		</section>
