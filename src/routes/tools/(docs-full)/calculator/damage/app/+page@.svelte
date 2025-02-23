@@ -187,6 +187,7 @@
 	import type { PageData } from './$types';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import FitToScreen from 'carbon-icons-svelte/lib/FitToScreen.svelte';
+	import MyMissionTicketsCalculator from '$lib/client/components/frontier/MyMissionTicketsCalculator.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -6155,7 +6156,7 @@ does not get multiplied by horn */
 	);
 
 	/**TODO: use this for hovering, info, warnings and errors.*/
-	let statusBarText = 'Note: refreshing the page resets all values.';
+	// let statusBarText = 'Note: refreshing the page resets all values.';
 	const panel1SizeDefault = 75;
 	const panel2SizeDefault = 25;
 	const panel3SizeDefault = 75;
@@ -6614,6 +6615,7 @@ does not get multiplied by horn */
 										<Tab label="Inputs" />
 										<Tab label="Diva Prayer Gems" />
 										<Tab label="True Raw Converter" />
+										<Tab label="My Mission Tickets"/>
 										<!--TODO: add quick references tab, with another tab comprised
 										of tables etc. Ideas: sharpness, multipliers, monsters, etc.-->
 										<Tab label="Help" />
@@ -9995,6 +9997,12 @@ does not get multiplied by horn */
 											</TabContent>
 											<TabContent>
 												<div class="container-tab-content">
+													<MyMissionTicketsCalculator
+													/>
+												</div>
+											</TabContent>
+											<TabContent>
+												<div class="container-tab-content">
 													<Tabs>
 														<Tab label="Calculator" />
 														<Tab label="Inputs" />
@@ -10391,6 +10399,12 @@ does not get multiplied by horn */
 																			Save and Load section and selecting the
 																			Legacy Calculator tab; so you do not have
 																			to lose your progress.
+																		</p>
+																		<p class="spaced-paragraph">
+																			<strong
+																				>Note that refreshing the page resets
+																				all values.</strong
+																			>
 																		</p>
 																	</div>
 																</div>
@@ -12061,11 +12075,6 @@ does not get multiplied by horn */
 						</Splitpanes>
 					</Pane>
 				</Splitpanes>
-			</Pane>
-			<Pane size={6} minSize={6} maxSize={6}>
-				<div class="status-bar">
-					<div>{statusBarText}</div>
-				</div>
 			</Pane>
 		</Splitpanes>
 
