@@ -36,7 +36,8 @@ const isAuthRelated = (url: string) => {
 		url.startsWith('/dashboard') ||
 		url.startsWith('/moderation-history') ||
 		url.startsWith('/notice') ||
-		url.startsWith('/users')
+		url.startsWith('/users') ||
+		url.startsWith('/api')
 	);
 };
 
