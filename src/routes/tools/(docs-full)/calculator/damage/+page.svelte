@@ -11851,5 +11851,6 @@ does not get multiplied by horn */
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 </style>

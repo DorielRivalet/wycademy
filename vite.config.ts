@@ -13,10 +13,11 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: `
-				@use 'src/variables.scss' as variables;
-				@use 'src/mixins.scss' as mixins;
-				`,
+				api: 'modern',
+				// additionalData: `
+				// @use 'src/variables.scss' as variables;
+				// @use 'src/mixins.scss' as mixins;
+				// `,
 			},
 		},
 	},

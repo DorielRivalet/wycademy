@@ -1083,6 +1083,7 @@
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 1rem;
 			align-items: center;
+			margin-top: 1rem;
 		}
 	}
 

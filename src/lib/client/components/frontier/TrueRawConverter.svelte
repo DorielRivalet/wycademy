@@ -76,8 +76,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		margin-bottom: 2rem;
-		margin-top: 2rem;
 		background-color: var(--ctp-surface0);
 		border: 2px solid var(--ctp-surface1);
 		border-radius: 8px;
