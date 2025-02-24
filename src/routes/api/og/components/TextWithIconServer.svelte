@@ -37,7 +37,6 @@ Shows text next to an icon inline. You can use either a component or a image imp
 >
 	<span
 		style="display:flex;"
-		style:position="relative"
 		on:mouseenter={(e) => (open = true)}
 		on:mouseleave={(e) => (open = false)}
 		role="tooltip"
@@ -79,6 +78,3 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		</span>
 	</span>
 </span>
-
-<style lang="scss">
-</style>
