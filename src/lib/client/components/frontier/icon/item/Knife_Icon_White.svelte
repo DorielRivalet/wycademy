@@ -20,7 +20,7 @@
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
-			style="display:inline;opacity:1;fill:{blendColor(
+			style="opacity:1;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.5291667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
@@ -28,7 +28,7 @@
 			id="path1329"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -36,7 +36,7 @@
 			id="path1305"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -44,19 +44,19 @@
 			id="path1301"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+			style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
 			d="M 10.583342,287.73956 H 6.3500018 v -3.96875 l 2.3812498,-2.38125 h 1.8520804 z"
 			id="path1299"
 		/>
 		<circle
-			style="display:inline;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.5291667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
+			style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.5291667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
 			id="path1327"
 			cx="8.4666758"
 			cy="290.64996"
 			r="0.5291667"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -64,7 +64,7 @@
 			id="path1336"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -72,7 +72,7 @@
 			id="path1336-1"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"

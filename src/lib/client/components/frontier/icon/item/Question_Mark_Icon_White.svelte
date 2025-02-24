@@ -20,7 +20,7 @@
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -28,7 +28,7 @@
 			id="path1964"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
