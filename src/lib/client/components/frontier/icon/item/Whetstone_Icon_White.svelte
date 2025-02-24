@@ -20,7 +20,7 @@
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -28,7 +28,7 @@
 			id="path882"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -36,7 +36,7 @@
 			id="path880"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#d5d5d5',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -44,7 +44,7 @@
 			id="path878"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -52,7 +52,7 @@
 			id="path876"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -60,7 +60,7 @@
 			id="path870"
 		/>
 		<path
-			style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:{blendColor(
+			style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:{blendColor(
 				'#858585',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
@@ -68,12 +68,12 @@
 			id="path868"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+			style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
 			d="m 6.3499992,291.04684 v 1.32292 h -4.233333 v -10.84792 h 1.058333 l 3.175,3.175 z"
 			id="path866"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -81,7 +81,7 @@
 			id="path874"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"

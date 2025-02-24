@@ -20,7 +20,7 @@
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
 			id="path1033"
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -28,7 +28,7 @@
 			transform="matrix(0.26458334,0,0,0.26458334,0,280.06665)"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -36,7 +36,7 @@
 			id="path1050"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -44,7 +44,7 @@
 			id="path1052"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -52,7 +52,7 @@
 			id="path1050-7"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -60,7 +60,7 @@
 			id="path1050-5"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -68,7 +68,7 @@
 			id="path1052-1"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+			style="opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
 			)};fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
