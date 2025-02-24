@@ -10,8 +10,9 @@
 
 	let { rarity = 1, size = '100%', color = '' }: Props = $props();
 
-	let targetColor =
-		$derived(color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color);
+	let targetColor = $derived(
+		color === '' ? (RarityColors[rarity - 1] ?? RarityColors[0]) : color,
+	);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -28,7 +29,7 @@
 				id="path576312"
 			/>
 			<path
-				style="display:inline;fill:{blendColor(
+				style="fill:{blendColor(
 					'#ffffff',
 					targetColor,
 				)};fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
@@ -36,7 +37,7 @@
 				id="path580165"
 			/>
 			<circle
-				style="display:inline;fill:{blendColor(
+				style="fill:{blendColor(
 					'#ffffff',
 					targetColor,
 				)};fill-opacity:1;stroke:#000000;stroke-width:0.396875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
@@ -46,7 +47,7 @@
 				r="0.61421132"
 			/>
 			<circle
-				style="display:inline;fill:{blendColor(
+				style="fill:{blendColor(
 					'#ffffff',
 					targetColor,
 				)};fill-opacity:1;stroke:#000000;stroke-width:0.396875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
@@ -56,32 +57,32 @@
 				r="0.61421132"
 			/>
 			<path
-				style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="M 10.419665,295.78838 6.956734,296.6465"
 				id="path574056"
 			/>
 			<path
-				style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="m 9.769593,297.01917 c -0.09449,0 -1.962413,1.1171 -1.962413,1.1171"
 				id="path574058"
 			/>
 			<path
-				style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="m 10.660253,297.91734 -1.506533,1.8017"
 				id="path574060"
 			/>
 			<path
-				style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="m 11.350707,300.45137 0.02363,-2.24423"
 				id="path574062"
 			/>
 			<path
-				style="display:inline;fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="m 6.05904,296.52987 v -6.85082 c 0,-2.11884 3.228378,-3.57145 5.573657,-3.5739"
 				id="path574064"
 			/>
 			<path
-				style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
+				style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"
 				d="m 12.697246,298.32525 v 2.14974 C 9.82398,300.71444 7.503448,299.42598 6.956733,296.64798 H 6.035416 l -3.118303,1.88988 v -8.25878 c 0,-4.59612 6.810812,-6.03843 10.536087,-3.19862 -1.729163,-0.0397 -2.963224,0.70242 -3.496281,2.55134 v 4.22861 h 0.614212 v 1.88988 l -0.914336,0.245 c 0.098,1.26413 0.725256,2.36026 3.040451,2.32996 z"
 				id="path574054"
 			/>
