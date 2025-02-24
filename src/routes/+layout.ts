@@ -181,7 +181,7 @@ export const load: LayoutLoad = async ({
 		setHeaders(headers);
 
 		if (!res.ok) {
-			console.error('Error fetching data from GitHub:', res.status);
+			console.warn('Could not fetch data from GitHub:', res.status);
 			return {
 				github: defaultGitHubData,
 				supabase,
@@ -220,7 +220,7 @@ export const load: LayoutLoad = async ({
 			// drizzleClient,
 		};
 	} catch (e) {
-		console.error('Error fetching data from GitHub:', e);
+		console.warn('Could not fetch data from GitHub:', e);
 		// Set cache headers even for error cases
 		// setHeaders({
 		// 	'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,

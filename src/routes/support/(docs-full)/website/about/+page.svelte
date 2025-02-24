@@ -284,7 +284,7 @@
 						href="/support/policies/copyright">copyright</Link
 					>, <Link inline href="/support/policies/terms-of-service"
 						>Terms of Service</Link
-					> and <Link inline href="/support/website/privacy-policy"
+					> and <Link inline href="/support/policies/privacy-policy"
 						>Privacy Policy</Link
 					>.
 				</div>
