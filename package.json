@@ -104,7 +104,7 @@
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.2",
 		"vite": "^5.4.11",
-		"vitest": "^2.1.5",
+		"vitest": "^2.1.9",
 		"workbox-precaching": "^7.3.0",
 		"workbox-recipes": "^7.3.0",
 		"workbox-routing": "^7.3.0",
