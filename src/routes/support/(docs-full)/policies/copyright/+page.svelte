@@ -43,8 +43,8 @@
 							<strong>Defensive Measure</strong>: In instances where
 							misinformation is spread about our works, this document serves as
 							a clear, well-documented statement that can counteract such
-							misinformation and provide a reference point for those who might
-							be misled.
+							misinformation and proactively provide a reference point for those
+							who might be misled.
 						</div></ListItem
 					>
 				</OrderedList>

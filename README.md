@@ -8,6 +8,8 @@ A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
 We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can submit your feedback on the website.
 
+If you have found bugs, or want to suggest a new feature in the website, you can also submit an issue in [our GitHub issue tracker.](https://github.com/DorielRivalet/wycademy/issues)
+
 ## License
 
 [MIT](https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md).
@@ -22,3 +24,5 @@ We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can subm
 - The render for Golden Deviljho and Shifting Mi Ru are made by [Siroos](https://monsterhunter.fandom.com/wiki/User:Siroos).
 - Additional game icons can be found [in the Fanon Wiki](https://fanonmonsterhunter.fandom.com/wiki/Category:Icon). Icons based on these are licensed under CC-BY-SA unless otherwise specified.
 - Element icons (such as Dark, Music and Sound) are based on [MHFZZDatabase](https://github.com/theMaelstro/MHFZZDatabase) icons. Monster icons (like Burning Freezing Elzelion, Shifting Mi Ru, Arrogant Duremudira, Ruling Guanzorumu, Blinking Nargacuga and Thirsty Pariapuria) are also based on [MHFZZDatabase](https://github.com/theMaelstro/MHFZZDatabase) icons.
+
+**Wycademy is committed to proper attribution and respect for intellectual property. Our [copyright page](https://wycademy.vercel.app/support/policies/copyright) details our policies, and any concerns can be submitted via our [GitHub issue tracker](https://github.com/DorielRivalet/wycademy/issues). We're always open to good-faith discussions and making corrections where needed.**

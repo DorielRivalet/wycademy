@@ -13,7 +13,8 @@
 			If you have any issues or concerns, feel free to reach out to us through <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/issues"
 				>GitHub's issue tracker.</OutboundLink
-			>
+			> If you have found bugs, or want to suggest a new feature in the website,
+			you can also submit an issue in there.
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />

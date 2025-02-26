@@ -45,6 +45,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -450,6 +451,17 @@
 				{/if}
 			</div>
 		</div>
+		<section>
+			<SectionHeading level={2} title="Acknowledgements" />
+			<div>
+				<p>
+					You can find a list of attributions <OutboundLink
+						href="https://github.com/DorielRivalet/wycademy"
+						>in our README.</OutboundLink
+					>
+				</p>
+			</div>
+		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>

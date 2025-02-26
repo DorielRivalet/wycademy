@@ -12,7 +12,12 @@
 		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 				>Google Forms</OutboundLink
-			> where you can submit your feedback on the website.
+			> where you can submit your feedback on the website. If you have found bugs,
+			or want to suggest a new feature in the website, you can also submit an issue
+			in our <OutboundLink href="https://github.com/DorielRivalet/issues"
+				>GitHub issue tracker.</OutboundLink
+			> Copyright and intellectual property concerns are also checked in our GitHub
+			issue tracker.
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
