@@ -85,7 +85,7 @@
 		"postgres": "^3.4.5",
 		"prettier": "^3.4.2",
 		"pug": "^3.0.3",
-		"release-it": "^17.10.0",
+		"release-it": "^18.1.2",
 		"rollup-plugin-visualizer": "^5.12.0",
 		"sass": "^1.82.0",
 		"satori": "^0.12.1",
