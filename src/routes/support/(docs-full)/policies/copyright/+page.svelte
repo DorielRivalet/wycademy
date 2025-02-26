@@ -52,6 +52,41 @@
 		</section>
 
 		<section>
+			<SectionHeading level={2} title="Summary" />
+			<div>
+				<UnorderedList class="spaced-list">
+					<ListItem
+						><p>
+							<strong>Our Code:</strong> MIT-licensed (free to use with attribution).
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Our Content: </strong> Independently created, respects copyright
+							law.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Icons:</strong> Our vector-based icons are original and different
+							from Capcom’s raster icons.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Concerns?</strong> Contact us via GitHub Issues, not Discord
+							or other channels.
+						</p></ListItem
+					>
+					<ListItem
+						><p>
+							<strong
+								>We reject meritless or bad-faith copyright claims.
+							</strong>
+						</p></ListItem
+					>
+				</UnorderedList>
+			</div>
+		</section>
+
+		<section>
 			<SectionHeading level={2} title="Our License" />
 			<div>
 				<p>Our website’s code is licensed under the MIT License.</p>
@@ -121,14 +156,25 @@
 			<SectionHeading level={2} title="Our Compliance" />
 			<div>
 				<section>
-					<SectionHeading level={3} title="Disclaimer" />
+					<SectionHeading level={3} title="Reporting Copyright Issues" />
 					<div>
 						<div class="spaced-paragraph">
-							If you have any claims or issues related to copyright infringement
-							or other intellectual property concerns regarding content on this
-							website, please direct them to us for resolution. We are committed
-							to addressing any valid concerns and ensuring that our work
-							remains compliant with all applicable laws and regulations.
+							If you believe any content on this website violates copyright law,
+							please submit a report via our <OutboundLink
+								href="https://github.com/DorielRivalet/wycademy/issues"
+								>GitHub issue tracker</OutboundLink
+							>. If you have any claims or issues related to copyright
+							infringement or other intellectual property concerns regarding
+							content on this website, please direct them to us for resolution <OutboundLink
+								href="https://github.com/DorielRivalet/wycademy/issues"
+								>in our GitHub issue tracker</OutboundLink
+							>.
+							<strong
+								>We do not handle copyright concerns through Discord or other
+								unofficial channels, as they lack proper documentation and
+								tracking.</strong
+							> We are committed to addressing any valid concerns and ensuring that
+							our work remains compliant with all applicable laws and regulations.
 						</div>
 						<p class="spaced-paragraph">
 							However, please be aware that in most cases, a copyright claim
@@ -325,13 +371,54 @@
 								</OrderedList></ListItem
 							>
 						</UnorderedList>
-						<p>
+						<p class="spaced-paragraph">
 							In summary, as long as you’re independently implementing a work in
 							a certain programming language or framework, with your own code
 							and a different UI, and not copying any unique elements of an
 							external work, you are not violating copyright.
 						</p>
 					</div>
+					<section>
+						<SectionHeading level={4} title="Abuse of Copyright Claims" />
+						<div>
+							<p class="spaced-paragraph">
+								We recognize that some individuals misuse copyright claims in
+								bad faith—whether to undermine legitimate work, settle personal
+								disputes, or mislead the community.
+							</p>
+							<p class="spaced-paragraph">
+								We take all copyright concerns seriously but reserve the right
+								to dismiss claims that:
+							</p>
+							<UnorderedList class="spaced-list">
+								<ListItem>
+									<p>
+										Are not filed by the rightful copyright owner or authorized
+										agent.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										Lack legal merit (e.g., claiming ownership over content that
+										is clearly public domain, fair use, or independently
+										created).
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										Appear to be retaliatory or malicious rather than genuine
+										copyright concerns.
+									</p>
+								</ListItem>
+							</UnorderedList>
+							<p>
+								<strong
+									>Submitting false or misleading copyright claims may itself be
+									a violation of legal and platform policies.
+								</strong>
+							</p>
+						</div>
+					</section>
 				</section>
 				<section>
 					<SectionHeading
@@ -346,7 +433,11 @@
 									concerns regarding content on this website, please contact us
 									directly for resolution. Publicly shaming or involving others
 									in such matters is unproductive and contrary to professional
-									conduct.
+									conduct. If you have any issues or concerns, reach out to us
+									through <OutboundLink
+										href="https://github.com/DorielRivalet/wycademy/issues"
+										>GitHub's issue tracker.</OutboundLink
+									>
 								</p></ListItem
 							>
 							<ListItem
