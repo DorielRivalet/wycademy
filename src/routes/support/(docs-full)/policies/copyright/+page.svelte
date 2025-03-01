@@ -119,11 +119,6 @@
 						</p></ListItem
 					><ListItem
 						><p>
-							<strong>Raster Image:</strong> A digital image composed of pixels (e.g.,
-							PNG, JPG).
-						</p></ListItem
-					><ListItem
-						><p>
 							<strong>Original Work:</strong> A piece of art, design, or text created
 							from scratch without directly copying or modifying an existing work.
 						</p></ListItem

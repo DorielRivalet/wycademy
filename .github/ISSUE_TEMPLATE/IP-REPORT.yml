@@ -21,10 +21,10 @@ body:
 
   - type: checkboxes
     attributes:
-      label: Have you reviewed our copyright page?
-      description: Before submitting, please check if your concern is already addressed on our [Copyright Page](https://wycademy.vercel.app/support/policies/copyright).
+      label: Have you reviewed our copyright page and policies?
+      description: Before submitting, please check if your concern is already addressed on our [Copyright Page](https://wycademy.vercel.app/support/policies/copyright), [credits](https://github.com/DorielRivalet/wycademy/blob/main/CREDITS.md) and [policies](https://github.com/DorielRivalet/wycademy/blob/main/ATTRIBUTION-POLICY.md).
       options:
-        - label: Yes, I have reviewed the copyright page.
+        - label: Yes, I have reviewed the copyright page and policies.
           required: true
 
   - type: markdown
