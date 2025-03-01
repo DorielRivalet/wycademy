@@ -9,6 +9,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 
 	const licenses = [
 		{
@@ -1186,6 +1187,12 @@
 <TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Acknowledgements'} />
+		<p class="spaced-paragraph">
+			If you are looking for an attribution list, please also check <OutboundLink
+				href="https://github.com/DorielRivalet/wycademy"
+				>our README.</OutboundLink
+			>
+		</p>
 		{#key $carbonThemeStore}
 			<AgGrid {gridOptions} />
 		{/key}

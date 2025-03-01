@@ -87,6 +87,86 @@
 		</section>
 
 		<section>
+			<SectionHeading level={2} title="Definitions" />
+			<div>
+				<p class="spaced-paragraph">
+					To ensure clarity in attribution, copyright, and artistic discussions,
+					the following terms are defined:
+				</p>
+
+				<UnorderedList>
+					<ListItem
+						><p>
+							<strong>Raster Image:</strong> A digital image composed of pixels (e.g.,
+							PNG, JPG). Raster images lose quality when resized.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Vector Image:</strong> A digital image based on mathematical
+							paths (e.g., SVG, AI). Vector images can be scaled without losing quality.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Vectorization:</strong> The process of converting a raster
+							image into a vector image, either manually (tracing) or automatically
+							(software-assisted).
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Derivative Work:</strong> A new creation based on or adapted
+							from an existing work. Depending on copyright laws, derivative works
+							may require permission from the original creator.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Raster Image:</strong> A digital image composed of pixels (e.g.,
+							PNG, JPG).
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Original Work:</strong> A piece of art, design, or text created
+							from scratch without directly copying or modifying an existing work.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Inspired Work:</strong> A creation that takes inspiration from
+							another work but does not closely replicate its composition, lines,
+							or structure.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Attribution:</strong> The act of crediting the original creator
+							of a work. Attribution does not automatically grant permission for
+							reuse.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Permission:</strong> Getting explicit approval from the creator
+							to use their work.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>License:</strong> A legal agreement that dictates how you can
+							use the work (e.g., Creative Commons, MIT, etc.)
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Public Domain:</strong> Works not protected by copyright, either
+							due to age or explicit release by the creator, and are free to use
+							without restriction.
+						</p></ListItem
+					><ListItem
+						><p>
+							<strong>Fair Use/Fair Dealing:</strong> Legal doctrines allowing limited
+							use of copyrighted material under specific circumstances (e.g., commentary,
+							education, parody). These rules vary by country.
+						</p></ListItem
+					>
+				</UnorderedList>
+			</div>
+		</section>
+
+		<section>
 			<SectionHeading level={2} title="Our License" />
 			<div>
 				<p>Our website’s code is licensed under the MIT License.</p>
@@ -146,6 +226,86 @@
 							restrictions. The simplicity and openness of the MIT License
 							encourage collaboration and sharing while maintaining the original
 							author’s rights.
+						</p>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<section>
+			<SectionHeading level={2} title="Copyright & Attribution" />
+			<div>
+				<section>
+					<SectionHeading level={3} title="CAPCOM Assets" />
+					<div>
+						<p class="spaced-paragraph">
+							Wycademy is a <strong>fan-made, non-commercial</strong> project
+							focused on Monster Hunter Frontier Z. The original assets,
+							including
+							<strong>monster icons, game models, and UI elements,</strong> are
+							copyrighted by <strong>CAPCOM CO., LTD.</strong>. Any use of
+							CAPCOM-owned materials falls under <strong>fair use</strong> for documentation,
+							education, and community preservation.
+						</p>
+						<p class="spaced-paragraph">
+							Wycademy is not <strong
+								>affiliated with, endorsed, or sponsored by CAPCOM.</strong
+							>
+							All CAPCOM trademarks, logos, and copyrighted materials belong to their
+							respective owners.
+						</p>
+					</div>
+				</section>
+				<section>
+					<SectionHeading level={3} title="Fan-Made / Derivative Works" />
+					<div>
+						<p class="spaced-paragraph">
+							Certain visual assets, including <strong
+								>redrawn monster icons</strong
+							>
+							and
+							<strong>community-contributed illustrations,</strong> are created
+							by fans. These works may be
+							<strong
+								>inspired by CAPCOM's designs but are not direct copies.</strong
+							> Wherever applicable, attribution is provided to the original creators.
+						</p>
+					</div>
+				</section>
+				<section>
+					<SectionHeading level={3} title="Original Work by Wycademy" />
+					<div>
+						<p class="spaced-paragraph">All unique assets, including:</p>
+						<UnorderedList>
+							<ListItem
+								><p>
+									Vector redraws of game elements for web clarity.
+								</p></ListItem
+							>
+							<ListItem
+								><p>
+									UI/UX components built for the Wycademy platform.
+								</p></ListItem
+							>
+							<ListItem
+								><p>Custom tools, data organization, and guides.</p></ListItem
+							>
+						</UnorderedList>
+						<p class="spaced-paragraph">
+							…are created and maintained by Wycademy under the MIT License.
+						</p>
+					</div>
+				</section>
+				<section>
+					<SectionHeading level={3} title="Attribution & Requests" />
+					<div>
+						<p class="spaced-paragraph">
+							We respect the work of all artists and contributors. If you
+							believe an asset needs proper attribution or removal, please
+							<OutboundLink
+								href="https://github.com/DorielRivalet/wycademy/issues"
+								>contact us</OutboundLink
+							> with details, and we’ll review it promptly.
 						</p>
 					</div>
 				</section>
@@ -349,6 +509,24 @@
 											ideas—like the code, design, and overall presentation.
 										</p></ListItem
 									>
+									<ListItem
+										><p>
+											<strong>Facts Are Not Copyrightable</strong>: Copyright
+											law protects
+											<strong>the way something is written,</strong> not the facts
+											themselves. If a wiki states, "Rathalos has high fire resistance,"
+											that’s just factual data, and you can include it.
+										</p></ListItem
+									>
+
+									<ListItem
+										><p>
+											<strong>Paraphrasing Is Key</strong>: If you read their
+											info, process it, and then write it in your own words,
+											it’s not a direct reproduction.
+										</p></ListItem
+									>
+
 									<ListItem
 										><p>
 											<strong>Original Code</strong>: If you're not copying the
