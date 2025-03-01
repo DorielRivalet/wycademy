@@ -21,13 +21,6 @@
 					for all levels of players.
 				</p></ListItem
 			>
-			<ListItem
-				><p>
-					<OutboundLink href="https://wiki.mhrenewal.org/index.php/Main_Page"
-						>mhrenewal</OutboundLink
-					>: official wiki of the Monster Hunter Renewal private server.
-				</p></ListItem
-			>
 		</UnorderedList>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
