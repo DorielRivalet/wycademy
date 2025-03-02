@@ -179,6 +179,40 @@
 						</p></ListItem
 					>
 				</UnorderedList>
+
+				<section>
+					<SectionHeading level={3} title="Stewardship Over Ownership" />
+					<div>
+						<div class="spaced-paragraph">
+							Wycademy is not a personal project in the sense of strict
+							ownership—it is a collaborative effort meant to <strong
+								>serve the community, preserve knowledge, and remain accessible
+								beyond any single person’s involvement.</strong
+							> While we maintain and develop Wycademy, we see our role as a steward
+							rather than an owner.
+						</div>
+						<div class="spaced-paragraph">
+							The goal is not control, but <strong>facilitation</strong
+							>—ensuring that the best tools, resources, and information remain
+							available, open, and evolving with the needs of the community.
+							Contributions are welcome, and while we have a vision for how
+							Wycademy should function, that vision includes
+							<strong
+								>transparency, open collaboration, and long-term sustainability</strong
+							> over personal attachment.
+						</div>
+						<div class="spaced-paragraph">
+							This approach contrasts with how many view projects as personal
+							property. Wycademy, instead, is a <strong
+								>shared space, structured to endure beyond any individual
+								contributor.</strong
+							>
+							While we do take measures to ensure quality and maintain integrity,
+							We encourage participation from those who share the same values of
+							<strong>preservation, accessibility, and open knowledge.</strong>
+						</div>
+					</div>
+				</section>
 			</div>
 		</section>
 		<section>
