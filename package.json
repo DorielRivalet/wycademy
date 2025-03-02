@@ -58,7 +58,7 @@
 		"@svelte-put/movable": "^4.0.0",
 		"@svelte-put/shortcut": "^4.1.0",
 		"@sveltejs/adapter-vercel": "^5.5.0",
-		"@sveltejs/kit": "^2.9.0",
+		"@sveltejs/kit": "^2.17.2",
 		"@sveltejs/vite-plugin-svelte": "^4.0.1",
 		"@types/cookie": "^0.6.0",
 		"@typescript-eslint/eslint-plugin": "^8.14.0",
