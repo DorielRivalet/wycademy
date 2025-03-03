@@ -62,7 +62,7 @@
 		"@sveltejs/vite-plugin-svelte": "^4.0.1",
 		"@types/cookie": "^0.6.0",
 		"@typescript-eslint/eslint-plugin": "^8.14.0",
-		"@typescript-eslint/parser": "^8.14.0",
+		"@typescript-eslint/parser": "^8.26.0",
 		"@vite-pwa/sveltekit": "^0.6.6",
 		"ag-grid-community": "^32.3.3",
 		"autoprefixer": "^10.4.20",
