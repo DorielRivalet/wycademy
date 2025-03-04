@@ -1,0 +1,71 @@
+name: '🌐 External Tools & Websites Submission'
+description: Submit a request to add or remove a tool or website from Wycademy’s external resources list.
+title: '[REQUEST] - title'
+labels: ['question']
+assignees:
+  - DorielRivalet
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest in contributing to Wycademy’s external resources list.
+        We only accept **open-source** tools under licenses such as MIT, GPL, or Apache.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request Type
+      multiple: false
+      options:
+        - Addition
+        - Removal
+    validations:
+      required: true
+
+	- type: dropdown
+    id: submission-type
+    attributes:
+      label: What type of resource is this?
+      multiple: true
+      options:
+        - Website
+        - Tool
+    validations:
+      required: true
+
+    - type: input
+    id: resource-name
+    attributes:
+      label: Name of the resource
+      placeholder: Enter the tool or website name.
+    validations:
+      required: true
+
+  - type: input
+    id: resource-url
+    attributes:
+      label: URL of the resource
+      placeholder: Provide a link to the tool, website, or repository.
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+      label: License Confirmation
+      description: We only list tools that are open-source. If your submission is not open-source, we cannot include it.
+      options:
+        - label: Yes, this resource is licensed under an open-source license.
+          required: true
+
+	 - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information (Optional)
+      description: Provide any relevant details about why this resource should be added or removed.
+      placeholder: Explain any relevant context.
+
+   - type: markdown
+    attributes:
+      value: |
+        We'll review your request and respond as soon as possible.
+        Thank you for contributing to MHF-Z's ecosystem!

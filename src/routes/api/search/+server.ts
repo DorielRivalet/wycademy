@@ -1189,7 +1189,8 @@ Only support can inflict poison to Raviente Raviente.`,
 	},
 	{
 		title: 'External Websites',
-		content: 'External websites.',
+		content:
+			'External websites. If you wish to add or remove from this list, see our GitHub issue tracker and select the External Tools template.',
 		slug: '/support/external/websites',
 		id: 0,
 		hex: '0x00',
