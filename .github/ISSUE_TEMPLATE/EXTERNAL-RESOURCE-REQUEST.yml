@@ -52,9 +52,9 @@ body:
   - type: checkboxes
     attributes:
       label: License Confirmation
-      description: We only list tools that are open-source. If your submission is not open-source, we cannot include it.
+      description: We only list tools that are open-source. If your submission is not open-source, we cannot include it. For websites, you can select "yes".
       options:
-        - label: Yes, this resource is licensed under an open-source license.
+        - label: Yes, this tool is licensed under an open-source license.
           required: true
 
   - type: textarea
