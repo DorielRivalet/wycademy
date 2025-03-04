@@ -61,7 +61,7 @@ body:
     id: additional-info
     attributes:
       label: Additional Information (Optional)
-      description: Provide any relevant details about why this resource should be added or removed.
+      description: Provide any relevant details about why this resource should be added or removed. You can also include donation links.
       placeholder: Explain any relevant context.
 
   - type: markdown
