@@ -241,14 +241,16 @@ export const supportInfo: CategoryInfo[] = [
 	{
 		category: {
 			name: 'External',
-			description: 'External websites.',
+			description:
+				'External websites. If you wish to add or remove from this list, see our GitHub issue tracker and select the External Tools template.',
 			link: '/support/external',
 			image: BookIconWhite,
 		},
 		pages: [
 			{
 				name: 'Websites',
-				description: 'List of external websites.',
+				description:
+					'List of external websites. If you wish to add or remove from this list, see our GitHub issue tracker and select the External Tools template.',
 				link: '/support/external/websites',
 				image: Link,
 			},
@@ -379,7 +381,8 @@ export const toolsInfo: CategoryInfo[] = [
 	{
 		category: {
 			name: 'External',
-			description: 'External tools for the game made by the community.',
+			description:
+				'External tools for the game made by the community. If you wish to add or remove from this list, see our GitHub issue tracker and select the External Tools template.',
 			image: Logo,
 			link: '/tools/external',
 		},

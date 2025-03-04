@@ -25,7 +25,10 @@
 		<div class="spaced-paragraph">
 			For more information, see the <OutboundLink
 				href="https://github.com/theMaelstro/MHFZZDatabase"
-				>repository.</OutboundLink
+				>repository</OutboundLink
+			> and <OutboundLink
+				href="https://themaelstro.github.io/sub/companionapp.html"
+				>website.</OutboundLink
 			>
 		</div>
 		<div class="page-turn">
