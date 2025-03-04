@@ -10,7 +10,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'MHFZZDatabase'} />
 		<p class="spaced-paragraph">
-			<strong>Owner: theMaelstro (as of 2024-03-03)</strong>
+			<strong>Owner: theMaelstro (as of 2025-03-03)</strong>
 		</p>
 		<p class="spaced-paragraph subtle">
 			<OutboundLink
