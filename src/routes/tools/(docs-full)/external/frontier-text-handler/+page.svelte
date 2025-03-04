@@ -10,7 +10,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'Frontier Text Handler'} />
 		<p class="spaced-paragraph">
-			<strong>Owner: Houmgaor (as of 2024-03-03)</strong>
+			<strong>Owner: Houmgaor (as of 2025-03-03)</strong>
 		</p>
 		<p class="spaced-paragraph subtle">
 			<OutboundLink

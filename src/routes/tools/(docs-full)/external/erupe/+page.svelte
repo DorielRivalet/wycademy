@@ -10,7 +10,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'Erupe'} />
 		<p class="spaced-paragraph">
-			<strong>Owner: ZeruLight (as of 2024-03-03)</strong>
+			<strong>Owner: ZeruLight (as of 2025-03-03)</strong>
 		</p>
 		<p class="spaced-paragraph subtle">
 			<OutboundLink href="https://github.com/ZeruLight/Erupe/blob/main/LICENSE"
