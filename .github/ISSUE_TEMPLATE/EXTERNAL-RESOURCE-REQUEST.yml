@@ -22,7 +22,7 @@ body:
     validations:
       required: true
 
-	- type: dropdown
+  - type: dropdown
     id: submission-type
     attributes:
       label: What type of resource is this?
@@ -33,7 +33,7 @@ body:
     validations:
       required: true
 
-    - type: input
+  - type: input
     id: resource-name
     attributes:
       label: Name of the resource
@@ -57,14 +57,14 @@ body:
         - label: Yes, this resource is licensed under an open-source license.
           required: true
 
-	 - type: textarea
+  - type: textarea
     id: additional-info
     attributes:
       label: Additional Information (Optional)
       description: Provide any relevant details about why this resource should be added or removed.
       placeholder: Explain any relevant context.
 
-   - type: markdown
+  - type: markdown
     attributes:
       value: |
         We'll review your request and respond as soon as possible.
