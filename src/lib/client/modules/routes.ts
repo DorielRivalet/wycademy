@@ -50,6 +50,7 @@ import AllElements from '../components/frontier/icon/element/AllElements.svelte'
 import AllAilments from '../components/frontier/icon/ailment/AllAilments.svelte';
 import Security from 'carbon-icons-svelte/lib/Security.svelte';
 import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
+import Tools from 'carbon-icons-svelte/lib/Tools.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -378,11 +379,18 @@ export const toolsInfo: CategoryInfo[] = [
 	{
 		category: {
 			name: 'External',
-			description: 'External tools for the game.',
+			description: 'External tools for the game made by the community.',
 			image: Logo,
 			link: '/tools/external',
 		},
 		pages: [
+			{
+				name: 'MHFZZDatabase', // the order is intentional
+				description:
+					'A companion android app for Monster Hunter Frontier Z by theMaelstro.',
+				link: '/tools/external/mhfzzdatabase',
+				image: Tools,
+			},
 			{
 				name: 'mhfz-overlay',
 				description:
@@ -392,10 +400,37 @@ export const toolsInfo: CategoryInfo[] = [
 			},
 			{
 				name: 'EZlion',
-				description: 'The Frontier API',
+				description: 'The Frontier API.',
 				link: '/tools/external/ezlion',
 				image:
 					'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+			},
+			{
+				name: 'Erupe',
+				description: 'Monster Hunter Frontier Server Emulator by ZeruLight.',
+				link: '/tools/external/erupe',
+				image: Tools,
+			},
+			{
+				name: 'FrontierTextHandler',
+				description:
+					'Easy to use Python tools to import/export text data from Monster Hunter Frontier files by Houmgaor.',
+				link: '/tools/external/frontier-text-handler',
+				image: Tools,
+			},
+			{
+				name: 'MHFrontier-Blender-Addon',
+				description:
+					'A model importer for Monster Hunter Frontier Files by Houmgaor.',
+				link: '/tools/external/mhfrontier-blender-addon',
+				image: Tools,
+			},
+			{
+				name: 'Monster-Hunter-Frontier-Patterns',
+				description:
+					'ImHex pattern files documenting the structure of data in Monster Hunter Frontier by var-username.',
+				link: '/tools/external/monster-hunter-frontier-patterns',
+				image: Tools,
 			},
 		],
 	},

@@ -19,6 +19,13 @@
 			title="Project state:"
 			subtitle="The overlay is currently on major version 0, meaning that it is in beta."
 		/>
+		<p class="spaced-paragraph"><strong>Owner: DorielRivalet</strong></p>
+		<p class="spaced-paragraph subtle">
+			<OutboundLink
+				href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/LICENSE"
+				>License</OutboundLink
+			>
+		</p>
 		<div class="spaced-paragraph">
 			This tool is used to track and view your stats in the game in real-time.
 		</div>
