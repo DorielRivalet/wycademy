@@ -41,6 +41,7 @@ Many assets within Wycademy have been created or modified by the community. Thes
 - If an asset is nearly identical to an original work, it must have explicit permission from the original artist.
 - When incorporating content from external sources, we strive to verify the original creator. If you believe an attribution is incorrect, please [contact us](https://github.com/DorielRivalet/wycademy/issues), and we will investigate and correct it as needed.
 - If a creator informs us that their work was misattributed, we will review the claim and update the credits accordingly. If a dispute arises, we will act in good faith to resolve it fairly.
+- If an asset is no longer used in the project, its attribution is retained but updated to indicate it was previously included.
 
 ### **Request for Attribution or Removal**
 

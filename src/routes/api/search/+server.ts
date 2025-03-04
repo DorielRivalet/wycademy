@@ -989,6 +989,49 @@ Only support can inflict poison to Raviente Raviente.`,
 		category: 'Tool',
 	},
 	{
+		title: 'MHFZZDatabase',
+		content:
+			'A companion android app for Monster Hunter Frontier Z by theMaelstro.',
+		slug: '/tools/external/mhfzzdatabase',
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
+		title: 'Erupe',
+		content: 'Monster Hunter Frontier Server Emulator by ZeruLight.',
+		slug: '/tools/external/erupe',
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
+		title: 'FrontierTextHandler',
+		content:
+			'Easy to use Python tools to import/export text data from Monster Hunter Frontier files by Houmgaor.',
+		slug: '/tools/external/frontier-text-handler',
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
+		title: 'MHFrontier-Blender-Addon',
+		content: 'A model importer for Monster Hunter Frontier Files by Houmgaor.',
+		slug: '/tools/external/mhfrontier-blender-addon',
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
+		title: 'Monster-Hunter-Frontier-Patterns',
+		content:
+			'ImHex pattern files documenting the structure of data in Monster Hunter Frontier by var-username.',
+		slug: '/tools/external/monster-hunter-frontier-patterns',
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
 		title: 'Support Center',
 		content:
 			'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.',

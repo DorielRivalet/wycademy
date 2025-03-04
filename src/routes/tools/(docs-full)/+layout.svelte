@@ -54,6 +54,7 @@
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 	import TreeView from '$lib/client/components/TreeView.svelte';
 	import type { TreeItem } from '$lib/client/types/tree-item';
+	import Tools from 'carbon-icons-svelte/lib/Tools.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -256,6 +257,12 @@
 			icon: Logo,
 			nodes: [
 				{
+					text: 'MHFZZDatabase', // the order is intentional
+					id: '/tools/external/mhfzzdatabase',
+					icon: Tools,
+					href: '/tools/external/mhfzzdatabase',
+				},
+				{
 					id: '/tools/external/overlay',
 					href: '/tools/external/overlay',
 					icon: Logo,
@@ -266,6 +273,30 @@
 					href: '/tools/external/ezlion',
 					icon: 'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 					text: 'EZlion',
+				},
+				{
+					text: 'Erupe',
+					id: '/tools/external/erupe',
+					icon: Tools,
+					href: '/tools/external/erupe',
+				},
+				{
+					text: 'FrontierTextHandler',
+					id: '/tools/external/frontier-text-handler',
+					icon: Tools,
+					href: '/tools/external/frontier-text-handler',
+				},
+				{
+					text: 'MHFrontier-Blender-Addon',
+					id: '/tools/external/mhfrontier-blender-addon',
+					icon: Tools,
+					href: '/tools/external/mhfrontier-blender-addon',
+				},
+				{
+					text: 'Monster-Hunter-Frontier-Patterns',
+					id: '/tools/external/monster-hunter-frontier-patterns',
+					icon: Tools,
+					href: '/tools/external/monster-hunter-frontier-patterns',
 				},
 			],
 		},
