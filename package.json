@@ -43,7 +43,7 @@
 	"devDependencies": {
 		"@carbon/charts-svelte": "^1.22.7",
 		"@carbon/styles": "^1.71.0",
-		"@commitlint/cli": "^19.6.0",
+		"@commitlint/cli": "^19.7.1",
 		"@commitlint/config-conventional": "^19.6.0",
 		"@commitlint/cz-commitlint": "^19.5.0",
 		"@neoconfetti/svelte": "^2.2.1",
