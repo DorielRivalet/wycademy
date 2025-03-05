@@ -86,7 +86,7 @@
 		"prettier": "^3.4.2",
 		"pug": "^3.0.3",
 		"release-it": "^17.10.0",
-		"rollup-plugin-visualizer": "^5.12.0",
+		"rollup-plugin-visualizer": "^5.14.0",
 		"sass": "^1.82.0",
 		"satori": "^0.12.1",
 		"satori-html": "^0.3.2",
