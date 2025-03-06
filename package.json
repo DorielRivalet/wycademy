@@ -150,7 +150,7 @@
 		"lodash": "^4.17.21",
 		"mathjs": "^14.0.0",
 		"mathlifier": "^2.0.3",
-		"mermaid": "^11.4.0",
+		"mermaid": "^11.4.1",
 		"modern-screenshot": "^4.5.5",
 		"numbro": "^2.5.0",
 		"schema-dts": "^1.1.2",
