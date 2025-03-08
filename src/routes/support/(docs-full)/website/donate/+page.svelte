@@ -20,7 +20,12 @@
 		<InlineNotification
 			title="Note"
 			kind="info"
-			subtitle="There are no donation links in this website. Projects are still undergoing major changes."
+			subtitle="There are no donation links in this page. Projects are still undergoing major changes."
+		/>
+		<InlineNotification
+			title="Additional Note"
+			kind="info"
+			subtitle="If you are the developer of an open source tool or website, you can submit your resource and donation links via our GitHub issue tracker."
 		/>
 		<section>
 			<SectionHeading title="Transparency & Purpose" level={2} />
