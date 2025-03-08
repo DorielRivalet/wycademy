@@ -327,7 +327,7 @@
 				hideCloseButton
 				kind="info"
 				title="Info:"
-				subtitle="This section is pending an overhaul. I recommend first consulting patch and server specific guides from the community you are in."
+				subtitle="This section is pending an overhaul. We recommend first consulting patch and server specific guides from the community you are in."
 			/>
 			<section>
 				<SectionHeading level={2} title="Item Preset Preparation" />
