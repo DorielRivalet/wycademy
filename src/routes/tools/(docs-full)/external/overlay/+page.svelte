@@ -28,6 +28,8 @@
 		</p>
 		<div class="spaced-paragraph">
 			This tool is used to track and view your stats in the game in real-time.
+			Provides <strong>full customization</strong> and toggling of any option according
+			to your needs.
 		</div>
 		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
