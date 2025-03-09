@@ -125,7 +125,7 @@
 		"@supabase/supabase-js": "^2.49.1",
 		"@theatre/core": "^0.7.2",
 		"@theatre/studio": "^0.7.2",
-		"@threlte/core": "^8.0.0-next.31",
+		"@threlte/core": "^8.0.1",
 		"@threlte/extras": "^9.0.0-next.42",
 		"@threlte/theatre": "^3.0.0-next.9",
 		"@types/better-sqlite3": "^7.6.12",
