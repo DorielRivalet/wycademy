@@ -111,7 +111,7 @@
 		"workbox-strategies": "^7.3.0"
 	},
 	"dependencies": {
-		"@ag-grid-community/theming": "^32.3.3",
+		"@ag-grid-community/theming": "^32.3.4",
 		"@carbon/grid": "^11.29.0",
 		"@carbon/layout": "^11.28.0",
 		"@carbon/motion": "^11.24.0",
