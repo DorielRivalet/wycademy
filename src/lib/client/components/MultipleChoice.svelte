@@ -60,7 +60,7 @@
 			return;
 		}
 
-		if (!solution) {
+		if (!solution && solution !== false) {
 			console.error('Solution is null or undefined.');
 			return;
 		}
@@ -178,7 +178,7 @@
 		const currentOptions = items[currentItemIndex]?.options;
 
 		if (!currentOptions) {
-			console.error('No options found for the current item.');
+			console.log('No options found for the current item.');
 			return;
 		}
 
