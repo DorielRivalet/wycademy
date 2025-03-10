@@ -4,6 +4,8 @@
 
 A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
+[Website](https://wycademy.vercel.app/)
+
 ## Feedback
 
 We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can submit your feedback on the website.
