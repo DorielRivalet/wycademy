@@ -9,14 +9,14 @@ type PossibleArrays = FrontierMonsterInfo;
 
 // TODO should this be here or not?
 const pageInfo: SearchItem[] = [
-	{
-		title: 'Advanced Search',
-		slug: '/tools/search/advanced-search',
-		content: 'Advanced Search: items, weapons, gear, monsters, and much more.',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
+	// {
+	// 	title: 'Advanced Search',
+	// 	slug: '/tools/search/advanced-search',
+	// 	content: 'Advanced Search: items, weapons, gear, monsters, and much more.',
+	// 	id: 0,
+	// 	hex: '0x00',
+	// 	category: 'Tool',
+	// },
 	{
 		title: 'Tools and Utilities',
 		slug: '/tools',

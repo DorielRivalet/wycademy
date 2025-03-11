@@ -99,6 +99,8 @@ export function getRoutesSection(url: string) {
 	}
 }
 
+// This affects the header megamenu, homepage counters and the page navigation tiles, not the sidebar lists.
+
 /**Meta information about the website. */
 export const supportInfo: CategoryInfo[] = [
 	{
@@ -127,12 +129,12 @@ export const supportInfo: CategoryInfo[] = [
 				link: '/support/website/donate',
 				image: PiggyBank,
 			},
-			{
-				name: 'FAQ',
-				description: 'Frequently Asked Questions.',
-				link: '/support/website/faq',
-				image: QuestionAnswering,
-			},
+			// {
+			// 	name: 'FAQ',
+			// 	description: 'Frequently Asked Questions.',
+			// 	link: '/support/website/faq',
+			// 	image: QuestionAnswering,
+			// },
 			{
 				name: 'Feedback',
 				description: 'Feedback and surveys.',
@@ -206,38 +208,38 @@ export const supportInfo: CategoryInfo[] = [
 			},
 		],
 	},
-	{
-		category: {
-			name: 'Wycademy Documentation',
-			description: "Documentation about the website's code and design.",
-			link: '/support/wycademy-documentation',
-			image: BookIconWhite,
-		},
-		pages: [
-			{
-				name: 'Architecture',
-				description: 'Architecture of the website.',
-				link: '/support/wycademy-documentation/architecture',
-				image: ReferenceArchitecture,
-			},
-		],
-	},
-	{
-		category: {
-			name: 'Overlay Documentation',
-			description: "Documentation about the overlay's code and design.",
-			link: '/support/overlay-documentation',
-			image: BookIconWhite,
-		},
-		pages: [
-			{
-				name: 'Architecture',
-				description: 'Architecture of the overlay.',
-				link: '/support/overlay-documentation/architecture',
-				image: ReferenceArchitecture,
-			},
-		],
-	},
+	// {
+	// 	category: {
+	// 		name: 'Wycademy Documentation',
+	// 		description: "Documentation about the website's code and design.",
+	// 		link: '/support/wycademy-documentation',
+	// 		image: BookIconWhite,
+	// 	},
+	// 	pages: [
+	// 		{
+	// 			name: 'Architecture',
+	// 			description: 'Architecture of the website.',
+	// 			link: '/support/wycademy-documentation/architecture',
+	// 			image: ReferenceArchitecture,
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	category: {
+	// 		name: 'Overlay Documentation',
+	// 		description: "Documentation about the overlay's code and design.",
+	// 		link: '/support/overlay-documentation',
+	// 		image: BookIconWhite,
+	// 	},
+	// 	pages: [
+	// 		{
+	// 			name: 'Architecture',
+	// 			description: 'Architecture of the overlay.',
+	// 			link: '/support/overlay-documentation/architecture',
+	// 			image: ReferenceArchitecture,
+	// 		},
+	// 	],
+	// },
 	{
 		category: {
 			name: 'External',
@@ -288,18 +290,18 @@ export const toolsInfo: CategoryInfo[] = [
 				image: JewelIconWhite,
 				link: '/tools/calculator/crit-conversion',
 			},
-			{
-				name: 'Gunlance Shells & Wyvernfire',
-				description: 'A Gunlance Shells & Wyvernfire calculator.',
-				image: getWeaponIcon('Gunlance'),
-				link: '/tools/calculator/gunlance-shells-and-wyvernfire',
-			},
-			{
-				name: 'Heavy Bowgun Heat Beam',
-				description: 'A Heavy Bowgun Heat Beam calculator.',
-				image: getWeaponIcon('Heavy Bowgun'),
-				link: '/tools/calculator/heavy-bowgun-heat-beam',
-			},
+			// {
+			// 	name: 'Gunlance Shells & Wyvernfire',
+			// 	description: 'A Gunlance Shells & Wyvernfire calculator.',
+			// 	image: getWeaponIcon('Gunlance'),
+			// 	link: '/tools/calculator/gunlance-shells-and-wyvernfire',
+			// },
+			// {
+			// 	name: 'Heavy Bowgun Heat Beam',
+			// 	description: 'A Heavy Bowgun Heat Beam calculator.',
+			// 	image: getWeaponIcon('Heavy Bowgun'),
+			// 	link: '/tools/calculator/heavy-bowgun-heat-beam',
+			// },
 			{
 				name: 'Sigils',
 				description: 'A sigils calculator; includes formulas and graphs.',
@@ -437,29 +439,29 @@ export const toolsInfo: CategoryInfo[] = [
 			},
 		],
 	},
-	{
-		category: {
-			name: 'Search',
-			description: 'Searching tools.',
-			image: Binoculars,
-			link: '/tools/search',
-		},
-		pages: [
-			{
-				name: 'Armor Set Searcher',
-				description: "Wycademy's Armor Set Searcher (WASS).",
-				link: '/tools/search/armor-set-searcher',
-				image: getArmorIcon('Stand'),
-			},
-			{
-				name: 'Advanced Search',
-				description:
-					'Advanced Search: items, weapons, gear, monsters, and much more.',
-				link: '/tools/search/advanced-search',
-				image: Logo,
-			},
-		],
-	},
+	// {
+	// 	category: {
+	// 		name: 'Search',
+	// 		description: 'Searching tools.',
+	// 		image: Binoculars,
+	// 		link: '/tools/search',
+	// 	},
+	// 	pages: [
+	// 		{
+	// 			name: 'Armor Set Searcher',
+	// 			description: "Wycademy's Armor Set Searcher (WASS).",
+	// 			link: '/tools/search/armor-set-searcher',
+	// 			image: getArmorIcon('Stand'),
+	// 		},
+	// 		{
+	// 			name: 'Advanced Search',
+	// 			description:
+	// 				'Advanced Search: items, weapons, gear, monsters, and much more.',
+	// 			link: '/tools/search/advanced-search',
+	// 			image: Logo,
+	// 		},
+	// 	],
+	// },
 ];
 
 /**Guides for the game */
@@ -539,32 +541,32 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/monsters/origin',
 				image: YamaKurai,
 			},
-			{
-				name: 'Burst',
-				description: 'The list of burst monsters.',
-				link: '/hunter-notes/monsters/burst',
-				image: Zerureusu,
-			},
-			{
-				name: 'Supremacy',
-				description: 'The list of supremacy monsters and how to beat them.',
-				link: '/hunter-notes/monsters/supremacy',
-				image: SupremacyTeostra,
-			},
-			{
-				name: 'Duremudira',
-				description:
-					'An explanation of Tower gear and skills, and how to beat 2nd District Duremudira.',
-				link: '/hunter-notes/monsters/duremudira',
-				image: Duremudira,
-			},
-			{
-				name: 'Zenith',
-				description:
-					'The list of zenith monsters and how to beat them; their gear and skills.',
-				link: '/hunter-notes/monsters/zenith',
-				image: Bogabadorumu6,
-			},
+			// {
+			// 	name: 'Burst',
+			// 	description: 'The list of burst monsters.',
+			// 	link: '/hunter-notes/monsters/burst',
+			// 	image: Zerureusu,
+			// },
+			// {
+			// 	name: 'Supremacy',
+			// 	description: 'The list of supremacy monsters and how to beat them.',
+			// 	link: '/hunter-notes/monsters/supremacy',
+			// 	image: SupremacyTeostra,
+			// },
+			// {
+			// 	name: 'Duremudira',
+			// 	description:
+			// 		'An explanation of Tower gear and skills, and how to beat 2nd District Duremudira.',
+			// 	link: '/hunter-notes/monsters/duremudira',
+			// 	image: Duremudira,
+			// },
+			// {
+			// 	name: 'Zenith',
+			// 	description:
+			// 		'The list of zenith monsters and how to beat them; their gear and skills.',
+			// 	link: '/hunter-notes/monsters/zenith',
+			// 	image: Bogabadorumu6,
+			// },
 			{
 				name: 'Raviente',
 				description:
@@ -572,33 +574,33 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/monsters/raviente',
 				image: BerserkRaviente,
 			},
-			{
-				name: 'Conquest',
-				description:
-					'The list of conquest monsters and how to beat them; their materials and stats.',
-				link: '/hunter-notes/monsters/conquest',
-				image: ConquestFatalis7,
-			},
-			{
-				name: 'Shiten',
-				description:
-					'The list of shiten monsters and how to beat them; their sigils and stats.',
-				link: '/hunter-notes/monsters/shiten',
-				image: UNKNOWN,
-			},
-			{
-				name: 'Unlimited',
-				description:
-					'The list of unlimited (UL) monsters and their rewards upon hunting them.',
-				link: '/hunter-notes/monsters/unlimited',
-				image: AkuraJebia2,
-			},
-			{
-				name: 'Musou',
-				description: 'The list of musou monsters and how to beat them.',
-				link: '/hunter-notes/monsters/musou',
-				image: BurningFreezingElzelion2,
-			},
+			// {
+			// 	name: 'Conquest',
+			// 	description:
+			// 		'The list of conquest monsters and how to beat them; their materials and stats.',
+			// 	link: '/hunter-notes/monsters/conquest',
+			// 	image: ConquestFatalis7,
+			// },
+			// {
+			// 	name: 'Shiten',
+			// 	description:
+			// 		'The list of shiten monsters and how to beat them; their sigils and stats.',
+			// 	link: '/hunter-notes/monsters/shiten',
+			// 	image: UNKNOWN,
+			// },
+			// {
+			// 	name: 'Unlimited',
+			// 	description:
+			// 		'The list of unlimited (UL) monsters and their rewards upon hunting them.',
+			// 	link: '/hunter-notes/monsters/unlimited',
+			// 	image: AkuraJebia2,
+			// },
+			// {
+			// 	name: 'Musou',
+			// 	description: 'The list of musou monsters and how to beat them.',
+			// 	link: '/hunter-notes/monsters/musou',
+			// 	image: BurningFreezingElzelion2,
+			// },
 		],
 	},
 	{
@@ -750,12 +752,12 @@ export const guidesInfo: CategoryInfo[] = [
 			image: AllArmors,
 		},
 		pages: [
-			{
-				name: 'Overview',
-				description: 'An overview of armor types.',
-				link: '/hunter-notes/armor/overview',
-				image: AllArmors,
-			},
+			// {
+			// 	name: 'Overview',
+			// 	description: 'An overview of armor types.',
+			// 	link: '/hunter-notes/armor/overview',
+			// 	image: AllArmors,
+			// },
 			{
 				name: 'Skills',
 				description:
@@ -769,12 +771,12 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/armor/colors',
 				image: AllArmors,
 			},
-			{
-				name: 'Transmog',
-				description: 'How to unlock transmog.',
-				link: '/hunter-notes/armor/transmog',
-				image: AllArmors,
-			},
+			// {
+			// 	name: 'Transmog',
+			// 	description: 'How to unlock transmog.',
+			// 	link: '/hunter-notes/armor/transmog',
+			// 	image: AllArmors,
+			// },
 		],
 	},
 	{
@@ -785,12 +787,12 @@ export const guidesInfo: CategoryInfo[] = [
 			image: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
 		},
 		pages: [
-			{
-				name: 'Mezeporta Square',
-				description: 'List of NPC available at Mezeporta Square.',
-				link: '/hunter-notes/locations/mezeporta-square',
-				image: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
-			},
+			// {
+			// 	name: 'Mezeporta Square',
+			// 	description: 'List of NPC available at Mezeporta Square.',
+			// 	link: '/hunter-notes/locations/mezeporta-square',
+			// 	image: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
+			// },
 			{
 				name: 'Guild Hall',
 				description:
@@ -804,31 +806,31 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/locations/bento',
 				image: LocationIcons.find((e) => e.name === 'Bento')?.icon,
 			},
-			{
-				name: "Hunter's Road",
-				description: 'The road skills list and how to upgrade them.',
-				link: '/hunter-notes/locations/road',
-				image: LocationIcons.find((e) => e.name === 'Road')?.icon,
-			},
-			{
-				name: 'Gathering Maps',
-				description:
-					'The various gathering spots for all locations of the game.',
-				link: '/hunter-notes/locations/gathering-maps',
-				image: MapIconWhite,
-			},
+			// {
+			// 	name: "Hunter's Road",
+			// 	description: 'The road skills list and how to upgrade them.',
+			// 	link: '/hunter-notes/locations/road',
+			// 	image: LocationIcons.find((e) => e.name === 'Road')?.icon,
+			// },
+			// {
+			// 	name: 'Gathering Maps',
+			// 	description:
+			// 		'The various gathering spots for all locations of the game.',
+			// 	link: '/hunter-notes/locations/gathering-maps',
+			// 	image: MapIconWhite,
+			// },
 			{
 				name: 'Caravan',
 				description: 'Caravan gem, skills, colors, etc.',
 				link: '/hunter-notes/locations/caravan',
 				image: LocationIcons.find((e) => e.name === 'Caravan')?.icon,
 			},
-			{
-				name: 'Blacksmith',
-				description: 'List of NPC available at the Blacksmith.',
-				link: '/hunter-notes/locations/blacksmith',
-				image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-			},
+			// {
+			// 	name: 'Blacksmith',
+			// 	description: 'List of NPC available at the Blacksmith.',
+			// 	link: '/hunter-notes/locations/blacksmith',
+			// 	image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+			// },
 			{
 				name: 'Prayer Fountain',
 				description:
@@ -836,36 +838,36 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/locations/prayer-fountain',
 				image: LocationIcons.find((e) => e.name === 'Prayer Fountain')?.icon,
 			},
-			{
-				name: 'My House',
-				description: 'List of various options available in My House.',
-				link: '/hunter-notes/locations/my-house',
-				image: LocationIcons.find((e) => e.name === 'My House')?.icon,
-			},
-			{
-				name: 'My Gallery',
-				description: 'List of various options available in My Gallery.',
-				link: '/hunter-notes/locations/my-gallery',
-				image: LocationIcons.find((e) => e.name === 'My Gallery')?.icon,
-			},
-			{
-				name: 'My Garden',
-				description: 'List of various options available in My Garden.',
-				link: '/hunter-notes/locations/my-garden',
-				image: LocationIcons.find((e) => e.name === 'My Garden')?.icon,
-			},
-			{
-				name: 'My Missions',
-				description: 'List of various options available in My Missions.',
-				link: '/hunter-notes/locations/my-missions',
-				image: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
-			},
-			{
-				name: 'My Support',
-				description: 'List of various options available in My Support.',
-				link: '/hunter-notes/locations/my-support',
-				image: LocationIcons.find((e) => e.name === 'My Support')?.icon,
-			},
+			// {
+			// 	name: 'My House',
+			// 	description: 'List of various options available in My House.',
+			// 	link: '/hunter-notes/locations/my-house',
+			// 	image: LocationIcons.find((e) => e.name === 'My House')?.icon,
+			// },
+			// {
+			// 	name: 'My Gallery',
+			// 	description: 'List of various options available in My Gallery.',
+			// 	link: '/hunter-notes/locations/my-gallery',
+			// 	image: LocationIcons.find((e) => e.name === 'My Gallery')?.icon,
+			// },
+			// {
+			// 	name: 'My Garden',
+			// 	description: 'List of various options available in My Garden.',
+			// 	link: '/hunter-notes/locations/my-garden',
+			// 	image: LocationIcons.find((e) => e.name === 'My Garden')?.icon,
+			// },
+			// {
+			// 	name: 'My Missions',
+			// 	description: 'List of various options available in My Missions.',
+			// 	link: '/hunter-notes/locations/my-missions',
+			// 	image: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
+			// },
+			// {
+			// 	name: 'My Support',
+			// 	description: 'List of various options available in My Support.',
+			// 	link: '/hunter-notes/locations/my-support',
+			// 	image: LocationIcons.find((e) => e.name === 'My Support')?.icon,
+			// },
 			{
 				name: 'My Tore',
 				description: 'List of various options available in My Tore.',
@@ -878,12 +880,12 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/locations/rasta-bar',
 				image: LocationIcons.find((e) => e.name === 'Rasta Bar')?.icon,
 			},
-			{
-				name: 'Tent',
-				description: 'List of various options available in the Tent.',
-				link: '/hunter-notes/locations/tent',
-				image: LocationIcons.find((e) => e.name === 'Tent')?.icon,
-			},
+			// {
+			// 	name: 'Tent',
+			// 	description: 'List of various options available in the Tent.',
+			// 	link: '/hunter-notes/locations/tent',
+			// 	image: LocationIcons.find((e) => e.name === 'Tent')?.icon,
+			// },
 		],
 	},
 	{
@@ -894,24 +896,24 @@ export const guidesInfo: CategoryInfo[] = [
 			image: AllItems,
 		},
 		pages: [
-			{
-				name: 'Item Box',
-				description: 'Item Box capacity, presets and combinations.',
-				link: '/hunter-notes/items/item-box',
-				image: TrapToolIconWhite,
-			},
-			{
-				name: 'Decorations',
-				description: 'A list of decoration types.',
-				link: '/hunter-notes/items/decorations',
-				image: JewelIconWhite,
-			},
-			{
-				name: 'Armor Spheres',
-				description: 'List of armor spheres.',
-				link: '/hunter-notes/items/armor-spheres',
-				image: BallIconWhite,
-			},
+			// {
+			// 	name: 'Item Box',
+			// 	description: 'Item Box capacity, presets and combinations.',
+			// 	link: '/hunter-notes/items/item-box',
+			// 	image: TrapToolIconWhite,
+			// },
+			// {
+			// 	name: 'Decorations',
+			// 	description: 'A list of decoration types.',
+			// 	link: '/hunter-notes/items/decorations',
+			// 	image: JewelIconWhite,
+			// },
+			// {
+			// 	name: 'Armor Spheres',
+			// 	description: 'List of armor spheres.',
+			// 	link: '/hunter-notes/items/armor-spheres',
+			// 	image: BallIconWhite,
+			// },
 			{
 				name: 'Special Items',
 				description:
@@ -919,12 +921,12 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/items/special-items',
 				image: TicketIconWhite,
 			},
-			{
-				name: 'Medal Trades',
-				description: 'List of items obtained by exchanging medals.',
-				link: '/hunter-notes/items/medal-trades',
-				image: SacIconWhite,
-			},
+			// {
+			// 	name: 'Medal Trades',
+			// 	description: 'List of items obtained by exchanging medals.',
+			// 	link: '/hunter-notes/items/medal-trades',
+			// 	image: SacIconWhite,
+			// },
 		],
 	},
 	{
@@ -942,20 +944,20 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/events/diva-defense',
 				image: LocationIcons.find((e) => e.name === 'Interception')?.icon,
 			},
-			{
-				name: 'Hunter Festival',
-				description:
-					"Hunting Competition, Soul gathering and Winner's Week information.",
-				link: '/hunter-notes/events/hunter-festival',
-				image: LocationIcons.find((e) => e.name === 'Festi')?.icon,
-			},
-			{
-				name: 'Mezeporta Festival',
-				description:
-					"A list of minigames available during the festival's duration, with tips to get a highscore.",
-				link: '/hunter-notes/events/mezeporta-festival',
-				image: LocationIcons.find((e) => e.name === 'Mezfes')?.icon,
-			},
+			// {
+			// 	name: 'Hunter Festival',
+			// 	description:
+			// 		"Hunting Competition, Soul gathering and Winner's Week information.",
+			// 	link: '/hunter-notes/events/hunter-festival',
+			// 	image: LocationIcons.find((e) => e.name === 'Festi')?.icon,
+			// },
+			// {
+			// 	name: 'Mezeporta Festival',
+			// 	description:
+			// 		"A list of minigames available during the festival's duration, with tips to get a highscore.",
+			// 	link: '/hunter-notes/events/mezeporta-festival',
+			// 	image: LocationIcons.find((e) => e.name === 'Mezfes')?.icon,
+			// },
 			{
 				name: "Wycademy's Events",
 				description:
@@ -965,40 +967,40 @@ export const guidesInfo: CategoryInfo[] = [
 			},
 		],
 	},
-	{
-		category: {
-			name: 'Advanced',
-			description: 'Tips for advanced hunters.',
-			link: '/hunter-notes/advanced',
-			image: LocationIcons.find((e) => e.name === 'Transcend')?.icon,
-		},
-		pages: [
-			{
-				name: 'Item Sets',
-				description: 'The best item sets and how to obtain each item.',
-				link: '/hunter-notes/advanced/item-sets',
-				image: MedicineIconWhite,
-			},
-			{
-				name: 'Item Interactions',
-				description: 'Specific item interactions explained in greater detail.',
-				link: '/hunter-notes/advanced/item-interactions',
-				image: AllItems,
-			},
-			{
-				name: 'Mechanics',
-				description:
-					'Various advanced mechanics of the game explained in great detail.',
-				link: '/hunter-notes/advanced/mechanics',
-				image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-			},
-			{
-				name: 'Skills',
-				description:
-					'An overview of specific skill interactions, and which ones to use.',
-				link: '/hunter-notes/advanced/skills',
-				image: JewelIconWhite,
-			},
-		],
-	},
+	// {
+	// 	category: {
+	// 		name: 'Advanced',
+	// 		description: 'Tips for advanced hunters.',
+	// 		link: '/hunter-notes/advanced',
+	// 		image: LocationIcons.find((e) => e.name === 'Transcend')?.icon,
+	// 	},
+	// 	pages: [
+	// 		{
+	// 			name: 'Item Sets',
+	// 			description: 'The best item sets and how to obtain each item.',
+	// 			link: '/hunter-notes/advanced/item-sets',
+	// 			image: MedicineIconWhite,
+	// 		},
+	// 		{
+	// 			name: 'Item Interactions',
+	// 			description: 'Specific item interactions explained in greater detail.',
+	// 			link: '/hunter-notes/advanced/item-interactions',
+	// 			image: AllItems,
+	// 		},
+	// 		{
+	// 			name: 'Mechanics',
+	// 			description:
+	// 				'Various advanced mechanics of the game explained in great detail.',
+	// 			link: '/hunter-notes/advanced/mechanics',
+	// 			image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+	// 		},
+	// 		{
+	// 			name: 'Skills',
+	// 			description:
+	// 				'An overview of specific skill interactions, and which ones to use.',
+	// 			link: '/hunter-notes/advanced/skills',
+	// 			image: JewelIconWhite,
+	// 		},
+	// 	],
+	// },
 ];
