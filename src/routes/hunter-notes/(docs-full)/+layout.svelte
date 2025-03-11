@@ -137,6 +137,7 @@
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
+	/**This affects the sidebar navigation, not the header megamenu or the page navigation tiles.*/
 	const treeData: TreeItem[] = [
 		{
 			id: '/hunter-notes/getting-started',
@@ -202,37 +203,37 @@
 					icon: MonsterComponent,
 					iconProps: { currentMonster: 'Yama Kurai', background: false },
 				},
-				{
-					id: '/hunter-notes/monsters/burst',
-					text: 'Burst',
-					href: '/hunter-notes/monsters/burst',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Zerureusu', background: false },
-				},
-				{
-					id: '/hunter-notes/monsters/supremacy',
-					text: 'Supremacy',
-					href: '/hunter-notes/monsters/supremacy',
-					icon: MonsterComponent,
-					iconProps: {
-						currentMonster: 'Supremacy Doragyurosu',
-						background: false,
-					},
-				},
-				{
-					id: '/hunter-notes/monsters/duremudira',
-					text: 'Duremudira',
-					href: '/hunter-notes/monsters/duremudira',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Duremudira', background: false },
-				},
-				{
-					id: '/hunter-notes/monsters/zenith',
-					text: 'Zenith',
-					href: '/hunter-notes/monsters/zenith',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Bogabadorumu', background: false },
-				},
+				// {
+				// 	id: '/hunter-notes/monsters/burst',
+				// 	text: 'Burst',
+				// 	href: '/hunter-notes/monsters/burst',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Zerureusu', background: false },
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/supremacy',
+				// 	text: 'Supremacy',
+				// 	href: '/hunter-notes/monsters/supremacy',
+				// 	icon: MonsterComponent,
+				// 	iconProps: {
+				// 		currentMonster: 'Supremacy Doragyurosu',
+				// 		background: false,
+				// 	},
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/duremudira',
+				// 	text: 'Duremudira',
+				// 	href: '/hunter-notes/monsters/duremudira',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Duremudira', background: false },
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/zenith',
+				// 	text: 'Zenith',
+				// 	href: '/hunter-notes/monsters/zenith',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Bogabadorumu', background: false },
+				// },
 				{
 					id: '/hunter-notes/monsters/raviente',
 					text: 'Raviente',
@@ -240,37 +241,37 @@
 					icon: MonsterComponent,
 					iconProps: { currentMonster: 'Berserk Raviente', background: false },
 				},
-				{
-					id: '/hunter-notes/monsters/conquest',
-					text: 'Conquest',
-					href: '/hunter-notes/monsters/conquest',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Conquest Fatalis', background: false },
-				},
-				{
-					id: '/hunter-notes/monsters/shiten',
-					text: 'Shiten',
-					href: '/hunter-notes/monsters/shiten',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Disufiroa', background: false },
-				},
-				{
-					id: '/hunter-notes/monsters/unlimited',
-					text: 'Unlimited',
-					href: '/hunter-notes/monsters/unlimited',
-					icon: MonsterComponent,
-					iconProps: { currentMonster: 'Akura Jebia', background: false },
-				},
-				{
-					id: '/hunter-notes/monsters/musou',
-					text: 'Musou',
-					href: '/hunter-notes/monsters/musou',
-					icon: MonsterComponent,
-					iconProps: {
-						currentMonster: 'Blinking Nargacuga',
-						background: false,
-					},
-				},
+				// {
+				// 	id: '/hunter-notes/monsters/conquest',
+				// 	text: 'Conquest',
+				// 	href: '/hunter-notes/monsters/conquest',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Conquest Fatalis', background: false },
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/shiten',
+				// 	text: 'Shiten',
+				// 	href: '/hunter-notes/monsters/shiten',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Disufiroa', background: false },
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/unlimited',
+				// 	text: 'Unlimited',
+				// 	href: '/hunter-notes/monsters/unlimited',
+				// 	icon: MonsterComponent,
+				// 	iconProps: { currentMonster: 'Akura Jebia', background: false },
+				// },
+				// {
+				// 	id: '/hunter-notes/monsters/musou',
+				// 	text: 'Musou',
+				// 	href: '/hunter-notes/monsters/musou',
+				// 	icon: MonsterComponent,
+				// 	iconProps: {
+				// 		currentMonster: 'Blinking Nargacuga',
+				// 		background: false,
+				// 	},
+				// },
 			],
 		},
 		{
@@ -400,13 +401,13 @@
 			text: 'Armor',
 			icon: HelmetIconWhite,
 			nodes: [
-				{
-					id: '/hunter-notes/armor/overview',
-					href: '/hunter-notes/armor/overview',
+				// {
+				// 	id: '/hunter-notes/armor/overview',
+				// 	href: '/hunter-notes/armor/overview',
 
-					text: 'Overview',
-					icon: ChestIconWhite,
-				},
+				// 	text: 'Overview',
+				// 	icon: ChestIconWhite,
+				// },
 				{
 					id: '/hunter-notes/armor/skills',
 					href: '/hunter-notes/armor/skills',
@@ -421,13 +422,13 @@
 					text: 'Colors',
 					icon: HelmetIconWhite,
 				},
-				{
-					id: '/hunter-notes/armor/transmog',
-					href: '/hunter-notes/armor/transmog',
+				// {
+				// 	id: '/hunter-notes/armor/transmog',
+				// 	href: '/hunter-notes/armor/transmog',
 
-					text: 'Transmog',
-					icon: HelmetIconWhite,
-				},
+				// 	text: 'Transmog',
+				// 	icon: HelmetIconWhite,
+				// },
 			],
 		},
 		{
@@ -435,12 +436,12 @@
 			text: 'Locations',
 			icon: MapIconWhite,
 			nodes: [
-				{
-					id: '/hunter-notes/locations/mezeporta-square',
-					text: 'Mezeporta Square',
-					href: '/hunter-notes/locations/mezeporta-square',
-					icon: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
-				},
+				// {
+				// 	id: '/hunter-notes/locations/mezeporta-square',
+				// 	text: 'Mezeporta Square',
+				// 	href: '/hunter-notes/locations/mezeporta-square',
+				// 	icon: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
+				// },
 				{
 					id: '/hunter-notes/locations/guild-hall',
 					text: 'Guild Hall',
@@ -453,72 +454,72 @@
 					href: '/hunter-notes/locations/bento',
 					icon: LocationIcons.find((e) => e.name === 'Bento')?.icon,
 				},
-				{
-					id: '/hunter-notes/locations/road',
-					text: "Hunter's Road",
-					href: '/hunter-notes/locations/road',
-					icon: LocationIcons.find((e) => e.name === 'Road')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/gathering-maps',
-					text: 'Gathering Maps',
-					href: '/hunter-notes/locations/gathering-maps',
-					icon: MapIconWhite,
-				},
+				// {
+				// 	id: '/hunter-notes/locations/road',
+				// 	text: "Hunter's Road",
+				// 	href: '/hunter-notes/locations/road',
+				// 	icon: LocationIcons.find((e) => e.name === 'Road')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/gathering-maps',
+				// 	text: 'Gathering Maps',
+				// 	href: '/hunter-notes/locations/gathering-maps',
+				// 	icon: MapIconWhite,
+				// },
 				{
 					id: '/hunter-notes/locations/caravan',
 					text: 'Caravan',
 					href: '/hunter-notes/locations/caravan',
 					icon: LocationIcons.find((e) => e.name === 'Caravan')?.icon,
 				},
-				{
-					id: '/hunter-notes/locations/blacksmith',
-					text: 'Blacksmith',
-					href: '/hunter-notes/locations/blacksmith',
-					icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-				},
+				// {
+				// 	id: '/hunter-notes/locations/blacksmith',
+				// 	text: 'Blacksmith',
+				// 	href: '/hunter-notes/locations/blacksmith',
+				// 	icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+				// },
 				{
 					id: '/hunter-notes/locations/prayer-fountain',
 					text: 'Prayer Fountain',
 					href: '/hunter-notes/locations/prayer-fountain',
 					icon: LocationIcons.find((e) => e.name === 'Prayer Fountain')?.icon,
 				},
-				{
-					id: '/hunter-notes/locations/my-house',
-					text: 'My House',
-					href: '/hunter-notes/locations/my-house',
-					icon: LocationIcons.find((e) => e.name === 'My House')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/my-gallery',
-					text: 'My Gallery',
-					href: '/hunter-notes/locations/my-gallery',
-					icon: LocationIcons.find((e) => e.name === 'My Gallery')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/my-garden',
-					text: 'My Garden',
-					href: '/hunter-notes/locations/my-garden',
-					icon: LocationIcons.find((e) => e.name === 'My Garden')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/my-missions',
-					text: 'My Missions',
-					href: '/hunter-notes/locations/my-missions',
-					icon: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/my-support',
-					text: 'My Support',
-					href: '/hunter-notes/locations/my-support',
-					icon: LocationIcons.find((e) => e.name === 'My Support')?.icon,
-				},
-				{
-					id: '/hunter-notes/locations/my-tore',
-					text: 'My Tore',
-					href: '/hunter-notes/locations/my-tore',
-					icon: LocationIcons.find((e) => e.name === 'My Tore')?.icon,
-				},
+				// {
+				// 	id: '/hunter-notes/locations/my-house',
+				// 	text: 'My House',
+				// 	href: '/hunter-notes/locations/my-house',
+				// 	icon: LocationIcons.find((e) => e.name === 'My House')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/my-gallery',
+				// 	text: 'My Gallery',
+				// 	href: '/hunter-notes/locations/my-gallery',
+				// 	icon: LocationIcons.find((e) => e.name === 'My Gallery')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/my-garden',
+				// 	text: 'My Garden',
+				// 	href: '/hunter-notes/locations/my-garden',
+				// 	icon: LocationIcons.find((e) => e.name === 'My Garden')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/my-missions',
+				// 	text: 'My Missions',
+				// 	href: '/hunter-notes/locations/my-missions',
+				// 	icon: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/my-support',
+				// 	text: 'My Support',
+				// 	href: '/hunter-notes/locations/my-support',
+				// 	icon: LocationIcons.find((e) => e.name === 'My Support')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/locations/my-tore',
+				// 	text: 'My Tore',
+				// 	href: '/hunter-notes/locations/my-tore',
+				// 	icon: LocationIcons.find((e) => e.name === 'My Tore')?.icon,
+				// },
 				{
 					id: '/hunter-notes/locations/rasta-bar',
 					text: 'Rasta Bar',
@@ -538,36 +539,36 @@
 			text: 'Items',
 			icon: getItemIcon('Sac'),
 			nodes: [
-				{
-					id: '/hunter-notes/items/item-box',
-					text: 'Item Box',
-					href: '/hunter-notes/items/item-box',
-					icon: getItemIcon('Trap Tool'),
-				},
-				{
-					id: '/hunter-notes/items/decorations',
-					text: 'Decorations',
-					href: '/hunter-notes/items/decorations',
-					icon: getItemIcon('Jewel'),
-				},
-				{
-					id: '/hunter-notes/items/armor-spheres',
-					text: 'Armor Spheres',
-					href: '/hunter-notes/items/armor-spheres',
-					icon: getItemIcon('Ball'),
-				},
+				// {
+				// 	id: '/hunter-notes/items/item-box',
+				// 	text: 'Item Box',
+				// 	href: '/hunter-notes/items/item-box',
+				// 	icon: getItemIcon('Trap Tool'),
+				// },
+				// {
+				// 	id: '/hunter-notes/items/decorations',
+				// 	text: 'Decorations',
+				// 	href: '/hunter-notes/items/decorations',
+				// 	icon: getItemIcon('Jewel'),
+				// },
+				// {
+				// 	id: '/hunter-notes/items/armor-spheres',
+				// 	text: 'Armor Spheres',
+				// 	href: '/hunter-notes/items/armor-spheres',
+				// 	icon: getItemIcon('Ball'),
+				// },
 				{
 					id: '/hunter-notes/items/special-items',
 					text: 'Special Items',
 					href: '/hunter-notes/items/special-items',
 					icon: getItemIcon('Ticket'),
 				},
-				{
-					id: '/hunter-notes/items/medal-trades',
-					text: 'Medal Trades',
-					href: '/hunter-notes/items/medal-trades',
-					icon: getItemIcon('Sac'),
-				},
+				// {
+				// 	id: '/hunter-notes/items/medal-trades',
+				// 	text: 'Medal Trades',
+				// 	href: '/hunter-notes/items/medal-trades',
+				// 	icon: getItemIcon('Sac'),
+				// },
 			],
 		},
 		{
@@ -581,19 +582,19 @@
 					href: '/hunter-notes/events/diva-defense',
 					icon: LocationIcons.find((e) => e.name === 'Diva Defense')?.icon,
 				},
-				{
-					id: '/hunter-notes/events/hunter-festival',
-					text: 'Hunter Festival',
-					href: '/hunter-notes/events/hunter-festival',
-					icon: LocationIcons.find((e) => e.name === 'Hunter Festival')?.icon,
-				},
-				{
-					id: '/hunter-notes/events/mezeporta-festival',
-					text: 'Mezeporta Festival',
-					href: '/hunter-notes/events/mezeporta-festival',
-					icon: LocationIcons.find((e) => e.name === 'Mezeporta Festival')
-						?.icon,
-				},
+				// {
+				// 	id: '/hunter-notes/events/hunter-festival',
+				// 	text: 'Hunter Festival',
+				// 	href: '/hunter-notes/events/hunter-festival',
+				// 	icon: LocationIcons.find((e) => e.name === 'Hunter Festival')?.icon,
+				// },
+				// {
+				// 	id: '/hunter-notes/events/mezeporta-festival',
+				// 	text: 'Mezeporta Festival',
+				// 	href: '/hunter-notes/events/mezeporta-festival',
+				// 	icon: LocationIcons.find((e) => e.name === 'Mezeporta Festival')
+				// 		?.icon,
+				// },
 				{
 					id: '/hunter-notes/events/wycademy-events',
 					text: "Wycademy's Events",
@@ -602,37 +603,37 @@
 				},
 			],
 		},
-		{
-			id: '/hunter-notes/advanced',
-			text: 'Advanced',
-			icon: MantleIconWhite,
-			nodes: [
-				{
-					id: '/hunter-notes/advanced/item-sets',
-					text: 'Item Sets',
-					href: '/hunter-notes/advanced/item-sets',
-					icon: MedicineIconWhite,
-				},
-				{
-					id: '/hunter-notes/advanced/item-interactions',
-					text: 'Item Interactions',
-					href: '/hunter-notes/advanced/item-interactions',
-					icon: BallIconWhite,
-				},
-				{
-					id: '/hunter-notes/advanced/mechanics',
-					text: 'Mechanics',
-					href: '/hunter-notes/advanced/mechanics',
-					icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-				},
-				{
-					id: '/hunter-notes/advanced/skills',
-					text: 'Skills',
-					href: '/hunter-notes/advanced/skills',
-					icon: JewelIconWhite,
-				},
-			],
-		},
+		// {
+		// 	id: '/hunter-notes/advanced',
+		// 	text: 'Advanced',
+		// 	icon: MantleIconWhite,
+		// 	nodes: [
+		// 		{
+		// 			id: '/hunter-notes/advanced/item-sets',
+		// 			text: 'Item Sets',
+		// 			href: '/hunter-notes/advanced/item-sets',
+		// 			icon: MedicineIconWhite,
+		// 		},
+		// 		{
+		// 			id: '/hunter-notes/advanced/item-interactions',
+		// 			text: 'Item Interactions',
+		// 			href: '/hunter-notes/advanced/item-interactions',
+		// 			icon: BallIconWhite,
+		// 		},
+		// 		{
+		// 			id: '/hunter-notes/advanced/mechanics',
+		// 			text: 'Mechanics',
+		// 			href: '/hunter-notes/advanced/mechanics',
+		// 			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+		// 		},
+		// 		{
+		// 			id: '/hunter-notes/advanced/skills',
+		// 			text: 'Skills',
+		// 			href: '/hunter-notes/advanced/skills',
+		// 			icon: JewelIconWhite,
+		// 		},
+		// 	],
+		// },
 	];
 
 	let tocVisible = $state($hunterNotesSidebarEnabledStore);
