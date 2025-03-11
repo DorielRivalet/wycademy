@@ -85,6 +85,29 @@
 				<UnorderedList>
 					<ListItem
 						><p>
+							<strong>A Unique Hybrid Approach</strong>: Wycademy isn't just a
+							knowledge base or a leaderboard—it’s an amalgamation of
+							everything. Inspired by platforms like <OutboundLink
+								href="https://www.speedrun.com/">Speedrun.com</OutboundLink
+							> (for leaderboards), <OutboundLink
+								href="https://www.dustloop.com/w/Main_Page"
+								>Dustloop Wiki</OutboundLink
+							> (for guides and databases), and various gaming platforms (for events
+							and community engagement), Wycademy blends structured knowledge, collaboration,
+							competition, and interactivity. We also integrate web app tools for
+							deeper analysis, enhancing the experience beyond a static wiki. Additionally,
+							we take cues from <OutboundLink
+								href="https://carbondesignsystem.com/"
+								>modern web design</OutboundLink
+							> and the <OutboundLink
+								href="https://wiki.melonland.net/web_revival"
+								>Web Revival / Indie Web movement</OutboundLink
+							>, balancing cutting-edge technology with the accessibility and
+							permanence of the old web.
+						</p></ListItem
+					>
+					<ListItem
+						><p>
 							<strong>Accessibility</strong>: We prioritize accessibility,
 							ensuring that our resources are available to all players,
 							regardless of their needs.
@@ -111,13 +134,6 @@
 							>, our website is fast, user-friendly, and embraces modern web
 							technologies, including progressive web app (PWA) functionality
 							for offline use.
-						</p></ListItem
-					>
-					<ListItem
-						><p>
-							<strong>Remembering the Old Web</strong>: We value simplicity and
-							clarity, offering features like an RSS feed for announcements,
-							reminiscent of the old web.
 						</p></ListItem
 					>
 					<ListItem
