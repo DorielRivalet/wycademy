@@ -10149,7 +10149,7 @@ does not get multiplied by horn */
 																		damage output you do in the game with total
 																		accuracy. In order to track and report
 																		damage testing, you can check <OutboundLink
-																			href="https://github.com/Open-Frontiers/wycademy/issues/360"
+																			href="https://github.com/DorielRivalet/wycademy/issues/360"
 																			>the pinned issue in the repository</OutboundLink
 																		>.
 																	</p>
