@@ -45,7 +45,7 @@
 		"@carbon/styles": "^1.77.0",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
-		"@commitlint/cz-commitlint": "^19.6.1",
+		"@commitlint/cz-commitlint": "^19.8.0",
 		"@neoconfetti/svelte": "^2.2.2",
 		"@playwright/test": "^1.49.0",
 		"@release-it/conventional-changelog": "^9.0.3",
