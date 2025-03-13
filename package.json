@@ -92,7 +92,7 @@
 		"satori-html": "^0.3.2",
 		"shiki": "^3.2.1",
 		"supabase": "^2.19.6",
-		"svelte": "^5.9.0",
+		"svelte": "^5.23.0",
 		"svelte-awesome-color-picker": "^3.1.4",
 		"svelte-check": "^4.1.5",
 		"svelte-grid": "^5.1.2",
