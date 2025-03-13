@@ -388,8 +388,8 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 				> where you can submit your feedback on the overlay.
 			</div>
 			<div class="spaced-paragraph">
-				If you are looking for a roadmap, the main developer uses a <OutboundLink
-					href="https://github.com/users/DorielRivalet/projects/1"
+				If you are looking for a roadmap, the developers use a <OutboundLink
+					href="https://github.com/orgs/Open-Frontiers/projects/1"
 					>GitHub project</OutboundLink
 				> for all issues related to the game.
 			</div>

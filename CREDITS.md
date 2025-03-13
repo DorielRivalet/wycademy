@@ -39,4 +39,4 @@ The following assets were **created for Wycademy** and are under the [MIT Licens
 
 ## **4. Requests & Corrections**
 
-If you are an artist or contributor and believe your work is used without proper attribution, please [contact us](https://github.com/DorielRivalet/wycademy/issues).
+If you are an artist or contributor and believe your work is used without proper attribution, please [contact us](https://github.com/Open-Frontiers/wycademy/issues).

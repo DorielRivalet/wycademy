@@ -1189,7 +1189,7 @@
 		<SectionHeadingTopLevel title={'Acknowledgements'} />
 		<p class="spaced-paragraph">
 			If you are looking for an attribution list, please also check <OutboundLink
-				href="https://github.com/DorielRivalet/wycademy"
+				href="https://github.com/Open-Frontiers/wycademy"
 				>our README.</OutboundLink
 			>
 		</p>

@@ -6615,7 +6615,7 @@ does not get multiplied by horn */
 										<Tab label="Inputs" />
 										<Tab label="Diva Prayer Gems" />
 										<Tab label="True Raw Converter" />
-										<Tab label="My Mission Tickets"/>
+										<Tab label="My Mission Tickets" />
 										<!--TODO: add quick references tab, with another tab comprised
 										of tables etc. Ideas: sharpness, multipliers, monsters, etc.-->
 										<Tab label="Help" />
@@ -6656,7 +6656,9 @@ does not get multiplied by horn */
 																		/>
 																		<Dropdown
 																			titleText="Melee Sharpness"
-																			bind:selectedId={inputMeleeSharpnessAffinity}
+																			bind:selectedId={
+																				inputMeleeSharpnessAffinity
+																			}
 																			items={[
 																				{
 																					id: 'Below Blue or Gunners (+0%)',
@@ -7979,7 +7981,9 @@ does not get multiplied by horn */
 
 																		<Dropdown
 																			titleText="Elemental Attack"
-																			bind:selectedId={inputElementalAttackMultiplier}
+																			bind:selectedId={
+																				inputElementalAttackMultiplier
+																			}
 																			items={[
 																				{ id: 'None (1x)', text: 'None (1x)' },
 																				{
@@ -8105,7 +8109,9 @@ does not get multiplied by horn */
 
 																		<Dropdown
 																			titleText="Weapon Modifiers"
-																			bind:selectedId={inputWeaponStatusModifiers}
+																			bind:selectedId={
+																				inputWeaponStatusModifiers
+																			}
 																			items={[
 																				{ id: 'None (1x)', text: 'None (1x)' },
 																				{
@@ -8153,7 +8159,9 @@ does not get multiplied by horn */
 																				step={10}
 																				min={minimumNumberValue}
 																				max={maximumNumberValue}
-																				bind:value={inputNumberElementalMultiplier}
+																				bind:value={
+																					inputNumberElementalMultiplier
+																				}
 																				invalidText={invalidNumberValueText}
 																				label={'Elemental Multiplier'}
 																			/>
@@ -8319,7 +8327,9 @@ does not get multiplied by horn */
 																				step={1}
 																				min={minimumNumberValue}
 																				max={15}
-																				bind:value={inputNumberZenithAttackSigil}
+																				bind:value={
+																					inputNumberZenithAttackSigil
+																				}
 																				invalidText={invalidNumberValueText}
 																				label={'Zenith Attack Sigil'}
 																			/>
@@ -8486,7 +8496,9 @@ does not get multiplied by horn */
 																						step={10}
 																						min={minimumNumberValue}
 																						max={maximumNumberValue}
-																						bind:value={inputNumberLanceImpactMultiplier}
+																						bind:value={
+																							inputNumberLanceImpactMultiplier
+																						}
 																						invalidText={invalidNumberValueText}
 																						label={'Lance Impact Multiplier (0.72)'}
 																					/>
@@ -8498,7 +8510,9 @@ does not get multiplied by horn */
 																					step={10}
 																					min={minimumNumberValue}
 																					max={maximumNumberValue}
-																					bind:value={inputNumberTranscendRawMultiplier}
+																					bind:value={
+																						inputNumberTranscendRawMultiplier
+																					}
 																					invalidText={invalidNumberValueText}
 																					label={'Transcend Raw Multiplier (1.13)'}
 																				/>
@@ -8509,7 +8523,9 @@ does not get multiplied by horn */
 																					step={10}
 																					min={minimumNumberValue}
 																					max={maximumNumberValue}
-																					bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
+																					bind:value={
+																						inputNumberRavientePowerSwordCrystalsMultiplier
+																					}
 																					invalidText={invalidNumberValueText}
 																					label={'Raviente Power Sword Crystals (1.2)'}
 																				/>
@@ -8530,7 +8546,9 @@ does not get multiplied by horn */
 																				</Tooltip>
 																				<Dropdown
 																					titleText="Distance Multiplier"
-																					bind:selectedId={inputCriticalDistanceMultiplier}
+																					bind:selectedId={
+																						inputCriticalDistanceMultiplier
+																					}
 																					items={[
 																						{
 																							id: '1.8x LBG & Bow Crit Distance',
@@ -8624,7 +8642,9 @@ does not get multiplied by horn */
 
 																			<Dropdown
 																				titleText="Bullet Modifier"
-																				bind:selectedId={inputBulletStrengthModifier}
+																				bind:selectedId={
+																					inputBulletStrengthModifier
+																				}
 																				items={[
 																					{
 																						id: 'None (1x)',
@@ -8718,14 +8738,18 @@ does not get multiplied by horn */
 																						step={10}
 																						min={minimumNumberValue}
 																						max={maximumNumberValue}
-																						bind:value={inputNumberCompressedShot}
+																						bind:value={
+																							inputNumberCompressedShot
+																						}
 																						invalidText={invalidNumberValueText}
 																						label={'Compressed Shot Count'}
 																					/>
 																				</div>
 																				<Dropdown
 																					titleText="Compressed Shot"
-																					bind:selectedId={inputCompressedShotMultiplier}
+																					bind:selectedId={
+																						inputCompressedShotMultiplier
+																					}
 																					items={[
 																						{
 																							id: 'Not Compressed (0x)',
@@ -8856,7 +8880,9 @@ does not get multiplied by horn */
 
 																					<Dropdown
 																						titleText="Bow Coatings Multiplier"
-																						bind:selectedId={inputBowCoatingsMultiplier}
+																						bind:selectedId={
+																							inputBowCoatingsMultiplier
+																						}
 																						items={[
 																							{
 																								id: 'None (1x)',
@@ -8875,7 +8901,9 @@ does not get multiplied by horn */
 																				</div>
 																				<Dropdown
 																					titleText="Bow Coatings Weapon Multiplier"
-																					bind:selectedId={inputBowCoatingsWeaponMultiplier}
+																					bind:selectedId={
+																						inputBowCoatingsWeaponMultiplier
+																					}
 																					items={[
 																						{
 																							id: 'Non-G Rank',
@@ -8889,7 +8917,9 @@ does not get multiplied by horn */
 																				/>
 																				<Dropdown
 																					titleText="Bow Coatings Armor Multiplier"
-																					bind:selectedId={inputBowCoatingsArmorMultiplier}
+																					bind:selectedId={
+																						inputBowCoatingsArmorMultiplier
+																					}
 																					items={[
 																						{ id: 'None', text: 'None' },
 																						{
@@ -8900,7 +8930,9 @@ does not get multiplied by horn */
 																				/>
 																				<Dropdown
 																					titleText="Bow Coatings Hiden Multiplier"
-																					bind:selectedId={inputBowCoatingsHidenMultiplier}
+																					bind:selectedId={
+																						inputBowCoatingsHidenMultiplier
+																					}
 																					items={[
 																						{ id: 'None', text: 'None' },
 																						{
@@ -8912,7 +8944,9 @@ does not get multiplied by horn */
 
 																				<Dropdown
 																					titleText="Bow Charge Multiplier"
-																					bind:selectedId={inputBowChargeMultiplier}
+																					bind:selectedId={
+																						inputBowChargeMultiplier
+																					}
 																					items={[
 																						{
 																							id: 'Lv1 (0.4x / 0.7x)',
@@ -8993,7 +9027,9 @@ does not get multiplied by horn */
 																		{#if inputWeaponType === 'Heavy Bowgun'}
 																			<Dropdown
 																				titleText="Compressed Element Shot"
-																				bind:selectedId={inputCompressedElementShot}
+																				bind:selectedId={
+																					inputCompressedElementShot
+																				}
 																				items={[
 																					{
 																						id: 'Not Compressed',
@@ -9045,7 +9081,9 @@ does not get multiplied by horn */
 																					step={10}
 																					min={minimumNumberValue}
 																					max={maximumNumberValue}
-																					bind:value={inputNumberCompressedElementShot}
+																					bind:value={
+																						inputNumberCompressedElementShot
+																					}
 																					invalidText={invalidNumberValueText}
 																					label={'Compressed Element Shot Count'}
 																				/>
@@ -9134,7 +9172,9 @@ does not get multiplied by horn */
 																				step={10}
 																				min={minimumNumberValue}
 																				max={maximumNumberValue}
-																				bind:value={inputNumberElementalValueReplacement}
+																				bind:value={
+																					inputNumberElementalValueReplacement
+																				}
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
 																			>
@@ -9199,7 +9239,9 @@ does not get multiplied by horn */
 																				step={1}
 																				min={minimumNumberValue}
 																				max={15}
-																				bind:value={inputNumberZenithElementSigil}
+																				bind:value={
+																					inputNumberZenithElementSigil
+																				}
 																				invalidText={invalidNumberValueText}
 																				label={'Zenith Element Sigil'}
 																			/>
@@ -9230,7 +9272,9 @@ does not get multiplied by horn */
 
 																		<Dropdown
 																			titleText="Weapon Multipliers"
-																			bind:selectedId={inputWeaponElementMultipliers}
+																			bind:selectedId={
+																				inputWeaponElementMultipliers
+																			}
 																			items={[
 																				{ id: 'None (1x)', text: 'None (1x)' },
 																				{
@@ -9355,7 +9399,9 @@ does not get multiplied by horn */
 																		{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
 																			<Dropdown
 																				titleText="Monster Rank Band"
-																				bind:selectedId={selectedMonsterRankBand}
+																				bind:selectedId={
+																					selectedMonsterRankBand
+																				}
 																				items={availableRankBands}
 																			/>
 
@@ -9656,7 +9702,9 @@ does not get multiplied by horn */
 
 																		<Dropdown
 																			titleText="Precision / Sniper / Crit S."
-																			bind:selectedId={inputPrecisionSniperCritS}
+																			bind:selectedId={
+																				inputPrecisionSniperCritS
+																			}
 																			items={[
 																				{ id: 'None', text: 'None' },
 																				{
@@ -9780,7 +9828,9 @@ does not get multiplied by horn */
 																			inputNumberDivaPrayerGemGreenLevel +
 																			inputNumberDivaPrayerGemBlueLevel >
 																			7}
-																		bind:value={inputNumberDivaPrayerGemRedLevel}
+																		bind:value={
+																			inputNumberDivaPrayerGemRedLevel
+																		}
 																		invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel} and all gem levels must not surpass 7.`}
 																		label={'Diva Prayer Gem Red Level'}
 																		disabled={inputDivaPrayerGemRedName ===
@@ -9848,7 +9898,9 @@ does not get multiplied by horn */
 																			inputNumberDivaPrayerGemGreenLevel +
 																			inputNumberDivaPrayerGemBlueLevel >
 																			7}
-																		bind:value={inputNumberDivaPrayerGemYellowLevel}
+																		bind:value={
+																			inputNumberDivaPrayerGemYellowLevel
+																		}
 																		invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel} and all gem levels must not surpass 7.`}
 																		label={'Diva Prayer Gem Yellow Level'}
 																		disabled={inputDivaPrayerGemYellowName ===
@@ -9913,7 +9965,9 @@ does not get multiplied by horn */
 																			inputNumberDivaPrayerGemBlueLevel >
 																			7}
 																		bind:max={outputDivaPrayerGemGreenMaxLevel}
-																		bind:value={inputNumberDivaPrayerGemGreenLevel}
+																		bind:value={
+																			inputNumberDivaPrayerGemGreenLevel
+																		}
 																		invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel} and all gem levels must not surpass 7.`}
 																		label={'Diva Prayer Gem Green Level'}
 																		disabled={inputDivaPrayerGemGreenName ===
@@ -9975,7 +10029,9 @@ does not get multiplied by horn */
 																			inputNumberDivaPrayerGemGreenLevel +
 																			inputNumberDivaPrayerGemBlueLevel >
 																			7}
-																		bind:value={inputNumberDivaPrayerGemBlueLevel}
+																		bind:value={
+																			inputNumberDivaPrayerGemBlueLevel
+																		}
 																		invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel} and all gem levels must not surpass 7.`}
 																		label={'Diva Prayer Gem Blue Level'}
 																		disabled={inputDivaPrayerGemBlueName ===
@@ -9997,8 +10053,7 @@ does not get multiplied by horn */
 											</TabContent>
 											<TabContent>
 												<div class="container-tab-content">
-													<MyMissionTicketsCalculator
-													/>
+													<MyMissionTicketsCalculator />
 												</div>
 											</TabContent>
 											<TabContent>
@@ -10094,7 +10149,7 @@ does not get multiplied by horn */
 																		damage output you do in the game with total
 																		accuracy. In order to track and report
 																		damage testing, you can check <OutboundLink
-																			href="https://github.com/DorielRivalet/wycademy/issues/360"
+																			href="https://github.com/Open-Frontiers/wycademy/issues/360"
 																			>the pinned issue in the repository</OutboundLink
 																		>.
 																	</p>
@@ -11219,7 +11274,9 @@ does not get multiplied by horn */
 																				step={1}
 																				min={1}
 																				max={20}
-																				bind:value={legacyCalculatorSaveSlotNumber}
+																				bind:value={
+																					legacyCalculatorSaveSlotNumber
+																				}
 																				invalidText={'Value must be between 1 and 20.'}
 																				label={'Legacy Calculator Save Slot Number'}
 																			/>
@@ -11271,7 +11328,9 @@ does not get multiplied by horn */
 														<span>
 															<Toggle
 																labelText="Order"
-																bind:toggled={damageCalculatorHistoryLogsOrderReversed}
+																bind:toggled={
+																	damageCalculatorHistoryLogsOrderReversed
+																}
 																labelA={'Oldest'}
 																labelB="Newest"
 															/></span
@@ -11462,12 +11521,16 @@ does not get multiplied by horn */
 																	</Dropdown>
 																	<Dropdown
 																		titleText="Section"
-																		bind:selectedId={inputWeaponMotionValuesSection}
+																		bind:selectedId={
+																			inputWeaponMotionValuesSection
+																		}
 																		items={weaponSectionNames}
 																	/>
 																	<Dropdown
 																		titleText="Style"
-																		bind:selectedId={inputWeaponMotionValuesSectionStyle}
+																		bind:selectedId={
+																			inputWeaponMotionValuesSectionStyle
+																		}
 																		items={[
 																			{
 																				id: 'Earth Style',

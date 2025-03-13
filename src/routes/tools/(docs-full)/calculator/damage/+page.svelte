@@ -6606,7 +6606,7 @@ does not get multiplied by horn */
 						This damage calculator may not reflect the damage output you do in
 						the game with total accuracy. In order to track and report damage
 						testing, you can check <OutboundLink
-							href="https://github.com/DorielRivalet/wycademy/issues/360"
+							href="https://github.com/Open-Frontiers/wycademy/issues/360"
 							>the pinned issue in the repository</OutboundLink
 						>.
 					</div></AccordionItem
@@ -8338,7 +8338,9 @@ does not get multiplied by horn */
 															step={10}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
-															bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
+															bind:value={
+																inputNumberRavientePowerSwordCrystalsMultiplier
+															}
 															invalidText={invalidNumberValueText}
 															label={'Raviente Power Sword Crystals (1.2)'}
 														/>

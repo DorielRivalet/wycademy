@@ -679,7 +679,7 @@
 					If the upload process fails, please retry at a later time. Make sure
 					to keep this page focused while uploading to avoid potential errors.
 					If the issue persists, you can <OutboundLink
-						href="https://github.com/DorielRivalet/wycademy/issues/new?assignees=DorielRivalet&labels=bug&projects=&template=BUG-REPORT.yml&title=%5BBUG%5D+-+title"
+						href="https://github.com/Open-Frontiers/wycademy/issues/new?assignees=DorielRivalet&labels=bug&projects=&template=BUG-REPORT.yml&title=%5BBUG%5D+-+title"
 						>submit a bug report.</OutboundLink
 					>
 				</div>
@@ -801,7 +801,9 @@
 													<ToolbarSearch
 														shouldFilterRows
 														value=""
-														bind:filteredRowIds={personalBestsTableFilteredRowIds}
+														bind:filteredRowIds={
+															personalBestsTableFilteredRowIds
+														}
 													/>
 												</div>
 											</Toolbar>
