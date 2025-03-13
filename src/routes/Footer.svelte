@@ -44,12 +44,6 @@
 			<div class="banner-text">
 				<p>A compendium of resources for MHF-Z by</p>
 				<span class="icon-info-container">
-					<img
-						class="rounded-image"
-						src={authorImage}
-						width="32"
-						alt="Author"
-					/>
 					<OutboundLink href={constant.authorUrl}
 						>{constant.authorName}.</OutboundLink
 					>
@@ -128,7 +122,6 @@
 
 	<div class="footer-bottom">
 		<div class="icon-info-container">
-			<img class="rounded-image" src={authorImage} width="32" alt="Author" />
 			<OutboundLink href={constant.authorUrl}
 				>{constant.authorName} &copy {new Date().getUTCFullYear()}</OutboundLink
 			>
@@ -153,7 +146,7 @@
 			</span>
 		</div>
 		<OutboundLink
-			href="https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md"
+			href="https://github.com/Open-Frontiers/wycademy/blob/main/LICENSE.md"
 		>
 			Code licensed {constant.license}</OutboundLink
 		>

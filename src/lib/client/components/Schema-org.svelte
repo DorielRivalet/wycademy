@@ -58,13 +58,14 @@ SOFTWARE.
 			],
 			accessibilityHazard: ['unknown'],
 			acquireLicensePage:
-				'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
+				'https://github.com/Open-Frontiers/wycademy/blob/main/LICENSE.md',
 			alternativeHeadline: 'wycademy',
 			audience: {
 				'@type': 'Audience',
 				name: 'Gamers',
 			},
-			license: 'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
+			license:
+				'https://github.com/Open-Frontiers/wycademy/blob/main/LICENSE.md',
 			alternateName: 'wycademy',
 			name: mainEntity.name,
 			sameAs: 'https://wycademy.vercel.app',

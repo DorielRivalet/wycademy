@@ -162,7 +162,7 @@ export const load: LayoutLoad = async ({
 		console.log('Fetching GitHub data for path:', githubPath);
 
 		const res = await fetch(
-			`https://api.github.com/repos/DorielRivalet/wycademy/commits?path=${githubPath}`,
+			`https://api.github.com/repos/Open-Frontiers/wycademy/commits?path=${githubPath}`,
 		);
 
 		// Prepare headers object

@@ -5,10 +5,10 @@
  */
 
 export const projectName = 'Wycademy';
-export const authorName = 'Doriel Rivalet';
+export const authorName = 'Open Frontiers';
 export const description = `A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by ${authorName}`;
-export const authorUrl = 'https://github.com/DorielRivalet';
-export const projectGitHub = 'https://github.com/DorielRivalet/wycademy';
+export const authorUrl = 'https://github.com/Open-Frontiers';
+export const projectGitHub = 'https://github.com/Open-Frontiers/wycademy';
 export const developmentStage = 'alpha';
 export const appVersion = '0.5.0';
 export const website = 'https://wycademy.vercel.app';

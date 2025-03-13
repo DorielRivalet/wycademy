@@ -17,7 +17,7 @@
 		</div>
 		<div class="spaced-paragraph">
 			If you have feedback, bug reports, or ideas, feel free to <OutboundLink
-				href="https://github.com/DorielRivalet/wycademy/issues"
+				href="https://github.com/Open-Frontiers/wycademy/issues"
 				>open an issue on GitHub.</OutboundLink
 			>
 		</div>

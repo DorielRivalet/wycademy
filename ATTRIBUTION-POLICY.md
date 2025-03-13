@@ -39,13 +39,13 @@ Many assets within Wycademy have been created or modified by the community. Thes
 - Contributors must be credited for their work in [our credits document](./CREDITS.md) with links to their original sources when applicable.
 - If an asset is inspired by another, but significantly transformed, it will be marked as a **derivative work** and credit will be given accordingly.
 - If an asset is nearly identical to an original work, it must have explicit permission from the original artist.
-- When incorporating content from external sources, we strive to verify the original creator. If you believe an attribution is incorrect, please [contact us](https://github.com/DorielRivalet/wycademy/issues), and we will investigate and correct it as needed.
+- When incorporating content from external sources, we strive to verify the original creator. If you believe an attribution is incorrect, please [contact us](https://github.com/Open-Frontiers/wycademy/issues), and we will investigate and correct it as needed.
 - If a creator informs us that their work was misattributed, we will review the claim and update the credits accordingly. If a dispute arises, we will act in good faith to resolve it fairly.
 - If an asset is no longer used in the project, its attribution is retained but updated to indicate it was previously included.
 
 ### **Request for Attribution or Removal**
 
-- If you are an artist and believe your work has been used without proper credit, [please contact us](https://github.com/DorielRivalet/wycademy/issues).
+- If you are an artist and believe your work has been used without proper credit, [please contact us](https://github.com/Open-Frontiers/wycademy/issues).
 - If you wish for your work to be removed, please provide proof of authorship, and we will take appropriate action.
 
 ## **4. Wycademy Original Work**
@@ -91,7 +91,7 @@ To prevent misattributions and ensure compliance:
 - We will verify sources before attribution to avoid miscrediting intermediaries.
 - We will provide clear documentation for all attributions and licenses used on Wycademy.
 
-For inquiries about attribution or permissions, please [contact us](https://github.com/DorielRivalet/wycademy/issues).
+For inquiries about attribution or permissions, please [contact us](https://github.com/Open-Frontiers/wycademy/issues).
 
 ## **9. Updates & Policy Changes**
 
