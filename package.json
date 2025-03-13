@@ -59,7 +59,7 @@
 		"@svelte-put/shortcut": "^4.1.0",
 		"@sveltejs/adapter-vercel": "^5.6.3",
 		"@sveltejs/kit": "^2.9.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.1",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/cookie": "^0.6.0",
 		"@typescript-eslint/eslint-plugin": "^8.26.0",
 		"@typescript-eslint/parser": "^8.26.1",
