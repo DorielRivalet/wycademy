@@ -868,12 +868,12 @@ export const guidesInfo: CategoryInfo[] = [
 			// 	link: '/hunter-notes/locations/my-support',
 			// 	image: LocationIcons.find((e) => e.name === 'My Support')?.icon,
 			// },
-			{
-				name: 'My Tore',
-				description: 'List of various options available in My Tore.',
-				link: '/hunter-notes/locations/my-tore',
-				image: LocationIcons.find((e) => e.name === 'My Tore')?.icon,
-			},
+			// {
+			// 	name: 'My Tore',
+			// 	description: 'List of various options available in My Tore.',
+			// 	link: '/hunter-notes/locations/my-tore',
+			// 	image: LocationIcons.find((e) => e.name === 'My Tore')?.icon,
+			// },
 			{
 				name: 'Rasta Bar',
 				description: 'List of various options available in the Rasta Bar.',
