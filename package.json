@@ -90,7 +90,7 @@
 		"sass": "^1.85.1",
 		"satori": "^0.12.1",
 		"satori-html": "^0.3.2",
-		"shiki": "^3.1.0",
+		"shiki": "^3.2.1",
 		"supabase": "^2.19.6",
 		"svelte": "^5.9.0",
 		"svelte-awesome-color-picker": "^3.1.4",
