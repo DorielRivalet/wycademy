@@ -133,7 +133,7 @@
 		"@vercel/analytics": "^1.5.0",
 		"@vercel/og": "^0.6.5",
 		"@xyflow/svelte": "^0.1.31",
-		"@zip.js/zip.js": "^2.7.54",
+		"@zip.js/zip.js": "^2.7.57",
 		"alex": "^11.0.1",
 		"better-sqlite3": "^11.8.1",
 		"countries-list": "^3.1.1",
