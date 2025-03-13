@@ -6436,6 +6436,98 @@ does not get multiplied by horn */
 			legacy: false,
 		},
 	];
+
+	const seeAlsoList: { text: string; href: string }[] = [
+		{
+			text: 'Weapon Styles Usability Ratings',
+			href: '/hunter-notes/getting-started/style-rank#weapon-styles',
+		},
+		{
+			text: 'Style Rank Skills',
+			href: '/hunter-notes/getting-started/style-rank#style-rank-skills',
+		},
+		{
+			text: 'Style Rank Stats',
+			href: '/hunter-notes/getting-started/style-rank#style-rank-stats',
+		},
+		{
+			text: 'Attack Ceiling',
+			href: '/hunter-notes/getting-started/style-rank#attack-ceiling',
+		},
+		{
+			text: 'Weapon Tech Skills',
+			href: '/hunter-notes/getting-started/style-rank#weapon-tech-skills',
+		},
+		{ text: 'Elements', href: '/hunter-notes/getting-started/elements' },
+		{
+			text: 'Monster Status Immunities',
+			href: '/hunter-notes/getting-started/ailments#monster-status-immunities',
+		},
+		{
+			text: 'Transcend Bursts',
+			href: '/hunter-notes/getting-started/transcend#elemental-bursts',
+		},
+		{ text: 'Monsters', href: '/hunter-notes/monsters/overview' },
+		{
+			text: 'Weapon Multipliers',
+			href: '/hunter-notes/weapons/overview#weapon-multipliers',
+		},
+		{
+			text: 'Sharpness Multipliers and Tables',
+			href: '/hunter-notes/weapons/overview#sharpness',
+		},
+		{ text: 'Sigil Recipes', href: '/hunter-notes/weapons/sigils#recipes' },
+		{ text: 'Sigil Skills', href: '/hunter-notes/weapons/sigils#skills' },
+		{
+			text: 'Critical Distance',
+			href: '/hunter-notes/weapons/critical-distance',
+		},
+		{ text: 'Active Feature', href: '/hunter-notes/weapons/active-feature' },
+		{ text: 'Tower Weapons', href: '/hunter-notes/weapons/tower' },
+		{ text: 'Skill Slots', href: '/hunter-notes/armor/skills#skill-slots' },
+		{
+			text: 'Skill Priority',
+			href: '/hunter-notes/armor/skills#skill-priority',
+		},
+		{ text: 'Guild Food', href: '/hunter-notes/locations/guild-hall#recipes' },
+		{
+			text: 'Guild Poogies',
+			href: '/hunter-notes/locations/guild-hall#guild-poogie-skills',
+		},
+		{
+			text: 'Recommended Bento',
+			href: '/hunter-notes/locations/bento#recommended-bento',
+		},
+		{
+			text: 'Caravan Skills',
+			href: '/hunter-notes/locations/caravan#caravan-skills',
+		},
+		{
+			text: 'Diva Prayer Gems',
+			href: '/hunter-notes/events/diva-defense#diva-prayer-gems',
+		},
+		{ text: 'Ice Age Calculator', href: '/tools/calculator/ice-age' },
+		{
+			text: 'Crit Conversion Calculator',
+			href: '/tools/calculator/crit-conversion',
+		},
+		// {
+		// 	text: 'Gunlance Shells & Wyvernfire Calculator',
+		// 	href: '/tools/calculator/gunlance-shells-and-wyvernfire',
+		// },
+		// {
+		// 	text: 'Heavy Bowgun Heat Beam Calculator',
+		// 	href: '/tools/calculator/heavy-bowgun-heat-beam',
+		// },
+		{ text: 'Sigils Calculator', href: '/tools/calculator/sigil' },
+		{ text: 'Tower Weapon Simulator', href: '/tools/simulator/tower-weapon' },
+		{ text: 'Sigils Simulator', href: '/tools/simulator/sigil' },
+		{
+			text: 'Partner Skills Simulator',
+			href: '/tools/simulator/partner-skills',
+		},
+		{ text: 'mhfz-overlay', href: '/overlay' },
+	];
 </script>
 
 <Modal
@@ -11156,134 +11248,11 @@ does not get multiplied by horn */
 				<SectionHeading level={2} title="See also" />
 				<div>
 					<UnorderedList class="spaced-list">
-						<ListItem>
-							<Link
-								href="/hunter-notes/getting-started/style-rank#weapon-styles"
-								>Weapon Styles Usability Ratings</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/style-rank#style-rank-skills"
-								>Style Rank Skills</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/style-rank#style-rank-stats"
-								>Style Rank Stats</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/style-rank#attack-ceiling"
-								>Attack Ceiling</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/style-rank#weapon-tech-skills"
-								>Weapon Tech Skills</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/getting-started/elements">Elements</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/ailments#monster-status-immunities"
-								>Monster Status Immunities</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/getting-started/transcend#elemental-bursts"
-								>Transcend Bursts</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/monsters/overview">Monsters</Link>
-						</ListItem>
-						<ListItem>
-							<Link href="/hunter-notes/weapons/overview#weapon-multipliers"
-								>Weapon Multipliers</Link
-							>
-						</ListItem>
-						<ListItem>
-							<Link href="/hunter-notes/weapons/overview#sharpness"
-								>Sharpness Multipliers and Tables</Link
-							>
-						</ListItem>
-						<ListItem>
-							<Link href="/hunter-notes/weapons/sigils#recipes"
-								>Sigil Recipes</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/weapons/sigils#skills"
-								>Sigil Skills</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/weapons/critical-distance"
-								>Critical Distance</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/weapons/active-feature"
-								>Active Feature</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/weapons/tower">Tower Weapons</Link>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/armor/skills#skill-slots"
-								>Skill Slots</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/armor/skills#skill-priority"
-								>Skill Priority</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/locations/guild-hall#recipes"
-								>Guild Food</Link
-							>
-						</ListItem><ListItem>
-							<Link
-								href="/hunter-notes/locations/guild-hall#guild-poogie-skills"
-								>Guild Poogies</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/locations/bento#recommended-bento"
-								>Recommended Bento</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/locations/caravan#caravan-skills"
-								>Caravan Skills</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/hunter-notes/events/diva-defense#diva-prayer-gems"
-								>Diva Prayer Gems</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/tools/calculator/ice-age">Ice Age Calculator</Link>
-						</ListItem><ListItem>
-							<Link href="/tools/calculator/crit-conversion"
-								>Crit Conversion Calculator</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/tools/calculator/gunlance-shells-and-wyvernfire"
-								>Gunlance Shells & Wyvernfire Calculator</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/tools/calculator/heavy-bowgun-heat-beam"
-								>Heavy Bowgun Heat Beam Calculator</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/tools/calculator/sigil">Sigils Calculator</Link>
-						</ListItem><ListItem>
-							<Link href="/tools/simulator/tower-weapon"
-								>Tower Weapon Simulator</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/tools/simulator/sigil">Sigils Simulator</Link>
-						</ListItem>
-						<ListItem>
-							<Link href="/tools/simulator/partner-skills"
-								>Partner Skills Simulator</Link
-							>
-						</ListItem><ListItem>
-							<Link href="/overlay">mhfz-overlay</Link>
-						</ListItem>
+						{#each seeAlsoList as item}
+							<ListItem>
+								<Link href={item.href}>{item.text}</Link>
+							</ListItem>
+						{/each}
 					</UnorderedList>
 				</div>
 			</section>
