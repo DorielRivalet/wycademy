@@ -58,9 +58,6 @@
 			<Banner theme={$carbonThemeStore} />
 		</div>
 		<div class="banner-border"></div>
-	</div>
-
-	<nav class="right">
 		<ul>
 			{#if $breakpointLargerThanMedium}
 				<div class="container-link">
@@ -101,7 +98,9 @@
 				</div> -->
 			{/if}
 		</ul>
+	</div>
 
+	<nav class="right">
 		<div class="container-header-action">
 			<WycademySearch />
 		</div>
@@ -192,11 +191,11 @@
 		height: 50%;
 		display: flex;
 		transform: translateY(50%);
+		margin-right: 1rem;
 	}
 
 	.container-link {
-		padding-left: var(--cds-spacing-05);
-		padding-right: var(--cds-spacing-05);
+		padding: 0px;
 	}
 
 	.container-header-action {
