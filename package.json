@@ -66,7 +66,7 @@
 		"@vite-pwa/sveltekit": "^0.6.6",
 		"ag-grid-community": "^33.1.1",
 		"autoprefixer": "^10.4.20",
-		"carbon-components-svelte": "^0.86.2",
+		"carbon-components-svelte": "^0.88.1",
 		"carbon-icons-svelte": "^12.13.0",
 		"carbon-pictograms-svelte": "^13.3.0",
 		"carbon-preprocess-svelte": "^0.11.11",
