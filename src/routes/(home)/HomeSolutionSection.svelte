@@ -89,7 +89,7 @@
 		<img src={EmoteFriend} alt="Friend Emote" />
 		<div class="description paragraph-long-02">
 			Our platform is more than a website—it's a community-driven, <OutboundLink
-				href="https://github.com/Open-Frontiers/wycademy"
+				href="https://github.com/DorielRivalet/wycademy"
 				>open-source project</OutboundLink
 			> created to be the definitive knowledge base for <InlineTooltip
 				icon={getGameIcon('Monster Hunter Frontier Z')}

@@ -13,7 +13,7 @@
 	],
 	"homepage": "https://wycademy.vercel.app",
 	"bugs": {
-		"url": "https://github.com/Open-Frontiers/wycademy/issues"
+		"url": "https://github.com/DorielRivalet/wycademy/issues"
 	},
 	"author": {
 		"url": "https://github.com/DorielRivalet",
@@ -21,7 +21,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Open-Frontiers/wycademy.git"
+		"url": "https://github.com/DorielRivalet/wycademy.git"
 	},
 	"scripts": {
 		"svelte-check": "svelte-check",

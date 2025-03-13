@@ -170,7 +170,7 @@
 					<div>
 						<p class="spaced-paragraph">
 							As shown in our <OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy?tab=MIT-1-ov-file"
+								href="https://github.com/DorielRivalet/wycademy?tab=MIT-1-ov-file"
 								>GitHub repository:</OutboundLink
 							>
 						</p>
@@ -298,7 +298,7 @@
 							We respect the work of all artists and contributors. If you
 							believe an asset needs proper attribution or removal, please
 							<OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy/issues"
+								href="https://github.com/DorielRivalet/wycademy/issues"
 								>contact us</OutboundLink
 							> with details, and we’ll review it promptly.
 						</p>
@@ -316,12 +316,12 @@
 						<div class="spaced-paragraph">
 							If you believe any content on this website violates copyright law,
 							please submit a report via our <OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy/issues"
+								href="https://github.com/DorielRivalet/wycademy/issues"
 								>GitHub issue tracker</OutboundLink
 							>. If you have any claims or issues related to copyright
 							infringement or other intellectual property concerns regarding
 							content on this website, please direct them to us for resolution <OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy/issues"
+								href="https://github.com/DorielRivalet/wycademy/issues"
 								>in our GitHub issue tracker</OutboundLink
 							>.
 							<strong
@@ -383,7 +383,7 @@
 						</p>
 						<p>
 							You can find credit information and acknowledgements in <OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy?tab=readme-ov-file#acknowledgements"
+								href="https://github.com/DorielRivalet/wycademy?tab=readme-ov-file#acknowledgements"
 								>our GitHub respository's README file.</OutboundLink
 							>. We also insert license text in the source code at the top of
 							files where applicable.
@@ -608,7 +608,7 @@
 									in such matters is unproductive and contrary to professional
 									conduct. If you have any issues or concerns, reach out to us
 									through <OutboundLink
-										href="https://github.com/Open-Frontiers/wycademy/issues"
+										href="https://github.com/DorielRivalet/wycademy/issues"
 										>GitHub's issue tracker.</OutboundLink
 									>
 								</p></ListItem

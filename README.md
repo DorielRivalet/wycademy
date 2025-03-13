@@ -10,11 +10,11 @@ A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
 We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can submit your feedback on the website.
 
-If you have found bugs, or want to suggest a new feature in the website, you can also submit an issue in [our GitHub issue tracker.](https://github.com/Open-Frontiers/wycademy/issues)
+If you have found bugs, or want to suggest a new feature in the website, you can also submit an issue in [our GitHub issue tracker.](https://github.com/DorielRivalet/wycademy/issues)
 
 ## License
 
-[MIT](https://github.com/Open-Frontiers/wycademy/blob/main/LICENSE.md).
+[MIT](https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md).
 
 ## Acknowledgements
 
@@ -29,7 +29,7 @@ If you have found bugs, or want to suggest a new feature in the website, you can
 - **All other images are either official CAPCOM assets used under fair use, based on official CAPCOM assets, or are original creations made for Wycademy.**
 - **Gear data (weapons, armor, decorations, sigils, etc.), Monster data (hitzones, elements, ailments, etc.), Items data, and other general game information are based on the work of [S.A.](https://x.com/PoisonBake2) ([Website](http://ferias.life.coocan.jp/), also known as Ferias), [Yuuburo's blog](https://yuuburo.blog.jp/), [hiroaki362](https://x.com/hiroaki362) ([MHSX2G](https://hiroaki362.hatenablog.com/entry/2019/07/28/175411)) ([Website](https://www.byuwa.com/)) and contributions from the [Monster Hunter Wiki](https://monsterhunter.fandom.com/wiki/Monster_Hunter_Frontier), [Monster Hunter Encyclopedia Wiki JP](https://wikiwiki.jp/nenaiko/) and [atwiki](https://w.atwiki.jp/giurasu/) communities.**
 
-**Wycademy is committed to proper attribution and respect for intellectual property. Our [copyright page](https://wycademy.vercel.app/support/policies/copyright) details our policies, and any concerns can be submitted via our [GitHub issue tracker](https://github.com/Open-Frontiers/wycademy/issues). We're always open to good-faith discussions and making corrections where needed.**
+**Wycademy is committed to proper attribution and respect for intellectual property. Our [copyright page](https://wycademy.vercel.app/support/policies/copyright) details our policies, and any concerns can be submitted via our [GitHub issue tracker](https://github.com/DorielRivalet/wycademy/issues). We're always open to good-faith discussions and making corrections where needed.**
 
 ### Attribution
 

@@ -146,7 +146,7 @@
 			</span>
 		</div>
 		<OutboundLink
-			href="https://github.com/Open-Frontiers/wycademy/blob/main/LICENSE.md"
+			href="https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md"
 		>
 			Code licensed {constant.license}</OutboundLink
 		>

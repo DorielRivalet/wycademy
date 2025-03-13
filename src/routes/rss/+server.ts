@@ -46,7 +46,7 @@ const render = (
 <category>Videogames</category>
 <copyright>2024 Doriel Rivalet. Code licensed MIT.</copyright>
 <image>
-  <url>https://raw.githubusercontent.com/Open-Frontiers/wycademy/main/src/lib/client/images/logo.png</url>
+  <url>https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png</url>
   <title>Wycademy</title>
   <link>https://wycademy.vercel.app</link>
 </image>

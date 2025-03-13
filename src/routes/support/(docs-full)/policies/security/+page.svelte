@@ -120,7 +120,7 @@
 							<strong>Community Feedback:</strong> We invite feedback from the
 							community to ensure that Wycademy remains a safe and reliable
 							platform. If you spot an issue or potential vulnerability, <OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy/issues"
+								href="https://github.com/DorielRivalet/wycademy/issues"
 								>we’d love to hear from you.</OutboundLink
 							>
 						</div></ListItem
@@ -171,7 +171,7 @@
 							discover a vulnerability or have concerns about our site’s
 							security, please report it responsibly
 							<OutboundLink
-								href="https://github.com/Open-Frontiers/wycademy/issues"
+								href="https://github.com/DorielRivalet/wycademy/issues"
 								>via GitHub Issues.</OutboundLink
 							>
 						</p>
@@ -233,7 +233,7 @@
 				<div class="spaced-paragraph">
 					If you have any questions about security on Wycademy, want to report
 					an issue, or just want to learn more about our practices, please <OutboundLink
-						href="https://github.com/Open-Frontiers/wycademy/issues"
+						href="https://github.com/DorielRivalet/wycademy/issues"
 						>reach out to us.</OutboundLink
 					>
 				</div>

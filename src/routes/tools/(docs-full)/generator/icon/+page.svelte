@@ -310,7 +310,7 @@
 		</p>
 		<div class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
-				href="https://github.com/Open-Frontiers/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
+				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
 				>repository</OutboundLink
 			>.
 		</div>
@@ -456,7 +456,7 @@
 			<div>
 				<p>
 					You can find a list of attributions <OutboundLink
-						href="https://github.com/Open-Frontiers/wycademy"
+						href="https://github.com/DorielRivalet/wycademy"
 						>in our README.</OutboundLink
 					>
 				</p>
