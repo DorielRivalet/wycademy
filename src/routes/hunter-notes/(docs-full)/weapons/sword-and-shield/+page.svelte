@@ -552,7 +552,7 @@
 									icon={getLocationIcon('Transcend')}
 								/> burst to any element by utilizing the <InlineTooltip
 									tooltip="Item"
-									text="sword crystal"
+									text="Sword Crystal"
 									iconType="component"
 									icon={getItemIcon('Sword Crystal')}
 								/> compatibility from the Hiden skill.
