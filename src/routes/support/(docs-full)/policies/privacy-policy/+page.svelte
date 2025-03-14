@@ -15,298 +15,87 @@
 	<div>
 		<SectionHeadingTopLevel title={'Privacy Policy'} />
 		<p class="spaced-paragraph">
-			<strong>Last updated: {termsDates.privacyPolicy}</strong>
+			<strong>Effective Date: {termsDates.privacyPolicy}</strong>
 		</p>
 		<p class="spaced-paragraph">
-			This Privacy Policy describes how Wycademy collects, uses, and discloses
-			information, and what choices you have with respect to that information.
-		</p>
-		<SectionHeading level={2} title="Application of this Privacy Policy" />
-		<p class="spaced-paragraph">
-			This Privacy Policy applies to all websites, Internet properties,
-			applications, and accounts operated by Wycademy. This includes all
-			websites, applications, accounts, and services owned or operated by
-			Wycademy (collectively, the "Services").
-		</p>
-		<p class="spaced-paragraph">
-			This Privacy Policy applies to all Users of the Services, where “User” is
-			defined as anyone who accesses the Website, regardless of subscription
-			status or lack thereof.
-		</p>
-		<p class="spaced-paragraph">
-			Please refer to our Terms of Use (the "Terms") for additional information
-			regarding your use of the Website and the Services provided by Wycademy.
-		</p>
-		<p class="spaced-paragraph">
-			By accessing the Website or using the Services, you acknowledge that you
-			have read, understand, and accept this Privacy Policy and the Terms. For
-			Users who access the Website without signing in, we reserve the right to
-			collect and process Service Usage Data that may be used for legitimate
-			interests of Wycademy. For Users who create an account with Wycademy,
-			including paying subscribers, you may consent to the collection and
-			processing of your data by agreeing to the Customer Agreement presented
-			during the sign up process.
+			Wycademy values your privacy and is committed to protecting your personal
+			data. This Privacy Policy outlines how we collect, use, and safeguard your
+			information.
 		</p>
 
 		<SectionHeading level={2} title="Information We Collect and Receive" />
-		<p class="spaced-paragraph">
-			We collect data in three different categories:
-		</p>
-		<p class="spaced-paragraph">
-			Website Information. We collect certain categories of information from all
-			users of our website.
-		</p>
+		<p class="spaced-paragraph">We collect the following types of data:</p>
 		<UnorderedList class="spaced-list">
 			<ListItem
 				><p>
-					<strong>Service usage data.</strong> With the help of third parties like
-					Vercel Web Analytics we automatically collect visitor usage data. This
-					may include your IP address, location, device and browser type, demographic
-					information, or similar information, as well as a record of the pages or
-					screens you visit. This data is anonymized and not connected to your specific
-					account. Vercel Web Analytics provides privacy-friendly insights into website
-					traffic, allowing Wycademy to track page views, user demographics, and
-					custom events without using cookies. Instead of relying on cookies like
-					many analytics products, visitors are identified by a hash created from
-					the incoming request. Using a generated hash provides a privacy-friendly
-					experience for Wycademy's visitors and means visitors can't be tracked
-					between different days or different websites.
+					<strong>Account Information: </strong> When you sign up via Discord OAuth,
+					we receive your username, user ID, and avatar.
 				</p></ListItem
 			><ListItem
 				><p>
-					<strong>Service logs.</strong> As with most websites and applications,
-					our services automatically collect information when you access the Service.
-					This log data may include your IP address, the address or location of the
-					requested web page, your browser type and settings, the date and time of
-					the event, and data from your user session (such as your session identifier).
+					<strong>User Contributions:</strong> Content you submit, such as speedrun
+					data, comments, or guides.
 				</p></ListItem
 			><ListItem
 				><p>
-					<strong>Email communications.</strong> For users who choose to send us
-					email (such as for customer service, media or business development inquiries,
-					or other purposes), we retain a record of the conversation including your
-					email address and messages.
-				</p></ListItem
-			><ListItem
-				><p>
-					<strong>Chat and social media messages.</strong> For users who interact
-					with us on social media or chat services (like YouTube, Twitter or Discord,
-					respectively), we may retain a record of those communications including
-					your service identity and messages.
+					<strong>Technical Information:</strong> We may collect limited technical
+					data (e.g., browser type, IP address) for security and performance monitoring.
 				</p></ListItem
 			>
 		</UnorderedList>
-		<p class="spaced-paragraph">
-			User information. For visitors who use our Services, we may collect the
-			following information. None of this information is collected
-			automatically, you must choose to provide it.
-		</p>
-		<UnorderedList class="spaced-list">
-			<ListItem
-				><p>
-					<strong>Email addresses.</strong> Users may choose to provide their email
-					address, which we store on our servers.
-				</p></ListItem
-			><ListItem
-				><p>
-					<strong>Third party accounts.</strong> Users may choose to link third party
-					accounts like Steam, Battle.net, Twitch, Discord, Twitter, etc. In this
-					case, we store the identities and related metadata for those third party
-					accounts, which includes emails.
-				</p></ListItem
-			><ListItem
-				><p>
-					<strong>User submitted content.</strong> Users may choose to submit original
-					content like forum threads, comments, profile customizations, and other
-					user created or submitted content. We collect and store this information
-					on our servers.
-				</p></ListItem
-			>
-		</UnorderedList>
+
 		<SectionHeading level={2} title="How We Use Information" />
 
-		<p class="spaced-paragraph">
-			We use the information collected for the following purposes:
-		</p>
+		<p class="spaced-paragraph">We use collected data to:</p>
 		<UnorderedList class="spaced-list">
 			<ListItem
-				><p>
-					<strong
-						>To provide, update, maintain, and operate the Services.</strong
-					> We use User, Customer, and Website Information to provide customized
-					features for you on the Services. We may use Website Information to improve
-					website performance and resolve problems with the Services.
-				</p></ListItem
+				><p>Provide and improve Wycademy’s features and services.</p></ListItem
+			><ListItem><p>Ensure website security and prevent abuse.</p></ListItem
 			><ListItem
 				><p>
-					<strong
-						>To develop and provide additional features on the Services.</strong
-					> We use User, Customer and Website Information to aide in making decisions
-					about the future of the Services, such as making improvements or creating
-					new features. For example, we may aggregate and anonymize User Information
-					and/or Customer Information to determine the number of visitors who have
-					linked their Twitch account and whether further information about the benefits
-					of such linking would be helpful.
-				</p></ListItem
-			><ListItem
-				><p>
-					<strong
-						>To communicate with you by responding to your requests, comments
-						and questions.
-					</strong> We use User, Customer, and Website Information to aide in the
-					resolution of support tickets for purposes of customer service or business
-					development.
+					Enhance community engagement and maintain the integrity of the
+					platform.
 				</p></ListItem
 			>
-			<ListItem
-				><p>
-					<strong>To send emails and other communications.</strong> We use User and
-					Customer Information to send you service, technical and other administrative
-					emails, messages and other types of communications. We may also contact
-					you to inform you about changes in our Services or important Services-related
-					notices. These communications are considered part of the Services and you
-					may not opt out of them without discontinuing use of the Services.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong
-						>For billing, account management and other administrative matters.</strong
-					>
-					We use User and Customer Information to contact you for billing, account
-					management and similar reasons.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>For business development purposes.</strong> We use Website Information
-					to aide in the growth of the business of Wycademy. To investigate and help
-					prevent security issues, fraud, or other illegal activity.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					For other purposes as required by applicable law, legal process or
-					regulation, including, but not limited to, in the event that any of
-					the personal information you provided to us is exposed to unauthorized
-					third-parties. In the event of such unauthorized exposure, we
-					expressly reserve the right to provide notice to you electronically
-					via any email address you have provided directly to us if permitted to
-					do so by law.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					To investigate or defend against third-party claims against Wycademy.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					To respond to a request by you, or a person authorized by you, to
-					disclose or update any collected information.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					For any other purpose after receiving your express consent.
-				</p></ListItem
+			<ListItem><p>Respond to user inquiries and support requests.</p></ListItem
 			>
 		</UnorderedList>
-		<SectionHeading
-			level={2}
-			title="How and to Whom We Share and Disclose Information"
-		/>
+		<p>
+			<strong>We do not sell, rent, or monetize user data in any way.</strong>
+		</p>
+		<SectionHeading level={2} title="How We Share Your Information" />
 		<p class="spaced-paragraph">
-			We may share the information we collect according to the following
-			guidelines:
+			We may share limited data with third parties only when necessary to
+			operate and maintain Wycademy. This includes:
 		</p>
 		<UnorderedList class="spaced-list">
 			<ListItem
 				><p>
-					<strong>Display on the Services. </strong> We may display User Information
-					to other users of the Services. For example, by authorizing and linking
-					your Discord account, we may show your data from that account to other
-					visitors.
+					<strong>Discord</strong> (for authentication purposes).
 				</p></ListItem
 			><ListItem
 				><p>
-					<strong>Data insights and matching. </strong> We may display User Information
-					to users of the Services, including matched, analyzed or accumulated data
-					to our users.
+					<strong>Supabase</strong> (for backend data storage and account management).
 				</p></ListItem
 			><ListItem
 				><p>
-					<strong>Third party service providers and partners.</strong> We may engage
-					third party companies or individuals as service providers or business partners
-					to process data to support our business. These third parties may, for example,
-					provide virtual computing, storage, payment, help desk, bug tracking, or
-					other related services. We may share Website Information with these third
-					parties, and we make a conscious effort to share the minimum amount of
-					data possible with each third party service.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>Aggregated or anonymized data.</strong> We may disclose or use
-					aggregated or de-identified data for any purpose. For example, we may share
-					aggregated or de-identified account, usage, and log with prospects or partners
-					for business or research purposes.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>Upon request.</strong> We may share or disclose User Information
-					in accordance with the instructions of the User, and in compliance with
-					applicable law and legal process.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>To comply with laws.</strong> If we receive a request for information,
-					we may disclose User, Customer, or Website Information if we reasonably
-					believe disclosure is in accordance with or required by any applicable
-					law, regulation or legal process. Upon receipt of a request for information,
-					Wycademy reserves the right to verify the identity of the person requesting
-					access to or update of the information as allowed by applicable law.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>To enforce our rights, prevent fraud, and for safety.</strong>
-					We may use data to protect and defend the rights, property or safety of
-					Wycademy or third parties, including enforcing contracts or policies, or
-					in connection with investigating and preventing fraud or security issues.
-				</p></ListItem
-			>
-			<ListItem
-				><p>
-					<strong>With consent.</strong> We may share data with third parties when
-					we have your consent to do so.
+					<strong>Twitch/YouTube</strong> (optional): If you choose to link media
+					content to your profile.
 				</p></ListItem
 			>
 		</UnorderedList>
 		<SectionHeading level={2} title="Data Retention" />
 		<p class="spaced-paragraph">
-			We may retain User, Customer, and Website Information for as long as
-			necessary to aide in delivery of the Services, unless a different
-			retention period is required by any applicable law, rule or regulation.
-			Users may control which account data we collect, and may update existing
-			User Information by re-authorizing third party services. In the case you
-			are unable to update existing account data yourself, we will update other
-			account data upon request. Wycademy reserves the right to delete or
-			destroy any such information at any time.
+			We retain data only as long as necessary to provide the service or comply
+			with legal obligations. Users may request deletion of their account data
+			by contacting support.
 		</p>
 
 		<SectionHeading level={2} title="Security" />
 		<p class="spaced-paragraph">
-			We implement commercially reasonable security measures to protect
-			information you provide from loss, misuse, and unauthorized access or
-			disclosure. These steps take into account the sensitivity of the
-			information we collect, process and store, and the current state of
-			technology. Given the nature of communications and information processing
-			technology, Wycademy cannot and does not guarantee that information,
-			during transmission through the Internet or while stored on our systems or
-			otherwise in our care, will be absolutely safe from intrusion by others.
+			We implement industry-standard security measures to protect your
+			information. However, no system is completely secure, and users should
+			take steps to protect their own accounts.
 		</p>
 		<SectionHeading level={2} title="Age Limitations" />
 		<p class="spaced-paragraph">
@@ -318,31 +107,22 @@
 
 		<SectionHeading level={2} title="Changes to this Privacy Policy" />
 		<p class="spaced-paragraph">
-			We may change this Privacy Policy from time to time. Laws, regulations and
-			industry standards evolve, which may make those changes necessary, or we
-			may make changes to our business. We will post the changes to this page
-			and encourage you to review our Privacy Policy to stay informed. If we
-			make changes that materially alter your privacy rights, we will provide
-			additional notice, such as via email or through the Services. If you do
-			not consent to the changes to this Privacy Policy, you should deactivate
-			your Services account.
+			We may update this Privacy Policy from time to time. Significant changes
+			will be communicated through the website.
 		</p>
 
 		<SectionHeading level={2} title="Your Rights" />
 		<p class="spaced-paragraph">
-			Residents of certain areas, including the European Economic Area and
-			California, have certain statutory rights in relation to their personal
-			data. Subject to any exemptions provided by law, you may have the right to
-			request access to Information, as well as to seek to update or correct
-			this Information. You can usually do this using the settings and tools
-			provided in your Services account. If you cannot use the settings and
-			tools, contact us for additional access and assistance by submitting an
-			issue on GitHub. Wycademy will not retaliate or discriminate against you
-			for exercising your rights under any such applicable law. However, this
-			does not restrict the right of Wycademy to engage in financial incentive
-			programs or otherwise alter the Services received if they are directly
-			related to the value provided to Wycademy by the consumer’s data.
+			Depending on your jurisdiction, you may have rights such as:
 		</p>
+		<UnorderedList class="spaced-list">
+			<ListItem
+				><p>The right to access or request deletion of your data.</p></ListItem
+			><ListItem
+				><p>The right to opt out of optional data collection.</p></ListItem
+			><ListItem><p>The right to correct inaccurate information.</p></ListItem>
+		</UnorderedList>
+		<p class="spaced-paragraph">Requests can be made by contacting us.</p>
 		<SectionHeading level={2} title="Cookies" />
 		<p class="spaced-paragraph">
 			A cookie is a small amount of data, which may include an anonymous unique

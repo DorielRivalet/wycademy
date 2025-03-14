@@ -46,7 +46,7 @@
 				This software contains the following license and notice below:
 			</p>
 
-			<pre class="legal">{license}</pre>
+			<pre class="legal license">{license}</pre>
 			{#if i < Array.from(groupedPackages.entries()).length - 1}
 				<hr />
 			{/if}
@@ -65,5 +65,10 @@
 	}
 	.license-group {
 		margin-bottom: var(--cds-spacing-08);
+	}
+
+	.license {
+		max-width: 90vw;
+		text-wrap: pretty;
 	}
 </style>
