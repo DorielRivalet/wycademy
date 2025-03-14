@@ -1,4 +1,4 @@
 export const termsDates = {
-	privacyPolicy: '2024-12-28',
-	termsOfService: '2024-12-26',
+	privacyPolicy: '2025-03-14',
+	termsOfService: '2025-03-14',
 };
