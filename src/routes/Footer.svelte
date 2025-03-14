@@ -94,6 +94,7 @@
 			<Link href="/support/policies/privacy-policy">Privacy Policy</Link>
 			<Link href="/support/policies/copyright">Copyright</Link>
 			<Link href="/support/policies/acknowledgements">Acknowledgements</Link>
+			<Link href="/support/policies/licenses">Licenses</Link>
 			<Link href="/support/policies/security">Security</Link>
 			<Link href="/support/policies/community-standards"
 				>Community Standards</Link

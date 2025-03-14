@@ -1,0 +1,24 @@
+{
+	"allowed": [
+		"CC0-1.0",
+		"EPL-2.0",
+		"BlueOak-1.0.0",
+		"CC-BY-4.0",
+		"Python-2.0",
+		"BSD*",
+		"AGPL-3.0-only",
+		"OFL-1.1",
+		"MIT",
+		"Apache-2.0",
+		"BSD-2-Clause",
+		"BSD-3-Clause",
+		"ISC",
+		"MPL-2.0",
+		"Custom: https://secure.travis-ci.org/dominictarr/event-stream.png",
+		"Custom: https://github.com/dominictarr/event-stream",
+		"FSL-1.1-MIT",
+		"0BSD",
+		"Unlicense"
+	],
+	"forbidden": []
+}
