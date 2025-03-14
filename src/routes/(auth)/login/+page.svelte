@@ -179,6 +179,23 @@
 				</div>
 				<p>If you cannot pass the CAPTCHA, try another browser.</p>
 			</AccordionItem>
+			<AccordionItem>
+				{#snippet title()}
+					<h5 class="accordion-title">
+						<span><Help /></span><span
+							>Why sign up on Wycademy with Discord?
+						</span>
+					</h5>
+				{/snippet}
+				<p class="spaced-paragraph">
+					Wycademy uses OAuth2 for authentication, eliminating the need to store
+					passwords. Since Discord is widely used in the community, it provides
+					a convenient way to create an account. You don’t need an active
+					Discord account, and Wycademy will never contact you through
+					Discord—if someone does, it's likely a scam. You can also create an
+					alternate account just for this purpose.
+				</p>
+			</AccordionItem>
 		</Accordion>
 	</div>
 </div>
