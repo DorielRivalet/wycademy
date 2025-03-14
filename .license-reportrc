@@ -1,0 +1,13 @@
+{
+	"output": "json",
+	"fields": [
+		"name",
+		"licenseType",
+		"installedVersion",
+		"link",
+		"definedVersion",
+		"remoteVersion",
+		"latestRemoteVersion",
+		"latestRemoteModified"
+	]
+}

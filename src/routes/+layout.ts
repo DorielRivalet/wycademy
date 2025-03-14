@@ -85,6 +85,7 @@ export const load: LayoutLoad = async ({
 			'/support/(docs-full)/wycademy-documentation/architecture',
 		'/support/policies/acknowledgements':
 			'/support/(docs-full)/policies/acknowledgements',
+		'/support/policies/licenses': '/support/(docs-full)/policies/licenses',
 		'/support/policies/copyright': '/support/(docs-full)/policies/copyright',
 		'/support/policies/privacy-policy':
 			'/support/(docs-full)/policies/privacy-policy',

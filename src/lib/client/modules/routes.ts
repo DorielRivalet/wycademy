@@ -195,6 +195,12 @@ export const supportInfo: CategoryInfo[] = [
 				image: License,
 			},
 			{
+				name: 'Licenses',
+				description: 'Licenses.',
+				link: '/support/policies/licenses',
+				image: License,
+			},
+			{
 				name: 'Security',
 				description: 'Information about the security of the website.',
 				link: '/support/policies/security',

@@ -263,6 +263,13 @@
 					href: '/support/policies/acknowledgements',
 				},
 				{
+					text: 'Licenses',
+					id: '/support/policies/licenses',
+					icon: License,
+
+					href: '/support/policies/licenses',
+				},
+				{
 					text: 'Security',
 					id: '/support/policies/security',
 					icon: Security,
