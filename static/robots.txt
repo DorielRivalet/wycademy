@@ -1,3 +1,22 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /private
+Disallow: /auth
+Disallow: /callback
+Disallow: /login
+Disallow: /home
+Disallow: /profile
+Disallow: /profile/settings
+Disallow: /account
+Disallow: /account/settings
+Disallow: /settings
+Disallow: /onboarding
+Disallow: /notifications
+Disallow: /signup
+Disallow: /quest-viewer
+Disallow: /moderator-dashboard
+Disallow: /dashboard
+Disallow: /moderation-history
+Disallow: /notice
+Disallow: /users
+Disallow: /api
