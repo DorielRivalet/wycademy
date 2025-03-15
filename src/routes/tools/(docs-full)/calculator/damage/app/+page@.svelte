@@ -10236,7 +10236,7 @@ does not get multiplied by horn */
 																		toolbar, found at the top.
 																	</p>
 
-																	<p class="spaced-paragraph">
+																	<div class="spaced-paragraph">
 																		This damage calculator may not reflect the
 																		damage output you do in the game with total
 																		accuracy. In order to track and report
@@ -10244,7 +10244,7 @@ does not get multiplied by horn */
 																			href="https://github.com/DorielRivalet/wycademy/issues/360"
 																			>the pinned issue in the repository</OutboundLink
 																		>.
-																	</p>
+																	</div>
 
 																	<div>
 																		<p class="spaced-paragraph">

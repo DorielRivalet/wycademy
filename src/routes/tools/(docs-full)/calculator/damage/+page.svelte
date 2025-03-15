@@ -11211,13 +11211,13 @@ does not get multiplied by horn */
 						</svelte:fragment>
 						<UnorderedList class="spaced-list">
 							<ListItem>
-								<p>
+								<div class="paragraph-long-02">
 									The final values whose formula depends on certain conditions
 									are called <OutboundLink
 										href="https://en.wikipedia.org/wiki/Piecewise_function"
 										>piecewise functions.</OutboundLink
 									>
-								</p>
+								</div>
 							</ListItem>
 						</UnorderedList></AccordionItem
 					></Accordion
