@@ -13,9 +13,9 @@ updates:
   - package-ecosystem: 'npm'
     # Look for `package.json` and `lock` files in the `root` directory
     directory: '/'
-    # Check the npm registry for updates every day (weekdays)
+    # Check the npm registry for updates
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     # Add reviewers
     reviewers:
       - 'DorielRivalet'
@@ -27,7 +27,7 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     # Add reviewers
     reviewers:
       - 'DorielRivalet'
