@@ -30,7 +30,7 @@ npm run release
 
 ### Procedure
 
-To get the license text, create a fine-grained access token in GitHub and write it into a local file. Adjust the access rights and expiration date of the token as needed. Then run:
+To get the license text, create a fine-grained access token in GitHub and write it into a local file **outside of the repository**. Adjust the access rights and expiration date of the token as needed. Then run:
 
 ```bash
 export GITHUB_TOKEN_LICENSE_FILE=/path/to/token-file.txt
