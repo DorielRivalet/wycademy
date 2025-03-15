@@ -163,7 +163,7 @@
 		"svelte-intersection-observer": "^1.0.0",
 		"svelte-splitpanes": "^8.0.9",
 		"svelte-toc": "^0.5.9",
-		"temml": "^0.11.1",
+		"temml": "^0.11.2",
 		"three": "^0.174.0",
 		"uuid": "^11.1.0",
 		"vidstack": "^1.12.13",
