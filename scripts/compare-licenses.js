@@ -14,6 +14,10 @@ for (const [name, newLicense] of prMap.entries()) {
 		changes.push(
 			`⚠️ License change detected for **${name}**: \`${oldLicense}\` → \`${newLicense}\``,
 		);
+	} else {
+		console.log(
+			`No license changes detected for ${name}: ${oldLicense} / ${newLicense}`,
+		);
 	}
 }
 
