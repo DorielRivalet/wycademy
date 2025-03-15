@@ -44,7 +44,7 @@ Double-check any license issues. If there is any issue, apply changes and recrea
 npx license-report-check --source ./license-report.json $(jq -r '.allowed[] | "--allowed=\(.)"' .license-report-check.json)
 ```
 
-Some packages may appear in the `notAllowed` array, double-check if this tooling did not detect open-source licenses. The license may be linked in the `README.md`, `package.json` or other places. You can also run `npx license-checker --summary`.
+Some packages may appear in the `notAllowed` array, double-check if this tooling did not detect open-source licenses. The license may be linked in the `README.md`, `package.json` or other places. You can also run `npx license-checker --summary`.**If a package is GPL or AGPL (but not LGPL), try to find alternatives.**
 
 Proceed to get the licenses' text:
 

@@ -10,6 +10,9 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { vite as vidstack } from 'vidstack/plugins';
 
 export default defineConfig({
+	optimizeDeps: {
+		exclude: ['@theatre/studio'],
+	},
 	css: {
 		preprocessorOptions: {
 			scss: {

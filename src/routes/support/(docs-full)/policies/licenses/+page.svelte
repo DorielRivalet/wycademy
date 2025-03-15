@@ -6,6 +6,7 @@
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import PackagesLicenseText from './PackagesLicenseText.svelte';
 	import { licenseInformation } from '$lib/client/modules/license-report';
+	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 </script>
 
 <TableOfContentsPage displayTOC={false}>
@@ -23,6 +24,17 @@
 				are factual information and not subject to copyright. Sources include
 				in-game research, community contributions, and available documentation.</strong
 			>
+		</p>
+
+		<p class="spaced-paragraph">
+			<strong
+				>The package <CodeSnippet
+					type="inline"
+					hideCopyButton
+					code="@theatre/studio"
+				/> is used solely in the development environment and is not included in the
+				distributed or deployed product.
+			</strong>
 		</p>
 
 		<p class="spaced-paragraph">
