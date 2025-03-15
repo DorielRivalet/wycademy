@@ -10,7 +10,6 @@ on:
 jobs:
   check-license-changes:
     runs-on: ubuntu-latest
-    # Only run on Dependabot PRs
     if: ${{ github.actor == 'dependabot[bot]' }}
 
     steps:
@@ -31,6 +30,9 @@ jobs:
       - name: Install license-report
         run: npm install -g license-report
 
+      - name: Ensure Dependencies are Installed
+        run: npm ci
+
       - name: Generate license report for PR branch
         run: |
           license-report --output=json --fields=name --fields=licenseType --fields=installedVersion > pr-licenses.json
@@ -38,49 +40,64 @@ jobs:
       - name: Generate license report for base branch
         run: |
           cd base-branch
-          license-report --output=json --fields=name --fields=licenseType --fields=installedVersion > ../base-licenses.json
+          npm ci
+          license-report --output=json --fields=name --fields=licenseType --fields=installedVersion > base-licenses.json
+          mv base-licenses.json ..
 
       - name: Compare licenses and check for changes
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
+            const core = require('@actions/core');
+            const github = require('@actions/github');
 
-            // Read license files
             const baseLicenses = JSON.parse(fs.readFileSync('base-licenses.json', 'utf8'));
             const prLicenses = JSON.parse(fs.readFileSync('pr-licenses.json', 'utf8'));
 
-            // Get PR details to determine which package is being updated
-            const prTitle = context.payload.pull_request.title;
+            console.log("Base Licenses:", JSON.stringify(baseLicenses, null, 2));
+            console.log("PR Licenses:", JSON.stringify(prLicenses, null, 2));
+
+            const prTitle = github.context.payload.pull_request.title;
             let updatedPackageMatch = prTitle.match(/bump ([@\w\/-]+) from ([\d\.]+) to ([\d\.]+)/i);
 
-            if (!updatedPackageMatch) {
-              console.log("This doesn't appear to be a standard Dependabot version bump PR");
-              return;
+            let packageName, oldVersion, newVersion;
+
+            if (updatedPackageMatch) {
+              packageName = updatedPackageMatch[1];
+              oldVersion = updatedPackageMatch[2];
+              newVersion = updatedPackageMatch[3];
+              console.log(`Checking license changes for ${packageName} from v${oldVersion} to v${newVersion}`);
+            } else {
+              console.log("PR title format doesn't match expected pattern. Checking dependencies manually.");
+
+              const baseNames = baseLicenses.map(pkg => pkg.name);
+              const prNames = prLicenses.map(pkg => pkg.name);
+
+              const newOrUpdatedPackages = prLicenses.filter(pkg =>
+                !baseNames.includes(pkg.name) ||
+                baseLicenses.find(basePkg => basePkg.name === pkg.name && basePkg.installedVersion !== pkg.installedVersion)
+              );
+
+              if (newOrUpdatedPackages.length === 0) {
+                console.log("No package updates found.");
+                return;
+              }
+
+              packageName = newOrUpdatedPackages[0].name;
+              oldVersion = baseLicenses.find(pkg => pkg.name === packageName)?.installedVersion || "N/A";
+              newVersion = newOrUpdatedPackages[0].installedVersion;
+              console.log(`Detected package update: ${packageName} from v${oldVersion} to v${newVersion}`);
             }
 
-            const packageName = updatedPackageMatch[1];
-            const oldVersion = updatedPackageMatch[2];
-            const newVersion = updatedPackageMatch[3];
-
-            console.log(`Checking license changes for ${packageName} from v${oldVersion} to v${newVersion}`);
-
-            // Find the package in both license reports
             const oldPackageData = baseLicenses.find(pkg => pkg.name === packageName);
             const newPackageData = prLicenses.find(pkg => pkg.name === packageName);
 
-            if (!oldPackageData) {
-              console.log(`Could not find old package version (${packageName}) in base license report`);
-              console.log("Available packages in base:", baseLicenses.map(pkg => pkg.name).join(", "));
-            }
-
-            if (!newPackageData) {
-              console.log(`Could not find new package version (${packageName}) in PR license report`);
-              console.log("Available packages in PR:", prLicenses.map(pkg => pkg.name).join(", "));
-            }
+            if (!oldPackageData) console.log(`Old package version (${packageName}) not found in base license report.`);
+            if (!newPackageData) console.log(`New package version (${packageName}) not found in PR license report.`);
 
             if (!oldPackageData || !newPackageData) {
-              console.log("Package not found in one or both reports, cannot compare licenses");
+              console.log("Package not found in one or both reports, cannot compare licenses.");
               return;
             }
 
@@ -90,20 +107,15 @@ jobs:
             console.log(`Previous license for ${packageName}@${oldVersion}: ${oldLicense}`);
             console.log(`New license for ${packageName}@${newVersion}: ${newLicense}`);
 
-            // Check if license changed
             if (oldLicense !== newLicense) {
               console.log(`⚠️ LICENSE CHANGE DETECTED: ${oldLicense} → ${newLicense}`);
               core.setFailed(`License change detected for ${packageName}: ${oldLicense} → ${newLicense}`);
 
-              // Add a comment to the PR with details about the license change
-              const { owner, repo } = context.repo;
-              const issue_number = context.payload.pull_request.number;
-
               await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number,
-                body: `⚠️ **License Change Detected**\n\nPackage \`${packageName}\` has changed license:\n- Previous: \`${oldLicense}\`\n- New: \`${newLicense}\`\n\nPlease review this change to ensure it complies with your organization's licensing policies.`
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                issue_number: github.context.payload.pull_request.number,
+                body: `⚠️ **License Change Detected**\n\nPackage \`${packageName}\` has changed license:\n- Previous: \`${oldLicense}\`\n- New: \`${newLicense}\`\n\nPlease review this change to ensure compliance.`
               });
             } else {
               console.log("✅ No license changes detected");
