@@ -5,7 +5,6 @@
 -->
 
 <script lang="ts">
-	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import Banner from '$lib/client/components/Banner.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
 	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
@@ -34,7 +33,6 @@
 	let { profile }: Props = $props();
 
 	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	// Shared state to track which menu is open
@@ -125,12 +123,6 @@
 			<div>
 				<SettingsMenu />
 			</div>
-			<!-- <Button
-					kind="ghost"
-					href="/site-preferences"
-					tooltipPosition="left"
-					iconDescription="Go to Site Preferences"
-				></Button> -->
 		</div>
 
 		<div class="container-header-action">
