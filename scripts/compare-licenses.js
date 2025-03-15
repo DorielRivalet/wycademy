@@ -1,7 +1,7 @@
-const fs = require('fs');
+import { readFileSync } from 'fs';
 
-const baseLicenses = JSON.parse(fs.readFileSync('base-licenses.json', 'utf8'));
-const prLicenses = JSON.parse(fs.readFileSync('pr-licenses.json', 'utf8'));
+const baseLicenses = JSON.parse(readFileSync('base-licenses.json', 'utf8'));
+const prLicenses = JSON.parse(readFileSync('pr-licenses.json', 'utf8'));
 
 const baseMap = new Map(baseLicenses.map((pkg) => [pkg.name, pkg.licenseType]));
 const prMap = new Map(prLicenses.map((pkg) => [pkg.name, pkg.licenseType]));
