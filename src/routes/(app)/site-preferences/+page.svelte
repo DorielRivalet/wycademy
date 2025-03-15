@@ -74,25 +74,6 @@
 		monsterHP++;
 	}
 
-	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
-		if (!browser) return;
-		let themeValue = getThemeNameFromId(selectedId);
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	}
-
-	function changeTheme(selectedId: string) {
-		setTheme(carbonThemeStore, selectedId);
-		changeCatppuccinFlavorCSSVariables(selectedId);
-		let oldDiagram = diagram;
-		diagram = '';
-		mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
-		diagram = oldDiagram;
-	}
-
 	function getDiagram(mermaidTheme: string) {
 		return `\
 	%%{init: {'theme':'${mermaidTheme}'}}%%

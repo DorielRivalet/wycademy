@@ -123,6 +123,37 @@
 
 				<div class="all-settings-container">
 					<div class="setting-container">
+						<ColorPalette size={32} />
+						{#if getThemeId($carbonThemeStore) !== undefined}
+							<Dropdown
+								titleText="Theme"
+								selectedId={getThemeId($carbonThemeStore)}
+								type="inline"
+								items={[
+									{ id: '0', text: themeOptions[0].labelText },
+									{ id: '1', text: themeOptions[1].labelText },
+									{ id: '2', text: themeOptions[2].labelText },
+									{ id: '3', text: themeOptions[3].labelText },
+								]}
+								on:select={(event) => changeTheme(event.detail.selectedId)}
+							>
+								{#snippet children({ item })}
+									<div>
+										<img
+											alt="Theme Icon"
+											src={getThemeIcon(item.id)}
+											width="24"
+										/>
+										<strong style="vertical-align: center;">{item.text}</strong>
+									</div>
+								{/snippet}
+							</Dropdown>
+						{:else}
+							<DropdownSkeleton />
+						{/if}
+					</div>
+
+					<div class="setting-container">
 						<Language size={32} />
 						<Dropdown
 							disabled
@@ -197,37 +228,6 @@
 											width="24"
 										/>
 										<strong style="vertical-align: top;">{item.text}</strong>
-									</div>
-								{/snippet}
-							</Dropdown>
-						{:else}
-							<DropdownSkeleton />
-						{/if}
-					</div>
-
-					<div class="setting-container">
-						<ColorPalette size={32} />
-						{#if getThemeId($carbonThemeStore) !== undefined}
-							<Dropdown
-								titleText="Theme"
-								selectedId={getThemeId($carbonThemeStore)}
-								type="inline"
-								items={[
-									{ id: '0', text: themeOptions[0].labelText },
-									{ id: '1', text: themeOptions[1].labelText },
-									{ id: '2', text: themeOptions[2].labelText },
-									{ id: '3', text: themeOptions[3].labelText },
-								]}
-								on:select={(event) => changeTheme(event.detail.selectedId)}
-							>
-								{#snippet children({ item })}
-									<div>
-										<img
-											alt="Theme Icon"
-											src={getThemeIcon(item.id)}
-											width="24"
-										/>
-										<strong style="vertical-align: center;">{item.text}</strong>
 									</div>
 								{/snippet}
 							</Dropdown>
