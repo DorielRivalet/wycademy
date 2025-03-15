@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22.14.0' # from .nvmrc
 
       - name: Install license-report
         run: npm install -g license-report
