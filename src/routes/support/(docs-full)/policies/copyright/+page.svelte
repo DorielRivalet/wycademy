@@ -419,9 +419,9 @@
 							<ListItem>
 								<p>
 									<strong>Watermarking Capcom Icons</strong>: Placing a
-									watermark on Capcom’s original monster icons and claiming
-									ownership is an infringement of Capcom’s copyright, not a
-									demonstration of legitimate ownership.
+									watermark on Capcom’s <strong>original/official</strong> monster
+									icons and claiming ownership is an infringement of Capcom’s copyright,
+									not a demonstration of legitimate ownership.
 								</p>
 								<OrderedList nested>
 									<ListItem
