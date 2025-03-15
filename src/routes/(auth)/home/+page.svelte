@@ -40,12 +40,12 @@
 				<Button kind="primary" href="/onboarding" icon={Help}
 					>Go to onboarding page</Button
 				>
-				<p class="survey-link">
+				<div class="spaced-paragraph survey-link">
 					Enjoying Wycademy? <OutboundLink
 						href="https://forms.gle/hfFG7QWNcrCHnDV67"
 						>Complete our feedback survey!</OutboundLink
 					>
-				</p>
+				</div>
 			</div>
 		</div>
 	{:else}

@@ -12,12 +12,12 @@
 		<p class="spaced-paragraph">
 			<strong>Owner: theMaelstro (as of 2025-03-03)</strong>
 		</p>
-		<p class="spaced-paragraph subtle">
+		<div class="spaced-paragraph subtle">
 			<OutboundLink
 				href="https://github.com/theMaelstro/MHFZZDatabase/blob/main/LICENSE"
 				>License</OutboundLink
 			>
-		</p>
+		</div>
 		<div class="spaced-paragraph">
 			A companion android app for Monster Hunter Frontier Z.
 		</div>

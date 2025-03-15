@@ -12,11 +12,11 @@
 		<p class="spaced-paragraph">
 			<strong>Owner: ZeruLight (as of 2025-03-03)</strong>
 		</p>
-		<p class="spaced-paragraph subtle">
+		<div class="spaced-paragraph subtle">
 			<OutboundLink href="https://github.com/ZeruLight/Erupe/blob/main/LICENSE"
 				>License</OutboundLink
 			>
-		</p>
+		</div>
 		<div class="spaced-paragraph">
 			A Monster Hunter Frontier Server Emulator.
 		</div>

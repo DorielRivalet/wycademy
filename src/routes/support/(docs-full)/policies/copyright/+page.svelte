@@ -168,12 +168,12 @@
 				<section>
 					<SectionHeading level={3} title="MIT License Full Text" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							As shown in our <OutboundLink
 								href="https://github.com/DorielRivalet/wycademy?tab=MIT-1-ov-file"
 								>GitHub repository:</OutboundLink
 							>
-						</p>
+						</div>
 						<div class="license">
 							<p class="spaced-paragraph">MIT License</p>
 							<p class="spaced-paragraph">Copyright (c) 2023 Doriel Rivalet</p>
@@ -294,14 +294,14 @@
 				<section>
 					<SectionHeading level={3} title="Attribution & Requests" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							We respect the work of all artists and contributors. If you
 							believe an asset needs proper attribution or removal, please
 							<OutboundLink
 								href="https://github.com/DorielRivalet/wycademy/issues"
 								>contact us</OutboundLink
 							> with details, and we’ll review it promptly.
-						</p>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -381,13 +381,13 @@
 							terms set forth by the original creators. Should any issues arise,
 							we are committed to promptly addressing and rectifying them.
 						</p>
-						<p>
+						<div class="spaced-paragraph">
 							You can find credit information and acknowledgements in <OutboundLink
 								href="https://github.com/DorielRivalet/wycademy?tab=readme-ov-file#acknowledgements"
 								>our GitHub respository's README file.</OutboundLink
 							>. We also insert license text in the source code at the top of
 							files where applicable.
-						</p>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -601,7 +601,7 @@
 					<div>
 						<UnorderedList>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									<strong>Direct Contact</strong>: If there are any issues or
 									concerns regarding content on this website, please contact us
 									directly for resolution. Publicly shaming or involving others
@@ -611,7 +611,7 @@
 										href="https://github.com/DorielRivalet/wycademy/issues"
 										>GitHub's issue tracker.</OutboundLink
 									>
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
 								><p>

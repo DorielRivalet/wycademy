@@ -13,7 +13,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'About the Development Process'} />
 
-		<p>
+		<div class="paragraph-long-02">
 			Since this website intends to host many potential features, it is best to
 			detail a clear development process so users can know what to expect during
 			each development phase. For the specifics of when a stage finishes and the
@@ -21,7 +21,7 @@
 				href="https://github.com/DorielRivalet/wycademy/milestones"
 				>in our repository</OutboundLink
 			>.
-		</p>
+		</div>
 
 		<section>
 			<SectionHeading title={'Alpha'} level={2} />

@@ -36,9 +36,9 @@
 			<UnorderedList class="spaced-list">
 				{#each groupedList as pkg}
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<OutboundLink href={pkg.source}>{pkg.source}</OutboundLink> ({pkg.name})
-						</p></ListItem
+						</div></ListItem
 					>
 				{/each}
 			</UnorderedList>

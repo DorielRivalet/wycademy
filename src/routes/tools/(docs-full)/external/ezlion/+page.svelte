@@ -11,12 +11,12 @@
 	<div>
 		<SectionHeadingTopLevel title={'EZlion'} />
 		<p class="spaced-paragraph"><strong>Owner: DorielRivalet</strong></p>
-		<p class="spaced-paragraph subtle">
+		<div class="spaced-paragraph subtle">
 			<OutboundLink
 				href="https://github.com/DorielRivalet/ezlion/blob/main/LICENSE"
 				>License</OutboundLink
 			>
-		</p>
+		</div>
 		<div class="spaced-paragraph">
 			An API used as a reference for weapons, armors, monsters, skills, etc. For
 			example, you can search IDs and names by doing a request: <CodeSnippet
