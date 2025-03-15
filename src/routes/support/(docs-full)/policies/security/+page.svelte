@@ -133,7 +133,7 @@
 			<div>
 				<UnorderedList>
 					<ListItem>
-						<p>
+						<div class="paragraph-long-02">
 							<strong>Frameworks and Modern Tools:</strong> Wycademy is built
 							with
 							<OutboundLink href="https://supabase.com/">Supabase</OutboundLink
@@ -142,7 +142,7 @@
 							>, and <OutboundLink href="https://vercel.com/docs"
 								>Vercel</OutboundLink
 							>, each of which follows industry best practices in security.
-						</p>
+						</div>
 					</ListItem>
 					<ListItem
 						><div class="paragraph-long-02">
@@ -165,7 +165,7 @@
 			<div>
 				<UnorderedList>
 					<ListItem>
-						<p>
+						<div class="paragraph-long-02">
 							<strong>How to Report a Vulnerability:</strong> We take security
 							issues seriously and encourage responsible disclosure. If you
 							discover a vulnerability or have concerns about our site’s
@@ -174,7 +174,7 @@
 								href="https://github.com/DorielRivalet/wycademy/issues"
 								>via GitHub Issues.</OutboundLink
 							>
-						</p>
+						</div>
 					</ListItem>
 					<ListItem
 						><div class="paragraph-long-02">

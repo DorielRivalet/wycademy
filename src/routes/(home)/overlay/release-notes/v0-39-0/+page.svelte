@@ -7,10 +7,8 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const version = 'v0.39.0';
@@ -110,87 +108,6 @@
 					</div></ListItem
 				>
 			</UnorderedList>
-			<div class="spaced-paragraph">
-				Here is a list of icons I had the most fun making!
-			</div>
-			<div class="previews">
-				<div>
-					<ImageDialog
-						src={monsterInfo.find(
-							(e) => e.displayName === 'Burning Freezing Elzelion',
-						)?.icon}
-						alt={'Burning Freezing Elzelion'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<div>
-					<ImageDialog
-						src={monsterInfo.find(
-							(e) => e.displayName === 'Arrogant Duremudira',
-						)?.icon}
-						alt={'Arrogant Duremudira'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Starving Deviljho')
-							?.icon}
-						alt={'Starving Deviljho'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Conquest Fatalis')
-							?.icon}
-						alt={'Conquest Fatalis'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Shifting Mi Ru')
-							?.icon}
-						alt={'Shifting Mi Ru'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Road White Fatalis')
-							?.icon}
-						alt={'Road White Fatalis'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Ruling Guanzorumu')
-							?.icon}
-						alt={'Ruling Guanzorumu'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-				<!--TODO svg-->
-				<div>
-					<ImageDialog
-						src={monsterInfo.find((e) => e.displayName === 'Supremacy Teostra')
-							?.icon}
-						alt={'Supremacy Teostra'}
-						width={'128px'}
-						type="file"
-					/>
-				</div>
-			</div>
 		</section>
 		<section>
 			<h2>Fixes</h2>
@@ -223,11 +140,11 @@
 		/>
 	</section>
 	<section class="feedback-section">
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
 				>Google Forms</OutboundLink
 			> where you can submit your feedback on the overlay.
-		</p>
+		</div>
 	</section>
 </div>
 
@@ -291,12 +208,6 @@
 	.list-item {
 		max-width: 80ch;
 		font-size: 16px;
-	}
-
-	.previews {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
 	}
 
 	.call-to-action-section {

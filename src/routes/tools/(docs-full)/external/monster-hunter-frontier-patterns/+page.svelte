@@ -12,12 +12,12 @@
 		<p class="spaced-paragraph">
 			<strong>Owner: var-username (as of 2025-03-03)</strong>
 		</p>
-		<p class="spaced-paragraph subtle">
+		<div class="spaced-paragraph subtle">
 			<OutboundLink
 				href="https://github.com/var-username/Monster-Hunter-Frontier-Patterns/blob/main/LICENSE.md"
 				>License</OutboundLink
 			>
-		</p>
+		</div>
 		<div class="spaced-paragraph">
 			ImHex pattern files documenting the structure of data in Monster Hunter
 			Frontier.

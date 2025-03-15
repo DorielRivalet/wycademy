@@ -47,20 +47,20 @@
 					you're just starting your journey or are a seasoned speedrunner,
 					Wycademy is here to help you become the best hunter you can be.
 				</div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Our project is Free Libre Open Source Software (FLOSS), hosted on
 					<OutboundLink href="https://github.com/DorielRivalet/wycademy"
 						>GitHub</OutboundLink
 					>, and open to contributions from anyone. We believe in empowering our
 					community and making our resources accessible to all, following the
 					best practices in web development and accessibility.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Our History" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Wycademy was born out of the development of an overlay for MHF-Z in
 					2022 by our main developer, <OutboundLink
 						href="https://github.com/DorielRivalet/"
@@ -70,7 +70,7 @@
 					improvement and, in 2023, began creating Wycademy—a comprehensive
 					resource for all things MHF-Z. Since then, the project has continued
 					to evolve, and we invite our users to join us on this ongoing journey.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
@@ -84,7 +84,7 @@
 				</div>
 				<UnorderedList>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>A Unique Hybrid Approach</strong>: Wycademy isn't just a
 							knowledge base or a leaderboard—it’s an amalgamation of
 							everything. Inspired by platforms like <OutboundLink
@@ -104,7 +104,7 @@
 								>Web Revival / Indie Web movement</OutboundLink
 							>, balancing cutting-edge technology with the accessibility and
 							permanence of the old web.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
 						><p>
@@ -128,13 +128,13 @@
 						</p></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Modern Web Practices</strong>: Built with <OutboundLink
 								href="https://kit.svelte.dev">SvelteKit</OutboundLink
 							>, our website is fast, user-friendly, and embraces modern web
 							technologies, including progressive web app (PWA) functionality
 							for offline use.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
 						><p>
@@ -165,12 +165,12 @@
 				</div>
 				<UnorderedList>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Educational Opportunities</strong>: We provide a platform
 							for learning about web development, specifically using <OutboundLink
 								href="https://kit.svelte.dev">SvelteKit</OutboundLink
 							>, while offering practical tools for MHF-Z players.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
 						><p>
@@ -257,11 +257,11 @@
 					>, we want to know how we can best support you. Let us know what
 					resources you'd like to see, and we'll do our best to provide them.
 				</p>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 						>Google Forms</OutboundLink
 					> where you can submit your feedback on the website.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>

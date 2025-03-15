@@ -30,13 +30,13 @@
 	<h1>Release Notes</h1>
 	<hr />
 	<div class="summary">
-		<p>
+		<div class="spaced-paragraph">
 			Below is a list of all release notes for <strong>mhfz-overlay </strong>,
 			which are different from the <OutboundLink
 				href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/CHANGELOG.md"
 				>changelog.</OutboundLink
 			>
-		</p>
+		</div>
 
 		<UnorderedList>
 			{#each releaseNotesSummaries as summary}

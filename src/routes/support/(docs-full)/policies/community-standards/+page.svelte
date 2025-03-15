@@ -422,7 +422,7 @@
 						</p></ListItem
 					>
 					<ListItem class="paragraph-long-02"
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Has Run Buffs Tag:</strong> Next to Speedrun+, your
 							watermark should show either of these in parentheses: TA, FDS,
 							FDP, FST, FCA. Runs with overlay watermark numbers are not
@@ -431,7 +431,7 @@
 								href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
 								>FAQ</OutboundLink
 							> for more details on run buffs.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem class="paragraph-long-02"
 						><p>
@@ -764,7 +764,7 @@
 									for speedrunning?
 								</p>
 							{/snippet}
-							<p class="answer">
+							<div class="paragraph-long-02 answer">
 								Yes, use the speedrun preset in the overlay settings. Ensure the
 								overlay watermark does not show numbers in parentheses, as these
 								runs will not be submitted. Refer to the <OutboundLink
@@ -772,7 +772,7 @@
 									href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
 									>FAQ</OutboundLink
 								> for more details on the run buffs question.
-							</p>
+							</div>
 						</AccordionItem>
 						<AccordionItem>
 							{#snippet title()}

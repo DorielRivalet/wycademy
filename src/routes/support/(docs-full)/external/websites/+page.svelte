@@ -43,13 +43,13 @@
 			<div>
 				<UnorderedList class="spaced-list">
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<OutboundLink href="https://mezehub.github.io/index.html"
 								>Mezehub</OutboundLink
 							>: a central source of resources for the MezeLounge (MHF-Z)
 							private server. It contains various guides and resources split
 							across sections for all levels of players.
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
 			</div>

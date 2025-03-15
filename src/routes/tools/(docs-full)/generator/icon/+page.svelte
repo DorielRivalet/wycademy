@@ -454,12 +454,12 @@
 		<section>
 			<SectionHeading level={2} title="Acknowledgements" />
 			<div>
-				<p>
+				<div class="paragraph-long-02">
 					You can find a list of attributions <OutboundLink
 						href="https://github.com/DorielRivalet/wycademy"
 						>in our README.</OutboundLink
 					>
-				</p>
+				</div>
 			</div>
 		</section>
 		<div class="page-turn">

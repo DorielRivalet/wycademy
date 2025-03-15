@@ -314,7 +314,7 @@
 						speedrunning?
 					</p>
 				{/snippet}
-				<p class="answer">
+				<div class="paragraph-long-02 answer">
 					Yes, use the speedrun preset in the overlay settings. Ensure the
 					overlay watermark does not show numbers in parentheses, as these runs
 					will not be submitted. Refer to the <OutboundLink
@@ -322,7 +322,7 @@
 						href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
 						>FAQ</OutboundLink
 					> for more details on the run buffs question.
-				</p>
+				</div>
 			</AccordionItem>
 			<AccordionItem>
 				{#snippet title()}
