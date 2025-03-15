@@ -1,0 +1,92 @@
+name: Check Package License Changes
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  check-license-changes:
+    runs-on: ubuntu-latest
+    # Only run on Dependabot PRs
+    if: ${{ github.actor == 'dependabot[bot]' }}
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+
+      - name: Checkout base branch for comparison
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base-branch
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install license-checker tool
+        run: npm install -g license-checker
+
+      - name: Generate license report for PR branch
+        run: |
+          license-checker --json > pr-licenses.json
+
+      - name: Generate license report for base branch
+        run: |
+          cd base-branch
+          license-checker --json > ../base-licenses.json
+
+      - name: Compare licenses and check for changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Read license files
+            const baseLicenses = JSON.parse(fs.readFileSync('base-licenses.json', 'utf8'));
+            const prLicenses = JSON.parse(fs.readFileSync('pr-licenses.json', 'utf8'));
+
+            // Get PR details to determine which package is being updated
+            const prTitle = context.payload.pull_request.title;
+            let updatedPackageMatch = prTitle.match(/bump ([@\w\/-]+) from ([\d\.]+) to ([\d\.]+)/i);
+
+            if (!updatedPackageMatch) {
+              console.log("This doesn't appear to be a standard Dependabot version bump PR");
+              return;
+            }
+
+            const packageName = updatedPackageMatch[1];
+            const oldVersion = updatedPackageMatch[2];
+            const newVersion = updatedPackageMatch[3];
+
+            console.log(`Checking license changes for ${packageName} from v${oldVersion} to v${newVersion}`);
+
+            // Find the package in both license reports
+            const oldPackageKey = Object.keys(baseLicenses).find(key =>
+              key.startsWith(`${packageName}@${oldVersion}`));
+
+            const newPackageKey = Object.keys(prLicenses).find(key =>
+              key.startsWith(`${packageName}@${newVersion}`));
+
+            if (!oldPackageKey || !newPackageKey) {
+              console.log("Could not find package in one or both license reports");
+              return;
+            }
+
+            const oldLicense = baseLicenses[oldPackageKey].licenses;
+            const newLicense = prLicenses[newPackageKey].licenses;
+
+            console.log(`Previous license: ${oldLicense}`);
+            console.log(`New license: ${newLicense}`);
+
+            // Check if license changed
+            if (oldLicense !== newLicense) {
+              console.log(`⚠️ LICENSE CHANGE DETECTED: ${oldLicense} → ${newLicense}`);
+              core.setFailed(`License change detected for ${packageName}: ${oldLicense} → ${newLicense}`);
+            } else {
+              console.log("✅ No license changes detected");
+            }
