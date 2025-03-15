@@ -21,6 +21,7 @@
 	import { type SelectProfile } from '$lib/db/schema';
 	import ProfileMenu from './ProfileMenu.svelte';
 	import NotificationsMenu from './NotificationsMenu.svelte';
+	import SettingsMenu from './SettingsMenu.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -120,19 +121,18 @@
 			{/if}
 		</div>
 		<!-- TODO: profile disclosure-->
-		{#if $breakpointLargerThanSmall && !profile}
-			<div class="container-header-action">
-				<Button
+		<div class="container-header-action">
+			<div>
+				<SettingsMenu />
+			</div>
+			<!-- <Button
 					kind="ghost"
 					href="/site-preferences"
 					tooltipPosition="left"
 					iconDescription="Go to Site Preferences"
-				>
-					<span slot="icon"><Settings size={20} color="var(--ctp-text)" /></span
-					>
-				</Button>
-			</div>
-		{/if}
+				></Button> -->
+		</div>
+
 		<div class="container-header-action">
 			{#if profile}
 				<div class="avatar">

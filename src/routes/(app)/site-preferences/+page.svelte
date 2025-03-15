@@ -7,37 +7,22 @@
 <script lang="ts">
 	import { run } from 'svelte/legacy';
 
-	import {
-		getThemeIcon,
-		getThemeId,
-		getThemeNameFromId,
-		setTheme,
-	} from '$lib/client/stores/theme';
-	import { getCursorIcon, setCursor } from '$lib/client/stores/cursor';
+	import { getThemeNameFromId, setTheme } from '$lib/client/stores/theme';
 	import pageThumbnail from '$lib/client/images/wycademy.png';
-	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
-	import Slider from 'carbon-components-svelte/src/Slider/Slider.svelte';
-	import { themeOptions } from '$lib/client/themes/options';
 	import ColorDot from '$lib/client/components/ColorDot.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import { display } from 'mathlifier';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Calculator from 'carbon-icons-svelte/lib/Calculator.svelte';
-	import Language from 'carbon-icons-svelte/lib/Language.svelte';
-	import ColorPalette from 'carbon-icons-svelte/lib/ColorPalette.svelte';
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
-	import VolumeUp from 'carbon-icons-svelte/lib/VolumeUp.svelte';
-	import VolumeMute from 'carbon-icons-svelte/lib/VolumeMute.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import { onMount } from 'svelte';
 	import mermaid from 'mermaid';
 	import { getContext } from 'svelte';
 	import { onStoreToggle } from '$lib/client/stores/toggles';
-	import { onVolumeChange } from '$lib/client/stores/volume';
-	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
@@ -50,8 +35,6 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
 	import Head from '$lib/client/components/Head.svelte';
@@ -60,6 +43,12 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	const pushNotificationsStore = getContext(
 		Symbol.for('pushNotifications'),
@@ -67,26 +56,6 @@
 
 	const notificationsStore = getContext(
 		Symbol.for('notifications'),
-	) as Writable<boolean>;
-
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
-
-	const cursorIconStore = getContext(
-		Symbol.for('cursorIcon'),
-	) as Writable<string>;
-
-	const soundStore = getContext(Symbol.for('sound')) as Writable<boolean>;
-
-	const volumeStore = getContext(Symbol.for('volume')) as Writable<number>;
-
-	const scrollToTopStore = getContext(
-		Symbol.for('scrollToTop'),
-	) as Writable<boolean>;
-
-	const stickyHeaderStore = getContext(
-		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
 
 	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
@@ -101,19 +70,15 @@
 		defrate = parseFloat((defrate + 0.01).toFixed(14));
 	}
 
+	function increaseMonsterHP() {
+		monsterHP++;
+	}
+
 	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
 		if (!browser) return;
 		let themeValue = getThemeNameFromId(selectedId);
 		let cssVarMap =
 			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	}
-
-	function changeCursorCSSVariable(selectedId: string) {
-		if (!browser) return;
-		let cssVarMap = cursorVars[selectedId] || cursorVars.default;
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
@@ -126,15 +91,6 @@
 		diagram = '';
 		mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 		diagram = oldDiagram;
-	}
-
-	function changeCursor(selectedId: string) {
-		setCursor(cursorIconStore, selectedId);
-		changeCursorCSSVariable(selectedId);
-	}
-
-	function increaseMonsterHP() {
-		monsterHP++;
 	}
 
 	function getDiagram(mermaidTheme: string) {
@@ -238,145 +194,32 @@
 	siteName={projectName}
 />
 
-<LocalStorage bind:value={$soundStore} key="__sound-enabled" />
 <LocalStorage
 	bind:value={$pushNotificationsStore}
 	key="__push-notifications-enabled"
 />
 <LocalStorage bind:value={$notificationsStore} key="__notifications-enabled" />
-<LocalStorage bind:value={$volumeStore} key="__volume" />
-<LocalStorage bind:value={$cursorIconStore} key="__cursor-icon" />
-<LocalStorage bind:value={$scrollToTopStore} key="__scroll-to-top-enabled" />
-<LocalStorage bind:value={$stickyHeaderStore} key="__sticky-header-enabled" />
 
 <div>
 	<SectionHeadingTopLevel title="Site Preferences" />
-	<InlineNotification
-		lowContrast
-		hideCloseButton
-		kind="info"
-		title="Header:"
-		subtitle="The sticky header only works in certain layouts."
-	/>
 
-	<div class="setting-container">
-		<Language size={32} />
-		<Dropdown
-			disabled
-			titleText="Language"
-			type="inline"
-			selectedId="0"
-			items={[{ id: '0', text: 'English' }]}
-		/>
-	</div>
-
-	<div class="setting-container">
-		<div class="setting-icon">
-			{#if $soundStore && $volumeStore > 0}
-				<VolumeUp size={32} />
-			{:else}
-				<VolumeMute size={32} />
-			{/if}
-		</div>
-		<Toggle
-			labelText="Sound"
-			on:toggle={(e) => onStoreToggle(soundStore, e)}
-			bind:toggled={$soundStore}
-		/>
-		<Slider
-			labelText="Volume"
-			required
-			on:change={(e) => onVolumeChange(volumeStore, e)}
-			value={$volumeStore}
-			disabled={!$soundStore}
-		/>
-	</div>
-
-	<div class="setting-container">
-		<Toggle
-			labelText="Scroll to Top Button"
-			on:toggle={(e) => onStoreToggle(scrollToTopStore, e)}
-			bind:toggled={$scrollToTopStore}
-		/>
-	</div>
-
-	<div class="setting-container">
-		<Toggle
-			labelText="Sticky Header"
-			on:toggle={(e) => onStoreToggle(stickyHeaderStore, e)}
-			bind:toggled={$stickyHeaderStore}
-		/>
-	</div>
-
-	<div class="setting-container">
-		<Cursor_1 size={32} />
-		{#if $cursorIconStore !== undefined}
-			<Dropdown
-				titleText="Cursor Icon"
-				selectedId={$cursorIconStore}
-				type="inline"
-				items={[
-					{ id: 'Classic', text: 'Classic' },
-					{ id: 'Modern', text: 'Modern' },
-					{ id: 'None', text: 'None' },
-				]}
-				on:select={(event) => {
-					changeCursor(event.detail.selectedId);
-				}}
-			>
-				{#snippet children({ item })}
-					<div>
-						<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
-						<strong style="vertical-align: top;">{item.text}</strong>
-					</div>
-				{/snippet}
-			</Dropdown>
-		{:else}
-			<DropdownSkeleton />
-		{/if}
-	</div>
-
-	<div class="inline-notification-container">
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Theme Colors:"
-			subtitle="If you are using DarkReader or similar, the website may look better with it disabled."
-		/>
-	</div>
-
-	<p>
-		If the layout of the website appears broken and you are using Firefox on
-		mobile, try another browser.
-	</p>
-
-	<div class="setting-container">
-		<ColorPalette size={32} />
-		{#if getThemeId($carbonThemeStore) !== undefined}
-			<Dropdown
-				titleText="Theme"
-				selectedId={getThemeId($carbonThemeStore)}
-				type="inline"
-				items={[
-					{ id: '0', text: themeOptions[0].labelText },
-					{ id: '1', text: themeOptions[1].labelText },
-					{ id: '2', text: themeOptions[2].labelText },
-					{ id: '3', text: themeOptions[3].labelText },
-				]}
-				on:select={(event) => changeTheme(event.detail.selectedId)}
-			>
-				{#snippet children({ item })}
-					<div>
-						<img alt="Theme Icon" src={getThemeIcon(item.id)} width="24" />
-						<strong style="vertical-align: center;">{item.text}</strong>
-					</div>
-				{/snippet}
-			</Dropdown>
-		{:else}
-			<DropdownSkeleton />
-		{/if}
-	</div>
+	<UnorderedList class="spaced-list">
+		<ListItem
+			><p>
+				<strong>Header:</strong> The sticky header only works in certain layouts.
+			</p></ListItem
+		><ListItem
+			><p>
+				<strong>Theme Colors:</strong> If you are using DarkReader or similar, the
+				website may look better with it disabled.
+			</p></ListItem
+		><ListItem
+			><p>
+				<strong>Layout:</strong> If the layout of the website appears broken and
+				you are using Firefox on mobile, try another browser.
+			</p></ListItem
+		>
+	</UnorderedList>
 
 	<section>
 		<SectionHeading level={2} title="Notifications" />
