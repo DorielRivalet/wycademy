@@ -300,26 +300,25 @@
 				},
 			],
 		},
-		{
-			id: '/tools/search',
-			icon: Binoculars,
-
-			text: 'Search',
-			nodes: [
-				{
-					id: '/tools/search/armor-set-searcher',
-					href: '/tools/search/armor-set-searcher',
-					icon: getArmorIcon('Stand'),
-					text: 'Armor Set Searcher',
-				},
-				{
-					id: '/tools/search/advanced-search',
-					href: '/tools/search/advanced-search',
-					icon: Logo,
-					text: 'Advanced Search',
-				},
-			],
-		},
+		// {
+		// 	id: '/tools/search',
+		// 	icon: Binoculars,
+		// 	text: 'Search',
+		// 	nodes: [
+		// 		{
+		// 			id: '/tools/search/armor-set-searcher',
+		// 			href: '/tools/search/armor-set-searcher',
+		// 			icon: getArmorIcon('Stand'),
+		// 			text: 'Armor Set Searcher',
+		// 		},
+		// 		{
+		// 			id: '/tools/search/advanced-search',
+		// 			href: '/tools/search/advanced-search',
+		// 			icon: Logo,
+		// 			text: 'Advanced Search',
+		// 		},
+		// 	],
+		// },
 	];
 
 	const blacklistedRoutesForHead = ['/tools/simulator/tower-weapon'];
