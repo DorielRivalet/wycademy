@@ -143,7 +143,7 @@
 		"dotenv": "^16.4.7",
 		"driver.js": "^1.3.5",
 		"drizzle-orm": "^0.40.0",
-		"elkjs": "^0.9.3",
+		"elkjs": "^0.10.0",
 		"ezlion": "^7.0.0",
 		"flag-icons": "^7.3.2",
 		"flexsearch": "^0.7.43",
