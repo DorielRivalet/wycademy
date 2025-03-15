@@ -28,17 +28,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install license-checker tool
-        run: npm install -g license-checker
+      - name: Install license-report
+        run: npm install -g license-report
 
       - name: Generate license report for PR branch
         run: |
-          license-checker --json > pr-licenses.json
+          license-report --output=json --fields=name --fields=licenseType --fields=installedVersion > pr-licenses.json
 
       - name: Generate license report for base branch
         run: |
           cd base-branch
-          license-checker --json > ../base-licenses.json
+          license-report --output=json --fields=name --fields=licenseType --fields=installedVersion > ../base-licenses.json
 
       - name: Compare licenses and check for changes
         uses: actions/github-script@v7
@@ -66,27 +66,45 @@ jobs:
             console.log(`Checking license changes for ${packageName} from v${oldVersion} to v${newVersion}`);
 
             // Find the package in both license reports
-            const oldPackageKey = Object.keys(baseLicenses).find(key =>
-              key.startsWith(`${packageName}@${oldVersion}`));
+            const oldPackageData = baseLicenses.find(pkg => pkg.name === packageName);
+            const newPackageData = prLicenses.find(pkg => pkg.name === packageName);
 
-            const newPackageKey = Object.keys(prLicenses).find(key =>
-              key.startsWith(`${packageName}@${newVersion}`));
+            if (!oldPackageData) {
+              console.log(`Could not find old package version (${packageName}) in base license report`);
+              console.log("Available packages in base:", baseLicenses.map(pkg => pkg.name).join(", "));
+            }
 
-            if (!oldPackageKey || !newPackageKey) {
-              console.log("Could not find package in one or both license reports");
+            if (!newPackageData) {
+              console.log(`Could not find new package version (${packageName}) in PR license report`);
+              console.log("Available packages in PR:", prLicenses.map(pkg => pkg.name).join(", "));
+            }
+
+            if (!oldPackageData || !newPackageData) {
+              console.log("Package not found in one or both reports, cannot compare licenses");
               return;
             }
 
-            const oldLicense = baseLicenses[oldPackageKey].licenses;
-            const newLicense = prLicenses[newPackageKey].licenses;
+            const oldLicense = oldPackageData.licenseType;
+            const newLicense = newPackageData.licenseType;
 
-            console.log(`Previous license: ${oldLicense}`);
-            console.log(`New license: ${newLicense}`);
+            console.log(`Previous license for ${packageName}@${oldVersion}: ${oldLicense}`);
+            console.log(`New license for ${packageName}@${newVersion}: ${newLicense}`);
 
             // Check if license changed
             if (oldLicense !== newLicense) {
               console.log(`⚠️ LICENSE CHANGE DETECTED: ${oldLicense} → ${newLicense}`);
               core.setFailed(`License change detected for ${packageName}: ${oldLicense} → ${newLicense}`);
+
+              // Add a comment to the PR with details about the license change
+              const { owner, repo } = context.repo;
+              const issue_number = context.payload.pull_request.number;
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: `⚠️ **License Change Detected**\n\nPackage \`${packageName}\` has changed license:\n- Previous: \`${oldLicense}\`\n- New: \`${newLicense}\`\n\nPlease review this change to ensure it complies with your organization's licensing policies.`
+              });
             } else {
               console.log("✅ No license changes detected");
             }
