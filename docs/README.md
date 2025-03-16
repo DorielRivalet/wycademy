@@ -44,7 +44,7 @@ Double-check any license issues. If there is any issue, apply changes and recrea
 npx license-report-check --source ./license-report.json $(jq -r '.allowed[] | "--allowed=\(.)"' .license-report-check.json)
 ```
 
-Some packages may appear in the `notAllowed` array, double-check if this tooling did not detect open-source licenses. The license may be linked in the `README.md`, `package.json` or other places. You can also run `npx license-checker --summary`.**If a package is GPL or AGPL (but not LGPL), try to find alternatives.**
+Some packages may appear in the `notAllowed` array, double-check if this tooling did not detect open-source licenses. The license may be linked in the `README.md`, `package.json` or other places. You can also run `npx license-checker --summary`. **If a package is GPL or AGPL (but not LGPL), try to find alternatives.**
 
 Proceed to get the licenses' text:
 
@@ -63,3 +63,7 @@ python ./scripts/license-text-fetch.py
 Lastly, if there were packages whose license text was not found, find them from the list previously written down and manually add them to `/license-report-full.json`.
 
 The contents of `/license-report-full.json` can then be copied into `/src/lib/client/modules/license-report.ts`.
+
+### GitHub Actions
+
+In order to automatically check license changes when updating packages, the Dependabot checks include a workflow file, which also involves running `/scripts/compare-licenses.js`. We can check the `Compare licenses` step of the `.github/workflows/license-change-checker.yml` workflow file and verify that there are no license changes when updating the packages.
