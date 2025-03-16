@@ -16,6 +16,18 @@
 <article>
 	<SectionHeadingTopLevel title="Urgent Notice for YouTube Content Creators" />
 
+	<UnorderedList class="spaced-list">
+		<ListItem
+			><p>
+				<strong>2025-03-16 Update:</strong> A copyright strike was issued on a public
+				Monster Hunter video that contained no overlays or music. This strike occurred
+				during Wilds' marketing campaign, specifically on the same month it would
+				release. To reduce risk, we recommend to avoid posting any Monster Hunter
+				content near a game's release and setting videos to Unlisted instead of Public.
+			</p>
+		</ListItem>
+	</UnorderedList>
+
 	<p class="spaced-paragraph">
 		Since late 2023, there have been multiple reports of people receiving
 		copyright strikes on YouTube due to the use, or apparent use, of mods or any
