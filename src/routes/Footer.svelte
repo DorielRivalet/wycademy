@@ -14,7 +14,6 @@
 	import VercelLogoLight from '$lib/client/images/vercel-logotype-light.svg';
 	import SvelteLogo from '$lib/client/images/svelte-logo.svg';
 	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
-	import authorImage from '$lib/client/images/author.webp';
 	import Banner from '$lib/client/components/Banner.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';

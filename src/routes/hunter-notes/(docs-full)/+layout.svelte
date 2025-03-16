@@ -526,12 +526,12 @@
 					href: '/hunter-notes/locations/rasta-bar',
 					icon: LocationIcons.find((e) => e.name === 'Rasta Bar')?.icon,
 				},
-				{
-					id: '/hunter-notes/locations/tent',
-					text: 'Tent',
-					href: '/hunter-notes/locations/tent',
-					icon: LocationIcons.find((e) => e.name === 'Tent')?.icon,
-				},
+				// {
+				// 	id: '/hunter-notes/locations/tent',
+				// 	text: 'Tent',
+				// 	href: '/hunter-notes/locations/tent',
+				// 	icon: LocationIcons.find((e) => e.name === 'Tent')?.icon,
+				// },
 			],
 		},
 		{
