@@ -7,68 +7,62 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import {
 		getTowerWeaponIconColor,
-		towerWeapons,
+		getTowerWeaponInfo,
+		getTowerWeaponMaxAffinityIndex,
+		getTowerWeaponMaxAttackIndex,
+		getTowerWeaponMaxElementIndex,
+		getTowerWeaponMaxParalysisIndex,
+		getTowerWeaponMaxPoisonIndex,
+		getTowerWeaponMaxSharpnessLevel,
+		getTowerWeaponMaxSleepIndex,
+		getTowerWeaponSeriesInfo,
+		isTowerWeaponExceedingMaxCost,
 	} from '$lib/client/modules/frontier/tower-weapons';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import type { FrontierWeaponName } from 'ezlion';
+	import { findClosestIndex } from '$lib/client/modules/math';
 
 	interface Props {
-		towerWeaponExceedsMaxCost: boolean;
+		towerWeaponName: string;
+		towerWeaponType: FrontierWeaponName;
+
+		towerWeaponAffinityValue: number;
+		towerWeaponAttackValue: number;
+		towerWeaponElementValue: number;
+		towerWeaponPoisonValue: number;
+		towerWeaponParalysisValue: number;
+		towerWeaponSleepValue: number;
+		towerWeaponSharpnessLevel: number;
+
+		towerWeaponBowCharge1Level: string;
+		towerWeaponBowCharge2Level: string;
+		towerWeaponBowCharge3Level: string;
+		towerWeaponBowCharge4Level: string;
+
+		towerWeaponGunlanceShellLevel: string; // TODO to number?
+		towerWeaponReloadSpeedValue: string;
+		towerWeaponRecoilValue: string;
+
+		towerWeaponSharpnessIndex: number; // not value
+
 		towerWeaponTotalCost: number;
 		towerWeaponTotalGems: {
 			courage: number;
 			glittering: number;
 			divine: number;
 		};
-		towerWeaponAttackValue: number;
-		towerWeaponAttackIndex: number;
-		towerWeaponElementValue: number;
-		towerWeaponElementIndex: number;
-		towerWeaponPoisonValue: number;
-		towerWeaponPoisonIndex: number;
-		towerWeaponParalysisValue: number;
-		towerWeaponParalysisIndex: number;
-		towerWeaponSleepValue: number;
-		towerWeaponSleepIndex: number;
-		towerWeaponAffinityValue: number;
-		towerWeaponAffinityIndex: number;
-		towerWeaponSharpnessLevel: number;
-		towerWeaponSharpnessIndex: number;
-		towerWeaponGunlanceShellLevel: string; // TODO to number?
-		towerWeaponReloadSpeedValue: string;
-		towerWeaponRecoilValue: string;
-		towerWeaponBowCharge1Level: string;
-		towerWeaponBowCharge2Level: string;
-		towerWeaponBowCharge3Level: string;
-		towerWeaponBowCharge4Level: string;
-		towerWeaponMaxAttackIndex: number;
-		towerWeaponMaxElementIndex: number;
-		towerWeaponMaxAffinityIndex: number;
-		towerWeaponMaxPoisonIndex: number;
-		towerWeaponMaxParalysisIndex: number;
-		towerWeaponMaxSleepIndex: number;
-		towerWeaponMaxSharpnessLevel: number;
-		towerWeaponName: string;
-		towerWeaponType: FrontierWeaponName;
 	}
 
 	let {
-		towerWeaponExceedsMaxCost,
 		towerWeaponTotalCost,
 		towerWeaponTotalGems,
-		towerWeaponAttackValue,
-		towerWeaponAttackIndex,
-		towerWeaponElementValue,
-		towerWeaponElementIndex,
-		towerWeaponPoisonValue,
-		towerWeaponPoisonIndex,
-		towerWeaponParalysisValue,
-		towerWeaponParalysisIndex,
-		towerWeaponSleepValue,
-		towerWeaponSleepIndex,
-		towerWeaponAffinityValue,
-		towerWeaponAffinityIndex,
 		towerWeaponSharpnessLevel,
+		towerWeaponAttackValue,
+		towerWeaponElementValue,
+		towerWeaponPoisonValue,
+		towerWeaponParalysisValue,
+		towerWeaponSleepValue,
+		towerWeaponAffinityValue,
 		towerWeaponSharpnessIndex,
 		towerWeaponGunlanceShellLevel,
 		towerWeaponReloadSpeedValue,
@@ -77,29 +71,69 @@
 		towerWeaponBowCharge2Level,
 		towerWeaponBowCharge3Level,
 		towerWeaponBowCharge4Level,
-		towerWeaponMaxAttackIndex,
-		towerWeaponMaxAffinityIndex,
-		towerWeaponMaxElementIndex,
-		towerWeaponMaxParalysisIndex,
-		towerWeaponMaxPoisonIndex,
-		towerWeaponMaxSleepIndex,
-		towerWeaponMaxSharpnessLevel,
 		towerWeaponName,
 		towerWeaponType,
 	}: Props = $props();
 
-	function getTowerWeaponSeriesName(name: string, type: FrontierWeaponName) {
-		return (
-			towerWeapons.find((e) => e.name === name && e.type === type) ??
-			towerWeapons[0]
-		).series;
-	}
-
-	let towerWeaponSeriesName = $derived(
-		getTowerWeaponSeriesName(towerWeaponName, towerWeaponType),
+	let towerWeaponSelected = $derived(
+		getTowerWeaponInfo(towerWeaponName, towerWeaponType),
 	);
 
-	let iconColor = $derived(getTowerWeaponIconColor(towerWeaponSeriesName));
+	let towerWeaponSeries = $derived(
+		getTowerWeaponSeriesInfo(towerWeaponSelected.series),
+	);
+
+	let iconColor = $derived(getTowerWeaponIconColor(towerWeaponSelected.series));
+
+	let towerWeaponAttackIndex = $derived(
+		findClosestIndex(towerWeaponSelected.attack, towerWeaponAttackValue),
+	);
+
+	let towerWeaponElementIndex = $derived(
+		findClosestIndex(towerWeaponSelected.element, towerWeaponElementValue),
+	);
+
+	let towerWeaponParalysisIndex = $derived(
+		findClosestIndex(towerWeaponSelected.paralysis, towerWeaponParalysisValue),
+	);
+
+	let towerWeaponPoisonIndex = $derived(
+		findClosestIndex(towerWeaponSelected.poison, towerWeaponPoisonValue),
+	);
+
+	let towerWeaponSleepIndex = $derived(
+		findClosestIndex(towerWeaponSelected.sleep, towerWeaponSleepValue),
+	);
+
+	let towerWeaponAffinityIndex = $derived(
+		findClosestIndex(towerWeaponSelected.affinity, towerWeaponAffinityValue),
+	);
+
+	let towerWeaponExceedsMaxCost = $derived(
+		isTowerWeaponExceedingMaxCost(towerWeaponSeries, towerWeaponTotalCost),
+	);
+
+	let towerWeaponMaxAttackIndex = $derived(
+		getTowerWeaponMaxAttackIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxElementIndex = $derived(
+		getTowerWeaponMaxElementIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxAffinityIndex = $derived(
+		getTowerWeaponMaxAffinityIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxPoisonIndex = $derived(
+		getTowerWeaponMaxPoisonIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxParalysisIndex = $derived(
+		getTowerWeaponMaxParalysisIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxSleepIndex = $derived(
+		getTowerWeaponMaxSleepIndex(towerWeaponSelected),
+	);
+	let towerWeaponMaxSharpnessLevel = $derived(
+		getTowerWeaponMaxSharpnessLevel(towerWeaponSeries),
+	);
 </script>
 
 {#snippet iconSnippet()}

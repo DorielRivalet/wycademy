@@ -1,5 +1,6 @@
 import type {
 	FrontierTowerWeapon,
+	FrontierTowerWeaponLevelUpgrade,
 	FrontierTowerWeaponRecoilUpgrade,
 	FrontierTowerWeaponReloadUpgrade,
 	FrontierTowerWeaponSeries,
@@ -78,6 +79,8 @@ import decorationOff from '$lib/client/images/weapon/tower/decoration.webp';
 import sigilOn from '$lib/client/images/weapon/tower/sigil-on.webp';
 import sigilOff from '$lib/client/images/weapon/tower/sigil-off.webp';
 import { RarityColors } from './objects';
+import type { FrontierWeaponName } from 'ezlion';
+import { findClosestIndex } from '../math';
 
 export type FrontierTowerWeaponSeriesInfo = {
 	series: FrontierTowerWeaponSeries;
@@ -234,20 +237,6 @@ export const towerWeaponSeries: FrontierTowerWeaponSeriesInfo[] = [
 		},
 	},
 ];
-
-export function getTowerWeaponIconColor(series: FrontierTowerWeaponSeries) {
-	switch (series) {
-		default:
-			// TODO add a getItemColor method
-			return RarityColors[0];
-		case 'Light':
-			return RarityColors[0];
-		case 'Dark':
-			return RarityColors[11];
-		case 'Blue':
-			return RarityColors[5];
-	}
-}
 
 export const towerWeapons: FrontierTowerWeapon[] = [
 	{
@@ -18545,3 +18534,125 @@ export const towerWeapons: FrontierTowerWeapon[] = [
 		],
 	},
 ];
+
+export function getTowerWeaponIconColor(series: FrontierTowerWeaponSeries) {
+	switch (series) {
+		default:
+			// TODO add a getItemColor method
+			return RarityColors[0];
+		case 'Light':
+			return RarityColors[0];
+		case 'Dark':
+			return RarityColors[11];
+		case 'Blue':
+			return RarityColors[5];
+	}
+}
+
+export function getTowerWeaponInfo(name: string, type: FrontierWeaponName) {
+	return (
+		towerWeapons.find((e) => e.name === name && e.type === type) ??
+		towerWeapons[0]
+	);
+}
+
+export function getTowerWeaponSeriesInfo(series: FrontierTowerWeaponSeries) {
+	return (
+		towerWeaponSeries.find((e) => e.series === series) ?? towerWeaponSeries[0]
+	);
+}
+
+export function isTowerWeaponExceedingMaxCost(
+	series: FrontierTowerWeaponSeriesInfo,
+	currentCost: number,
+) {
+	return series.maxTotalCost ?? towerWeaponSeries[0].maxTotalCost < currentCost;
+}
+
+// values
+export function getTowerWeaponAttackValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.attack[index][0] || 0;
+}
+
+export function getTowerWeaponElementValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.element[index][0] || 0;
+}
+
+export function getTowerWeaponAffinityValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.affinity[index][0] || 0;
+}
+
+export function getTowerWeaponPoisonValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.poison[index][0] || 0;
+}
+
+export function getTowerWeaponParalysisValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.paralysis[index][0] || 0;
+}
+
+export function getTowerWeaponSleepValue(
+	towerWeapon: FrontierTowerWeapon,
+	index: number,
+) {
+	return towerWeapon.sleep[index][0] || 0;
+}
+
+// max index
+export function getTowerWeaponMaxAttackIndex(towerWeapon: FrontierTowerWeapon) {
+	return towerWeapon.attack.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxElementIndex(
+	towerWeapon: FrontierTowerWeapon,
+) {
+	return towerWeapon.element.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxAffinityIndex(
+	towerWeapon: FrontierTowerWeapon,
+) {
+	return towerWeapon.affinity.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxPoisonIndex(towerWeapon: FrontierTowerWeapon) {
+	return towerWeapon.poison.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxParalysisIndex(
+	towerWeapon: FrontierTowerWeapon,
+) {
+	return towerWeapon.paralysis.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxSleepIndex(towerWeapon: FrontierTowerWeapon) {
+	return towerWeapon.sleep.length - 1 || 0;
+}
+
+export function getTowerWeaponMaxSharpnessLevel(
+	towerWeaponSeries: FrontierTowerWeaponSeriesInfo,
+) {
+	return towerWeaponSeries.sharpnessLevels.length - 1 || 0;
+}
+
+// index
+export function getTowerWeaponUpgradeIndex(
+	values: FrontierTowerWeaponLevelUpgrade[],
+	value: number,
+) {
+	return findClosestIndex(values, value);
+}

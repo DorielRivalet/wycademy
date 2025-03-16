@@ -109,3 +109,28 @@ export function getProbabilitySourceForTargetProbabilityWithTries(
 
 	return successProbability;
 }
+
+export function findClosestIndex(arr?: [number, number, number][], w: number) {
+	if (!arr) {
+		return 0;
+	}
+	// Initialize variables to keep track of the minimum difference and its index
+	let minDifference = Infinity; // Start with a large value
+	let closestIndex = -1; // Initialize to -1 to indicate no match
+
+	// Iterate over the array
+	for (let i = 0; i < arr.length; i++) {
+		// Calculate the absolute difference between w and the current element in x
+		const difference = Math.abs(w - arr[i][0]);
+
+		// Check if this difference is smaller than the current minimum difference
+		if (difference < minDifference) {
+			// Update the minimum difference and the index where it was found
+			minDifference = difference;
+			closestIndex = i;
+		}
+	}
+
+	// Return the index where the closest value to w was found
+	return closestIndex;
+}

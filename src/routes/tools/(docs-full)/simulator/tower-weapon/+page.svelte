@@ -26,6 +26,7 @@
 	} from '$lib/client/modules/frontier/types';
 	import {
 		getTowerWeaponIconColor,
+		getTowerWeaponSeriesInfo,
 		towerWeapons,
 		towerWeaponSeries,
 		towerWeaponSlotImages,
@@ -46,10 +47,10 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { replaceState } from '$app/navigation';
 	import TowerWeaponStats from '$lib/client/components/frontier/ToweWeaponStats.svelte';
+	import { findClosestIndex } from '$lib/client/modules/math';
 
 	function onSelectTowerWeaponOption() {
 		towerWeaponGunlanceShellLevel = '0';
@@ -203,31 +204,6 @@
 
 		updateTowerWeaponSlotsState();
 		updateSliderDisabledState();
-	}
-
-	function findClosestIndex(arr?: [number, number, number][], w: number) {
-		if (!arr) {
-			return 0;
-		}
-		// Initialize variables to keep track of the minimum difference and its index
-		let minDifference = Infinity; // Start with a large value
-		let closestIndex = -1; // Initialize to -1 to indicate no match
-
-		// Iterate over the array
-		for (let i = 0; i < arr.length; i++) {
-			// Calculate the absolute difference between w and the current element in x
-			const difference = Math.abs(w - arr[i][0]);
-
-			// Check if this difference is smaller than the current minimum difference
-			if (difference < minDifference) {
-				// Update the minimum difference and the index where it was found
-				minDifference = difference;
-				closestIndex = i;
-			}
-		}
-
-		// Return the index where the closest value to w was found
-		return closestIndex;
 	}
 
 	function handleSliderChange(
@@ -469,13 +445,6 @@
 		return result;
 	}
 
-	function getTowerWeaponSeriesInfo(weapon: FrontierTowerWeapon) {
-		return (
-			towerWeaponSeries.find((e) => e.series === weapon.series) ??
-			towerWeaponSeries[0]
-		);
-	}
-
 	function updateSliderDisabledState() {
 		// Example logic: Disable the slider if all sigil slots are in use and the property value is 0
 
@@ -674,7 +643,7 @@
 	);
 
 	let towerWeaponSelectedSeriesInfo = $derived(
-		getTowerWeaponSeriesInfo(towerWeaponSelected),
+		getTowerWeaponSeriesInfo(towerWeaponSelected.series),
 	);
 
 	const towerWeaponReloadSpeedOptions = [
@@ -692,10 +661,6 @@
 		{ id: 'Small', text: 'Small' },
 		{ id: 'Smaller', text: 'Smaller' },
 	];
-
-	let towerWeaponSeriesColor = $derived(
-		getTowerWeaponIconColor(towerWeaponSelected.series),
-	);
 
 	let towerWeaponReloadSpeedIndex = $derived(
 		towerWeaponReloadSpeedOptions.findIndex(
@@ -868,23 +833,7 @@
 			tgc: towerWeaponTotalGems.courage.toString(),
 			tgg: towerWeaponTotalGems.glittering.toString(),
 			tgd: towerWeaponTotalGems.divine.toString(),
-			emc: towerWeaponExceedsMaxCost.toString(),
-			ayi: towerWeaponAffinityIndex.toString(),
-			aki: towerWeaponAttackIndex.toString(),
-			ei: towerWeaponElementIndex.toString(),
-			psi: towerWeaponParalysisIndex.toString(),
-			pni: towerWeaponPoisonIndex.toString(),
 			ssi: towerWeaponSharpnessIndex.toString(),
-			spi: towerWeaponSleepIndex.toString(),
-			mss: (
-				towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1
-			).toString(),
-			mak: (towerWeaponSelected.attack.length - 1).toString(),
-			me: (towerWeaponSelected.element.length - 1).toString(), // TODO
-			may: (towerWeaponSelected.affinity.length - 1).toString(),
-			mps: (towerWeaponSelected.paralysis.length - 1).toString(),
-			mpn: (towerWeaponSelected.poison.length - 1).toString(),
-			msp: (towerWeaponSelected.sleep.length - 1).toString(),
 		}),
 	);
 
@@ -1505,11 +1454,11 @@
 	}
 
 	.tower-weapon-property {
-		text-align: center;
-		align-items: end;
+		text-align: start;
+		align-items: center;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0rem;
+		gap: 0.5rem;
 		flex-direction: row;
 	}
 
