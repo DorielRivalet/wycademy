@@ -157,6 +157,18 @@ function generateMonsterUsernames() {
 		'Doshaguma',
 		'Quematrice',
 		'Rompopolo',
+		'Baunos',
+		'Bulaqchi',
+		'Comaqchi',
+		'Gajios',
+		'Gelidron',
+		'Harpios',
+		'Kranodath',
+		'Piragill',
+		'Porkeplume',
+		'Rafma',
+		'Talioth',
+		'Hirabami',
 	];
 
 	const allMonsters = [
