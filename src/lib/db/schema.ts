@@ -1716,6 +1716,72 @@ export const registrationCodesTable = pgTable('registration_codes', {
 		.defaultNow(),
 }).enableRLS();
 
+/** From easter eggs (mostly). TODO leaderboard rewards */
+// export const wycademyMinigamesTable = pgTable(
+// 	'wycademy_minigames',
+// 	{
+// 		profile_id: uuid().notNull(),
+// 		minigame_name: text().notNull(),
+// 		score: integer().notNull(),
+// 		updated_at: timestamp('updated_at', {
+// 			withTimezone: true,
+// 			mode: 'string', // this is needed
+// 		}).$onUpdateFn(() => sql`now()`),
+// 		created_at: timestamp('created_at', { withTimezone: true })
+// 			.notNull()
+// 			.defaultNow(),
+// 	},
+// 	(t) => [
+// 		index('idx_wycademy_minigames').on(t.profile_id, t.minigame_name),
+// 		pgPolicy(`Table is viewable by everyone`, {
+// 			as: 'permissive',
+// 			for: 'select',
+// 			to: [anonRole, authenticatedRole],
+// 			using: sql`true`,
+// 		}),
+// 		pgPolicy(
+// 			'Authenticated users who set a public profile can insert their own row',
+// 			{
+// 				as: 'permissive',
+// 				for: 'insert',
+// 				to: authenticatedRole,
+// 				withCheck: sql`
+// 				(select auth.uid()) = profile_id
+// 				and (
+// 					select username_set
+// 					from profiles
+// 					where id = (select auth.uid())
+// 					limit 1
+// 				) = true`,
+// 			},
+// 		),
+// 		pgPolicy(
+// 			'Authenticated users who set a public profile can update their own row',
+// 			{
+// 				as: 'permissive',
+// 				for: 'update',
+// 				to: authenticatedRole,
+// 				using: sql`
+// 				(select auth.uid()) = profile_id
+// 				and (
+// 					select username_set
+// 					from profiles
+// 					where id = (select auth.uid())
+// 					limit 1
+// 				) = true`,
+// 				withCheck: sql`
+// 				(select auth.uid()) = profile_id
+// 				and (
+// 					select username_set
+// 					from profiles
+// 					where id = (select auth.uid())
+// 					limit 1
+// 				) = true`,
+// 			},
+// 		),
+// 	],
+// ).enableRLS();
+
 // TODO limit by role
 export const activityFeedView = pgView('activity_feed_view')
 	.with({
