@@ -16,7 +16,7 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { browser } from '$app/environment';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import Help from 'carbon-icons-svelte/lib/Help.svelte';
@@ -64,7 +64,7 @@
 	}
 
 	const customTitle = "Leaderboard — Frontier's Wycademy";
-	const url = $page.url.toString();
+	const url = page.url.toString();
 
 	let userAgreed = $state(false);
 	let userHasVerifiedEmail = $state(false);

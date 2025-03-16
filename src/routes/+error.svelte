@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import cat from '$lib/client/images/error.webp';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Header from './Header.svelte';
@@ -101,7 +101,7 @@
 		<main>
 			<div class="container">
 				<h1>
-					Error {$page.status} - {errorTitles[
+					Error {page.status} - {errorTitles[
 						Math.floor(Math.random() * errorTitles.length)
 					]}
 				</h1>
@@ -120,9 +120,9 @@
 				Remember, every hunter faces challenges, but we always come out stronger
 				together, nya! 🎵🍖🐾
 				<img src={cat} alt="Error" class="cat" />
-				{#if $page.error !== null}
+				{#if page.error !== null}
 					<span style="font-size: 2em">
-						{$page.error.message}
+						{page.error.message}
 					</span>
 				{/if}
 				<p>Want to play as Raviente?</p>
@@ -130,7 +130,7 @@
 			</div>
 		</main>
 	</div>
-	{#key $page.url.pathname}
+	{#key page.url.pathname}
 		<div class="footer"><Footer /></div>
 	{/key}
 </div>

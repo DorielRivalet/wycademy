@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import slugify from 'slugify';
@@ -208,7 +208,7 @@
 	);
 
 	let selectedMonsterIdFromList = $state(
-		getMonsterDisplayName($page.params.monster),
+		getMonsterDisplayName(page.params.monster),
 	);
 
 	/** TODO this changes depending on monster*/
@@ -218,7 +218,7 @@
 
 	const currentMonsters = getCurrentMonsters();
 
-	let monster = $derived(findMonster($page.params.monster));
+	let monster = $derived(findMonster(page.params.monster));
 	let monsterID = $derived(findMonsterID(monster));
 
 	let hitzones = $derived(
@@ -275,7 +275,7 @@
 	let hovering = false;
 
 	$effect(() => {
-		selectedMonsterIdFromList = getMonsterDisplayName($page.params.monster);
+		selectedMonsterIdFromList = getMonsterDisplayName(page.params.monster);
 	});
 </script>
 

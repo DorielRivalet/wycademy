@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
@@ -683,7 +683,7 @@
 			</p>
 		{/if}
 		<div class="page-turn">
-			<PageTurn pageUrlPathName={$page.url.pathname} />
+			<PageTurn pageUrlPathName={page.url.pathname} />
 		</div>
 	</div>
 </section>

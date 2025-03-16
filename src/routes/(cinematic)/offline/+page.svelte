@@ -5,7 +5,7 @@
 -->
 
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/icon/berserk_raviente_raid.png';
 	import {
@@ -2362,7 +2362,7 @@
 		}
 	}
 
-	const url = $page.url.toString();
+	const url = page.url.toString();
 	let modalOpen = $state(false);
 	let gameStateText = $state('Play');
 

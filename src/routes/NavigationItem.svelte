@@ -5,7 +5,7 @@
 -->
 
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	interface Props {
 		/**TODO: unused?*/
@@ -22,13 +22,13 @@
 </script>
 
 {#if startsWith}
-	<li aria-current={$page.url.pathname.startsWith(path) ? 'page' : undefined}>
+	<li aria-current={page.url.pathname.startsWith(path) ? 'page' : undefined}>
 		<a href={path}>
 			<div class="description">{description}</div>
 		</a>
 	</li>
 {:else}
-	<li aria-current={$page.url.pathname === path ? 'page' : undefined}>
+	<li aria-current={page.url.pathname === path ? 'page' : undefined}>
 		<a href={path}>
 			<div class="description">{description}</div>
 		</a>

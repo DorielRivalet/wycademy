@@ -3,7 +3,7 @@
 	import { slide } from 'svelte/transition';
 	import Self from './TreeNode.svelte';
 	import { cubicInOut } from 'svelte/easing';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import type { TreeItem } from '../types/tree-item';
 	import { goto } from '$app/navigation';
 
@@ -28,7 +28,7 @@
 	}
 
 	// Make active state reactive by computing it within an effect
-	let isActive = $derived(isNodeActive(item, $page.url.pathname));
+	let isActive = $derived(isNodeActive(item, page.url.pathname));
 
 	$effect(() => {
 		// Auto-expand parent nodes if child is active
@@ -53,7 +53,7 @@
 	<div
 		class="node-content"
 		onclick={handleNodeClick}
-		class:active={isActive && item.href === $page.url.pathname}
+		class:active={isActive && item.href === page.url.pathname}
 	>
 		{#if item.nodes?.length}
 			<span class="expand-icon">

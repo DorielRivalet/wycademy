@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Head from '$lib/client/components/Head.svelte';
 	import {
 		overlayDescription,
@@ -17,8 +17,8 @@
 
 	let { children }: Props = $props();
 
-	const url = $page.url.toString();
-	const pageUrlPathName = $page.url.pathname || '';
+	const url = page.url.toString();
+	const pageUrlPathName = page.url.pathname || '';
 
 	const overlayVersionMatch = pageUrlPathName.match(
 		/\/overlay\/release-notes\/([^\/]+)/,

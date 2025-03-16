@@ -7,7 +7,7 @@
 <script lang="ts">
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
@@ -55,7 +55,7 @@
 		{/if}
 	</div>
 
-	{#key $page.url.pathname}
+	{#key page.url.pathname}
 		<Footer gitHubData={data.github} />
 	{/key}
 </div>
