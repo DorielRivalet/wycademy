@@ -49,7 +49,7 @@
 	} from '$lib/constants';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { replaceState } from '$app/navigation';
-	import TowerWeaponStats from '$lib/client/components/frontier/ToweWeaponStats.svelte';
+	import TowerWeaponStats from '$lib/client/components/frontier/TowerWeaponStats.svelte';
 	import { findClosestIndex } from '$lib/client/modules/math';
 
 	function onSelectTowerWeaponOption() {
@@ -1533,6 +1533,9 @@
 	@media (min-width: 1312px) {
 		.tower-weapon-simulator-container {
 			width: 95%;
+			display: grid;
+			gap: 1rem;
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 

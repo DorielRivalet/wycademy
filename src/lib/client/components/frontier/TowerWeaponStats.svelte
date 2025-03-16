@@ -338,26 +338,24 @@
 
 	@media (min-width: 1312px) {
 		.tower-weapon-gems {
-			display: flex;
-			flex-direction: row;
+			display: grid;
 			gap: 1rem;
 			font-size: 1rem;
 			justify-content: center;
 			text-align: center;
-			flex-wrap: wrap;
+			grid-template-columns: 1fr 1fr 1fr;
 		}
 
 		.tower-weapon-summary {
 			width: 100%;
-			display: flex;
-			flex-direction: row;
+			display: grid;
 			justify-content: center;
 			align-items: center;
 			gap: 1rem;
 			font-size: 1rem;
 			text-align: center;
 			vertical-align: bottom;
-			flex-wrap: wrap;
+			grid-template-columns: 1fr 1fr 1fr;
 		}
 
 		.tower-weapon-name {
