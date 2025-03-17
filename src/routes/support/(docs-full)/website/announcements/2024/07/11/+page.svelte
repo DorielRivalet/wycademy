@@ -20,10 +20,11 @@
 		<ListItem
 			><p>
 				<strong>2025-03-16 Update:</strong> A copyright strike was issued on a public
-				Monster Hunter video that contained no overlays or music. This strike occurred
-				during Wilds' marketing campaign, specifically on the same month it would
-				release. To reduce risk, we recommend to avoid posting any Monster Hunter
-				content near a game's release and setting videos to Unlisted instead of Public.
+				Monster Hunter Frontier video that contained no overlays or music. This strike
+				occurred during Wilds' marketing campaign, specifically on the same month
+				it would release. To reduce risk, we recommend to avoid posting any Monster
+				Hunter Frontier content near a game's release and setting videos to Unlisted
+				instead of Public.
 			</p>
 		</ListItem>
 	</UnorderedList>
