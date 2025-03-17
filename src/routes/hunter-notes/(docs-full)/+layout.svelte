@@ -53,7 +53,7 @@
 	import { getMonsterByPathName } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
-	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { getElementIcon } from '$lib/client/modules/frontier/elements';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -160,7 +160,7 @@
 					id: '/hunter-notes/getting-started/elements',
 					href: '/hunter-notes/getting-started/elements',
 					text: 'Elements',
-					icon: ElementIcons.find((e) => e.name === 'Tenshou')?.icon,
+					icon: getElementIcon('Tenshou'),
 				},
 				{
 					id: '/hunter-notes/getting-started/ailments',

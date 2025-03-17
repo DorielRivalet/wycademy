@@ -15,19 +15,7 @@ import Fire from '$lib/client/components/frontier/icon/element/Fire.svelte';
 import Water from '$lib/client/components/frontier/icon/element/Water.svelte';
 import Ice from '$lib/client/components/frontier/icon/element/Ice.svelte';
 import Dragon from '$lib/client/components/frontier/icon/element/Dragon.svelte';
-import Light from '$lib/client/components/frontier/icon/element/Light.svelte';
-import Blaze from '$lib/client/components/frontier/icon/element/Blaze.svelte';
-import Tenshou from '$lib/client/components/frontier/icon/element/Tenshou.svelte';
-import Okiko from '$lib/client/components/frontier/icon/element/Okiko.svelte';
-import LightningRod from '$lib/client/components/frontier/icon/element/LightningRod.svelte';
-import BlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
-import CrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
-import EmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
-import BurningZero from '$lib/client/components/frontier/icon/element/BurningZero4.svelte';
-import Dark from '$lib/client/components/frontier/icon/element/Dark.svelte';
-import Music2 from '$lib/client/components/frontier/icon/element/Music2.svelte';
-import Sound2 from '$lib/client/components/frontier/icon/element/Sound2.svelte';
-import Wind from '$lib/client/components/frontier/icon/element/Wind.svelte';
+
 import Poison from '$lib/client/components/frontier/icon/status/Poison.svelte';
 import Paralysis from '$lib/client/components/frontier/icon/status/Paralysis.svelte';
 import Sleep from '$lib/client/components/frontier/icon/status/Sleep.svelte';
@@ -239,84 +227,84 @@ export const tagInfo: {
 		icon: Dragon,
 		values: ['Dragon'],
 	},
-	{
-		color: 'warm-gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Light,
-		values: ['Light'],
-	},
-	{
-		color: 'purple',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Blaze,
-		values: ['Blaze'],
-	},
-	{
-		color: 'high-contrast',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Tenshou,
-		values: ['Tenshou'],
-	},
-	{
-		color: 'outline',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Okiko,
-		values: ['Okiko'],
-	},
-	{
-		color: 'warm-gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: LightningRod,
-		values: ['Lightning Rod', 'L. Rod'],
-	},
-	{
-		color: 'gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: BlackFlame,
-		values: ['Black Flame', 'B. Flame'],
-	},
-	{
-		color: 'red',
-		link: '/hunter-notes/getting-started/elements',
-		icon: CrimsonDemon,
-		values: ['Crimson Demon', 'C. Demon'],
-	},
-	{
-		color: 'warm-gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: EmperorRoar,
-		values: ["Emperor's Roar", 'E. Roar'],
-	},
-	{
-		color: 'purple',
-		link: '/hunter-notes/getting-started/elements',
-		icon: BurningZero,
-		values: ['Burning Zero', 'B. Zero'],
-	},
-	{
-		color: 'outline',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Dark,
-		values: ['Dark'],
-	},
-	{
-		color: 'cool-gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Music2,
-		values: ['Music'],
-	},
-	{
-		color: 'teal',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Sound2,
-		values: ['Sound'],
-	},
-	{
-		color: 'gray',
-		link: '/hunter-notes/getting-started/elements',
-		icon: Wind,
-		values: ['Wind'],
-	},
+	// {
+	// 	color: 'warm-gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Light,
+	// 	values: ['Light'],
+	// },
+	// {
+	// 	color: 'purple',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Blaze,
+	// 	values: ['Blaze'],
+	// },
+	// {
+	// 	color: 'high-contrast',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Tenshou,
+	// 	values: ['Tenshou'],
+	// },
+	// {
+	// 	color: 'outline',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Okiko,
+	// 	values: ['Okiko'],
+	// },
+	// {
+	// 	color: 'warm-gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: LightningRod,
+	// 	values: ['Lightning Rod', 'L. Rod'],
+	// },
+	// {
+	// 	color: 'gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: BlackFlame,
+	// 	values: ['Black Flame', 'B. Flame'],
+	// },
+	// {
+	// 	color: 'red',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: CrimsonDemon,
+	// 	values: ['Crimson Demon', 'C. Demon'],
+	// },
+	// {
+	// 	color: 'warm-gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: EmperorRoar,
+	// 	values: ["Emperor's Roar", 'E. Roar'],
+	// },
+	// {
+	// 	color: 'purple',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: BurningZero,
+	// 	values: ['Burning Zero', 'B. Zero'],
+	// },
+	// {
+	// 	color: 'outline',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Dark,
+	// 	values: ['Dark'],
+	// },
+	// {
+	// 	color: 'cool-gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Music2,
+	// 	values: ['Music'],
+	// },
+	// {
+	// 	color: 'teal',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Sound2,
+	// 	values: ['Sound'],
+	// },
+	// {
+	// 	color: 'gray',
+	// 	link: '/hunter-notes/getting-started/elements',
+	// 	icon: Wind,
+	// 	values: ['Wind'],
+	// },
 
 	// TODO
 	// Locations
