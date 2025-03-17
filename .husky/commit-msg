@@ -1,1 +1,2 @@
+#!/bin/sh
 gitleaks detect -v && npm run commitlint ${1}
