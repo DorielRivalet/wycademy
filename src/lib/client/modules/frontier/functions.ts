@@ -17,19 +17,6 @@ import WaterIcon from '$lib/client/images/icon/element/water.webp';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.webp';
 import IceIcon from '$lib/client/images/icon/element/ice.webp';
 import DragonIcon from '$lib/client/images/icon/element/dragon.webp';
-import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.webp';
-import BlackFlameIcon from '$lib/client/images/icon/element/black_flame.webp';
-import BlazeIcon from '$lib/client/images/icon/element/blaze.webp';
-import CrimsonDemonIcon from '$lib/client/images/icon/element/crimson_demon.webp';
-import DarkIcon from '$lib/client/images/icon/element/dark.webp';
-import EmperorsRoarIcon from '$lib/client/images/icon/element/emperors_roar.webp';
-import OkikoIcon from '$lib/client/images/icon/element/okiko.webp';
-import WindIcon from '$lib/client/images/icon/element/wind.webp';
-import MusicIcon from '$lib/client/images/icon/element/music.webp';
-import LightIcon from '$lib/client/images/icon/element/light.webp';
-import SoundIcon from '$lib/client/images/icon/element/sound.webp';
-import LightningRodIcon from '$lib/client/images/icon/element/lightning_rod.webp';
-import TenshouIcon from '$lib/client/images/icon/element/tenshou.webp';
 import SleepIcon from '$lib/client/images/icon/status/sleep2.webp';
 import PoisonIcon from '$lib/client/images/icon/status/poison.webp';
 import ParalysisIcon from '$lib/client/images/icon/status/paralysis.webp';
@@ -39,6 +26,7 @@ import type { FrontierWeaponID } from 'ezlion';
 import slugify from 'slugify';
 import { weaponTypeInfo } from './weapons';
 import { ArmorTypes } from './armor';
+import MonsterRandom from '$lib/client/images/monster/official/random.webp';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -104,34 +92,34 @@ export const frontierMappers = {
 				return IceIcon;
 			case 'Dragon':
 				return DragonIcon;
-			case 'Light':
-				return LightIcon;
-			case 'Blaze':
-				return BlazeIcon;
-			case 'Tenshou':
-				return TenshouIcon;
-			case 'L. Rod':
-				return LightningRodIcon;
-			case 'Okiko':
-				return OkikoIcon;
-			case 'B. Flame':
-				return BlackFlameIcon;
-			case 'C. Demon':
-				return CrimsonDemonIcon;
-			case 'Dark':
-				return DarkIcon;
-			case 'Music':
-				return MusicIcon;
-			case 'Sound':
-				return SoundIcon;
-			case 'Wind':
-				return WindIcon;
-			case 'B. Zero':
-				return BurningZeroIcon;
-			case 'E. Roar':
-				return EmperorsRoarIcon;
+			// case 'Light':
+			// 	return LightIcon;
+			// case 'Blaze':
+			// 	return BlazeIcon;
+			// case 'Tenshou':
+			// 	return TenshouIcon;
+			// case 'L. Rod':
+			// 	return LightningRodIcon;
+			// case 'Okiko':
+			// 	return OkikoIcon;
+			// case 'B. Flame':
+			// 	return BlackFlameIcon;
+			// case 'C. Demon':
+			// 	return CrimsonDemonIcon;
+			// case 'Dark':
+			// 	return DarkIcon;
+			// case 'Music':
+			// 	return MusicIcon;
+			// case 'Sound':
+			// 	return SoundIcon;
+			// case 'Wind':
+			// 	return WindIcon;
+			// case 'B. Zero':
+			// 	return BurningZeroIcon;
+			// case 'E. Roar':
+			// 	return EmperorsRoarIcon;
 			default:
-				return FireIcon;
+				return MonsterRandom;
 		}
 	},
 	getStatusIcon(name: FrontierStatus) {

@@ -45,8 +45,6 @@
 	} from '$lib/client/modules/routes';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
-	import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
-	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';

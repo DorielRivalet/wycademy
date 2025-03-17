@@ -8,9 +8,13 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Rathian: () =>
-			import('$lib/client/components/frontier/icon/monster/Rathian.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Fatalis: () =>
-			import('$lib/client/components/frontier/icon/monster/Fatalis.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Kelbi: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -40,7 +44,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Rathalos: () =>
-			import('$lib/client/components/frontier/icon/monster/Rathalos.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Aptonoth: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -127,10 +133,12 @@
 			),
 		CrimsonFatalis: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/CrimsonFatalis.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		PinkRathian: () =>
-			import('$lib/client/components/frontier/icon/monster/PinkRathian.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		BlueYianKutKu: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -145,10 +153,12 @@
 			),
 		SilverRathalos: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/SilverRathalos.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		GoldRathian: () =>
-			import('$lib/client/components/frontier/icon/monster/GoldRathian.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		BlackDiablos: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -175,7 +185,7 @@
 			),
 		AzureRathalos: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/AzureRathalos.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		AshenLaoShanLung: () =>
 			import(
@@ -198,7 +208,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ShenGaoren: () =>
-			import('$lib/client/components/frontier/icon/monster/ShenGaoren.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		GreatThunderbug: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -208,7 +220,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		YamaTsukami: () =>
-			import('$lib/client/components/frontier/icon/monster/YamaTsukami.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Chameleos: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -259,7 +273,7 @@
 			),
 		WhiteFatalis: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/WhiteFatalis.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Ceanataur: () =>
 			import(
@@ -270,20 +284,24 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Lavasioth: () =>
-			import('$lib/client/components/frontier/icon/monster/Lavasioth.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Tigrex: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Akantor: () =>
-			import('$lib/client/components/frontier/icon/monster/Akantor.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		BrightHypnoc: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		RedLavasioth: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/RedLavasioth.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Espinas: () =>
 			import(
@@ -299,16 +317,20 @@
 			),
 		AkuraVashimu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/AkuraVashimu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		AkuraJebia: () =>
-			import('$lib/client/components/frontier/icon/monster/AkuraJebia.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Berukyurosu: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Pariapuria: () =>
-			import('$lib/client/components/frontier/icon/monster/Pariapuria.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		WhiteEspinas: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -322,17 +344,21 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Raviente: () =>
-			import('$lib/client/components/frontier/icon/monster/Raviente.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		ViolentRaviente: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ViolentRaviente.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Dyuragaua: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Doragyurosu: () =>
-			import('$lib/client/components/frontier/icon/monster/Doragyurosu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Gurenzeburu: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -346,10 +372,12 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Rukodiora: () =>
-			import('$lib/client/components/frontier/icon/monster/Rukodiora.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		UNKNOWN: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/UnknownPhase1.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Gogomoa: () =>
 			import(
@@ -360,7 +388,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Abiorugu: () =>
-			import('$lib/client/components/frontier/icon/monster/Abiorugu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Kuarusepusu: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -370,13 +400,17 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Disufiroa: () =>
-			import('$lib/client/components/frontier/icon/monster/Disufiroa.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Rebidiora: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Anorupatisu: () =>
-			import('$lib/client/components/frontier/icon/monster/Anorupatisu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Hyujikiki: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -390,7 +424,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		MiRu: () =>
-			import('$lib/client/components/frontier/icon/monster/MiRu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Farunokku: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -400,21 +436,29 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Shantien: () =>
-			import('$lib/client/components/frontier/icon/monster/Shantien.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Pokara: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Goruganosu: () =>
-			import('$lib/client/components/frontier/icon/monster/Goruganosu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Aruganosu: () =>
-			import('$lib/client/components/frontier/icon/monster/Aruganosu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Baruragaru: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Zerureusu: () =>
-			import('$lib/client/components/frontier/icon/monster/Zerureusu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		LoloGougarf: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -456,7 +500,9 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Duremudira: () =>
-			import('$lib/client/components/frontier/icon/monster/Duremudira.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Gureadomosu: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -478,18 +524,24 @@
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		YamaKurai: () =>
-			import('$lib/client/components/frontier/icon/monster/YamaKurai.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Zinogre: () =>
-			import('$lib/client/components/frontier/icon/monster/Zinogre.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Deviljho: () =>
-			import('$lib/client/components/frontier/icon/monster/Deviljho.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Brachydios: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		BerserkRaviente: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ToaTesukatora: () =>
 			import(
@@ -505,20 +557,24 @@
 			),
 		StygianZinogre: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/StygianZinogre.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Guanzorumu: () =>
-			import('$lib/client/components/frontier/icon/monster/Guanzorumu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		StarvingDeviljho: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/StarvingDeviljho.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Voljang: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Nargacuga: () =>
-			import('$lib/client/components/frontier/icon/monster/Nargacuga.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Keoaruboru: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
@@ -533,19 +589,23 @@
 			),
 		BlinkingNargacuga: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/BlinkingNargacuga.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ShagaruMagala: () =>
 			import(
 				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Amatsu: () =>
-			import('$lib/client/components/frontier/icon/monster/Amatsu.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		Elzelion: () =>
-			import('$lib/client/components/frontier/icon/monster/Elzelion.svelte'),
+			import(
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
+			),
 		ArrogantDuremudira: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		Seregios: () =>
 			import(
@@ -553,15 +613,15 @@
 			),
 		Bogabadorumu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/Bogabadorumu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		BombardierBogabadorumu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/BombardierBogabadorumu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		SparklingZerureusu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/SparklingZerureusu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		PSO2Rappy: () =>
 			import(
@@ -646,7 +706,7 @@
 			),
 		ZenithRukodiora: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ZenithRukodiora.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ZenithTaikunZamuza: () =>
 			import(
@@ -662,43 +722,43 @@
 			),
 		ConquestFatalis: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ConquestFatalis.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ConquestShantien: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ConquestShantien.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ConquestCrimsonFatalis: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ConquestCrimsonFatalis.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ShitenDisufiroa: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ShitenDisufiroa.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ShitenUnknown: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ShitenUnknown.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		BurningFreezingElzelion: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/BurningFreezingElzelion.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		HowlingZinogre: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/HowlingZinogre.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		SupremacyPariapuria: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ThirstyPariapuria.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		SupremacyDoragyurosu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/SupremacyDoragyurosu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		SupremacyTeostra: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		SupremacyOdibatorasu: () =>
 			import(
@@ -706,7 +766,7 @@
 			),
 		GoldenDeviljho: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/GoldenDeviljho.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		FuriousRajang: () =>
 			import(
@@ -714,11 +774,11 @@
 			),
 		RulingGuanzorumu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/RulingGuanzorumu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		ShiftingMiRu: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ShiftingMiRu.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 		TwinheadRajang: () =>
 			import(
@@ -726,7 +786,7 @@
 			),
 		RoadWhiteFatalis: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/RoadWhiteFatalis.svelte'
+				'$lib/client/components/frontier/icon/monster/MonsterRandom.svelte'
 			),
 	};
 

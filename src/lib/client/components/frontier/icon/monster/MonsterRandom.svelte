@@ -1,6 +1,6 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
-	import bg from '$lib/client/images/monster/bg-512.webp';
+	import bg from '$lib/client/images/monster/official/bg-512.webp';
 	interface Props {
 		size?: string;
 		background?: boolean;
@@ -8,9 +8,11 @@
 
 	let { size = '128px', background = false }: Props = $props();
 
-	let backgroundStyle = $derived(background
-		? `width: ${size}; height: ${size}; background-image: url('${bg}'); background-size: ${size}`
-		: `width: ${size}; height: ${size};`);
+	let backgroundStyle = $derived(
+		background
+			? `width: ${size}; height: ${size}; background-image: url('${bg}'); background-size: ${size}`
+			: `width: ${size}; height: ${size};`,
+	);
 </script>
 
 <div class="container" style={backgroundStyle}>

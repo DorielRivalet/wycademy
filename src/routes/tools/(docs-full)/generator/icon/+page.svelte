@@ -310,7 +310,7 @@
 		</p>
 		<div class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
-				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
+				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/official/bg-512.webp"
 				>repository</OutboundLink
 			>.
 		</div>

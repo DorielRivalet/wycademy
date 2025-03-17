@@ -3,19 +3,7 @@ import IconElementWater from '$lib/client/components/frontier/icon/element/Water
 import IconElementThunder from '$lib/client/components/frontier/icon/element/Thunder.svelte';
 import IconElementIce from '$lib/client/components/frontier/icon/element/Ice.svelte';
 import IconElementDragon from '$lib/client/components/frontier/icon/element/Dragon.svelte';
-import IconElementDark from '$lib/client/components/frontier/icon/element/Dark3.svelte';
-import IconElementLight from '$lib/client/components/frontier/icon/element/Light.svelte';
-import IconElementLightingRod from '$lib/client/components/frontier/icon/element/LightningRod.svelte';
-import IconElementSound from '$lib/client/components/frontier/icon/element/Sound2.svelte';
-import IconElementWind from '$lib/client/components/frontier/icon/element/Wind.svelte';
-import IconElementMusic from '$lib/client/components/frontier/icon/element/Music2.svelte';
-import IconElementBlaze from '$lib/client/components/frontier/icon/element/Blaze.svelte';
-import IconElementTenshou from '$lib/client/components/frontier/icon/element/Tenshou2.svelte';
-import IconElementOkiko from '$lib/client/components/frontier/icon/element/Okiko2.svelte';
-import IconElementBlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
-import IconElementCrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
-import IconElementEmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
-import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero4.svelte';
+
 import type { FrontierElement, FrontierElementMultiplier } from './types';
 
 export const ElementIcons: {
@@ -63,99 +51,99 @@ export const ElementIcons: {
 		displayName: 'Dragon',
 		icon: IconElementDragon,
 	},
-	{
-		name: 'Light',
-		displayName: 'Light',
-		icon: IconElementLight,
-	},
-	{
-		name: 'Blaze',
-		displayName: 'Blaze',
-		icon: IconElementBlaze,
-	},
-	{
-		name: 'Tenshou',
-		displayName: 'Tenshou',
-		icon: IconElementTenshou,
-	},
-	{
-		name: 'Okiko',
-		displayName: 'Okiko',
-		icon: IconElementOkiko,
-	},
-	{
-		name: 'L. Rod',
-		displayName: 'Lightning Rod',
-		icon: IconElementLightingRod,
-	},
-	{
-		name: 'Lightning Rod',
-		displayName: 'Lightning Rod',
-		icon: IconElementLightingRod,
-	},
-	{
-		name: 'B. Flame',
-		displayName: 'Black Flame',
-		icon: IconElementBlackFlame,
-	},
-	{
-		name: 'Black Flame',
-		displayName: 'Black Flame',
+	// {
+	// 	name: 'Light',
+	// 	displayName: 'Light',
+	// 	icon: IconElementLight,
+	// },
+	// {
+	// 	name: 'Blaze',
+	// 	displayName: 'Blaze',
+	// 	icon: IconElementBlaze,
+	// },
+	// {
+	// 	name: 'Tenshou',
+	// 	displayName: 'Tenshou',
+	// 	icon: IconElementTenshou,
+	// },
+	// {
+	// 	name: 'Okiko',
+	// 	displayName: 'Okiko',
+	// 	icon: IconElementOkiko,
+	// },
+	// {
+	// 	name: 'L. Rod',
+	// 	displayName: 'Lightning Rod',
+	// 	icon: IconElementLightingRod,
+	// },
+	// {
+	// 	name: 'Lightning Rod',
+	// 	displayName: 'Lightning Rod',
+	// 	icon: IconElementLightingRod,
+	// },
+	// {
+	// 	name: 'B. Flame',
+	// 	displayName: 'Black Flame',
+	// 	icon: IconElementBlackFlame,
+	// },
+	// {
+	// 	name: 'Black Flame',
+	// 	displayName: 'Black Flame',
 
-		icon: IconElementBlackFlame,
-	},
-	{
-		name: 'C. Demon',
-		displayName: 'Crimson Demon',
+	// 	icon: IconElementBlackFlame,
+	// },
+	// {
+	// 	name: 'C. Demon',
+	// 	displayName: 'Crimson Demon',
 
-		icon: IconElementCrimsonDemon,
-	},
-	{
-		name: 'Crimson Demon',
-		displayName: 'Crimson Demon',
-		icon: IconElementCrimsonDemon,
-	},
-	{
-		name: 'E. Roar',
-		displayName: "Emperor's Roar",
-		icon: IconElementEmperorRoar,
-	},
-	{
-		name: "Emperor's Roar",
-		displayName: "Emperor's Roar",
-		icon: IconElementEmperorRoar,
-	},
-	{
-		name: 'B. Zero',
-		displayName: 'Burning Zero',
-		icon: IconElementBurningZero,
-	},
+	// 	icon: IconElementCrimsonDemon,
+	// },
+	// {
+	// 	name: 'Crimson Demon',
+	// 	displayName: 'Crimson Demon',
+	// 	icon: IconElementCrimsonDemon,
+	// },
+	// {
+	// 	name: 'E. Roar',
+	// 	displayName: "Emperor's Roar",
+	// 	icon: IconElementEmperorRoar,
+	// },
+	// {
+	// 	name: "Emperor's Roar",
+	// 	displayName: "Emperor's Roar",
+	// 	icon: IconElementEmperorRoar,
+	// },
+	// {
+	// 	name: 'B. Zero',
+	// 	displayName: 'Burning Zero',
+	// 	icon: IconElementBurningZero,
+	// },
 
-	{
-		name: 'Burning Zero',
-		displayName: 'Burning Zero',
-		icon: IconElementBurningZero,
-	},
-	{
-		name: 'Dark',
-		displayName: 'Dark',
-		icon: IconElementDark,
-	},
-	{
-		name: 'Music',
-		displayName: 'Music',
-		icon: IconElementMusic,
-	},
-	{
-		name: 'Sound',
-		displayName: 'Sound',
-		icon: IconElementSound,
-	},
-	{
-		name: 'Wind',
-		displayName: 'Wind',
-		icon: IconElementWind,
-	},
+	// {
+	// 	name: 'Burning Zero',
+	// 	displayName: 'Burning Zero',
+	// 	icon: IconElementBurningZero,
+	// },
+	// {
+	// 	name: 'Dark',
+	// 	displayName: 'Dark',
+	// 	icon: IconElementDark,
+	// },
+	// {
+	// 	name: 'Music',
+	// 	displayName: 'Music',
+	// 	icon: IconElementMusic,
+	// },
+	// {
+	// 	name: 'Sound',
+	// 	displayName: 'Sound',
+	// 	icon: IconElementSound,
+	// },
+	// {
+	// 	name: 'Wind',
+	// 	displayName: 'Wind',
+	// 	icon: IconElementWind,
+	// },
 ];
 
 export const elementMultipliers: FrontierElementMultiplier[] = [

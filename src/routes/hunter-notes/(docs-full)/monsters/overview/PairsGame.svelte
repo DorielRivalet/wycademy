@@ -2,7 +2,7 @@
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import RandomMonster from '$lib/client/images/monster/random.webp';
+	import RandomMonster from '$lib/client/images/monster/official/random.webp';
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
 	import { formatDate } from '$lib/client/modules/time';
 

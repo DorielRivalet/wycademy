@@ -1,27 +1,13 @@
 import type { Component } from 'svelte';
 import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 import { LocationIcons } from './frontier/locations';
-import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
-import YamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai.svelte';
-import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
-import SupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
-import Bogabadorumu6 from '$lib/client/components/frontier/icon/monster/Bogabadorumu.svelte';
-import BerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
-import ConquestFatalis7 from '$lib/client/components/frontier/icon/monster/ConquestFatalis.svelte';
-import AkuraJebia2 from '$lib/client/components/frontier/icon/monster/AkuraJebia.svelte';
-import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion.svelte';
 import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
 import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
 import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
-import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
-import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
-import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
+import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
-import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_White.svelte';
-import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
-import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
 import Bullhorn from 'carbon-icons-svelte/lib/Bullhorn.svelte';
 import Development from 'carbon-icons-svelte/lib/Development.svelte';
 import DocumentRequirements from 'carbon-icons-svelte/lib/DocumentRequirements.svelte';
@@ -30,27 +16,22 @@ import Group from 'carbon-icons-svelte/lib/Group.svelte';
 import InformationSquare from 'carbon-icons-svelte/lib/InformationSquare.svelte';
 import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 import PiggyBank from 'carbon-icons-svelte/lib/PiggyBank.svelte';
-import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 import GroupSecurity from 'carbon-icons-svelte/lib/GroupSecurity.svelte';
 
 // TODO replace monster icons with monstercomponent?
-import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.svelte';
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
-import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import { monsterInfo } from './frontier/monsters';
 import { getWeaponIcon } from './frontier/weapons';
-import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
-import { getArmorIcon } from './frontier/armor';
 import License from 'carbon-icons-svelte/lib/License.svelte';
-import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 import Link from 'carbon-icons-svelte/lib/Link.svelte';
 import AllElements from '../components/frontier/icon/element/AllElements.svelte';
 import AllAilments from '../components/frontier/icon/ailment/AllAilments.svelte';
 import Security from 'carbon-icons-svelte/lib/Security.svelte';
 import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 import Tools from 'carbon-icons-svelte/lib/Tools.svelte';
+import MonsterRandom from '../components/frontier/icon/monster/MonsterRandom.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -328,7 +309,7 @@ export const toolsInfo: CategoryInfo[] = [
 			{
 				name: 'Tower Weapon',
 				description: 'A tower weapon simulator.',
-				image: Duremudira,
+				image: MonsterRandom,
 				link: '/tools/simulator/tower-weapon',
 			},
 			{
@@ -538,14 +519,14 @@ export const guidesInfo: CategoryInfo[] = [
 				description:
 					'The list of exotic monsters and the automatic skills they provide.',
 				link: '/hunter-notes/monsters/exotics',
-				image: StygianZinogre,
+				image: MonsterRandom,
 			},
 			{
 				name: 'Origin',
 				description:
 					'The list of origin monsters and the automatic skills they provide.',
 				link: '/hunter-notes/monsters/origin',
-				image: YamaKurai,
+				image: MonsterRandom,
 			},
 			// {
 			// 	name: 'Burst',
@@ -578,7 +559,7 @@ export const guidesInfo: CategoryInfo[] = [
 				description:
 					'The list of Evolution weapons and their upgrade tree, Raviente armor, and a tutorial for slaying and supporting during a Raviente raid.',
 				link: '/hunter-notes/monsters/raviente',
-				image: BerserkRaviente,
+				image: MonsterRandom,
 			},
 			// {
 			// 	name: 'Conquest',
@@ -746,7 +727,7 @@ export const guidesInfo: CategoryInfo[] = [
 				name: 'Tower Weapons',
 				description: 'An overview on tower weapons.',
 				link: '/hunter-notes/weapons/tower',
-				image: Duremudira,
+				image: MonsterRandom,
 			},
 		],
 	},

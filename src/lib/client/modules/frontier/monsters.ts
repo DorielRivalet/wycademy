@@ -213,7 +213,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
 		type: 'Small',
-		unusedComponent: false,
+		unusedComponent: true,
 		displayName: 'Random',
 		class: 'Unknown',
 		generation: 'First Generation',
@@ -227,7 +227,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathian',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathian',
-		unusedComponent: false,
+		unusedComponent: true,
 		displayName: 'Rathian',
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/rathian',
@@ -275,7 +275,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/fatalis',
 
-		unusedComponent: false,
+		unusedComponent: true,
 
 		displayName: 'Fatalis',
 		type: 'Large',
@@ -547,7 +547,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/rathalos',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		displayName: 'Rathalos',
 		type: 'Large',
 		ecology: `Terrible Wyvern's also known as the "Kings of the Sky". Together with Rathian, they  claim large and diverse territories. Rathalos descend upon prey and foe alike from high altitudes, striking with poison talons and fire.`,
@@ -1329,7 +1329,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/crimson-fatalis',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...',
@@ -1362,7 +1362,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/pink-rathian',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A Sub-Species of Rathian with striking pink scales. Pink Rathian are far more adept at aerial combat than thier green cousins and will incorporate their venomous tails into more attacks. They are extremely aggressive.',
@@ -1490,7 +1490,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/silver-rathalos',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A legendary and rare variant of Rathalos with shining, silver scales. Often referred to as the "Silver Sun", little is known of their ecology, including the nature of their appearence. Their deadliness however, is well documented.',
@@ -1525,7 +1525,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/gold-rathian',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `A legendary and rare variant of Rathian with glittering, golden scales. Often referred to as the "Golden Moon", little is known of this Wyvern's ecology, save for it's ability to dispatch unwary hunters with ease.`,
 		titles: ['Gold Fire Wyvern', 'Golden Moon', 'Illustrious Queen'],
@@ -1783,7 +1783,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/azure-rathalos',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Terrible Wyvern's also known as the "Kings of the Sky". Together with Rathian, they claim large and diverse territories. Rathalos descend upon prey and foe alike from high altitudes, striking with poison talons and fire.`,
 		titles: ['Azure Fire Wyvern'],
@@ -2008,7 +2008,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shen-gaoren',
 		link: '/hunter-notes/monsters/overview/shen-gaoren',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `A giant Carapaceon with an an equally giant monster's skull on it's back. Prone to roaming and with a nearly impenetrable shell, nearby forts and towns must be alerted to its movements or potentially face total annihilation.`,
 		titles: ['Fortress Crab'],
@@ -2107,7 +2107,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/yama-tsukami',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'An Elder Dragon that floats through the sky. A bite of earth, a drink of forest, it’s a veritable god of the sky made of the richest soil. Ancient trees grow thick on its back like on a mountain. It’s rumored to live near a forlorn remote tower.',
@@ -2531,7 +2531,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-fatalis',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Ancestral Dragon'],
 		class: 'Elder Dragon',
@@ -2635,7 +2635,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lavasioth',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'Lavasioth are thermophilic Wyverns that utilize hardened magma as a sort of armour. These beasts spend much of their time immersed in molten rock, making them a favourite research target for scholars.',
@@ -2709,7 +2709,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/akantor',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A massive,yet mysterious Wyvern studded with jagged spikes. It is an apex predator, rivaling some Elder Dragons in strength. Some cultures refer to this creature as the "Black God" however its official Guild name is Akantor.',
@@ -2766,7 +2766,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/red-lavasioth',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/red-lavasioth',
 
@@ -2932,7 +2932,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akura-vashimu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/akura-vashimu',
 
 		titles: ['Tail Crystal Scorpion'],
@@ -2961,7 +2961,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/akura-jebia',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Closely related to Akura Vashimu, these Carapaceons use their crystal-covered tails to lure curious prey into striking distance. Research indicates that if their tails are injured, they will use their crystalizing fluid to patch the wound.',
 		type: 'Large',
@@ -3034,7 +3034,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/pariapuria',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Foul Wyverns with a ceaseless appetite. They will devour any form of meat they find. Hunters may utilize this by placing meat of certain types near these beasts, causing them to over eat and vomit rare materials they've eaten.`,
 		type: 'Large',
 		titles: ['Swallowing Wyvern'],
@@ -3156,7 +3156,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/raviente',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'These powerful colossal monsters are known for their aggressiveness, and they can easily consume nearly everything in their vicinity in little time during actitivity periods. When not looking for food, they seem to spend most of their time hibernating deep underground and underwater.',
@@ -3183,7 +3183,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/violent-raviente',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A monster in a state of near starvation, hence their deadly off-white color schemes. They are more aggressive than their normal counterpart and will seek to devour any living thing they see.',
@@ -3243,7 +3243,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/doragyurosu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'Deadly Wyverns adept at creating and utilizing the Dragon Element. Native to cold and mountainous areas these beasts are as adept with ground combat as they are aerial. Their Dragon Element attacks can also paralyze hunters.',
@@ -3347,7 +3347,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rukodiora',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'An Elder Dragon with beautiful shining wings. While mentions of its existance are found in various ancient texts, only after it appeared and began attacking settlments, was it officially documented. It is reported to possess a strange power.',
 		type: 'Large',
@@ -3381,7 +3381,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
 		titles: ['Black Flying Wyvern'],
@@ -3415,7 +3415,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		link: '/hunter-notes/monsters/overview/unknown',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
 		type: 'Large',
 		titles: ['Black Flying Wyvern'],
@@ -3503,7 +3503,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
 		link: '/hunter-notes/monsters/overview/abiorugu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Brute Wyverns that utilize their bladed tails and sharp claws to dispatch prey. When angered the plates covering their backs will flush with blood to further intimidate their foes. They are known to possess extremely acidic saliva.',
 		type: 'Large',
@@ -3605,7 +3605,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		link: '/hunter-notes/monsters/overview/disufiroa',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Frozen Seraphim Dragon'],
 		class: 'Elder Dragon',
@@ -3651,7 +3651,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/anorupatisu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Flying Wyverns adapted to life in cold, marine enviroments. They utilize their strange barbed snouts and body spikes for traversal as well as offense. They are also able to expel a freezing substance.',
 		type: 'Large',
@@ -3766,7 +3766,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/mi-ru',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Mi Ru is very territorial and will attempt to kill anything that enters its territory. From this only a limited few hunters are actually allowed to hunt Mi Ru from how dangerous and rare it is.',
 		type: 'Large',
@@ -3854,7 +3854,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Heavenly Flying Dragon'],
 		class: 'Elder Dragon',
@@ -3905,7 +3905,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/goruganosu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'Goruganosu are incredibly territorial creatures that are mostly known for their near endless fights with their silver cousins, though they will cooperate with one another if something else enters the vicinity.',
@@ -3942,7 +3942,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/aruganosu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Aruganosu are extremely territorial monsters that are mostly known for the constant fights with their gilded cousins, although if anything disturbs these fights they'll put things aside to take down the intruder.`,
 		titles: ['Silver Piscine Wyvern'],
@@ -4006,7 +4006,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zerureusu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'A Wyvern seemingly related to Rathalos, but with shining white scales and flickering blue flames. While painfully rare ancient texts from various cultures describe them as everything from divine messengers, to unholy envoys of death and suffering.',
 		type: 'Large',
@@ -4362,7 +4362,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/duremudira',
 		link: '/hunter-notes/monsters/overview/duremudira',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Duremudira are very aggressive monsters and will attack any hunters that enter the Sky Corridor. These monsters were left by the Ancient Civilization to guard the Sky Corridor from any intruders that dare enter the tower for its treasures and secrets.',
 		type: 'Large',
@@ -4544,7 +4544,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yama-kurai',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Floating Peak Dragon'],
 		class: 'Elder Dragon',
@@ -4569,7 +4569,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zinogre',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Fanged wyverns whose bodies are streaked with electricity. Sharp claws and strong limbs allow them to thrive in mountainous terrain. During hunts, they gather numerous Thunderbugs to boost their power and enter a supercharged state. They house their Thunderbugs within their dorsal shells.',
 		type: 'Large',
@@ -4610,7 +4610,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology:
 			'The dreaded, nomadic Deviljho have no specific territory of their own. Their muscles swell if provoked, revealing old wounds. Needing to feed constantly due to their extremely high metabolism they can easily hunt nearby animals to extinction. Hunt with extreme caution.',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Violent Wyvern'],
 		class: 'Brute Wyvern',
@@ -4678,7 +4678,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/berserk-raviente',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Berserk Ravientes are ancient individuals of Ravientes. Their color is the result of spending many hibernation periods sleeping near underwater volcanoes. These colossal creatures are the most destructive type of Raviente.`,
 		titles: ['Great Crag Wyvern'],
@@ -4784,7 +4784,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/stygian-zinogre',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'A subspecies of Zinogre with a jet-black body. It gathers Dracophage bugs which eat Dragonfell Berries and uses their Dragon Element energy to dramatically boost its power. Perhaps this is why it can survive in such varied enviroments as the Snowy Mountains and ancient towers.',
 		type: 'Large',
@@ -4811,7 +4811,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/guanzorumu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Spoken of in ancient texts as the " Dragon of Conquest", this imposing creature has been sighted at the Cloud Viewing Fortress. Never without an entourage of Egyurasu It's claws spawn tremors and its breath immolates everything before it.`,
 		type: 'Large',
 		titles: ['Emperor Conqueror Dragon'],
@@ -4836,7 +4836,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/savage-deviljho',
 		link: '/hunter-notes/monsters/overview/starving-deviljho',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology:
 			'A Deviljho that is even more brutal and aggressive than its normal counterpart, owing to its constant starvation keeping it in a permanent maddened frenzy. It will indiscriminately attack anything on sight no matter its size or strength, and will attempt to depopulate entire ecosystems to feed its hunger.',
@@ -4898,7 +4898,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/nargacuga',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Flying Wyverns that have evolved to live in densely wooded areas. These sly beasts stalk their prey from the shadows with ferocious speed. Their massive tails are extremely deadly and can kill small monsters with a single strike.',
 		type: 'Large',
@@ -5016,7 +5016,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blinking-nargacuga',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Blinking Nargacuga is extremely aggressive. It will fight with unrivaled, swift ferocity, barely giving hunters any time to catch their breath. It is prone to combine attacks in quick succession in order to hit hunters as much as possible in short time windows.`,
 		titles: ['Swift Wyvern'],
@@ -5069,7 +5069,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/amatsu',
 
 		ecology: `A legendary elder dragon spotted on Sacred Pinnacle. An avatar of storms in the folklore of a certain village, Amatsu's appearance is accompanied by furious cyclones and horrific storms. Its fearsome power is said to outscale that of natural disasters.`,
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: [
 			'Storm Dragon',
@@ -5100,7 +5100,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/elzelion',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Discovered after assaulting a Guild expedition exploring an ancient Tower, it is also known as the "Burning Ice" dragon, due to it's unique physiology. While it possesses control over ice and fire, it segregates control over each element to one side of it's body. A fascinating creature.`,
 		type: 'Large',
 		titles: ['Burning Zero Dragon'],
@@ -5126,7 +5126,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/arrogant-duremudira2',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Arrogant Duremudira, much like the standard one, is incredibly aggressive, attacking anything that enters the Sky Corridor immediately on sight. Possesses even greater speed and tenacity than its normal counterpart.`,
 		type: 'Large',
 		titles: ['Guardian of the Sky Corridor'],
@@ -5178,7 +5178,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-bogabadorumu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology:
 			'Strange Wyverns found near areas with fast moving water. While rather sluggish they utilize explosive mist generated from specialized organs to kill potential prey. Despite their lack of agility, they are stubborn, vicious predators.',
 		type: 'Large',
@@ -5205,7 +5205,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bombardier-bogabadorumu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Bombardier Bogabadorumu retains the aggressive behavior of the normal ones, attacking anything in sight.`,
 		titles: ['Explosive Mist Wyvern'],
@@ -5231,7 +5231,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/sparkling-zerureusu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `Much like the standard Zerureusu, Sparkling Zerureusu are quite hostile. They seem to be less reliant on the use of their crystal producing abilities compared to the standard versions, replacing it with crimson-colored forcefields and explosions.`,
 		titles: ['Bright Field Wyvern'],
@@ -5874,7 +5874,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-rukodiora',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Unlike Rukodiora, Zenith Rukodiora are capable of lifting large boulders surrounding them with their advance magnetic fields while flying. When spotting hunters, Zenith Rukodiora will land on the ground to trap the hunters beside them with the boulders. After a while, They will let out a powerful roar that hurt the hunters and break the boulders trapping them. They are capable of producing a fountain of dragon element with energy so condensed it can break even the most durable of armors.`,
 		type: 'Large',
 		titles: ['Magnetic Dragon'],
@@ -5988,7 +5988,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-fatalis',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Apart from a few key differences from its standard counterpart, it has six horns instead of the Fatalis's four horns, and the chest now is glowing faint blue, which is possibly a new element never found before. It utilizes new and unique attacks, one among them said to be capable of ravaging a whole kingdom instantly.`,
 		type: 'Large',
 		titles: ['Black Flame'],
@@ -6020,7 +6020,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Shantien have been sighted flying around far above in the skies, often over oceans or around volcanic areas. Usually the only way to get anywhere near them is with a Large Exploration Ship. Shantien is enormously powerful when fully enraged and will attack with reckless abandon. This can also be its undoing, as attempting to use some of its strongest attacks while severely injured may cause them to implode inside its body, accomplishing its own demise.`,
 		type: 'Large',
 		titles: ['Heavenly Flying Dragon'],
@@ -6046,7 +6046,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-crimson-fatalis',
 		link: '/hunter-notes/monsters/overview/conquest-crimson-fatalis',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `A monster with unparalleled hatred for humanity, it is an inhabitant of the Deep Crater. It is the only known monster to use the new Crimson Demon Element.`,
 		titles: ['Crimson Demon'],
@@ -6078,7 +6078,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/disufiroa',
 		link: '/hunter-notes/monsters/overview/shiten-disufiroa',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `According to one account from a lucky hunter, when it freezes itself at the end of the fight, instead of dying, it will break out and gain a new appearance which its chest protrusions become purple in addition to the blue stripes on its underbelly and the webbing of its wings. Its red scales also turn black in color and its attacks become much fiercer, as well as some new devastating large attacks utilizing its elements.`,
 		type: 'Large',
 		titles: ['Frozen Seraphim Dragon'],
@@ -6138,7 +6138,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burning-freezing-elzelion',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Burning Freezing Elzelion greatly resembles the standard Elzelion, but has some color changes to set itself apart. Its teeth, claws and small spines are golden, along with some gold streaks being present on the head, and certain much of each of its horns are also the color of gold. Its scales are also notably much darker, being dark grey as opposed to silver. It is the only known monster able to fully master more than one element.`,
 		type: 'Large',
 		titles: ['Burning Zero Dragon'],
@@ -6163,7 +6163,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/howling-zinogre2',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Similarly to Thunderlord Zinogre, Howling Zinoge also has an "Ultra Charged State" it can enter by using a certain move a few times. In this state the electrical aura is even larger, with green and blue colors mixed in with the white, along with a swarm of Fulgur Bugs flying around it.`,
 		type: 'Large',
 		titles: ['Thunder Wolf Wyvern'],
@@ -6188,7 +6188,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-pariapuria',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Supremacy Pariapuria's appearance has changed considerably compared to its standard counterpart; it has a glowing red eye trail similar to an enraged Nargacuga's, a mouth slathered in what could very well be blood, and scars all over its body. Bloodstains cover its body, most notably on its front claws. It also has tinges of purple on various places of its body.`,
 		type: 'Large',
 		titles: ['Swallowing Wyvern'],
@@ -6213,7 +6213,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-doragyurosu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `This overpowering monster is one of the most deadly monsters the guild has found, with completely unbelievable power. So much power that the reason for parts of it turning red in rage is from it burning its own skin. Appearance changes are burnt red tail spikes, claws, feet and horns. Green wing webbing, dark end of its beak and bright yellow eyes. In rage, it becomes burnt and overflowing with Dragon Element from head to tail and its eyes turn red.`,
 		type: 'Large',
 		titles: ['Dark Thunder Wyvern'],
@@ -6244,7 +6244,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-teostra',
 
 		ecology: `A more fiery counterpart of the standard Teostra, the Supremacy Teostra has an aura of unrelenting heat. If not careful, Supremacy Teostra can end the battle with a few powerful fire explosions. Capable of producing a huge fire tornado when enraged.`,
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		titles: ['Flame King Dragon', 'Emperor of Flame', 'Ruler of the Flame'],
 		class: 'Elder Dragon',
@@ -6294,7 +6294,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/golden-deviljho',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		type: 'Large',
 		ecology: `In its normal state, it behaves the same as Savage Deviljho. When enraged however, its attacks are infused with Dragon element. Unlike Deviljho or Savage Deviljho, Starving Deviljho can shoot three balls of Dragon energy that explode upon impact. When Starving Deviljho does its stomp attack during rage mode, the stomp will create a burst of Dragon energy around the impact, sending hunters flying. It can throw three boulders at once when not enraged. When enraged however, it will throw a giant boulder instead.`,
 		titles: ['Violent Wyvern'],
@@ -6363,7 +6363,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ruling-guanzorumu',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Ruling Guanzorumu, much like his relative, is extremely aggressive and will not hesitate to use it's Golden Flame to scorch the hunter. Instead of using fire and dragon seperately, it combines them into a golden flame. The Egyurasu are also capable of breathing this Golden Flame.`,
 		type: 'Large',
 		titles: ['Emperor Conqueror Dragon'],
@@ -6389,7 +6389,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shifting-mi-ru',
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `Shifting Mi Ru has much more control over its various forms, and thus stays in each form much longer than its standard counterpart. Each form is also significantly stronger, and its abilities far surpass those of a regular Mi Ru.`,
 		type: 'Large',
 		titles: [],
@@ -6452,7 +6452,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		// todo?
 
-		unusedComponent: false,
+		unusedComponent: true,
 		ecology: `This version of White Fatalis is exclusive to the Hunting Road, only appearing every tenth stage. Many of its attacks are with a mixed element called Emperor's Roar, but it can also create area-wide tremors and tremendous wind gusts to damage foes, rivaling that of a Zenith species. After some time during an intense battle, White Fatalis' spikes and horns will glow from blue to red.
 
 		Throughout the battle, G-Rank White Fatalis will occasionally fire a powerful breath attack into the sky, causing beams of light to rain down upon the players in the area. Contact with this attack will cause the hunter to be vaporized. The only way to avoid this attack is by sheltering underneath the White Fatalis itself.`,
