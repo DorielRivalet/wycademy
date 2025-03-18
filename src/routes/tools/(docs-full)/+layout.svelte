@@ -31,7 +31,7 @@
 	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
 	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
-	import Logo from '$lib/client/images/logo.svg';
+	import Logo from '$lib/client/images/wycademy-logo-small.webp';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -263,7 +263,7 @@
 				{
 					id: '/tools/external/overlay',
 					href: '/tools/external/overlay',
-					icon: Logo,
+					icon: Tools, // TODO
 					text: 'mhfz-overlay',
 				},
 				{

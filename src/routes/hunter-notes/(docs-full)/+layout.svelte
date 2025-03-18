@@ -11,7 +11,7 @@
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
 	import { onMount } from 'svelte';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
@@ -39,7 +39,7 @@
 	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
 	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
-	import Logo from '$lib/client/images/logo.svg';
+	import Logo from '$lib/client/images/wycademy-logo-small.webp';
 	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';

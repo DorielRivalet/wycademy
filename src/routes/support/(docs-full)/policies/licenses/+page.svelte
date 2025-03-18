@@ -14,7 +14,7 @@
 		<SectionHeadingTopLevel title={'Licenses'} />
 		<InlineNotification
 			title="Attributions"
-			subtitle="If you are looking for an attribution list, please check our repository README. View also our acknowledgements page."
+			subtitle="If you are looking for an attribution list, please check our repository README. View also our acknowledgements page and the licenses folder in the root directory of the repository."
 			kind="info"
 		/>
 

@@ -36,7 +36,7 @@ async function sendDiscordNotification(release: {
 		content: `https://wycademy.vercel.app/overlay/release-notes/latest`,
 		username: 'Overlay Updates',
 		avatar_url:
-			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
+			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/wycademy-logo-small.webp', // TODO works? test with another page
 		attachments: [],
 	};
 

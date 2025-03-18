@@ -3,7 +3,7 @@
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import Rss from 'carbon-icons-svelte/lib/Rss.svelte';
 	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
-	import wycademyImg from '$lib/client/images/wycademy.png';
+	import wycademyImg from '$lib/client/images/wycademy-og.png';
 	import HomeBlogSectionArticle from './HomeBlogSectionArticle.svelte';
 	import { announcementsTitles } from '$lib/client/modules/announcements';
 

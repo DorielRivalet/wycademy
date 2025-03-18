@@ -25,10 +25,10 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
 	import TreeView from '$lib/client/components/TreeView.svelte';
-	import Logo from '$lib/client/images/logo.svg';
+	import Logo from '$lib/client/images/wycademy-logo-small.webp';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';

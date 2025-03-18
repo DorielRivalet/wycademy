@@ -7,7 +7,7 @@ import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_W
 import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
-import Logo from '$lib/client/images/logo.svg';
+import Logo from '$lib/client/images/wycademy-logo-small.webp';
 import Bullhorn from 'carbon-icons-svelte/lib/Bullhorn.svelte';
 import Development from 'carbon-icons-svelte/lib/Development.svelte';
 import DocumentRequirements from 'carbon-icons-svelte/lib/DocumentRequirements.svelte';
@@ -388,7 +388,7 @@ export const toolsInfo: CategoryInfo[] = [
 				description:
 					'A simple, customizable overlay with Discord Rich Presence integration for Monster Hunter Frontier Z on Windows.',
 				link: '/tools/external/overlay',
-				image: Logo,
+				image: Tools, // TODO
 			},
 			{
 				name: 'EZlion',

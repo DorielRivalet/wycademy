@@ -1,7 +1,7 @@
 {
 	"name": "Wycademy",
 	"short_name": "Wycademy",
-	"description": "A compendium of resources for Monster Hunter Frontier Z (MHF-Z)",
+	"description": "The Frontier Z Platform",
 	"start_url": "/",
 	"id": "wycademy",
 	"display": "standalone",

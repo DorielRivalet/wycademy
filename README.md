@@ -1,8 +1,6 @@
 # wycademy
 
-![banner](./src/lib/client/images/logo-full-alt.svg)
-
-A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
+![banner](./src/lib/client/images/wycademy-og.png)
 
 [Website](https://wycademy.vercel.app/)
 
@@ -34,4 +32,4 @@ If you have found bugs, or want to suggest a new feature in the website, you can
 ### Attribution
 
 Some assets used in Wycademy are derived from CAPCOM’s *Monster Hunter Frontier Z* and are used under **fair use** for documentation and preservation.
-Additional attributions for fan-made or community contributions can be found in [our credits document](CREDITS.md). See also our [Attribution Policy](ATTRIBUTION-POLICY.md) and [licenses](https://wycademy.vercel.app/support/policies/licenses).
+Additional attributions for fan-made or community contributions can be found in [our credits document](CREDITS.md). See also our [Attribution Policy](ATTRIBUTION-POLICY.md), [past credits document](PAST-CREDITS.md), [licenses page](https://wycademy.vercel.app/support/policies/licenses) and [licenses folder](./licenses).

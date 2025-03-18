@@ -176,6 +176,8 @@
 		height: 100%;
 		padding-left: var(--cds-spacing-05);
 		padding-right: var(--cds-spacing-07);
+		padding-top: var(--cds-spacing-03);
+		padding-bottom: var(--cds-spacing-03);
 	}
 
 	.banner-border {

@@ -9,7 +9,7 @@
 		authorUrl,
 		projectName,
 	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 	interface Props {
 		children?: import('svelte').Snippet;

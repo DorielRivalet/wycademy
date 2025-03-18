@@ -5,7 +5,7 @@
  */
 
 import { browser } from '$app/environment';
-import logo from '$lib/client/images/logo.webp';
+import logo from '$lib/client/images/wycademy-logo-small.webp';
 import type { Writable } from 'svelte/store';
 
 export function onNotificationPress(

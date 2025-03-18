@@ -8,7 +8,7 @@
 	import { run } from 'svelte/legacy';
 
 	import { getThemeNameFromId, setTheme } from '$lib/client/stores/theme';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import ColorDot from '$lib/client/components/ColorDot.svelte';

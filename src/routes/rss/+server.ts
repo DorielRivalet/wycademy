@@ -42,11 +42,11 @@ const render = (
 <atom:link href="https://wycademy.vercel.app/rss" rel="self" type="application/rss+xml" />
 <title>Wycademy</title>
 <link>https://wycademy.vercel.app</link>
-<description>A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by Doriel Rivalet</description>
+<description>The Frontier Z Platform</description>
 <category>Videogames</category>
 <copyright>2024 Doriel Rivalet. Code licensed MIT.</copyright>
 <image>
-  <url>https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png</url>
+  <url>https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/wycademy-logo-small.webp</url>
   <title>Wycademy</title>
   <link>https://wycademy.vercel.app</link>
 </image>

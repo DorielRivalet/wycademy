@@ -41,12 +41,7 @@
 		<div class="banner">
 			<Banner theme={$carbonThemeStore} />
 			<div class="banner-text">
-				<p>A compendium of resources for MHF-Z by</p>
-				<span class="icon-info-container">
-					<OutboundLink href={constant.authorUrl}
-						>{constant.authorName}.</OutboundLink
-					>
-				</span>
+				<p>The Frontier Z Platform</p>
 			</div>
 			<div class="icon-info-container">
 				<OutboundLink

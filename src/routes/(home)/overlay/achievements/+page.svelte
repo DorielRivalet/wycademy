@@ -27,7 +27,7 @@
 		authorUrl,
 		projectName,
 	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import { page } from '$app/stores';
 
 	const totalObtainableAchievements = Object.values(achievementsInfo[0]).filter(

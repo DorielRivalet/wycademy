@@ -11,7 +11,7 @@
 	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
 	import { reduced_motion } from '../../../lib/client/stores/reduced-motion';
-	import logo from '$lib/client/images/logo.png';
+	import logo from '$lib/client/images/wycademy-logo-small.webp';
 	import { description as projectDescription } from '$lib/constants';
 
 	interface Props {

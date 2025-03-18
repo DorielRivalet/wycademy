@@ -23,7 +23,7 @@ SOFTWARE.
 -->
 
 <script lang="ts">
-	import LogoImage from '$lib/client/images/logo.webp';
+	import LogoImage from '$lib/client/images/wycademy-logo-small.webp';
 	import type { SchemaOrgProps } from '$lib/schema-org-props';
 	import * as constant from '$lib/constants';
 	interface Props {
@@ -45,8 +45,7 @@ SOFTWARE.
 			softwareVersion: `${constant.appVersion}`,
 			identifier: 'https://vocab.getty.edu/aat/300410446',
 			about: 'Guides for Monster Hunter Frontier Z',
-			abstract:
-				'A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by Doriel Rivalet',
+			abstract: 'The Frontier Z Platform',
 			accessMode: [
 				'textual',
 				'visual',

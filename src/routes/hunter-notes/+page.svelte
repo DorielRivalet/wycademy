@@ -15,7 +15,7 @@
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/wycademy-og.png';
 	import {
 		authorName,
 		authorUrl,

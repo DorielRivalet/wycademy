@@ -8,7 +8,7 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import Logo from '$lib/client/images/logo.webp';
+	import Logo from '$lib/client/images/wycademy-logo-small.webp';
 	import QuestionMarkIconWhite from '$lib/client/components/frontier/icon/item/Question_Mark_Icon_White.svelte';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
