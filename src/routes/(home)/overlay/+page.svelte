@@ -270,7 +270,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			<Quotes />
 			<p>Testimonials</p>
 		</div>
-		<h2>What Our Users Say</h2>
+		<h2 id="what-our-users-say">What Our Users Say</h2>
 		<hr />
 		<div class="testimonials">
 			<Testimonial
