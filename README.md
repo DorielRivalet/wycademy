@@ -17,6 +17,7 @@ If you have found bugs, or want to suggest a new feature in the website, you can
 ## Acknowledgements
 
 - The theme and color palette used by the website is [*Catppuccin*](https://github.com/catppuccin/catppuccin).
+- Various sound files (names starting with `mixkit-`) come from [mixkit.co](https://mixkit.co/).
 - The design and icons used in this project are part of [*Carbon Design System*](https://github.com/carbon-design-system/carbon-components-svelte).
 - The typeface is [IBM Plex](https://github.com/IBM/plex). Additional fonts used is the in-game one, *MS Gothic*, and the Monster Hunter font made by [XMitsarugiX](https://www.deviantart.com/xmitsarugix/art/Monster-Hunter-Font-Type-1-and-2-380816151).
 - The combo element icons are made by [Narwhaler](https://fanonmonsterhunter.fandom.com/wiki/User:Narwhaler).
@@ -32,4 +33,4 @@ If you have found bugs, or want to suggest a new feature in the website, you can
 ### Attribution
 
 Some assets used in Wycademy are derived from CAPCOM’s *Monster Hunter Frontier Z* and are used under **fair use** for documentation and preservation.
-Additional attributions for fan-made or community contributions can be found in [our credits document](CREDITS.md). See also our [Attribution Policy](ATTRIBUTION-POLICY.md), [past credits document](PAST-CREDITS.md), [licenses page](https://wycademy.vercel.app/support/policies/licenses) and [licenses folder](./licenses).
+Additional attributions for fan-made or community contributions can be found in [our credits document](CREDITS.md). See also our [Attribution Policy](ATTRIBUTION-POLICY.md), [past credits document](PAST-CREDITS.md), [licenses page](https://wycademy.vercel.app/support/policies/licenses) and [third-party licenses folder](./THIRD-PARTY-LICENSES/).
