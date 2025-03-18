@@ -24,10 +24,8 @@ Wycademy contains references to **Monster Hunter Frontier Z** assets owned by **
 
 Certain assets, such as **redrawn monster icons and community-created illustrations**, were contributed by members of the Monster Hunter fan community.
 
-- [**Narwhaler**](https://fanonmonsterhunter.fandom.com/wiki/User:Narwhaler) - Element Icons Blaze, Light, Thunder Pole, Black Flame, Crimson Demon, Emperor's Roar, Golden Dust. (see [source link](https://fanonmonsterhunter.fandom.com/wiki/Element)).
 - [**Jeremiah V10**](https://fanonmonsterhunter.fandom.com/wiki/User:Jeremiah_V10) - Weapons, Armor, Carve and Tools icons. (see [source link for equipment](https://fanonmonsterhunter.fandom.com/wiki/Equipment_Icons), [carves](https://fanonmonsterhunter.fandom.com/wiki/Carve_%26_Material_Icons) [and other](https://fanonmonsterhunter.fandom.com/wiki/Other_Icons)).
 - [**Siroos**](https://monsterhunter.fandom.com/wiki/User:Siroos) - Monster renders for Golden Deviljho and Shifting Mi Ru. (see [source link](https://monsterhunter.fandom.com/wiki/Special:Contributions/Siroos)).
-- **silversoulart** - Element Icons Dark, Music and Sound. Monster icons Burning Freezing Elzelion, Shifting Mi Ru, Arrogant Duremudira, Ruling Guanzorumu, Blinking Nargacuga, Yama Kurai and Thirsty Pariapuria (see [source link](https://github.com/theMaelstro/MHFZZDatabase)).
 
 ## **3. Wycademy Original Work**
 
