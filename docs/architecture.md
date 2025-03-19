@@ -7,7 +7,7 @@ See [project structure](./project-structure.md) for more information on each fil
 - Deployment: Vercel.
 - Database: Supabase (PostgreSQL).
 - ORM: Drizzle.
-- Metaframework: SvelteKit (backend+frontend+middleware).
+- Metaframework: SvelteKit (backend + frontend + middleware).
 - Stylesheets: SCSS.
 - Design System: Carbon Design System.
 - Documentation: Markdown files meant to be viewed in GitHub (GFM or GitHub-flavored Markdown).
@@ -16,6 +16,8 @@ See [project structure](./project-structure.md) for more information on each fil
 - Seeding: Snaplet.
 - Version Control System: Git.
 - Repository Hosting: GitHub (including workflows or CI/CD).
+- Bundler: Vite.
+- Scripts: Various scripting languages (bash, Python, etc.)
 
 ## Application Layer
 

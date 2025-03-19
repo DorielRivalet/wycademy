@@ -16,18 +16,22 @@ To ensure clarity in attribution, copyright, and artistic discussions, the follo
 - **Public Domain:** Works not protected by copyright, either due to age or explicit release by the creator, and are free to use without restriction.
 - **Fair Use/Fair Dealing:** Legal doctrines allowing limited use of copyrighted material under specific circumstances (e.g., commentary, education, parody). These rules vary by country.
 
-## **1. Official CAPCOM Assets**
+## Official CAPCOM Assets
 
 Wycademy contains references to **Monster Hunter Frontier Z** assets owned by **CAPCOM CO., LTD.**. These are used under **fair use** for documentation, education, and community preservation. Wycademy is not affiliated with, endorsed, or sponsored by CAPCOM.
 
-## **2. Fan Contributions & Derivative Works**
+## Fan Contributions & Derivative Works
 
 Certain assets, such as **redrawn monster icons and community-created illustrations**, were contributed by members of the Monster Hunter fan community.
 
-- [**Jeremiah V10**](https://fanonmonsterhunter.fandom.com/wiki/User:Jeremiah_V10) - Weapons, Armor, Carve and Tools icons. (see [source link for equipment](https://fanonmonsterhunter.fandom.com/wiki/Equipment_Icons), [carves](https://fanonmonsterhunter.fandom.com/wiki/Carve_%26_Material_Icons) [and other](https://fanonmonsterhunter.fandom.com/wiki/Other_Icons)).
+- [**Jeremiah V10**](https://fanonmonsterhunter.fandom.com/wiki/User:Jeremiah_V10) - Items, Weapons, Armor, Carve and Tools icons. (see [source link for equipment](https://fanonmonsterhunter.fandom.com/wiki/Equipment_Icons), [carves](https://fanonmonsterhunter.fandom.com/wiki/Carve_%26_Material_Icons) [and other](https://fanonmonsterhunter.fandom.com/wiki/Other_Icons)).
 - [**Siroos**](https://monsterhunter.fandom.com/wiki/User:Siroos) - Monster renders for Golden Deviljho and Shifting Mi Ru. (see [source link](https://monsterhunter.fandom.com/wiki/Special:Contributions/Siroos)).
 
-## **3. Wycademy Original Work**
+## Other Assets
+
+- Various sound files (names starting with `mixkit-`) come from [mixkit.co](https://mixkit.co/).
+
+## Wycademy Original Work
 
 The following assets were **created for Wycademy** and are under the [MIT License](./LICENSE.md):
 
@@ -35,6 +39,13 @@ The following assets were **created for Wycademy** and are under the [MIT Licens
 - **Custom UI elements, calculators, and tools**.
 - **Speedrun database and site-specific enhancements**.
 
-## **4. Requests & Corrections**
+## Requests & Corrections
 
 If you are an artist or contributor and believe your work is used without proper attribution, please [contact us](https://github.com/DorielRivalet/wycademy/issues).
+
+## See Also
+
+- [Attribution Policy](ATTRIBUTION-POLICY.md)
+- [Past credits document](PAST-CREDITS.md)
+- [Licenses page](https://wycademy.vercel.app/support/policies/licenses)
+- [Third-party licenses folder](./THIRD-PARTY-LICENSES/)

@@ -216,3 +216,5 @@ See also:
 - [Removing sensitive data from a repository](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
 - [Fresh Clone Safety Checks](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#FRESHCLONE)
 - [Purge Multiple Files](https://github.com/newren/git-filter-repo/blob/main/Documentation/examples-from-user-filed-issues.md#purge-a-large-list-of-files)
+- [What to do if you expose a secret](https://blog.gitguardian.com/what-to-do-if-you-expose-a-secret/)
+- [Rewriting Git History](https://blog.gitguardian.com/rewriting-git-history-cheatsheet/)
