@@ -3727,7 +3727,7 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 \\text{outputStarvingWolfAffinity} +\\newline
 \\text{outputCeaselessAffinity} +\\newline
 \\text{outputDivaPrayerGemAffinity})\\end{align}`);
-	$: formulaValuesInternalAffinity = `\\begin{align}${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
+	$: formulaValuesInternalAffinity = `\\begin{align}${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity}) +\\newline
 ${outputSharpnessAffinity} +\\newline
 ${inputNumberUnlimitedSigil} +\\newline
 ${inputNumberSigil1Affinity} +\\newline

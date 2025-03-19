@@ -40,78 +40,91 @@
 			composition: '70% Fire, 70% Thunder',
 			origin: 'Zerureusu',
 			name: 'Light',
+			iconArtist: '-', // TODO external link
 		},
 		{
 			id: 'Blaze',
 			origin: 'None',
 			name: 'Blaze',
 			composition: '70% Fire, 70% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Tenshou',
 			origin: 'Shantien',
 			name: 'Tenshou',
 			composition: '30% Fire, 100% Water, 70% Thunder',
+			iconArtist: '-',
 		},
 		{
 			id: 'Lightning Rod',
 			origin: 'Rebidiora',
 			name: 'Lightning Rod',
 			composition: '70% Thunder, 70% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Okiko',
 			origin: 'Disufiroa',
 			name: 'Okiko',
 			composition: '80% Fire, 80% Ice, 40% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Black Flame',
 			origin: 'Conquest Fatalis',
 			name: 'Black Flame',
 			composition: '50% Fire, 150% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Crimson Demon',
 			origin: 'Conquest Crimson Fatalis',
 			name: 'Crimson Demon',
 			composition: '50% Dragon, 150% Fire',
+			iconArtist: '-',
 		},
 		{
 			id: 'Dark',
 			origin: 'Meraginasu',
 			name: 'Dark',
 			composition: '80% Ice, 80% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Music',
 			origin: 'Diva',
 			name: 'Music',
 			composition: '100% Water, 100% Ice',
+			iconArtist: '-',
 		},
 		{
 			id: 'Sound',
 			origin: 'Diva',
 			name: 'Sound',
 			composition: '100% Water, 100% Dragon',
+			iconArtist: '-',
 		},
 		{
 			id: 'Wind',
 			origin: 'Garuba Daora',
 			name: 'Wind',
 			composition: '80% Thunder, 80% Ice',
+			iconArtist: '-',
 		},
 		{
 			id: 'Burning Zero',
 			origin: 'Elzelion',
 			name: 'Burning Zero',
 			composition: '125% Fire, 125% Ice',
+			iconArtist: '-',
 		},
 		{
 			id: "Emperor's Roar",
 			origin: 'Road White Fatalis',
 			name: "Emperor's Roar",
 			composition: '150% Thunder, 50% Dragon',
+			iconArtist: '-',
 		},
 	];
 </script>
@@ -212,6 +225,7 @@
 					{ key: 'name', value: 'Name', minWidth: '1rem' },
 					{ key: 'composition', value: 'Composition', minWidth: '8rem' },
 					{ key: 'origin', value: 'Origin', minWidth: '1rem' },
+					{ key: 'iconArtist', value: 'Icon Artist', minWidth: '1rem' },
 				]}
 				rows={elements}
 				><Toolbar
