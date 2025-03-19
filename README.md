@@ -6,7 +6,7 @@
 
 ## Project Overview
 
-Wycademy is an open-source platform, knowledge base, database, and speedrunning leaderboard for *Monster Hunter Frontier Z*. It serves as a hub for:
+Wycademy, or Frontier's Wycademy (by Open Frontiers), is an open-source platform, knowledge base, database, and speedrunning leaderboard for *Monster Hunter Frontier Z*. It serves as a hub for:
 
 - **Game Data & Guides** – Weapons, armor, skills, monsters, and more.
 - **Speedrun Leaderboards** – Secure and community-driven ranking system.
