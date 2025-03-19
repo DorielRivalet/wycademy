@@ -34,97 +34,117 @@
 		return result;
 	}
 
-	const elements = [
+	const elements: {
+		id: string;
+		composition: string;
+		origin: string;
+		name: string;
+		elementIconArtist: string;
+		monsterIconArtist: string;
+	}[] = [
 		{
 			id: 'Light',
 			composition: '70% Fire, 70% Thunder',
 			origin: 'Zerureusu',
 			name: 'Light',
-			iconArtist: '-', // TODO external link
+			elementIconArtist: '-', // TODO external link
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Blaze',
 			origin: 'None',
 			name: 'Blaze',
 			composition: '70% Fire, 70% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Tenshou',
 			origin: 'Shantien',
 			name: 'Tenshou',
 			composition: '30% Fire, 100% Water, 70% Thunder',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Lightning Rod',
 			origin: 'Rebidiora',
 			name: 'Lightning Rod',
 			composition: '70% Thunder, 70% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Okiko',
 			origin: 'Disufiroa',
 			name: 'Okiko',
 			composition: '80% Fire, 80% Ice, 40% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Black Flame',
 			origin: 'Conquest Fatalis',
 			name: 'Black Flame',
 			composition: '50% Fire, 150% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Crimson Demon',
 			origin: 'Conquest Crimson Fatalis',
 			name: 'Crimson Demon',
 			composition: '50% Dragon, 150% Fire',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Dark',
 			origin: 'Meraginasu',
 			name: 'Dark',
 			composition: '80% Ice, 80% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Music',
 			origin: 'Diva',
 			name: 'Music',
 			composition: '100% Water, 100% Ice',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Sound',
 			origin: 'Diva',
 			name: 'Sound',
 			composition: '100% Water, 100% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Wind',
 			origin: 'Garuba Daora',
 			name: 'Wind',
 			composition: '80% Thunder, 80% Ice',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: 'Burning Zero',
 			origin: 'Elzelion',
 			name: 'Burning Zero',
 			composition: '125% Fire, 125% Ice',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 		{
 			id: "Emperor's Roar",
 			origin: 'Road White Fatalis',
 			name: "Emperor's Roar",
 			composition: '150% Thunder, 50% Dragon',
-			iconArtist: '-',
+			elementIconArtist: '-',
+			monsterIconArtist: '-',
 		},
 	];
 </script>
@@ -225,7 +245,16 @@
 					{ key: 'name', value: 'Name', minWidth: '1rem' },
 					{ key: 'composition', value: 'Composition', minWidth: '8rem' },
 					{ key: 'origin', value: 'Origin', minWidth: '1rem' },
-					{ key: 'iconArtist', value: 'Icon Artist', minWidth: '1rem' },
+					{
+						key: 'elementIconArtist',
+						value: 'Element Icon Artist',
+						minWidth: '1rem',
+					},
+					{
+						key: 'monsterIconArtist',
+						value: 'Monster Icon Artist',
+						minWidth: '1rem',
+					},
 				]}
 				rows={elements}
 				><Toolbar
