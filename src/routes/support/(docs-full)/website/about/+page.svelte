@@ -229,6 +229,46 @@
 						</div>
 					</div>
 				</section>
+
+				<section>
+					<SectionHeading level={3} title="Empowering Other Communities" />
+					<div>
+						<div class="spaced-paragraph">
+							Wycademy is more than just a website—it's a framework built to
+							share knowledge, organize data, and support a dedicated gaming
+							community. Since Wycademy is licensed under MIT, anyone can modify
+							and repurpose it for their own needs, <strong
+								>even outside of Monster Hunter.</strong
+							>
+						</div>
+
+						<div class="spaced-paragraph">This means:</div>
+						<UnorderedList class="spaced-list">
+							<ListItem
+								><p>
+									You can fork, modify, and adapt Wycademy to suit entirely
+									different communities.
+								</p></ListItem
+							><ListItem
+								><p>
+									The structure, tools, and design of Wycademy can be repurposed
+									for other knowledge bases, databases, or leaderboards.
+								</p></ListItem
+							><ListItem
+								><p>
+									Many of Wycademy's features and documents are useful beyond
+									just this game, and we encourage others to build upon them.
+								</p></ListItem
+							>
+						</UnorderedList>
+						<div class="spaced-paragraph">
+							<strong
+								>If Wycademy can serve as a foundation for other projects, then
+								it has fulfilled its mission beyond just one game.
+							</strong>
+						</div>
+					</div>
+				</section>
 			</div>
 		</section>
 		<section>

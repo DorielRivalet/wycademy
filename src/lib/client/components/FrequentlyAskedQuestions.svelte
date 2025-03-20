@@ -18,7 +18,7 @@
 				{#snippet title()}
 					<p class="question">{faqEntry.question}</p>
 				{/snippet}
-				<div class="answer paragraph-long-02">{faqEntry.answer}</div>
+				<div class="answer paragraph-long-02"><pre>{faqEntry.answer}</pre></div>
 			</AccordionItem>
 		{/each}
 	</Accordion>
@@ -37,5 +37,9 @@
 
 	.answer {
 		padding: 2rem;
+		pre {
+			max-width: 80ch;
+			text-wrap: wrap;
+		}
 	}
 </style>

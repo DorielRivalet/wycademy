@@ -32,6 +32,8 @@ import Security from 'carbon-icons-svelte/lib/Security.svelte';
 import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 import Tools from 'carbon-icons-svelte/lib/Tools.svelte';
 import MonsterRandom from '../components/frontier/icon/monster/MonsterRandom.svelte';
+import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
+import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -110,12 +112,12 @@ export const supportInfo: CategoryInfo[] = [
 				link: '/support/website/donate',
 				image: PiggyBank,
 			},
-			// {
-			// 	name: 'FAQ',
-			// 	description: 'Frequently Asked Questions.',
-			// 	link: '/support/website/faq',
-			// 	image: QuestionAnswering,
-			// },
+			{
+				name: 'FAQ',
+				description: 'Frequently Asked Questions.',
+				link: '/support/website/faq',
+				image: QuestionAnswering,
+			},
 			{
 				name: 'Feedback',
 				description: 'Feedback and surveys.',
@@ -195,38 +197,44 @@ export const supportInfo: CategoryInfo[] = [
 			},
 		],
 	},
-	// {
-	// 	category: {
-	// 		name: 'Wycademy Documentation',
-	// 		description: "Documentation about the website's code and design.",
-	// 		link: '/support/wycademy-documentation',
-	// 		image: BookIconWhite,
-	// 	},
-	// 	pages: [
-	// 		{
-	// 			name: 'Architecture',
-	// 			description: 'Architecture of the website.',
-	// 			link: '/support/wycademy-documentation/architecture',
-	// 			image: ReferenceArchitecture,
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	category: {
-	// 		name: 'Overlay Documentation',
-	// 		description: "Documentation about the overlay's code and design.",
-	// 		link: '/support/overlay-documentation',
-	// 		image: BookIconWhite,
-	// 	},
-	// 	pages: [
-	// 		{
-	// 			name: 'Architecture',
-	// 			description: 'Architecture of the overlay.',
-	// 			link: '/support/overlay-documentation/architecture',
-	// 			image: ReferenceArchitecture,
-	// 		},
-	// 	],
-	// },
+	{
+		category: {
+			name: 'Wycademy Documentation',
+			description: "Documentation about the website's code and design.",
+			link: '/support/wycademy-documentation',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Architecture',
+				description: 'Architecture of the website.',
+				link: '/support/wycademy-documentation/architecture',
+				image: ReferenceArchitecture,
+			},
+			{
+				name: 'Adaptation',
+				description: 'How to adapt the website.',
+				link: '/support/wycademy-documentation/adaptation',
+				image: Group,
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Overlay Documentation',
+			description: "Documentation about the overlay's code and design.",
+			link: '/support/overlay-documentation',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Architecture',
+				description: 'Architecture of the overlay.',
+				link: '/support/overlay-documentation/architecture',
+				image: ReferenceArchitecture,
+			},
+		],
+	},
 	{
 		category: {
 			name: 'External',

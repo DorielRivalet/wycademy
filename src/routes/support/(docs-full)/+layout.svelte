@@ -297,6 +297,12 @@
 
 					href: '/support/wycademy-documentation/architecture',
 				},
+				{
+					text: 'Adaptation',
+					href: '/support/wycademy-documentation/adaptation',
+					id: '/support/wycademy-documentation/adaptation',
+					icon: Group,
+				},
 			],
 		},
 		{

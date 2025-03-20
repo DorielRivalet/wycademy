@@ -17,7 +17,13 @@ Our goal is to provide **an accessible, well-organized, and reliable resource** 
 
 ---
 
-## **Getting Started** (For Developers & Contributors)
+## Frequently Asked Questions
+
+You can find a list of frequently asked questions [in our website](https://wycademy.vercel.app/support/website/faq).
+
+---
+
+## Getting Started (For Developers & Contributors)
 
 ### Cloning the Repository
 
@@ -111,5 +117,17 @@ Additional attributions for fan-made or community contributions can be found in 
 - **[Development Guide](./docs/DEVELOPMENT.md)** – Setup and contributing instructions.
 
 ---
+
+## Beyond Monster Hunter – Repurposing Wycademy
+
+Wycademy is an open-source project licensed under MIT, meaning **anyone is free to modify, adapt, and repurpose it.** While originally built for Monster Hunter Frontier, its core features—a structured knowledge base, leaderboard, and tools for community collaboration—can be useful for **any game or topic.**
+
+If you're looking to build a similar platform for a different community, you are encouraged to:
+
+- Fork this repository and modify it as needed.
+- Use the existing structure to organize knowledge and data efficiently.
+- Contribute improvements that could benefit other users repurposing the project.
+
+Wycademy is built for **open collaboration**, and its flexibility allows it to be **a foundation for more than just one game.**
 
 We’re always improving Wycademy—thanks for checking it out! 🎮🔥
