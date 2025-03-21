@@ -51,6 +51,9 @@
 	import { replaceState } from '$app/navigation';
 	import TowerWeaponStats from '$lib/client/components/frontier/TowerWeaponStats.svelte';
 	import { findClosestIndex } from '$lib/client/modules/math';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
+	import CiteNote from '$lib/client/components/CiteNote.svelte';
 
 	function onSelectTowerWeaponOption() {
 		towerWeaponGunlanceShellLevel = '0';
@@ -1017,14 +1020,16 @@
 							towerWeaponMaxSharpnessLevel={towerWeaponSelectedSeriesInfo
 								.sharpnessLevels.length - 1}
 							towerWeaponMaxAttackIndex={towerWeaponSelected.attack.length - 1}
-							towerWeaponMaxElementIndex={towerWeaponSelected.element.length -
-								1}
-							towerWeaponMaxAffinityIndex={towerWeaponSelected.affinity.length -
-								1}
-							towerWeaponMaxPoisonIndex={towerWeaponSelected.poison.length - 1}
-							towerWeaponMaxParalysisIndex={towerWeaponSelected.paralysis
-								.length - 1}
-							towerWeaponMaxSleepIndex={towerWeaponSelected.sleep.length - 1}
+							towerWeaponMaxElementIndex={(towerWeaponSelected?.element
+								?.length || 1) - 1}
+							towerWeaponMaxAffinityIndex={(towerWeaponSelected.affinity
+								.length || 1) - 1}
+							towerWeaponMaxPoisonIndex={(towerWeaponSelected?.poison?.length ||
+								1) - 1}
+							towerWeaponMaxParalysisIndex={(towerWeaponSelected?.paralysis
+								?.length || 1) - 1}
+							towerWeaponMaxSleepIndex={(towerWeaponSelected?.sleep?.length ||
+								1) - 1}
 							towerWeaponName={towerWeaponSelected.name}
 							towerWeaponType={towerWeaponSelected.type}
 						/>
@@ -1423,6 +1428,19 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<SectionHeading level={2} title="References" />
+			<div>
+				<OrderedList class="spaced-list">
+					<CiteNote
+						href="https://web.archive.org/web/20190609044254/http://members.mhf-z.jp/contents/quest/tenrou/weapon_sim.html"
+						text="https://web.archive.org/web/20190609044254/http://members.mhf-z.jp/contents/quest/tenrou/weapon_sim.html"
+						unlinked={true}
+					/>
+				</OrderedList>
+			</div>
+		</section>
 
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
