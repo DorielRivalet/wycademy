@@ -115,6 +115,12 @@ Additionally, past community experiences have shown that real-time chat environm
 
 While we don’t have a Discord, we encourage community contributions through other means, such as feature requests, corrections, and guides. If you’d like to contribute or ask questions, check out our other Support pages for more information.`,
 			},
+			{
+				question:
+					'Is Wycademy affiliated with any Monster Hunter communities or teams?',
+				answer:
+					'No. Wycademy is not affiliated with any particular Monster Hunter Discord server, private server, or development team (other than the members of Open Frontiers). It is an independent platform dedicated to knowledge-sharing.',
+			},
 		],
 	};
 </script>
