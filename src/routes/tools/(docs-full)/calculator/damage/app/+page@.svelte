@@ -98,7 +98,6 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 	import HelpFilled from 'carbon-icons-svelte/lib/HelpFilled.svelte';
-	import * as zip from '@zip.js/zip.js';
 	import {
 		getAilmentIcon,
 		getStatusIcon,
@@ -106,9 +105,6 @@
 	} from '$lib/client/modules/frontier/ailments';
 	import { obscurityValues } from '$lib/client/modules/frontier/armor-skills';
 	import {
-		legacyCalculatorNumberInputs,
-		legacyCalculatorValuesMap,
-		legacyCalculatorKeysMap,
 		affinityBaseCritMultiplierBonusDropdownItems,
 		affinityDropdownItems,
 		sigilDropdownItems,
@@ -346,7 +342,6 @@
 
 	let showWeaponMotionValuesSectionWarning = false;
 	let showDamageCalculatorInputsJSONError = false;
-	let showDamageCalculatorLegacyInputsJSONError = false;
 	let showDivaPrayerGemsMaxTotalLevelError = false;
 
 	type MotionValueResult = {
@@ -2602,246 +2597,6 @@
 
 		// Revoke the URL to free up memory
 		URL.revokeObjectURL(url);
-	}
-
-	function mapLegacyValue(
-		legacyKey: string,
-		legacyValue: string,
-	): string | number | boolean {
-		if (legacyCalculatorNumberInputs.find((e) => e === legacyKey)) {
-			return Number(legacyValue);
-		}
-
-		let legacyStat = legacyCalculatorValuesMap.find(
-			(e) => e[legacyKey][legacyValue] !== undefined,
-		);
-
-		if (!legacyStat) {
-			console.warn(`Invalid value for legacy key ${legacyKey}: ${legacyStat}`);
-			return 'None';
-		}
-
-		return legacyStat[legacyKey][legacyValue];
-	}
-
-	function transformLegacyData(legacyData: { [key: string]: string }) {
-		const newData: { [key: string]: string | number | boolean } = {};
-
-		// Iterate over each entry in the legacy data
-		for (const [legacyKey, legacyValue] of Object.entries(legacyData)) {
-			if (
-				legacyKey === 'drugknowledgeupToggle' &&
-				newData['inputDrugKnowledge'] === 'None (1x)'
-			) {
-				continue;
-			}
-
-			if (legacyKey === 'drugknowledgeToggle' && legacyValue === '0') {
-				newData['inputDrugKnowledge'] = 'None (1x)';
-				continue;
-			}
-
-			// Find the corresponding new key based on the mapping
-			const newKey = legacyCalculatorKeysMap[legacyKey];
-
-			if (newKey === '') {
-				continue;
-			}
-
-			// Check if a direct mapping exists
-			if (newKey) {
-				// Assign the transformed value to the new key
-				newData[newKey] = mapLegacyValue(legacyKey, legacyValue);
-			}
-		}
-
-		return newData;
-	}
-
-	async function migrateLegacyCalculatorSaveSlots() {
-		const zipWriter = new zip.ZipWriter(new zip.BlobWriter());
-
-		let legacyInputs;
-
-		try {
-			legacyInputs = await getLegacySaveSlotsFileContents();
-		} catch {
-			console.error('Could not load legacy inputs');
-			return false;
-		}
-
-		for (let slotNumber = 1; slotNumber <= 20; slotNumber++) {
-			try {
-				if (typeof legacyInputs !== 'string') {
-					console.error('Could not migrate legacy inputs');
-					return false;
-				}
-
-				const transformedData = transformLegacySaveSlot(
-					slotNumber,
-					legacyInputs,
-				);
-
-				if (!transformedData) {
-					continue;
-				}
-
-				await zipWriter.add(
-					`slot_${slotNumber}.json`,
-					new zip.TextReader(transformedData),
-				);
-			} catch (error) {
-				console.error(`Failed to process slot ${slotNumber}:`, error);
-				continue; // Or break depending on your error handling strategy
-			}
-		}
-
-		const zipFileBlob = await zipWriter.close();
-
-		// Trigger download or handle the blob as needed
-		const url = URL.createObjectURL(zipFileBlob);
-		const link = document.createElement('a');
-		link.href = url;
-		link.download = 'legacy_calculator_saves.zip';
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-		URL.revokeObjectURL(url);
-
-		return true;
-	}
-
-	async function getLegacySaveSlotsFileContents() {
-		return new Promise((resolve, reject) => {
-			const input = document.createElement('input');
-			input.type = 'file';
-			input.accept = '.json'; // Accept only JSON files
-
-			input.onchange = async (event) => {
-				const file = event.target.files[0];
-				if (!file) {
-					reject(new Error('No file selected.'));
-					return;
-				}
-
-				const reader = new FileReader();
-				reader.onload = (e) => {
-					try {
-						let jsonData: { [key: string]: any } = {};
-						try {
-							jsonData = JSON.parse(e.target?.result as string);
-						} catch {
-							showDamageCalculatorLegacyInputsJSONError = true;
-							resolve(jsonData);
-						}
-
-						showDamageCalculatorLegacyInputsJSONError = false;
-
-						// Load the mapped data into your application
-						// Assuming updateInputs is a function that takes the mapped data and updates your UI
-						resolve(JSON.stringify(jsonData, null, 2));
-					} catch (err) {
-						reject(err);
-					}
-				};
-
-				reader.onerror = (err) => reject(err);
-				reader.readAsText(file);
-			};
-
-			input.click(); // Trigger the file selection dialog
-		});
-	}
-
-	function transformLegacySaveSlot(
-		legacyCalculatorSaveSlot: number,
-		jsonData: string,
-	) {
-		const jsonResult = JSON.parse(jsonData);
-
-		// Filter keys based on the specified save slot
-		const filteredKeys = Object.keys(jsonResult).filter((key) =>
-			key.startsWith(`save${legacyCalculatorSaveSlot}`),
-		);
-
-		if (filteredKeys.length === 0) {
-			return false;
-		}
-
-		// Remove the saveX prefix and prepare for mapping
-		const transformedData: { [key: string]: string } = {};
-		filteredKeys.forEach((key) => {
-			const newKey = key.replace(`save${legacyCalculatorSaveSlot}`, '');
-			transformedData[newKey] = jsonResult[key];
-		});
-
-		const mappedData = transformLegacyData(transformedData);
-
-		return JSON.stringify(mappedData, null, 2);
-	}
-
-	function loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlot: number) {
-		// Create an input element to prompt the user to select a file
-		const input = document.createElement('input');
-		input.type = 'file';
-		input.accept = '.json'; // Accept only JSON files
-
-		// Listen for the change event on the input element
-		input.addEventListener('change', (event) => {
-			const file = (event.target as HTMLInputElement).files?.[0];
-			if (file && file.size < 8 * Math.pow(10, 6)) {
-				const reader = new FileReader();
-
-				// Listen for the load event on the FileReader
-				reader.onload = (e) => {
-					// Parse the JSON content
-					let jsonData: { [key: string]: any } = {};
-					try {
-						jsonData = JSON.parse(e.target?.result as string);
-					} catch {
-						showDamageCalculatorLegacyInputsJSONError = true;
-						return;
-					}
-
-					showDamageCalculatorLegacyInputsJSONError = false;
-
-					// Filter keys based on the specified save slot
-					const filteredKeys = Object.keys(jsonData).filter((key) =>
-						key.startsWith(`save${legacyCalculatorSaveSlot}`),
-					);
-
-					if (filteredKeys.length === 0) {
-						return;
-					}
-
-					// Remove the saveX prefix and prepare for mapping
-					const transformedData: { [key: string]: string } = {};
-					filteredKeys.forEach((key) => {
-						const newKey = key.replace(
-							`save${legacyCalculatorSaveSlotNumber}`,
-							'',
-						);
-						transformedData[newKey] = jsonData[key];
-					});
-
-					// Now, transformedData contains the relevant data without the saveX prefix
-					// Perform key-value mapping here based on your requirements
-					// For demonstration, assuming a simple direct mapping
-					const mappedData = transformLegacyData(transformedData); // Replace this with your actual mapping logic
-
-					// Load the mapped data into your application
-					// Assuming updateInputs is a function that takes the mapped data and updates your UI
-					inputTextImportData = JSON.stringify(mappedData, null, 2);
-					updateInputs();
-				};
-
-				// Read the file as text
-				reader.readAsText(file);
-			}
-		});
-
-		// Trigger the file selection dialog
-		input.click();
 	}
 
 	function loadInputsFromJSONFile() {
@@ -5636,8 +5391,6 @@ does not get multiplied by horn */
 	}
 
 	let inputNumberAttackValue = 0;
-
-	let legacyCalculatorSaveSlotNumber = 1;
 
 	$: outputWeaponClass = getWeaponClass(inputWeaponType);
 
@@ -10539,14 +10292,7 @@ does not get multiplied by horn */
 																				</p></ListItem
 																			>
 																		</UnorderedList>
-																		<p class="spaced-paragraph">
-																			Furthermore, you can load the save data
-																			from the Legacy Calculator into Wycademy's
-																			Calculator save format by going into the
-																			Save and Load section and selecting the
-																			Legacy Calculator tab; so you do not have
-																			to lose your progress.
-																		</p>
+
 																		<p class="spaced-paragraph">
 																			<strong
 																				>Note that refreshing the page resets
@@ -11068,7 +10814,6 @@ does not get multiplied by horn */
 													<Tabs>
 														<Tab label="Calculator" />
 														<Tab label="Overlay" />
-														<Tab label="Legacy Calculator" />
 														<Tab label="URL" />
 														<svelte:fragment slot="content">
 															<TabContent
@@ -11176,87 +10921,6 @@ does not get multiplied by horn */
 																</div></TabContent
 															>
 															<TabContent
-																><div class="container-tab-content">
-																	<p>
-																		If you want to import the save slots from
-																		the legacy calculator:
-																	</p>
-																	<OrderedList class="spaced-list">
-																		<ListItem class="paragraph-long-02"
-																			>Go to the legacy calculator.</ListItem
-																		>
-																		<ListItem class="paragraph-long-02"
-																			>Open the Console by pressing <kbd
-																				>Ctrl</kbd
-																			>
-																			+
-																			<kbd>Shift</kbd>
-																			+
-																			<kbd>I</kbd>.</ListItem
-																		>
-																		<ListItem class="paragraph-long-02">
-																			To put all of your save slots into the
-																			clipboard, paste the following command and
-																			run it in the console: <CodeSnippet
-																				code={'copy(JSON.stringify(localStorage));'}
-																				showMoreLess={false}
-																				type="inline"
-																			/>
-																		</ListItem>
-																		<ListItem class="paragraph-long-02">
-																			With the copied clipboard text, paste it
-																			into a text editor and save as JSON file.
-																		</ListItem>
-																		<ListItem class="paragraph-long-02">
-																			Click the button below, specifying the
-																			slot number in the number input, in order
-																			to import the file.
-																		</ListItem>
-																	</OrderedList>
-																	<div class="flex-row">
-																		<div class="number-input-container">
-																			<NumberInput
-																				size="sm"
-																				step={1}
-																				min={1}
-																				max={20}
-																				bind:value={
-																					legacyCalculatorSaveSlotNumber
-																				}
-																				invalidText={'Value must be between 1 and 20.'}
-																				label={'Legacy Calculator Save Slot Number'}
-																			/>
-																		</div>
-																		<Button
-																			kind="tertiary"
-																			icon={Upload}
-																			on:click={() =>
-																				loadLegacyInputsFromJSONFile(
-																					legacyCalculatorSaveSlotNumber,
-																				)}>Import legacy save file</Button
-																		>
-																		<Button
-																			kind="tertiary"
-																			icon={Save}
-																			on:click={() =>
-																				migrateLegacyCalculatorSaveSlots()}
-																			>Migrate all save slots</Button
-																		>
-																	</div>
-
-																	{#if showDamageCalculatorLegacyInputsJSONError}
-																		<InlineNotification
-																			title="Error:"
-																			subtitle="Invalid legacy damage calculator inputs in the imported file."
-																			kind="error"
-																			hideCloseButton
-																			lowContrast
-																			on:close={() =>
-																				(showDamageCalculatorLegacyInputsJSONError = false)}
-																		/>
-																	{/if}
-																</div></TabContent
-															><TabContent
 																><div class="container-tab-content">
 																	<p>
 																		Currently, it is not possible to load by
