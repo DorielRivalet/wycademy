@@ -118,6 +118,13 @@
 			<section class="top-level-section">
 				<SectionHeadingTopLevel title="Hunter's Notes" />
 
+				<InlineNotification
+					lowContrast
+					kind="info"
+					title="Accuracy:"
+					subtitle="This section is being rewritten for accuracy and improved sourcing."
+				/>
+
 				<div class="spaced-paragraph">
 					Explore our guides and tutorials of <InlineTooltip
 						tooltip="Game"

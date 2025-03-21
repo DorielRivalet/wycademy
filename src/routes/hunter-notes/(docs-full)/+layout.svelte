@@ -763,6 +763,12 @@
 				<Breadcrumb page={$page} />
 			</div>
 			<div class="slot">
+				<InlineNotification
+					lowContrast
+					kind="info"
+					title="Accuracy:"
+					subtitle="This section is being rewritten for accuracy and improved sourcing."
+				/>
 				{@render children?.()}
 			</div>
 		</div>
