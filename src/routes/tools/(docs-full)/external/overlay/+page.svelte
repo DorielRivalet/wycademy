@@ -22,7 +22,7 @@
 		<p class="spaced-paragraph"><strong>Owner: DorielRivalet</strong></p>
 		<div class="spaced-paragraph subtle">
 			<OutboundLink
-				href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/LICENSE"
+				href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/LICENSE.md"
 				>License</OutboundLink
 			>
 		</div>

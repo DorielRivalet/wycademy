@@ -385,13 +385,6 @@ export const toolsInfo: CategoryInfo[] = [
 		},
 		pages: [
 			{
-				name: 'MHFZZDatabase', // the order is intentional
-				description:
-					'A companion android app for Monster Hunter Frontier Z by theMaelstro.',
-				link: '/tools/external/mhfzzdatabase',
-				image: Tools,
-			},
-			{
 				name: 'mhfz-overlay',
 				description:
 					'A simple, customizable overlay with Discord Rich Presence integration for Monster Hunter Frontier Z on Windows.',

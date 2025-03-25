@@ -989,15 +989,6 @@ Only support can inflict poison to Raviente Raviente.`,
 		category: 'Tool',
 	},
 	{
-		title: 'MHFZZDatabase',
-		content:
-			'A companion android app for Monster Hunter Frontier Z by theMaelstro.',
-		slug: '/tools/external/mhfzzdatabase',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
-	{
 		title: 'Erupe',
 		content: 'Monster Hunter Frontier Server Emulator by ZeruLight.',
 		slug: '/tools/external/erupe',

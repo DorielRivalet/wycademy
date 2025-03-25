@@ -211,6 +211,18 @@ gitleaks detect -v && npm run commitlint ${1}
 
 ---
 
+**Tips:**
+
+- In case of small oversights: Instead of running `git-filter-repo` every time, you can only do it when necessary, using the documented process above. Instead, run `git rm`.
+
+- You can check what was deleted with `git log --diff-filter=D --summary`. This will show you a list of deleted files so you can target them in `git-filter-repo`.
+
+- Contact GitHub Support if you need them to remove cached objects.
+
+- If you're ever unsure whether a file is still in history, you can check with `git rev-list --all -- path/to/asset`. If it outputs a commit hash, the file is still there in history.
+
+---
+
 See also:
 
 - [Removing sensitive data from a repository](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)

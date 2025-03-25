@@ -25,7 +25,7 @@
 		<InlineNotification
 			title="Additional Note"
 			kind="info"
-			subtitle="If you are the developer of an open source tool or website, you can submit your resource and donation links via our GitHub issue tracker."
+			subtitle="If you are the developer of an open source tool or website, you can submit your resource and donation links via our GitHub issue tracker. The website does not need to have a license."
 		/>
 		<section>
 			<SectionHeading title="Transparency & Purpose" level={2} />

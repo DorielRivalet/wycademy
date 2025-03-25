@@ -255,12 +255,6 @@
 			icon: Logo,
 			nodes: [
 				{
-					text: 'MHFZZDatabase', // the order is intentional
-					id: '/tools/external/mhfzzdatabase',
-					icon: Tools,
-					href: '/tools/external/mhfzzdatabase',
-				},
-				{
 					id: '/tools/external/overlay',
 					href: '/tools/external/overlay',
 					icon: Tools, // TODO
