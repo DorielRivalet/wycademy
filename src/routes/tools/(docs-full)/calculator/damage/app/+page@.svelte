@@ -6693,14 +6693,14 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p class="spaced-paragraph">
-																					These are not a final multiplier but
-																					rather additional true raw damage.
+																					This isn’t a final multiplier—just
+																					extra true raw damage.
 																				</p>
 																				<p>
-																					For example, Weapons Art Large on a
-																					600 true raw weapon would be the same
-																					as +30 Attack or Attack Up Very Large
-																					(600*0.05).
+																					Example: Weapons Art Large on a 600
+																					true raw weapon adds the same as +30
+																					Attack or Attack Up Very Large (600 ×
+																					0.05).
 																				</p>
 																			</Tooltip>
 																			<Dropdown
@@ -6887,8 +6887,8 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p>
-																					Does not need affinity over 100% to
-																					add True Raw.
+																					You don’t need over 100% affinity to
+																					gain True Raw.
 																				</p>
 																			</Tooltip>
 																			<Dropdown
@@ -6971,10 +6971,9 @@ does not get multiplied by horn */
 																						triggerText="Vampirism"
 																					>
 																						<p class="spaced-paragraph">
-																							Each successfully leeching attack
-																							with a weapon adds a certain
-																							amount of additional true raw up
-																							to a maximum of +80.
+																							Every attack that successfully
+																							leeches adds extra true raw, up to
+																							+80.
 																						</p>
 																						<p>Dual Swords, Tonfa, LBG: +3</p>
 																						<p>
@@ -7150,12 +7149,10 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p>
-																					Adjusts base True Raw appropriately if
-																					you are using a Length Up sigil on a G
-																					Rank weapon. This reduction does not
-																					stack so 3 sigils to increase length 3
-																					times would be the same reduction as
-																					1.
+																					Adjusts base True Raw when using a
+																					Length Up sigil on a G Rank weapon.
+																					The reduction doesn’t stack—using 3
+																					sigils has the same effect as 1.
 																				</p>
 																			</Tooltip>
 																			<Dropdown
@@ -7231,7 +7228,7 @@ does not get multiplied by horn */
 																						triggerText="Road Floor"
 																					>
 																						<p>
-																							Attack rises every 5 floors,
+																							Attack increases every 5 floors,
 																							stopping at 26.
 																						</p>
 																					</Tooltip></span
@@ -7298,12 +7295,12 @@ does not get multiplied by horn */
 																						triggerText="Conquest Attack"
 																					>
 																						<p>
-																							The value of the skill as
-																							displayed on your SR stats if
-																							enabled. Only takes effect on
-																							standard Conquest quests.
+																							Displays the skill’s value in your
+																							SR stats when enabled. Works only
+																							in standard Conquest quests.
 																							<strong
-																								>Shiten quests do not count.</strong
+																								>Does not apply to Shiten
+																								quests.</strong
 																							>
 																						</p>
 																					</Tooltip></span
@@ -7313,11 +7310,11 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p>
-																					Toggle whether or not you have
-																					consumed a Conquest Attack Potion on a
-																					standard Conquest quest.
+																					Toggle this if you’ve used a Conquest
+																					Attack Potion in a standard Conquest
+																					quest.
 																					<strong
-																						>Shiten quests do not count.</strong
+																						>Does not apply to Shiten quests.</strong
 																					>
 																				</p>
 																			</Tooltip>
@@ -7504,17 +7501,15 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p class="spaced-paragraph">
-																					These buffs only take effect if you
-																					are using a weapon that is on a Gou
-																					tree while on a Gou, Supremacy or G
-																					Rank quest.
+																					These buffs apply only if you're using
+																					a Gou tree weapon in a Gou, Supremacy,
+																					or G Rank quest.
 																				</p>
 																				<p>
-																					For example: normal Lv50 weapons would
-																					get no buffs on any quests, but having
-																					a G Supremacy Weapon and 2 appropiate
-																					armor pieces would result in a +40
-																					addition to final damage.
+																					Example: Normal Lv50 weapons get no
+																					buffs, but a G Supremacy Weapon with 2
+																					matching armor pieces adds +40 to
+																					final damage.
 																				</p>
 																			</Tooltip>
 																			<Dropdown
@@ -7549,17 +7544,15 @@ does not get multiplied by horn */
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
 																				<p class="spaced-paragraph">
-																					These buffs only take effect if you
-																					are using a weapon that is on a Gou
-																					tree while on a Gou, Supremacy or G
-																					Rank quest.
+																					These buffs apply only if you're using
+																					a Gou tree weapon in a Gou, Supremacy,
+																					or G Rank quest.
 																				</p>
 																				<p>
-																					For example: normal Lv50 weapons would
-																					get no buffs on any quests, but having
-																					a G Supremacy Weapon and 2 appropiate
-																					armor pieces would result in a +40
-																					addition to final damage.
+																					Example: Normal Lv50 weapons get no
+																					buffs, but a G Supremacy Weapon with 2
+																					matching armor pieces adds +40 to
+																					final damage.
 																				</p>
 																			</Tooltip>
 																			<Dropdown
@@ -8110,9 +8103,8 @@ does not get multiplied by horn */
 																						triggerText="SR Attack"
 																					>
 																						<p>
-																							The top most attack level as
-																							displayed on SR info. Lv MAX is
-																							100.
+																							Your highest attack level in SR
+																							info. Max is 100.
 																						</p>
 																					</Tooltip></span
 																				>
@@ -8369,9 +8361,8 @@ does not get multiplied by horn */
 																			<div class="dropdown-tooltip-container">
 																				<Tooltip align="start">
 																					<p>
-																						You can find the graph for this
-																						multiplier in the Critical Distance
-																						section.
+																						Check the Critical Distance section
+																						for this multiplier’s graph.
 																					</p>
 																				</Tooltip>
 																				<Dropdown
@@ -8701,10 +8692,9 @@ does not get multiplied by horn */
 																				<div class="dropdown-tooltip-container">
 																					<Tooltip align="start">
 																						<p>
-																							Adjusts for Consumption Slayer, a
-																							skill that causes double coating
-																							consumption for an additional
-																							+0.2x multiplier.
+																							Adjusts for Consumption Slayer,
+																							which doubles coating use for an
+																							extra +0.2× multiplier.
 																						</p>
 																					</Tooltip>
 
@@ -9014,17 +9004,14 @@ does not get multiplied by horn */
 																						triggerText="Element"
 																					>
 																						<p class="spaced-paragraph">
-																							For the three levels of Standard
-																							Elemental Sword Crystals you can
-																							use the values 500, 700, 900 and
-																							for the GR600 Crystals you can use
-																							the values 1300, 1500 and 2100.
+																							Use these values for Elemental
+																							Sword Crystals: Standard: 500,
+																							700, 900 GR600: 1300, 1500, 2100
 																						</p>
 																						<p>
-																							This value replaces any elemental
-																							values on the weapon so set the
-																							element appropriately and use only
-																							the number above.
+																							This replaces your weapon’s
+																							elemental value, so set the
+																							element accordingly.
 																						</p>
 																					</Tooltip></span
 																				>
@@ -9180,12 +9167,12 @@ does not get multiplied by horn */
 																						triggerText="Additional"
 																					>
 																						<p>
-																							Enter any other additional damage
-																							to be calculated against only the
-																							defense rate, such as bombs and
-																							blast status.
-																						</p></Tooltip
-																					>
+																							Enter other extra damage (like
+																							bombs or blast status) to be
+																							calculated against only the
+																							defense rate.
+																						</p>
+																					</Tooltip>
 																				</span>
 																			</NumberInput>
 																		</div>
@@ -9263,11 +9250,10 @@ does not get multiplied by horn */
 																						triggerText="Defense Rate"
 																					>
 																						<p>
-																							You can find the defense rate
-																							using the overlay. The value in
-																							the overlay already includes the
-																							rage and hardcore modifier
-																							multiplications.
+																							Find the defense rate using the
+																							overlay. The overlay already
+																							includes rage and hardcore
+																							modifiers.
 																						</p>
 																					</Tooltip></span
 																				>
@@ -9313,11 +9299,10 @@ does not get multiplied by horn */
 																						triggerText="Cutting Hitzone"
 																					>
 																						<p>
-																							If the input is disabled and you
-																							want to change it, remove the
-																							monster selected in the dropdown
-																							above. This also applies to the
-																							number inputs below.
+																							If this is locked, remove the
+																							selected monster in the dropdown
+																							above to edit. This applies to
+																							other number inputs too.
 																						</p>
 																					</Tooltip></span
 																				></NumberInput
