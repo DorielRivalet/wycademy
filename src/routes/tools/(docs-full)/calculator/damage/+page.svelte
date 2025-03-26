@@ -6091,102 +6091,87 @@ does not get multiplied by horn */
 		id: number;
 		feature: string;
 		wycademy: boolean;
-		legacy: boolean;
 	}[] = [
-		{ id: 0, feature: 'True Raw Converter', wycademy: true, legacy: true },
-		{ id: 1, feature: 'Calculate Sigil Damage', wycademy: true, legacy: true },
+		{ id: 0, feature: 'True Raw Converter', wycademy: true },
+		{ id: 1, feature: 'Calculate Sigil Damage', wycademy: true },
 		{
 			id: 2,
 			feature: 'Calculate Additional Damage',
 			wycademy: true,
-			legacy: true,
 		},
 		{
 			id: 3,
 			feature: 'Calculate Arbitrary Motion Values',
 			wycademy: true,
-			legacy: true,
 		},
-		{ id: 4, feature: 'Calculate Total Damage', wycademy: true, legacy: true },
-		{ id: 5, feature: 'Calculate True Raw', wycademy: true, legacy: true },
+		{ id: 4, feature: 'Calculate Total Damage', wycademy: true },
+		{ id: 5, feature: 'Calculate True Raw', wycademy: true },
 		{
 			id: 6,
 			feature: 'Calculate Element Damage',
 			wycademy: true,
-			legacy: true,
 		},
-		{ id: 7, feature: 'Calculate Status Damage', wycademy: true, legacy: true },
+		{ id: 7, feature: 'Calculate Status Damage', wycademy: true },
 		{
 			id: 8,
 			feature: 'Calculate My Missions Required',
 			wycademy: true,
-			legacy: true,
 		},
-		{ id: 9, feature: 'Save and Load', wycademy: true, legacy: true },
-		{ id: 10, feature: 'Tooltips', wycademy: true, legacy: true },
-		{ id: 11, feature: 'View Motion Values', wycademy: true, legacy: true },
+		{ id: 9, feature: 'Save and Load', wycademy: true },
+		{ id: 10, feature: 'Tooltips', wycademy: true },
+		{ id: 11, feature: 'View Motion Values', wycademy: true },
 		{
 			id: 12,
 			feature: 'View Motion Values Stun',
 			wycademy: true,
-			legacy: true,
 		},
 		{
 			id: 13,
 			feature: 'View Motion Values by Weapon Style',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 14,
 			feature:
 				'View Motion Values Weapon Exclusive Stats (e.g. Switch Axe F Meter Drain)',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 15,
 			feature: 'Save and Load from other sources',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 16,
 			feature: 'Save and Load into files (i.e. JSON)',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 17,
 			feature: 'Calculate Diva Prayer Gem Damage',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 18,
 			feature: 'View Monster Hitzone Values',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 19,
 			feature: 'Offline Capabilities (PWA)',
 			wycademy: true,
-			legacy: false,
 		},
 		{
 			id: 20,
 			feature: 'Inputs History Tracking',
 			wycademy: true,
-			legacy: false,
 		},
-		{ id: 21, feature: 'Formulas', wycademy: true, legacy: false },
-		{ id: 22, feature: 'Walkthrough', wycademy: true, legacy: false },
+		{ id: 21, feature: 'Formulas', wycademy: true },
+		{ id: 22, feature: 'Walkthrough', wycademy: true },
 		{
 			id: 23,
 			feature: 'Show/Hide and Drag/Move sections/panels',
 			wycademy: true,
-			legacy: false,
 		},
 	];
 
@@ -9911,31 +9896,32 @@ does not get multiplied by horn */
 									</ListItem>
 								</UnorderedList>
 
-								<div class="driverjs-7">
+								<div>
 									<p class="spaced-paragraph">
-										If you were a user of the legacy calculator, rest assured
-										that you can do anything in the Wycademy calculator that you
-										could do in the other. Wycademy's calculator does reach
-										feature parity and provides additional features, as shown in
-										the table:
+										The Wycademy Calculator is a powerful tool that not only
+										provides all the features you'd expect but also introduces
+										several quality-of-life improvements and fixes for
+										calculation accuracy. Below is a comparison of its features:
 									</p>
 									<div class="table toc-exclude">
 										<DataTable
 											id="calculator-features-dom"
 											sortable
 											useStaticWidth
-											title="Calculator Features Comparison"
+											title="Calculator Features"
 											zebra
 											size="short"
 											headers={[
 												{ key: 'feature', value: 'Feature' },
-												{ key: 'wycademy', value: 'Wycademy' },
-												{ key: 'legacy', value: 'Legacy' },
+												{
+													key: 'wycademy',
+													value: 'Wycademy',
+												},
 											]}
 											rows={calculatorFeatures}
 										>
-											<Toolbar
-												><div class="toolbar">
+											<Toolbar>
+												<div class="toolbar">
 													<CopyButton
 														iconDescription={'Copy as CSV'}
 														text={getCSVFromArray(calculatorFeatures)}
@@ -9947,12 +9933,14 @@ does not get multiplied by horn */
 															downloadDomAsPng(
 																'calculator-features-dom',
 																'calculator-features',
-															)}>Download</Button
+															)}
 													>
+														Download
+													</Button>
 												</div>
 											</Toolbar>
 											<svelte:fragment slot="cell" let:cell>
-												{#if cell.key === 'legacy' || cell.key === 'wycademy'}
+												{#if cell.key === 'wycademy'}
 													<p>{cell.value ? '☑️' : '❌'}</p>
 												{:else}
 													<p>{cell.value}</p>
@@ -9961,202 +9949,160 @@ does not get multiplied by horn */
 										</DataTable>
 									</div>
 									<p class="spaced-paragraph">
-										Moreover, Wycademy's Calculator offers Quality of Life
-										additions, with many taking advantage of the capabilities of
-										the modern web:
+										In addition to core calculations, the Wycademy Calculator
+										offers modern web features for a seamless experience:
 									</p>
 									<UnorderedList class="spaced-list">
 										<ListItem><p>Mobile usability.</p></ListItem>
 										<ListItem><p>Works offline.</p></ListItem>
-
 										<ListItem><p>Monster HZV.</p></ListItem>
-
 										<ListItem
 											><p>
 												Reference formulas that update in real-time with your
 												calculations.
 											</p></ListItem
 										>
-
-										<ListItem><p>Inputs history tracking.</p></ListItem>
-
+										<ListItem><p>Input history tracking.</p></ListItem>
 										<ListItem
 											><p>
-												See motion values by weapon style and section.
+												Motion values categorized by weapon style and section.
 											</p></ListItem
 										>
-
 										<ListItem
 											><p>
-												Drag and move panels that you do not need.
+												Draggable panels for a customizable workspace.
 											</p></ListItem
 										>
-
 										<ListItem
 											><p>Dedicated stun column for motion values.</p></ListItem
 										>
-
 										<ListItem
 											><p>
-												Automatically hide element columns irrelevant to the
+												Automatic hiding of element columns irrelevant to the
 												selected element.
 											</p></ListItem
 										>
+										<ListItem>
+											<p>
+												<strong>Improved reactivity:</strong> No need for extra button
+												clicks—affinity calculations update automatically.
+											</p>
+										</ListItem>
 										<ListItem
 											><p>
-												<strong>Improved reactivity: </strong> you do not have to
-												click buttons like calculating affinity, our calculator does
-												it for you automatically.
+												Switch Axe F meter drain column in the motion values
+												table.
 											</p></ListItem
 										>
 										<ListItem
 											><p>
-												Switch Axe F meter drain column in motion values table.
-											</p></ListItem
-										>
-										<ListItem
-											><p>
-												Tonfa guard points column in motion values table.
+												Tonfa guard points column in the motion values table.
 											</p></ListItem
 										>
 									</UnorderedList>
 									<p class="spaced-paragraph">
-										We also fix many errors and problems present in legacy
-										calculator, here is a list of errors that are present in
-										those calculators and our fixes:
+										Additionally, Wycademy's Calculator fixes numerous
+										inaccuracies that were present in other tools:
 									</p>
 									<UnorderedList class="spaced-list">
 										<ListItem
 											><p>
 												<strong
-													>Motion values involving multiple attacks are
-													miscalculated:
-												</strong>
-
-												our calculator instead correctly calculates motion
-												values.
+													>Corrects miscalculations of multi-hit motion values.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>The logic for updating affinity/damage boosts from
-													Crit Conversion occasionally fails:
-												</strong>
-
-												our calculator instead correctly calculates affinity
-												thanks to the improved reactivity.
+													>Ensures accurate affinity calculations with real-time
+													updates.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>No support for sharing calculator code or work:
-												</strong>
-
-												our calculator instead is licensed MIT.
+													>Supports code sharing with an open MIT license.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
-												<strong>Bow coating mechanics are incorrect: </strong>
-
-												our calculator instead correctly calculates bow
-												coatings.
+												<strong>Fixes incorrect Bow coating mechanics.</strong>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>Some Tonfa motion values are incorrect:
-												</strong>
-
-												our calculator instead correctly calculates Tonfa's
-												motion values and adds additional motion values thanks
-												to separating by weapon style.
+													>Corrects Tonfa motion values and categorizes them by
+													weapon style.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>Formulas for Zenith and AOE sigils are inaccurate,
-													including interactions with multiple sigil users:
-												</strong>
-
-												our calculator instead correctly calculates sigil damage
-												by fixing the damage formula.
+													>Improves formulas for Zenith and AoE Sigils.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>Several motion values are mismatched, blending
-													Extreme style motions with another style or outdated
-													game versions:
-												</strong>
-
-												our calculator instead correctly calculates motion
-												values.
+													>Fixes mismatched motion values between styles and
+													outdated versions.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>No sources to verify accuracy or veracity of motion
-													values:
-												</strong>
-
-												our calculator instead offers a References section to
-												list the sources.
+													>Includes a references section for verification.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>Significant discrepancies exist between displayed
-													motion values and those used in calculations for
-													numerous instances:
-												</strong>
-
-												our calculator instead correctly calculates motion
-												values.
+													>Eliminates discrepancies between displayed and
+													calculated motion values.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
-												<strong>Several spelling mistakes: </strong>
-												our calculator instead correctly spells the words.
+												<strong>Fixes spelling mistakes.</strong>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>No active maintenance, feedback or support:
-												</strong>
-
-												our calculator instead offers support for issues which
-												can be reported on GitHub for resolution, offering a
-												clear path for feedback.
+													>Actively maintained with issue reporting available on
+													GitHub.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
 												<strong
-													>Lacks motion values for multiple weapon styles:
-												</strong>
-
-												our calculator instead offers the ability to select the
-												weapon style you are interested in.
+													>Supports motion values for multiple weapon styles.</strong
+												>
 											</p></ListItem
 										>
 										<ListItem
 											><p>
-												<strong>Requires downloading: </strong>
-												our calculator instead can be used on the web, both offline
-												and online.
+												<strong
+													>Available online and offline without needing to
+													download.</strong
+												>
 											</p></ListItem
 										>
 									</UnorderedList>
+									<p class="spaced-paragraph">
+										<strong>Note: Refreshing the page resets all values.</strong
+										>
+									</p>
 								</div>
 							</AccordionItem></Accordion
 						>
