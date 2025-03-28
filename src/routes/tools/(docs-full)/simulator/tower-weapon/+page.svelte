@@ -48,7 +48,6 @@
 		website,
 	} from '$lib/constants';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
-	import { replaceState } from '$app/navigation';
 	import TowerWeaponStats from '$lib/client/components/frontier/TowerWeaponStats.svelte';
 	import { findClosestIndex } from '$lib/client/modules/math';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
@@ -844,10 +843,10 @@
 		`${$page.url.origin}${$page.url.pathname}?${allParams}`,
 	);
 
-	$effect(() => {
-		// Update the URL without reloading
-		replaceState(shareUrl, {});
-	});
+	// $effect(() => {
+	// 	// Update the URL without reloading
+	// 	replaceState(shareUrl, {});
+	// });
 
 	// TODO test if i need to remove Head from layout
 	// if so, add blacklist of routes
