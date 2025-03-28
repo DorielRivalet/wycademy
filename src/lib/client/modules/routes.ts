@@ -369,7 +369,7 @@ export const toolsInfo: CategoryInfo[] = [
 			},
 			{
 				name: 'Thumbnail',
-				description: 'A thumbnail generator, for example YouTube thumbnails.',
+				description: 'A video thumbnail generator.',
 				image: VideoPlayer,
 				link: '/tools/generator/thumbnail',
 			},

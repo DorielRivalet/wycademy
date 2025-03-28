@@ -6266,6 +6266,12 @@ does not get multiplied by horn */
 		},
 		{ text: 'mhfz-overlay', href: '/overlay' },
 	];
+
+	const acknowledgements = [
+		{
+			text: 'Thanks Relial for helping me fix bugs!',
+		},
+	];
 </script>
 
 <Modal
@@ -10861,6 +10867,19 @@ does not get multiplied by horn */
 						{#each seeAlsoList as item}
 							<ListItem>
 								<Link href={item.href}>{item.text}</Link>
+							</ListItem>
+						{/each}
+					</UnorderedList>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Acknowledgements" />
+				<div>
+					<UnorderedList class="spaced-list">
+						{#each acknowledgements as item}
+							<ListItem>
+								<p>{item.text}</p>
 							</ListItem>
 						{/each}
 					</UnorderedList>

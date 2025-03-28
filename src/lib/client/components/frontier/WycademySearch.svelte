@@ -25,6 +25,10 @@
 
 		keyboardEvent.preventDefault(); // prevent browser default
 
+		if (keyboardEvent.key === 'Shift') {
+			return; // fix hunter notes
+		}
+
 		if ((keyboardEvent.target as HTMLElement)?.tagName === 'INPUT') {
 			// console.log('some input is focused, should skip');
 			return;
@@ -234,7 +238,7 @@
 />
 
 <div class="button-container">
-	<Button iconDescription="Search" kind="ghost" on:click={initialize}>
+	<Button iconDescription="Search (Ctrl+K)" kind="ghost" on:click={initialize}>
 		{#snippet icon()}
 			<span>
 				<SearchIcon size={20} color="var(--ctp-text)" />

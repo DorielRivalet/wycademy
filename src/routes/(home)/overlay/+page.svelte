@@ -284,9 +284,10 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 				authorName="Sera"
 				authorTitle="MHF-Z Speedrunner"
 				authorLink="https://www.youtube.com/@Sera9145"
-				quote="The overlay verifies that the files are legitimate and unmodified to prevent gaining an advantage, then uploads the data to the leaderboard with linked YouTube videos. It can also show damage numbers and track musou kills, which are not displayed by the game."
+				quote="The overlay verifies that the files are legitimate and unmodified to prevent gaining an advantage, then uploads the data to the leaderboard with linked videos. It can also show damage numbers and track musou kills, which are not displayed by the game."
 				authorImage="https://yt3.googleusercontent.com/BtnD0kIPHh7zIYn1XWtVLEhEvEhnjuUc0mNlflJgTpbuZrB1GE9NXZ-TGozOaARvIsXZhwJP8fM=s160-c-k-c0x00ffffff-no-rj"
 			/>
+			<!--ds guy testimonial when?-->
 		</div>
 	</section>
 
@@ -327,7 +328,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			imagePosition="right"
 			title="Revisit your previous hunts"
 			section="Quest History"
-			description="Track your run categories, personal best times, damage per second, weapon usage, and quest statistics. Includes YouTube integration, detailed pacing, and item usage with timestamps."
+			description="Track your run categories, personal best times, damage per second, weapon usage, and quest statistics. Includes video links integration, detailed pacing, and item usage with timestamps."
 			sectionIcon={TicketIconWhite}
 			sectionIconProps={{ size: '32px' }}
 		>

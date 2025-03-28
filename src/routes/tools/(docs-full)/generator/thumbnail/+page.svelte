@@ -1006,7 +1006,7 @@
 					on:click={() => changeModal('', 'YouTube')}
 					size="default"
 					icon={VideoPlayer}
-					kind="ghost">YouTube thumbnails.</Button
+					kind="ghost">video thumbnails.</Button
 				></span
 			>
 		</p>

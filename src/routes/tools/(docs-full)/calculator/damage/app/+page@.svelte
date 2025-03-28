@@ -6252,6 +6252,12 @@ does not get multiplied by horn */
 		},
 		{ text: 'mhfz-overlay', href: '/overlay' },
 	];
+
+	const acknowledgements = [
+		{
+			text: 'Thanks Relial for helping me fix bugs!',
+		},
+	];
 </script>
 
 <Modal
@@ -6451,6 +6457,7 @@ does not get multiplied by horn */
 										<Tab label="Help" />
 										<Tab label="References" />
 										<Tab label="See also" />
+										<Tab label="Acknowledgements" />
 
 										<svelte:fragment slot="content">
 											<TabContent>
@@ -10617,6 +10624,17 @@ does not get multiplied by horn */
 														{#each seeAlsoList as item}
 															<ListItem>
 																<Link href={item.href}>{item.text}</Link>
+															</ListItem>
+														{/each}
+													</UnorderedList>
+												</div>
+											</TabContent>
+											<TabContent>
+												<div class="container-tab-content">
+													<UnorderedList class="spaced-list">
+														{#each acknowledgements as item}
+															<ListItem>
+																<p>{item.text}</p>
 															</ListItem>
 														{/each}
 													</UnorderedList>
