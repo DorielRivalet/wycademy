@@ -5978,7 +5978,7 @@ does not get multiplied by horn */
 					// 	panel1TabSelected = 0;
 					// },
 					onHighlightStarted: () => {
-						panel1TabSelected = 3;
+						panel1TabSelected = 4;
 					},
 				},
 				{
@@ -6450,7 +6450,7 @@ does not get multiplied by horn */
 										of tables etc. Ideas: sharpness, multipliers, monsters, etc.-->
 										<Tab label="Help" />
 										<Tab label="References" />
-										<Tab label="See Also" />
+										<Tab label="See also" />
 
 										<svelte:fragment slot="content">
 											<TabContent>

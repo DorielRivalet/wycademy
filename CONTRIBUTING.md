@@ -11,7 +11,7 @@ provide clear instructions for those who want to contribute.
 
 To keep Wycademy’s guides accessible, engaging, and easy to understand for players of all ages and backgrounds, please follow these writing guidelines when contributing content.
 
-See our `./docs/hunter-notes/README.md` for more specific contribution guidelines for guides.
+See our contribution guidelines for [guides](docs/hunter-notes/README.md) and for [tools](docs/tools/README.md).
 
 ### Keep It Clear & Simple
 

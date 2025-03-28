@@ -119,7 +119,7 @@ While we don’t have a Discord, we encourage community contributions through ot
 				question:
 					'Is Wycademy affiliated with any Monster Hunter communities or teams?',
 				answer:
-					'No. Wycademy is not affiliated with any particular Monster Hunter Discord server, private server, or development team (other than the members of Open Frontiers). It is an independent platform dedicated to knowledge-sharing.',
+					'No. Wycademy is not affiliated with any particular Monster Hunter Discord server, private server, or development team (other than the members of Open Frontiers). It is an independent platform dedicated to knowledge-sharing. We appreciate private servers supporting our work via word of mouth and other means.',
 			},
 		],
 	};

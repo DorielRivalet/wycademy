@@ -38,6 +38,9 @@
 		getZenithSigilTrueRaw,
 	} from '$lib/client/modules/frontier/sigils';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	let modalHeading = $state('');
 	let modalLabel = $state('');
@@ -974,6 +977,18 @@
 					</p>
 				</div>
 			</div>
+			<section>
+				<SectionHeading level={2} title="Contributions" />
+				<div>
+					<UnorderedList class="spaced-list">
+						<ListItem
+							><p>
+								Thanks to Sera for in-game testing with the overlay!
+							</p></ListItem
+						>
+					</UnorderedList>
+				</div>
+			</section>
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>

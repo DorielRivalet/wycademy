@@ -1,6 +1,6 @@
 # Hunter Notes Contribution Template
 
-*Use this template when creating or updating pages in the Hunter Notes section. Fill in each section following the research process outlined in `CONTRIBUTING.md`.*
+*Use this template when creating or updating pages in the Hunter Notes section. Fill in each section following the research process outlined in [CONTRIBUTING.md](../../CONTRIBUTING.md).*
 
 ## Page Title
 

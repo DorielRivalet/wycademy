@@ -31,7 +31,6 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import { browser } from '$app/environment';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),

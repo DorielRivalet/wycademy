@@ -194,6 +194,13 @@
 			type: 'Other',
 		},
 	];
+
+	const seeAlsoList: { text: string; href: string }[] = [
+		{
+			text: "Nerscylia's Video Guide", // with written permission (and for all other videos), 2025-03-26
+			href: 'https://www.youtube.com/watch?v=37kLBKrL5b0',
+		},
+	];
 </script>
 
 <TableOfContentsPage displayTOC={true}>
@@ -902,6 +909,19 @@
 				</div>
 			</section>
 		</div>
+
+		<section>
+			<SectionHeading level={2} title="See also" />
+			<div>
+				<UnorderedList class="spaced-list">
+					{#each seeAlsoList as item}
+						<ListItem>
+							<Link href={item.href}>{item.text}</Link>
+						</ListItem>
+					{/each}
+				</UnorderedList>
+			</div>
+		</section>
 
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
