@@ -44,7 +44,7 @@ const render = (
 <link>https://wycademy.vercel.app</link>
 <description>The Frontier Z Platform</description>
 <category>Videogames</category>
-<copyright>2024 Doriel Rivalet. Code licensed MIT.</copyright>
+<copyright>2025 Open Frontiers. Code licensed MIT.</copyright>
 <image>
   <url>https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/wycademy-logo-small.webp</url>
   <title>Wycademy</title>

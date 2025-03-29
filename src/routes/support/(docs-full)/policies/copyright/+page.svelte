@@ -176,7 +176,7 @@
 						</div>
 						<div class="license">
 							<p class="spaced-paragraph">MIT License</p>
-							<p class="spaced-paragraph">Copyright (c) 2023 Doriel Rivalet</p>
+							<p class="spaced-paragraph">Copyright (c) 2023-2025 Open Frontiers</p>
 							<p class="spaced-paragraph">
 								Permission is hereby granted, free of charge, to any person
 								obtaining a copy of this software and associated documentation
