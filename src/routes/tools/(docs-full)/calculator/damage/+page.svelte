@@ -3811,6 +3811,40 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
 		'Extreme Style';
 
+	const maxTotalDivaPrayerGemLevel = 7;
+
+	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
+
+	const iconKey = 'divaPrayerGemIcon';
+
+	const mappedDivaPrayerGems = divaPrayerGems
+		.filter((e) => !e.unused && e.affectedByDamageCalculator)
+		.map((gem) => ({
+			id: gem.name,
+			text: gem.name,
+		}));
+
+	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
+
+	let selectedMonster: FrontierMonsterName = 'Abiorugu';
+	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedMonsterState = 'Default';
+	let selectedMonsterPart: FrontierMonsterPart = 'Head';
+
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	const currentMonsters = getCurrentMonsters();
+
 	let initialInputs = {};
 
 	if (browser) {
@@ -5632,27 +5666,6 @@ does not get multiplied by horn */
 
 	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = [];
 
-	const maxTotalDivaPrayerGemLevel = 7;
-
-	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
-
-	const iconKey = 'divaPrayerGemIcon';
-
-	const mappedDivaPrayerGems = divaPrayerGems
-		.filter((e) => !e.unused && e.affectedByDamageCalculator)
-		.map((gem) => ({
-			id: gem.name,
-			text: gem.name,
-		}));
-
-	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
-
 	function hasDuplicateValues(obj: Object, ignoredString: string) {
 		if (!obj) {
 			return false;
@@ -5776,19 +5789,6 @@ does not get multiplied by horn */
 				);
 		}
 	}
-
-	let selectedMonster: FrontierMonsterName = 'Abiorugu';
-	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
-	let selectedMonsterState = 'Default';
-	let selectedMonsterPart: FrontierMonsterPart = 'Head';
-
-	let uniqueMonsters = getUniqueMonsters().sort(
-		(a, b) =>
-			(a?.displayName?.codePointAt(0) ?? 0) -
-			(b?.displayName?.codePointAt(0) ?? 0),
-	);
-
-	const currentMonsters = getCurrentMonsters();
 
 	function shouldFilterItem(item: { text: string }, value: string) {
 		if (!value) return true;

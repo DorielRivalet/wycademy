@@ -23,7 +23,7 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
-	import { Pane, Splitpanes } from 'svelte-splitpanes';
+	import { Pane, Splitpanes, type IPaneSizingEvent } from 'svelte-splitpanes';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
@@ -52,6 +52,7 @@
 		FrontierDivaPrayerGemLevel,
 		FrontierElement,
 		FrontierMonsterHitzoneRankBand,
+		FrontierMonsterHitzoneType,
 		FrontierMonsterInfo,
 		FrontierMonsterPart,
 		FrontierMotionValue,
@@ -3631,6 +3632,41 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
 		'Extreme Style';
 
+	const maxTotalDivaPrayerGemLevel = 7;
+
+	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
+
+	const iconKey = 'divaPrayerGemIcon';
+
+	const mappedDivaPrayerGems = divaPrayerGems
+		.filter((e) => !e.unused && e.affectedByDamageCalculator)
+		.map((gem) => ({
+			id: gem.name,
+			text: gem.name,
+		}));
+
+	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
+
+	let selectedMonster: FrontierMonsterName = 'Abiorugu';
+	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedMonsterState = 'Default';
+	let selectedMonsterPart: FrontierMonsterPart = 'Head';
+	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
+
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	const currentMonsters = getCurrentMonsters();
+
 	let initialInputs = {};
 
 	if (browser) {
@@ -5453,27 +5489,6 @@ does not get multiplied by horn */
 
 	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = [];
 
-	const maxTotalDivaPrayerGemLevel = 7;
-
-	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
-	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
-
-	const iconKey = 'divaPrayerGemIcon';
-
-	const mappedDivaPrayerGems = divaPrayerGems
-		.filter((e) => !e.unused && e.affectedByDamageCalculator)
-		.map((gem) => ({
-			id: gem.name,
-			text: gem.name,
-		}));
-
-	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
-	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
-
 	function hasDuplicateValues(obj: Object, ignoredString: string) {
 		if (!obj) {
 			return false;
@@ -5597,20 +5612,6 @@ does not get multiplied by horn */
 				);
 		}
 	}
-
-	let selectedMonster: FrontierMonsterName = 'Abiorugu';
-	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
-	let selectedMonsterState = 'Default';
-	let selectedMonsterPart: FrontierMonsterPart = 'Head';
-	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
-
-	let uniqueMonsters = getUniqueMonsters().sort(
-		(a, b) =>
-			(a?.displayName?.codePointAt(0) ?? 0) -
-			(b?.displayName?.codePointAt(0) ?? 0),
-	);
-
-	const currentMonsters = getCurrentMonsters();
 
 	function shouldFilterItem(item: { text: string }, value: string) {
 		if (!value) return true;
@@ -5943,20 +5944,47 @@ does not get multiplied by horn */
 		inputWeaponType,
 	);
 
+	function getPanelSize(panelIndex: number, defaultSize: number) {
+		if (browser) {
+			let groupIndex = Math.ceil(panelIndex / 2) - 1;
+			console.log(`groupIndex: ${groupIndex}`);
+			let sizes = window.localStorage.getItem(
+				`__damage-calculator-panel-sizes${groupIndex}`,
+			);
+
+			if (!sizes) {
+				console.log('Panel sizes not found.');
+				return defaultSize;
+			}
+
+			let isEven = panelIndex % 2 === 0;
+			let sizesJSON = JSON.parse(sizes);
+			let size = sizesJSON[isEven ? 1 : 0].size;
+
+			console.log(`size: ${size}, index: ${panelIndex}`);
+
+			return size;
+		} else {
+			console.log('Browser not found.');
+			return defaultSize;
+		}
+	}
+
 	/**TODO: use this for hovering, info, warnings and errors.*/
 	// let statusBarText = '';
+	const topPanelsSizeDefault = 50;
+	const bottomPanelsSizeDefault = 50;
 	const panel1SizeDefault = 75;
 	const panel2SizeDefault = 25;
 	const panel3SizeDefault = 75;
 	const panel4SizeDefault = 25;
-	const topPanelsSizeDefault = 50;
-	const bottomPanelsSizeDefault = 50;
-	let panel1Size = panel1SizeDefault;
-	let panel2Size = panel2SizeDefault;
-	let panel3Size = panel3SizeDefault;
-	let panel4Size = panel4SizeDefault;
-	let topPanelsSize = topPanelsSizeDefault;
-	let bottomPanelsSize = bottomPanelsSizeDefault;
+
+	let topPanelsSize = getPanelSize(1, topPanelsSizeDefault);
+	let bottomPanelsSize = getPanelSize(2, bottomPanelsSizeDefault);
+	let panel1Size = getPanelSize(3, panel1SizeDefault);
+	let panel2Size = getPanelSize(4, panel2SizeDefault);
+	let panel3Size = getPanelSize(5, panel3SizeDefault);
+	let panel4Size = getPanelSize(6, panel4SizeDefault);
 
 	let panel1TabSelected = 0;
 	let panel2TabSelected = 0;
@@ -6293,6 +6321,17 @@ does not get multiplied by horn */
 			text: 'Thanks Relial for helping me fix bugs!',
 		},
 	];
+
+	function savePanelSizeToLocalStorage(event: any, panelGroupIndex: number) {
+		if (event.detail && browser) {
+			let val = JSON.stringify(event.detail);
+			localStorage.setItem(
+				`__damage-calculator-panel-sizes${panelGroupIndex}`,
+				val,
+			);
+			console.log(val, panelGroupIndex);
+		}
+	}
 </script>
 
 <Modal
@@ -6477,9 +6516,16 @@ does not get multiplied by horn */
 			</Pane>
 
 			<Pane>
-				<Splitpanes horizontal theme="modern-theme">
+				<Splitpanes
+					horizontal
+					theme="modern-theme"
+					on:resized={(e) => savePanelSizeToLocalStorage(e, 0)}
+				>
 					<Pane bind:size={topPanelsSize}>
-						<Splitpanes theme="modern-theme">
+						<Splitpanes
+							theme="modern-theme"
+							on:resized={(e) => savePanelSizeToLocalStorage(e, 1)}
+						>
 							<Pane bind:size={panel1Size} class="driverjs-0">
 								<div>
 									<Tabs type="container" bind:selected={panel1TabSelected}>
@@ -10950,7 +10996,10 @@ does not get multiplied by horn */
 						</Splitpanes>
 					</Pane>
 					<Pane bind:size={bottomPanelsSize}>
-						<Splitpanes theme="modern-theme">
+						<Splitpanes
+							theme="modern-theme"
+							on:resized={(e) => savePanelSizeToLocalStorage(e, 2)}
+						>
 							<Pane bind:size={panel3Size}>
 								<div>
 									<Tabs
