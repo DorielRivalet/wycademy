@@ -16,6 +16,38 @@ npm run cm
 npm run release
 ```
 
+## scc
+
+`scc --exclude-ext=.gitignore,d.ts,txt .`
+
+| Language | Files | Lines | Blanks | Comments | Code | Complexity |
+|----------|-------|-------|--------|----------|------|------------|
+| Svelte | 656 | 372652 | 10021 | 3862 | 358769 | 3989 |
+| TypeScript | 152 | 191164 | 1819 | 3002 | 186343 | 3248 |
+| Markdown | 25 | 2301 | 657 | 0 | 1644 | 0 |
+| JSON | 19 | 75913 | 0 | 0 | 75913 | 0 |
+| SVG | 16 | 815 | 25 | 12 | 778 | 0 |
+| YAML | 13 | 445 | 40 | 40 | 365 | 0 |
+| SQL | 12 | 1473 | 29 | 146 | 1298 | 3 |
+| Sass | 4 | 476 | 59 | 155 | 262 | 0 |
+| CSS | 2 | 497 | 1 | 26 | 470 | 0 |
+| HTML | 2 | 112 | 3 | 10 | 99 | 0 |
+| JavaScript | 2 | 69 | 8 | 27 | 34 | 8 |
+| TOML | 2 | 449 | 62 | 268 | 119 | 0 |
+| Batch | 1 | 1 | 0 | 0 | 1 | 1 |
+| Python | 1 | 39 | 2 | 1 | 36 | 1 |
+| Shell | 1 | 2 | 0 | 1 | 1 | 1 |
+| **Total** | **908** | **646408** | **12727** | **7550** | **626131** | **7251** |
+
+**Development Metrics:**
+
+| Metric | Value |
+|--------|-------|
+| Estimated Cost to Develop (organic) | $23,339,620 |
+| Estimated Schedule Effort (organic) | 45.53 months |
+| Estimated People Required (organic) | 45.54 |
+| Processed Size | 21,025,136 bytes (21.025 megabytes) |
+
 ## Licenses (npm)
 
 ### Configuration
