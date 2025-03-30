@@ -51,7 +51,7 @@
 	const customTitle = "Support — Frontier's Wycademy";
 	const url = $page.url.toString();
 	const description =
-		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.';
+		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Open Frontiers.';
 
 	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 

@@ -129,7 +129,7 @@
 
 	let headTitle = $state("Hunter's Notes — Frontier's Wycademy");
 	let description = $state(
-		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.',
+		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Open Frontiers.',
 	);
 	let image = $state(pageThumbnail);
 

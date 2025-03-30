@@ -123,7 +123,7 @@
 
 	let headTitle = $state("Tools and Utilities — Frontier's Wycademy");
 	let description = $state(
-		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.',
+		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Open Frontiers.',
 	);
 
 	const url = $page.url.toString();

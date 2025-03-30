@@ -124,7 +124,7 @@
 
 	let headTitle = $state("Support Center — Frontier's Wycademy");
 	let description = $state(
-		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.',
+		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Open Frontiers.',
 	);
 
 	const url = $page.url.toString();

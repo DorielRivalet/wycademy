@@ -17,7 +17,7 @@ export function onNotificationPress(
 		if (result === 'granted') {
 			pushNotificationsStore.set(true);
 			sendNotification(
-				`Created by Doriel Rivalet.`,
+				`Created by Open Frontiers.`,
 				logo,
 				{ path: 'overlay' },
 				[

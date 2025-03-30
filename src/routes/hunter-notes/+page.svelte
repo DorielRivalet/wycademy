@@ -52,7 +52,7 @@
 	const customTitle = "Hunter's Notes — Frontier's Wycademy";
 	const url = $page.url.toString();
 	const description =
-		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
+		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Open Frontiers.';
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
