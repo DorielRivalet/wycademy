@@ -23,7 +23,7 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
-	import { Pane, Splitpanes, type IPaneSizingEvent } from 'svelte-splitpanes';
+	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
@@ -3675,7 +3675,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 			try {
 				initialInputs = JSON.parse(jsonString);
 				updateInputs(initialInputs);
-				console.log('Inputs loaded from localStorage');
 			} catch (error) {
 				console.error('Error parsing stored inputs:', error);
 			}
@@ -3839,7 +3838,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	function saveToLocalStorage(inputs: object) {
 		const jsonString = JSON.stringify(inputs);
 		localStorage.setItem('__damage-calculator-inputs', jsonString);
-		console.log('Inputs saved to localStorage');
 	}
 
 	// Auto-save whenever inputs change
@@ -5947,13 +5945,11 @@ does not get multiplied by horn */
 	function getPanelSize(panelIndex: number, defaultSize: number) {
 		if (browser) {
 			let groupIndex = Math.ceil(panelIndex / 2) - 1;
-			console.log(`groupIndex: ${groupIndex}`);
 			let sizes = window.localStorage.getItem(
 				`__damage-calculator-panel-sizes${groupIndex}`,
 			);
 
 			if (!sizes) {
-				console.log('Panel sizes not found.');
 				return defaultSize;
 			}
 
@@ -5961,11 +5957,8 @@ does not get multiplied by horn */
 			let sizesJSON = JSON.parse(sizes);
 			let size = sizesJSON[isEven ? 1 : 0].size;
 
-			console.log(`size: ${size}, index: ${panelIndex}`);
-
 			return size;
 		} else {
-			console.log('Browser not found.');
 			return defaultSize;
 		}
 	}
@@ -6329,7 +6322,6 @@ does not get multiplied by horn */
 				`__damage-calculator-panel-sizes${panelGroupIndex}`,
 				val,
 			);
-			console.log(val, panelGroupIndex);
 		}
 	}
 </script>

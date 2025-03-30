@@ -3853,7 +3853,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 			try {
 				initialInputs = JSON.parse(jsonString);
 				updateInputs(initialInputs);
-				console.log('Inputs loaded from localStorage');
 			} catch (error) {
 				console.error('Error parsing stored inputs:', error);
 			}
@@ -4017,7 +4016,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	function saveToLocalStorage(inputs: object) {
 		const jsonString = JSON.stringify(inputs);
 		localStorage.setItem('__damage-calculator-inputs', jsonString);
-		console.log('Inputs saved to localStorage');
 	}
 
 	// Auto-save whenever inputs change
