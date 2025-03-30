@@ -2628,19 +2628,23 @@
 		input.click();
 	}
 
-	function updateInputs() {
-		if (inputTextImportData === undefined || inputTextImportData === '') {
-			showDamageCalculatorInputsJSONError = false;
-			return;
-		}
-
+	function updateInputs(localStorageInputs?: object) {
 		let newInputs: { [key: string]: any } = {};
 
-		try {
-			newInputs = JSON.parse(inputTextImportData);
-		} catch (e) {
-			showDamageCalculatorInputsJSONError = true;
-			return;
+		if (localStorageInputs) {
+			newInputs = localStorageInputs;
+		} else {
+			if (inputTextImportData === undefined || inputTextImportData === '') {
+				showDamageCalculatorInputsJSONError = false;
+				return;
+			}
+
+			try {
+				newInputs = JSON.parse(inputTextImportData);
+			} catch (e) {
+				showDamageCalculatorInputsJSONError = true;
+				return;
+			}
 		}
 
 		showDamageCalculatorInputsJSONError = false;
@@ -3627,6 +3631,21 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
 		'Extreme Style';
 
+	let initialInputs = {};
+
+	if (browser) {
+		const jsonString = localStorage.getItem('__damage-calculator-inputs');
+		if (jsonString) {
+			try {
+				initialInputs = JSON.parse(jsonString);
+				updateInputs(initialInputs);
+				console.log('Inputs loaded from localStorage');
+			} catch (error) {
+				console.error('Error parsing stored inputs:', error);
+			}
+		}
+	}
+
 	$: inputs = {
 		inputStyleRankAffinity: inputStyleRankAffinity,
 		inputMeleeSharpnessAffinity: inputMeleeSharpnessAffinity,
@@ -3779,6 +3798,21 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		selectedMonsterState: selectedMonsterState,
 		selectedMonsterPart: selectedMonsterPart,
 	};
+
+	// Function to save all inputs to localStorage
+	function saveToLocalStorage(inputs: object) {
+		const jsonString = JSON.stringify(inputs);
+		localStorage.setItem('__damage-calculator-inputs', jsonString);
+		console.log('Inputs saved to localStorage');
+	}
+
+	// Auto-save whenever inputs change
+	$: {
+		// This reactive statement will run whenever any of the inputs change
+		if (browser) {
+			saveToLocalStorage(inputs);
+		}
+	}
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 
@@ -3992,6 +4026,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 	// TODO if a value or a reactive statement seems to be wrong by 1 past calculation, try puttign it above inputTextInputs.
 
+	/**The JSON inputs as string*/
 	$: inputTextInputs = prettyPrintJson(inputs);
 
 	$: sharedMotionValues = getWeaponSectionMotionValues(
@@ -5909,7 +5944,7 @@ does not get multiplied by horn */
 	);
 
 	/**TODO: use this for hovering, info, warnings and errors.*/
-	// let statusBarText = 'Note: refreshing the page resets all values.';
+	// let statusBarText = '';
 	const panel1SizeDefault = 75;
 	const panel2SizeDefault = 25;
 	const panel3SizeDefault = 75;
@@ -6061,7 +6096,7 @@ does not get multiplied by horn */
 					popover: {
 						title: 'Happy Calculating',
 						description:
-							"If you find bugs or errors, don't hesitate to contact us on GitHub.",
+							"The state of your inputs are saved locally, so you don\'t lose progress if you refresh or close tabs. If you find bugs or errors, don't hesitate to contact us on GitHub.",
 					},
 				},
 			],
@@ -10210,12 +10245,6 @@ does not get multiplied by horn */
 																				</p></ListItem
 																			>
 																		</UnorderedList>
-																		<p class="spaced-paragraph">
-																			<strong
-																				>Note: Refreshing the page resets all
-																				values.</strong
-																			>
-																		</p>
 																	</div>
 																</div>
 															</TabContent>
