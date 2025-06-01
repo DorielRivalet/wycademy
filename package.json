@@ -121,7 +121,7 @@
 		"@ibm/plex": "^6.4.1",
 		"@octokit/core": "^6.1.2",
 		"@octokit/webhooks": "^13.7.4",
-		"@octokit/webhooks-methods": "^5.1.0",
+		"@octokit/webhooks-methods": "^6.0.0",
 		"@supabase/ssr": "^0.5.2",
 		"@supabase/supabase-js": "^2.49.1",
 		"@theatre/core": "^0.7.2",
