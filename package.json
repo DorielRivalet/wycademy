@@ -127,7 +127,7 @@
 		"@theatre/core": "^0.7.2",
 		"@threlte/core": "^8.0.0-next.31",
 		"@threlte/extras": "^9.0.2",
-		"@threlte/theatre": "^3.0.0-next.9",
+		"@threlte/theatre": "^3.0.7",
 		"@types/better-sqlite3": "^7.6.12",
 		"@types/three": "^0.174.0",
 		"@vercel/analytics": "^1.5.0",
