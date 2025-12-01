@@ -11,4 +11,4 @@ jobs:
           overall_threshold: minor
           pages_threshold: partial_outage
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
