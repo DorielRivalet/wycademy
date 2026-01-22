@@ -151,7 +151,7 @@
 		"jwt-decode": "^4.0.0",
 		"license-downloader": "^1.3.0",
 		"license-report-check": "^0.1.1",
-		"lodash": "^4.17.21",
+		"lodash": "^4.17.23",
 		"mathjs": "^14.3.1",
 		"mathlifier": "^2.0.3",
 		"mermaid": "^11.4.1",
